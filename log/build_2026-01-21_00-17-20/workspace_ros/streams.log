@@ -1,0 +1,72 @@
+[0.725s] Invoking command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build
+[0.934s] running develop
+[1.073s] Removing /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/workspace-ros.egg-link (link to .)
+[1.097s] Invoked command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build
+[1.097s] Invoking command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build install --record /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/install.log --single-version-externally-managed install_data --force
+[1.275s] running egg_info
+[1.289s] writing ../build/workspace_ros/workspace_ros.egg-info/PKG-INFO
+[1.289s] writing dependency_links to ../build/workspace_ros/workspace_ros.egg-info/dependency_links.txt
+[1.289s] writing entry points to ../build/workspace_ros/workspace_ros.egg-info/entry_points.txt
+[1.289s] writing requirements to ../build/workspace_ros/workspace_ros.egg-info/requires.txt
+[1.289s] writing top-level names to ../build/workspace_ros/workspace_ros.egg-info/top_level.txt
+[1.314s] reading manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[1.315s] writing manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[1.315s] running build
+[1.315s] running build_py
+[1.315s] running install
+[1.320s] running install_lib
+[1.333s] creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/static_transform_publisher.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/converter.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/__init__.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/lidar_processor.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/imu_covariance_repub.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/kamikaze.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/gps_covariance_repub.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/target_buoy.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/manual_control.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[1.333s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/static_transform_publisher.py to static_transform_publisher.cpython-312.pyc
+[1.334s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/converter.py to converter.cpython-312.pyc
+[1.335s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/__init__.py to __init__.cpython-312.pyc
+[1.335s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/lidar_processor.py to lidar_processor.cpython-312.pyc
+[1.336s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/imu_covariance_repub.py to imu_covariance_repub.cpython-312.pyc
+[1.336s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/kamikaze.py to kamikaze.cpython-312.pyc
+[1.339s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/gps_covariance_repub.py to gps_covariance_repub.cpython-312.pyc
+[1.339s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/target_buoy.py to target_buoy.cpython-312.pyc
+[1.341s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/manual_control.py to manual_control.cpython-312.pyc
+[1.342s] running install_data
+[1.342s] copying resource/workspace_ros -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/ament_index/resource_index/packages
+[1.342s] copying package.xml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros
+[1.342s] copying config/static_transform.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.342s] copying config/ekf.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.342s] copying config/lidar_rviz.rviz -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.342s] copying config/kiss_icp.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.342s] copying config/navsat.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.342s] copying config/lidar_filter.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.343s] copying launch/localization.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+[1.343s] copying launch/mola_slam.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+[1.343s] copying launch/kiss_icp.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+[1.343s] copying launch/lidar_filter.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+[1.343s] copying scripts/static_transform_publisher.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/converter.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/__init__.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/lidar_processor.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/imu_covariance_repub.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/kamikaze.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/gps_covariance_repub.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/target_buoy.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying scripts/manual_control.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[1.343s] copying YOLOv11/YOLOv11.pt -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/YOLOv11
+[1.355s] running install_egg_info
+[1.367s] Copying ../build/workspace_ros/workspace_ros.egg-info to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info
+[1.367s] running install_scripts
+[1.448s] Installing converter script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.448s] Installing gps_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.449s] Installing imu_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.449s] Installing kamikaze script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.449s] Installing lidar_processor script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.449s] Installing manual_control script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.449s] Installing static_transform_publisher script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.449s] Installing target_buoy script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.449s] writing list of installed files to '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/install.log'
+[1.467s] Invoked command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build install --record /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/install.log --single-version-externally-managed install_data --force

@@ -1,0 +1,33 @@
+[1.381s] Invoking command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build install --record /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/install.log --single-version-externally-managed install_data
+[1.853s] running egg_info
+[1.890s] writing ../build/workspace_ros/workspace_ros.egg-info/PKG-INFO
+[1.891s] writing dependency_links to ../build/workspace_ros/workspace_ros.egg-info/dependency_links.txt
+[1.892s] writing entry points to ../build/workspace_ros/workspace_ros.egg-info/entry_points.txt
+[1.892s] writing requirements to ../build/workspace_ros/workspace_ros.egg-info/requires.txt
+[1.892s] writing top-level names to ../build/workspace_ros/workspace_ros.egg-info/top_level.txt
+[1.967s] reading manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[1.969s] writing manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[1.970s] running build
+[1.970s] running build_py
+[1.970s] copying scripts/lidar_processor.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts
+[1.970s] running install
+[1.980s] running install_lib
+[2.016s] copying /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build/lib/scripts/lidar_processor.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts
+[2.017s] byte-compiling /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/scripts/lidar_processor.py to lidar_processor.cpython-312.pyc
+[2.021s] running install_data
+[2.022s] copying launch/mola_slam.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+[2.022s] copying scripts/lidar_processor.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts
+[2.023s] running install_egg_info
+[2.063s] removing '/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info' (and everything under it)
+[2.064s] Copying ../build/workspace_ros/workspace_ros.egg-info to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info
+[2.066s] running install_scripts
+[2.300s] Installing converter script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.300s] Installing gps_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.300s] Installing imu_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.301s] Installing kamikaze script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.301s] Installing lidar_processor script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.301s] Installing manual_control script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.301s] Installing static_transform_publisher script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.301s] Installing target_buoy script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[2.301s] writing list of installed files to '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/install.log'
+[2.339s] Invoked command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build install --record /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/install.log --single-version-externally-managed install_data

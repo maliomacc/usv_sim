@@ -1,0 +1,16 @@
+# ROS 2 Jazzy compatible Python dependencies
+# Note: ROS 2 packages (rclpy, launch, etc.) are installed via apt, not pip
+
+# Core dependencies
+utm>=0.8.1
+numpy>=1.26.0
+opencv-python>=4.9.0
+ultralytics>=8.3.0
+pynput>=1.8.1
+PyYAML>=6.0.1
+
+# Deep Learning (install separately based on your CUDA version)
+# For CPU: pip install torch torchvision
+# For CUDA: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+torch>=2.2.0
+torchvision>=0.17.0

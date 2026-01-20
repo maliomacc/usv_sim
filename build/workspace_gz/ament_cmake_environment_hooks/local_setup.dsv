@@ -1,0 +1,3 @@
+source;share/workspace_gz/environment/ament_prefix_path.sh
+source;share/workspace_gz/environment/library_path.sh
+source;share/workspace_gz/environment/path.sh

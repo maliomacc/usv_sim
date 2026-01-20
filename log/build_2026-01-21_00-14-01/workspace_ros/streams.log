@@ -1,0 +1,35 @@
+[1.062s] Invoking command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build --no-deps symlink_data --force
+[1.484s] running develop
+[1.735s] running egg_info
+[1.758s] writing workspace_ros.egg-info/PKG-INFO
+[1.758s] writing dependency_links to workspace_ros.egg-info/dependency_links.txt
+[1.758s] writing entry points to workspace_ros.egg-info/entry_points.txt
+[1.758s] writing requirements to workspace_ros.egg-info/requires.txt
+[1.758s] writing top-level names to workspace_ros.egg-info/top_level.txt
+[1.806s] reading manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[1.807s] writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[1.832s] running build_ext
+[1.833s] Creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/workspace-ros.egg-link (link to .)
+[1.833s] Installing converter script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.834s] Installing gps_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.834s] Installing imu_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.835s] Installing kamikaze script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.835s] Installing lidar_processor script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.835s] Installing manual_control script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.835s] Installing static_transform_publisher script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.835s] Installing target_buoy script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+[1.837s] 
+[1.837s] Installed /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros
+[1.837s] running symlink_data
+[1.837s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/resource/workspace_ros -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/ament_index/resource_index/packages
+[1.837s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/package.xml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros
+[1.837s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/static_transform.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.838s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/ekf.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.838s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/lidar_rviz.rviz -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.838s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/kiss_icp.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.838s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/navsat.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.839s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/lidar_filter.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+[1.839s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/localization.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+[1.839s] symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/mola_slam.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+[1.839s] error: [Errno 2] No such file or directory: '/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch/water_filter.launch.py'
+[1.897s] Invoked command in '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros' returned '1': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build --no-deps symlink_data --force
