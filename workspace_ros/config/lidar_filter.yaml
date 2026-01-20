@@ -32,3 +32,13 @@ lidar_processor:
     enable_outlier_removal: true
     radius_search: 0.5               # Search radius (meters)
     min_neighbors: 3                 # Minimum neighborhood points
+
+    # Statistical Outlier Removal (SOR) - Bayesian-inspired
+    # Reference: PCL StatisticalOutlierRemoval
+    enable_statistical_filter: true
+    sor_k_neighbors: 50              # K nearest neighbors for statistics
+    sor_std_multiplier: 1.0          # Points beyond (mean + std*mult) removed
+
+    # Gaussian smoothing filter
+    enable_gaussian_filter: false    # Disabled by default (computationally expensive)
+    gaussian_sigma: 0.1              # Standard deviation in meters

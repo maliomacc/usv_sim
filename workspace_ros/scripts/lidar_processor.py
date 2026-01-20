@@ -51,10 +51,20 @@ class LidarProcessor(Node):
         self.declare_parameter('haw_min', 0.1)  # Minimum height above water to keep (meters)
         self.declare_parameter('haw_max', 10.0)  # Maximum height above water (meters)
 
-        # Outlier removal parameters
+        # Outlier removal parameters (radius-based)
         self.declare_parameter('enable_outlier_removal', True)
         self.declare_parameter('radius_search', 0.5)
         self.declare_parameter('min_neighbors', 3)
+
+        # Statistical Outlier Removal (SOR) - Bayesian-inspired
+        # Reference: PCL StatisticalOutlierRemoval
+        self.declare_parameter('enable_statistical_filter', True)
+        self.declare_parameter('sor_k_neighbors', 50)  # K nearest neighbors
+        self.declare_parameter('sor_std_multiplier', 1.0)  # Std deviation threshold
+
+        # Gaussian smoothing filter
+        self.declare_parameter('enable_gaussian_filter', True)
+        self.declare_parameter('gaussian_sigma', 0.1)  # Standard deviation in meters
 
         # Get parameters
         self.input_topic = self.get_parameter('input_topic').value
@@ -140,9 +150,19 @@ class LidarProcessor(Node):
                 if len(points) == 0:
                     return
 
-            # 4. Outlier removal
+            # 5. Radius Outlier removal
             if self.enable_outlier_removal and len(points) > self.min_neighbors:
                 points = self.radius_outlier_removal(points)
+
+            # 6. Statistical Outlier Removal (Bayesian-inspired)
+            enable_sor = self.get_parameter('enable_statistical_filter').value
+            if enable_sor and len(points) > 10:
+                points = self.statistical_outlier_removal(points)
+
+            # 7. Gaussian smoothing (noise reduction)
+            enable_gaussian = self.get_parameter('enable_gaussian_filter').value
+            if enable_gaussian and len(points) > 5:
+                points = self.gaussian_smoothing(points)
 
             # Convert back to PointCloud2 and publish to both topics
             if len(points) > 0:
@@ -297,6 +317,82 @@ class LidarProcessor(Node):
             # Subtract 1 because each point counts itself
             mask = (np.array(neighbors_count) - 1) >= self.min_neighbors
             return points[mask]
+        except Exception:
+            return points
+
+    def statistical_outlier_removal(self, points: np.ndarray) -> np.ndarray:
+        """
+        Statistical Outlier Removal (SOR) - Bayesian-inspired filter
+        
+        Reference: PCL StatisticalOutlierRemoval
+        
+        Computes mean distance to K nearest neighbors for each point.
+        Removes points where distance exceeds (global_mean + std_multiplier * global_std).
+        This is probabilistically motivated - outliers have low likelihood.
+        """
+        k = self.get_parameter('sor_k_neighbors').value
+        std_mult = self.get_parameter('sor_std_multiplier').value
+        
+        if len(points) < k + 1:
+            return points
+
+        try:
+            tree = KDTree(points)
+            # Query k+1 neighbors (including self)
+            distances, _ = tree.query(points, k=k + 1)
+            # Mean distance to k neighbors (exclude self at index 0)
+            mean_distances = distances[:, 1:].mean(axis=1)
+            
+            # Compute global statistics
+            global_mean = mean_distances.mean()
+            global_std = mean_distances.std()
+            
+            # Threshold: points within mean + std_mult * std are inliers
+            threshold = global_mean + std_mult * global_std
+            mask = mean_distances <= threshold
+            
+            return points[mask]
+        except Exception:
+            return points
+
+    def gaussian_smoothing(self, points: np.ndarray) -> np.ndarray:
+        """
+        Gaussian-weighted smoothing for point cloud noise reduction.
+        
+        For each point, compute weighted average of nearby points.
+        Weights follow Gaussian distribution based on distance.
+        Reduces sensor noise while preserving structure.
+        """
+        sigma = self.get_parameter('gaussian_sigma').value
+        
+        if len(points) < 5 or sigma <= 0:
+            return points
+
+        try:
+            tree = KDTree(points)
+            smoothed = np.zeros_like(points)
+            
+            # Search radius = 3 * sigma (99.7% of Gaussian mass)
+            search_radius = 3.0 * sigma
+            
+            for i, point in enumerate(points):
+                # Find neighbors within radius
+                idx = tree.query_ball_point(point, search_radius)
+                if len(idx) < 2:
+                    smoothed[i] = point
+                    continue
+                
+                neighbors = points[idx]
+                distances = np.linalg.norm(neighbors - point, axis=1)
+                
+                # Gaussian weights
+                weights = np.exp(-0.5 * (distances / sigma) ** 2)
+                weights /= weights.sum()
+                
+                # Weighted average
+                smoothed[i] = (neighbors * weights[:, np.newaxis]).sum(axis=0)
+            
+            return smoothed
         except Exception:
             return points
 
