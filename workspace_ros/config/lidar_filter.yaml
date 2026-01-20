@@ -15,9 +15,10 @@ lidar_processor:
 
     # Height Above Water (HAW) filtering - Primary water removal
     # Based on PCL Height Above Ground method
+    # Şamandıralar su seviyesinden ~0.3m+ yüksekte, dalga yansımaları 0-0.2m arası
     enable_haw_filter: true
     sensor_height: 0.45      # LiDAR height above water level (meters)
-    haw_min: 0.15            # Min height above water to keep (filters water surface)
+    haw_min: 0.25            # Min height above water - agresif filtreleme (>25cm)
     haw_max: 10.0            # Max height above water
 
     # Water plane removal (RANSAC-based) - Secondary cleanup
