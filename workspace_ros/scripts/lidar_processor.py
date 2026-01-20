@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 LiDAR Point Cloud Processor for YILDIZ USV
+- Height Above Water (HAW) filtering
 - Passthrough filter (Z, range)
-- Voxel grid downsampling
+- Voxel grid downsampling  
 - Water plane removal (RANSAC)
 - Outlier removal
-Based on VRX navigation stack implementation.
+Based on VRX navigation stack and PCL height filtering methods.
 """
 
 import numpy as np
@@ -43,6 +44,13 @@ class LidarProcessor(Node):
         self.declare_parameter('water_z_min', -0.5)
         self.declare_parameter('water_z_max', 0.5)
 
+        # Height Above Water (HAW) filtering parameters
+        # Ref: PCL Height Above Ground method adapted for maritime
+        self.declare_parameter('enable_haw_filter', True)
+        self.declare_parameter('sensor_height', 0.45)  # LiDAR height from water level (meters)
+        self.declare_parameter('haw_min', 0.1)  # Minimum height above water to keep (meters)
+        self.declare_parameter('haw_max', 10.0)  # Maximum height above water (meters)
+
         # Outlier removal parameters
         self.declare_parameter('enable_outlier_removal', True)
         self.declare_parameter('radius_search', 0.5)
@@ -62,6 +70,12 @@ class LidarProcessor(Node):
         self.water_angle_threshold = self.get_parameter('water_plane_angle_threshold').value
         self.water_z_min = self.get_parameter('water_z_min').value
         self.water_z_max = self.get_parameter('water_z_max').value
+        # HAW filter
+        self.enable_haw_filter = self.get_parameter('enable_haw_filter').value
+        self.sensor_height = self.get_parameter('sensor_height').value
+        self.haw_min = self.get_parameter('haw_min').value
+        self.haw_max = self.get_parameter('haw_max').value
+
         self.enable_outlier_removal = self.get_parameter('enable_outlier_removal').value
         self.radius_search = self.get_parameter('radius_search').value
         self.min_neighbors = self.get_parameter('min_neighbors').value
@@ -104,17 +118,23 @@ class LidarProcessor(Node):
             if len(points) == 0:
                 return
 
-            # 1. Passthrough filter
+            # 1. Height Above Water (HAW) filter - Primary water removal
+            if self.enable_haw_filter:
+                points = self.height_above_water_filter(points)
+                if len(points) == 0:
+                    return
+
+            # 2. Passthrough filter
             points = self.passthrough_filter(points)
             if len(points) == 0:
                 return
 
-            # 2. Voxel grid downsampling
+            # 3. Voxel grid downsampling
             points = self.voxel_grid_filter(points)
             if len(points) == 0:
                 return
 
-            # 3. Water plane removal (RANSAC)
+            # 4. Water plane removal (RANSAC) - Secondary cleanup
             if self.enable_water_removal:
                 points = self.ransac_water_plane_removal(points)
                 if len(points) == 0:
@@ -143,6 +163,41 @@ class LidarProcessor(Node):
     def numpy_to_pointcloud2(self, points: np.ndarray, header: Header) -> PointCloud2:
         """Convert numpy array to PointCloud2 message."""
         return pc2.create_cloud_xyz32(header, points.tolist())
+
+    def height_above_water_filter(self, points: np.ndarray) -> np.ndarray:
+        """
+        Height Above Water (HAW) Filter
+        
+        Based on PCL's Height Above Ground (HAG) method, adapted for maritime.
+        Reference: PCL height filters for ground segmentation
+        
+        Calculates the height of each point relative to the water surface (Z=0).
+        Points in sensor frame have Z relative to LiDAR position.
+        
+        Height Above Water = sensor_height + point.z (for points below sensor)
+        
+        For a LiDAR at 0.45m above water:
+        - A point at Z=-0.45 in sensor frame is AT water level (HAW=0)
+        - A point at Z=-0.35 in sensor frame is 0.1m above water (HAW=0.1)
+        - A point at Z=0 in sensor frame is 0.45m above water (HAW=0.45)
+        
+        We keep points where: haw_min <= HAW <= haw_max
+        This removes water surface reflections while keeping buoys/obstacles.
+        """
+        if len(points) == 0:
+            return points
+        
+        # Calculate Height Above Water for each point
+        # In sensor frame: HAW = sensor_height + z
+        # (Negative z means below sensor, so adding gives height above water)
+        height_above_water = self.sensor_height + points[:, 2]
+        
+        # Keep points within valid HAW range
+        # haw_min filters out water surface (too close to water)
+        # haw_max filters out sky/noise (too high)
+        mask = (height_above_water >= self.haw_min) & (height_above_water <= self.haw_max)
+        
+        return points[mask]
 
     def passthrough_filter(self, points: np.ndarray) -> np.ndarray:
         """Filter points by Z axis and range."""

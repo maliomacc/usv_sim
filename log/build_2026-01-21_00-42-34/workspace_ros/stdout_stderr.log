@@ -1,0 +1,33 @@
+running develop
+running egg_info
+writing workspace_ros.egg-info/PKG-INFO
+writing dependency_links to workspace_ros.egg-info/dependency_links.txt
+writing entry points to workspace_ros.egg-info/entry_points.txt
+writing requirements to workspace_ros.egg-info/requires.txt
+writing top-level names to workspace_ros.egg-info/top_level.txt
+reading manifest file 'workspace_ros.egg-info/SOURCES.txt'
+writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/workspace-ros.egg-link (link to .)
+Installing converter script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+Installing gps_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+Installing imu_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+Installing kamikaze script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+Installing lidar_processor script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+Installing manual_control script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+Installing static_transform_publisher script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+Installing target_buoy script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros
+
+Installed /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros
+running symlink_data
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/resource/workspace_ros -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/ament_index/resource_index/packages
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/package.xml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/static_transform.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/ekf.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/lidar_rviz.rviz -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/kiss_icp.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/navsat.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/lidar_filter.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/localization.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/mola_slam.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch
+error: can't copy '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/water_filter.launch.py': doesn't exist or not a regular file

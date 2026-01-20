@@ -1,19 +1,26 @@
 lidar_processor:
   ros__parameters:
     # Topic configuration
-    input_topic: "/roboboat/sensors/lidar/scan/points"
+    input_topic: "/roboboat/lidar/points"
     output_topic: "/roboboat/lidar/filtered"
 
     # Voxel grid downsampling
-    voxel_size: 0.1  # meters (10cm grid)
+    voxel_size: 0.05  # meters (5cm grid)
 
     # Passthrough filter (Z axis and range)
     min_z: -2.0       # Below water level
     max_z: 5.0        # Above mast height
-    min_range: 0.5    # Minimum distance (avoid boat structure)
-    max_range: 100.0  # Maximum LiDAR range
+    min_range: 1.0    # Minimum distance (avoid boat structure + close water)
+    max_range: 100.0  # Maximum LiDAR range (VLP-16)
 
-    # Water plane removal (RANSAC-based)
+    # Height Above Water (HAW) filtering - Primary water removal
+    # Based on PCL Height Above Ground method
+    enable_haw_filter: true
+    sensor_height: 0.45      # LiDAR height above water level (meters)
+    haw_min: 0.15            # Min height above water to keep (filters water surface)
+    haw_max: 10.0            # Max height above water
+
+    # Water plane removal (RANSAC-based) - Secondary cleanup
     enable_water_removal: true
     water_plane_distance: 0.15       # Distance threshold (meters)
     water_plane_iterations: 50       # RANSAC iterations

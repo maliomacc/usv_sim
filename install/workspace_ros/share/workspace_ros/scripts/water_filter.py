@@ -1,1 +1,0 @@
-/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/water_filter.py

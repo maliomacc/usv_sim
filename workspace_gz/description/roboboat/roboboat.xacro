@@ -393,11 +393,22 @@
 
   <gazebo reference="lidar_link">
 
-    <!-- Definition of the 3D LIDAR sensor (Velodyne VLP-16 style for MOLA SLAM) -->
+    <!--
+        Velodyne VLP-16 Puck - Gerçekçi Simülasyon
+
+        Teknik Özellikler:
+        - 16 kanal
+        - 300,000 nokta/saniye @ 10 Hz
+        - Horizontal: 360° FOV, 0.2° çözünürlük (1800 sample)
+        - Vertical: 30° FOV (±15°), 2° çözünürlük
+        - Menzil: 100m
+        - Hassasiyet: ±3 cm
+
+        Kaynak: https://docs.pal-robotics.com/sdk/23.12/hardware/extra/velodyne.html
+    -->
     <sensor name="sensor_lidar" type="gpu_lidar">
+      <pose>0 0 0 0 0 0</pose>
       <topic>roboboat/lidar/points</topic>
-      <gz_frame_id>lidar_link</gz_frame_id>
-      <visualize>true</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
@@ -416,7 +427,7 @@
         </scan>
         <range>
           <min>0.1</min>
-          <max>30.0</max>
+          <max>100.0</max>
           <resolution>0.003</resolution>
         </range>
         <noise>
@@ -426,6 +437,8 @@
         </noise>
       </ray>
       <always_on>true</always_on>
+      <visualize>true</visualize>
+      <gz_frame_id>lidar_link</gz_frame_id>
     </sensor>
 
   </gazebo>

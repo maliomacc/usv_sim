@@ -1,13 +1,6 @@
 package.xml
 setup.cfg
 setup.py
-../build/workspace_ros/workspace_ros.egg-info/PKG-INFO
-../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt
-../build/workspace_ros/workspace_ros.egg-info/dependency_links.txt
-../build/workspace_ros/workspace_ros.egg-info/entry_points.txt
-../build/workspace_ros/workspace_ros.egg-info/requires.txt
-../build/workspace_ros/workspace_ros.egg-info/top_level.txt
-../build/workspace_ros/workspace_ros.egg-info/zip-safe
 YOLOv11/YOLOv11.pt
 config/ekf.yaml
 config/kiss_icp.yaml
@@ -29,3 +22,10 @@ scripts/lidar_processor.py
 scripts/manual_control.py
 scripts/static_transform_publisher.py
 scripts/target_buoy.py
+workspace_ros.egg-info/PKG-INFO
+workspace_ros.egg-info/SOURCES.txt
+workspace_ros.egg-info/dependency_links.txt
+workspace_ros.egg-info/entry_points.txt
+workspace_ros.egg-info/requires.txt
+workspace_ros.egg-info/top_level.txt
+workspace_ros.egg-info/zip-safe
