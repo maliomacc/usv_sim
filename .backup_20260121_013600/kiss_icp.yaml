@@ -16,8 +16,8 @@ kiss_icp_node:
     ####    Core KISS-ICP parameters    ####
 
     data:
-      # Motion deskewing (DISABLED - Gazebo gpu_lidar has no timestamp field)
-      deskew: false
+      # Motion deskewing (hareket düzeltme)
+      deskew: true
       
       # Range filtreleme - SU YÜZEYİ FİLTRELEME
       # min_range: Robot yakınındaki su yansımalarını filtrele

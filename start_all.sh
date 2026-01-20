@@ -65,28 +65,19 @@ echo -e "${CYAN}  Gazebo yükleniyor... (15 saniye)${NC}"
 sleep 15
 
 # Simülasyonu unpause yap
-echo -e "${GREEN}[4/5] Simülasyon başlatılıyor (unpause)...${NC}"
+echo -e "${GREEN}[4/4] Simülasyon başlatılıyor (unpause)...${NC}"
 gz service -s /world/default/control --reqtype gz.msgs.WorldControl --reptype gz.msgs.Boolean --timeout 5000 --req 'pause: false' 2>/dev/null || true
 
-# LiDAR filtreleme başlat (HAW filter + RANSAC water removal)
-echo -e "${CYAN}[5/5] LiDAR filtreleme başlatılıyor (HAW filter)...${NC}"
-sleep 2
-ros2 launch workspace_ros lidar_filter.launch.py rviz:=false &
-FILTER_PID=$!
-echo -e "  └─ LiDAR Filter PID: ${FILTER_PID}"
-sleep 3
-
-# KISS-ICP LiDAR Odometry başlat (filtrelenmiş topic kullan)
+# KISS-ICP LiDAR Odometry başlat (MOLA yerine daha basit ve robust)
 echo -e "${CYAN}KISS-ICP LiDAR Odometry başlatılıyor...${NC}"
-sleep 2
+sleep 3
 
 # vrx_ws'den kiss_icp paketini source et
 if [ -f "/home/ngen/vrx_ws/install/setup.bash" ]; then
     source /home/ngen/vrx_ws/install/setup.bash
 fi
 
-# Filtrelenmiş topic kullan: /roboboat/lidar/filtered
-ros2 launch workspace_ros kiss_icp.launch.py topic:=/roboboat/lidar/filtered visualize:=true &
+ros2 launch workspace_ros kiss_icp.launch.py topic:=/roboboat/lidar/points visualize:=true &
 KISS_PID=$!
 echo -e "  └─ KISS-ICP PID: ${KISS_PID}"
 
