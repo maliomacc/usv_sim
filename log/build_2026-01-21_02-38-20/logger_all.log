@@ -1,0 +1,131 @@
+[0.048s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'workspace_ros', '--symlink-install']
+[0.048s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=32, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['workspace_ros'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x72e14357ee70>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x72e14369b470>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x72e14369b470>>)
+[0.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.067s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/tugmirk/Desktop/garp-test'
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extensions ['ignore', 'ignore_ament_install']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'ignore'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'ignore_ament_install'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extensions ['colcon_pkg']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'colcon_pkg'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extensions ['colcon_meta']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'colcon_meta'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extensions ['ros']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'ros'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extensions ['cmake', 'python']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'cmake'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'python'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extensions ['python_setup_py']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(images) by extension 'python_setup_py'
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['ignore', 'ignore_ament_install']
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'ignore'
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'ignore_ament_install'
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['colcon_pkg']
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'colcon_pkg'
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['colcon_meta']
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'colcon_meta'
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['ros']
+[0.081s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'ros'
+[0.083s] DEBUG:colcon.colcon_core.package_identification:Package 'workspace_gz' with type 'ros.ament_cmake' and name 'workspace_gz'
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['ignore', 'ignore_ament_install']
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'ignore'
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'ignore_ament_install'
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['colcon_pkg']
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'colcon_pkg'
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['colcon_meta']
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'colcon_meta'
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['ros']
+[0.083s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'ros'
+[0.084s] DEBUG:colcon.colcon_core.package_identification:Package 'workspace_nav' with type 'ros.ament_python' and name 'workspace_nav'
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'ignore'
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'ignore_ament_install'
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['colcon_pkg']
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'colcon_pkg'
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['colcon_meta']
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'colcon_meta'
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['ros']
+[0.084s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'ros'
+[0.085s] DEBUG:colcon.colcon_core.package_identification:Package 'workspace_ros' with type 'ros.ament_python' and name 'workspace_ros'
+[0.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.095s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'workspace_gz' in 'workspace_gz'
+[0.095s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'workspace_nav' in 'workspace_nav'
+[0.096s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.096s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.096s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/tugmirk/Desktop/ros2_eg/ros2_ws/install
+[0.097s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 408 installed packages in /opt/ros/jazzy
+[0.098s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_args' from command line to 'None'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_target' from command line to 'None'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.121s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.121s] DEBUG:colcon.colcon_core.verb:Building package 'workspace_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tugmirk/Desktop/garp-test/build/workspace_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tugmirk/Desktop/garp-test/install/workspace_ros', 'merge_install': False, 'path': '/home/tugmirk/Desktop/garp-test/workspace_ros', 'symlink_install': True, 'test_result_base': None}
+[0.121s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.122s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.122s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/tugmirk/Desktop/garp-test/workspace_ros' with build type 'ament_python'
+[0.122s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_ros', 'ament_prefix_path')
+[0.123s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.123s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.ps1'
+[0.123s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.dsv'
+[0.123s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.sh'
+[0.124s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.124s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.251s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/tugmirk/Desktop/garp-test/workspace_ros'
+[0.251s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.251s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.562s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tugmirk/Desktop/garp-test/build/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/tugmirk/Desktop/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tugmirk/Desktop/garp-test/build/workspace_ros/build --no-deps symlink_data --force
+[0.936s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tugmirk/Desktop/garp-test/build/workspace_ros' returned '1': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/tugmirk/Desktop/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tugmirk/Desktop/garp-test/build/workspace_ros/build --no-deps symlink_data --force
+[0.946s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[0.946s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[0.946s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '1'
+[0.946s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[0.949s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[0.950s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[0.950s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[0.959s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[0.959s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tugmirk/Desktop/garp-test/install/local_setup.ps1'
+[0.960s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/tugmirk/Desktop/garp-test/install/_local_setup_util_ps1.py'
+[0.961s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tugmirk/Desktop/garp-test/install/setup.ps1'
+[0.961s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tugmirk/Desktop/garp-test/install/local_setup.sh'
+[0.962s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/tugmirk/Desktop/garp-test/install/_local_setup_util_sh.py'
+[0.962s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tugmirk/Desktop/garp-test/install/setup.sh'
+[0.962s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tugmirk/Desktop/garp-test/install/local_setup.bash'
+[0.963s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tugmirk/Desktop/garp-test/install/setup.bash'
+[0.963s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tugmirk/Desktop/garp-test/install/local_setup.zsh'
+[0.964s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tugmirk/Desktop/garp-test/install/setup.zsh'

@@ -22,6 +22,7 @@ scripts/lidar_processor.py
 scripts/manual_control.py
 scripts/static_transform_publisher.py
 scripts/target_buoy.py
+scripts/wasd_teleop.py
 workspace_ros.egg-info/PKG-INFO
 workspace_ros.egg-info/SOURCES.txt
 workspace_ros.egg-info/dependency_links.txt

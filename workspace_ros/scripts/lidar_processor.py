@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
 LiDAR Point Cloud Processor for YILDIZ USV
-- Height Above Water (HAW) filtering
+Enhanced with object detection capabilities.
+
+Pipeline:
 - Passthrough filter (Z, range)
-- Voxel grid downsampling  
-- Water plane removal (RANSAC)
-- Outlier removal
-Based on VRX navigation stack and PCL height filtering methods.
+- Voxel grid downsampling
+- Statistical Outlier Removal (SOR)
+- Euclidean Clustering for object segmentation
+
+Based on VRX navigation stack and lidar-main perception package.
 """
 
 import numpy as np
@@ -44,27 +47,21 @@ class LidarProcessor(Node):
         self.declare_parameter('water_z_min', -0.5)
         self.declare_parameter('water_z_max', 0.5)
 
-        # Height Above Water (HAW) filtering parameters
-        # Ref: PCL Height Above Ground method adapted for maritime
-        self.declare_parameter('enable_haw_filter', True)
-        self.declare_parameter('sensor_height', 0.45)  # LiDAR height from water level (meters)
-        self.declare_parameter('haw_min', 0.1)  # Minimum height above water to keep (meters)
-        self.declare_parameter('haw_max', 10.0)  # Maximum height above water (meters)
-
-        # Outlier removal parameters (radius-based)
+        # Outlier removal parameters
         self.declare_parameter('enable_outlier_removal', True)
         self.declare_parameter('radius_search', 0.5)
         self.declare_parameter('min_neighbors', 3)
 
-        # Statistical Outlier Removal (SOR) - Bayesian-inspired
-        # Reference: PCL StatisticalOutlierRemoval
-        self.declare_parameter('enable_statistical_filter', True)
-        self.declare_parameter('sor_k_neighbors', 50)  # K nearest neighbors
-        self.declare_parameter('sor_std_multiplier', 1.0)  # Std deviation threshold
+        # Statistical Outlier Removal (SOR) - from lidar-main research
+        self.declare_parameter('enable_sor', True)
+        self.declare_parameter('sor_k_neighbors', 20)  # K nearest neighbors
+        self.declare_parameter('sor_std_multiplier', 1.5)  # Std deviation threshold
 
-        # Gaussian smoothing filter
-        self.declare_parameter('enable_gaussian_filter', True)
-        self.declare_parameter('gaussian_sigma', 0.1)  # Standard deviation in meters
+        # Euclidean Clustering - from lidar-main research
+        self.declare_parameter('enable_clustering', True)
+        self.declare_parameter('cluster_tolerance', 0.3)  # Distance threshold (meters)
+        self.declare_parameter('min_cluster_size', 5)  # Minimum points per cluster
+        self.declare_parameter('max_cluster_size', 5000)  # Maximum points per cluster
 
         # Get parameters
         self.input_topic = self.get_parameter('input_topic').value
@@ -80,12 +77,6 @@ class LidarProcessor(Node):
         self.water_angle_threshold = self.get_parameter('water_plane_angle_threshold').value
         self.water_z_min = self.get_parameter('water_z_min').value
         self.water_z_max = self.get_parameter('water_z_max').value
-        # HAW filter
-        self.enable_haw_filter = self.get_parameter('enable_haw_filter').value
-        self.sensor_height = self.get_parameter('sensor_height').value
-        self.haw_min = self.get_parameter('haw_min').value
-        self.haw_max = self.get_parameter('haw_max').value
-
         self.enable_outlier_removal = self.get_parameter('enable_outlier_removal').value
         self.radius_search = self.get_parameter('radius_search').value
         self.min_neighbors = self.get_parameter('min_neighbors').value
@@ -128,41 +119,37 @@ class LidarProcessor(Node):
             if len(points) == 0:
                 return
 
-            # 1. Height Above Water (HAW) filter - Primary water removal
-            if self.enable_haw_filter:
-                points = self.height_above_water_filter(points)
-                if len(points) == 0:
-                    return
-
-            # 2. Passthrough filter
+            # 1. Passthrough filter
             points = self.passthrough_filter(points)
             if len(points) == 0:
                 return
 
-            # 3. Voxel grid downsampling
+            # 2. Voxel grid downsampling
             points = self.voxel_grid_filter(points)
             if len(points) == 0:
                 return
 
-            # 4. Water plane removal (RANSAC) - Secondary cleanup
+            # 3. Water plane removal (RANSAC)
             if self.enable_water_removal:
                 points = self.ransac_water_plane_removal(points)
                 if len(points) == 0:
                     return
 
-            # 5. Radius Outlier removal
+            # 4. Outlier removal
             if self.enable_outlier_removal and len(points) > self.min_neighbors:
                 points = self.radius_outlier_removal(points)
 
-            # 6. Statistical Outlier Removal (Bayesian-inspired)
-            enable_sor = self.get_parameter('enable_statistical_filter').value
+            # 5. Statistical Outlier Removal (SOR) - Better noise filtering
+            enable_sor = self.get_parameter('enable_sor').value
             if enable_sor and len(points) > 10:
                 points = self.statistical_outlier_removal(points)
+                if len(points) == 0:
+                    return
 
-            # 7. Gaussian smoothing (noise reduction)
-            enable_gaussian = self.get_parameter('enable_gaussian_filter').value
-            if enable_gaussian and len(points) > 5:
-                points = self.gaussian_smoothing(points)
+            # 6. Euclidean Clustering - Keep only clustered objects
+            enable_clustering = self.get_parameter('enable_clustering').value
+            if enable_clustering and len(points) > 5:
+                points = self.euclidean_clustering(points)
 
             # Convert back to PointCloud2 and publish to both topics
             if len(points) > 0:
@@ -183,41 +170,6 @@ class LidarProcessor(Node):
     def numpy_to_pointcloud2(self, points: np.ndarray, header: Header) -> PointCloud2:
         """Convert numpy array to PointCloud2 message."""
         return pc2.create_cloud_xyz32(header, points.tolist())
-
-    def height_above_water_filter(self, points: np.ndarray) -> np.ndarray:
-        """
-        Height Above Water (HAW) Filter
-        
-        Based on PCL's Height Above Ground (HAG) method, adapted for maritime.
-        Reference: PCL height filters for ground segmentation
-        
-        Calculates the height of each point relative to the water surface (Z=0).
-        Points in sensor frame have Z relative to LiDAR position.
-        
-        Height Above Water = sensor_height + point.z (for points below sensor)
-        
-        For a LiDAR at 0.45m above water:
-        - A point at Z=-0.45 in sensor frame is AT water level (HAW=0)
-        - A point at Z=-0.35 in sensor frame is 0.1m above water (HAW=0.1)
-        - A point at Z=0 in sensor frame is 0.45m above water (HAW=0.45)
-        
-        We keep points where: haw_min <= HAW <= haw_max
-        This removes water surface reflections while keeping buoys/obstacles.
-        """
-        if len(points) == 0:
-            return points
-        
-        # Calculate Height Above Water for each point
-        # In sensor frame: HAW = sensor_height + z
-        # (Negative z means below sensor, so adding gives height above water)
-        height_above_water = self.sensor_height + points[:, 2]
-        
-        # Keep points within valid HAW range
-        # haw_min filters out water surface (too close to water)
-        # haw_max filters out sky/noise (too high)
-        mask = (height_above_water >= self.haw_min) & (height_above_water <= self.haw_max)
-        
-        return points[mask]
 
     def passthrough_filter(self, points: np.ndarray) -> np.ndarray:
         """Filter points by Z axis and range."""
@@ -322,13 +274,15 @@ class LidarProcessor(Node):
 
     def statistical_outlier_removal(self, points: np.ndarray) -> np.ndarray:
         """
-        Statistical Outlier Removal (SOR) - Bayesian-inspired filter
+        Statistical Outlier Removal (SOR)
+        Based on PCL StatisticalOutlierRemoval and lidar-main implementation.
         
-        Reference: PCL StatisticalOutlierRemoval
+        Algorithm:
+        1. For each point, compute mean distance to K nearest neighbors
+        2. Compute global mean (μ) and std deviation (σ) of these distances
+        3. Remove points where mean distance > μ + std_multiplier × σ
         
-        Computes mean distance to K nearest neighbors for each point.
-        Removes points where distance exceeds (global_mean + std_multiplier * global_std).
-        This is probabilistically motivated - outliers have low likelihood.
+        This removes isolated noise points while preserving object structure.
         """
         k = self.get_parameter('sor_k_neighbors').value
         std_mult = self.get_parameter('sor_std_multiplier').value
@@ -355,44 +309,60 @@ class LidarProcessor(Node):
         except Exception:
             return points
 
-    def gaussian_smoothing(self, points: np.ndarray) -> np.ndarray:
+    def euclidean_clustering(self, points: np.ndarray) -> np.ndarray:
         """
-        Gaussian-weighted smoothing for point cloud noise reduction.
+        Euclidean Clustering for object segmentation.
+        Based on lidar-main points_cluster implementation.
         
-        For each point, compute weighted average of nearby points.
-        Weights follow Gaussian distribution based on distance.
-        Reduces sensor noise while preserving structure.
+        Algorithm:
+        1. Build KD-tree for efficient neighbor search
+        2. For each unvisited point, find neighbors within cluster_tolerance
+        3. Recursively grow cluster with connected neighbors
+        4. Keep only clusters within size bounds (min_cluster_size to max_cluster_size)
+        
+        This groups nearby points into objects and removes isolated noise.
         """
-        sigma = self.get_parameter('gaussian_sigma').value
+        tolerance = self.get_parameter('cluster_tolerance').value
+        min_size = self.get_parameter('min_cluster_size').value
+        max_size = self.get_parameter('max_cluster_size').value
         
-        if len(points) < 5 or sigma <= 0:
+        if len(points) < min_size:
             return points
 
         try:
             tree = KDTree(points)
-            smoothed = np.zeros_like(points)
+            visited = np.zeros(len(points), dtype=bool)
+            clusters = []
             
-            # Search radius = 3 * sigma (99.7% of Gaussian mass)
-            search_radius = 3.0 * sigma
-            
-            for i, point in enumerate(points):
-                # Find neighbors within radius
-                idx = tree.query_ball_point(point, search_radius)
-                if len(idx) < 2:
-                    smoothed[i] = point
+            for i in range(len(points)):
+                if visited[i]:
                     continue
+                    
+                # BFS to find connected component
+                cluster_indices = []
+                queue = [i]
                 
-                neighbors = points[idx]
-                distances = np.linalg.norm(neighbors - point, axis=1)
+                while queue:
+                    idx = queue.pop(0)
+                    if visited[idx]:
+                        continue
+                    visited[idx] = True
+                    cluster_indices.append(idx)
+                    
+                    # Find neighbors within tolerance
+                    neighbors = tree.query_ball_point(points[idx], tolerance)
+                    for neighbor_idx in neighbors:
+                        if not visited[neighbor_idx]:
+                            queue.append(neighbor_idx)
                 
-                # Gaussian weights
-                weights = np.exp(-0.5 * (distances / sigma) ** 2)
-                weights /= weights.sum()
-                
-                # Weighted average
-                smoothed[i] = (neighbors * weights[:, np.newaxis]).sum(axis=0)
+                # Keep cluster if within size bounds
+                if min_size <= len(cluster_indices) <= max_size:
+                    clusters.extend(cluster_indices)
             
-            return smoothed
+            if len(clusters) > 0:
+                return points[clusters]
+            return points
+            
         except Exception:
             return points
 
@@ -405,12 +375,9 @@ def main(args=None):
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
-    except Exception:
-        pass
     finally:
         node.destroy_node()
-        if rclpy.ok():
-            rclpy.shutdown()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':

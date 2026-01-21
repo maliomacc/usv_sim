@@ -16,7 +16,7 @@ kiss_icp_node:
     ####    Core KISS-ICP parameters    ####
 
     data:
-      # Motion deskewing (DISABLED - Gazebo gpu_lidar has no timestamp field)
+      # Motion deskewing - DISABLED (Gazebo gpu_lidar has no timestamp field)
       deskew: false
       
       # Range filtreleme - SU YÜZEYİ FİLTRELEME
@@ -26,9 +26,9 @@ kiss_icp_node:
       min_range: 1.0  # 1m altındaki noktalar atılır (su yüzeyi)
 
     mapping:
-      # Voxel boyutu - daha büyük = daha az nokta, daha hızlı
-      voxel_size: 0.3  # 30cm voxel
-      max_points_per_voxel: 20
+      # Voxel boyutu - hareket halinde stabilite için daha büyük
+      voxel_size: 0.5  # 50cm voxel - daha stabil ICP
+      max_points_per_voxel: 30
 
     adaptive_threshold:
       # ICP threshold adaptasyonu

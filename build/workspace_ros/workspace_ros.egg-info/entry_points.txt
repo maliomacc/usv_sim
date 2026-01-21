@@ -7,3 +7,4 @@ lidar_processor = scripts.lidar_processor:main
 manual_control = scripts.manual_control:main
 static_transform_publisher = scripts.static_transform_publisher:main
 target_buoy = scripts.target_buoy:main
+wasd_teleop = scripts.wasd_teleop:main

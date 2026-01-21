@@ -1,0 +1,50 @@
+running egg_info
+creating ../build/workspace_nav/workspace_nav.egg-info
+writing ../build/workspace_nav/workspace_nav.egg-info/PKG-INFO
+writing dependency_links to ../build/workspace_nav/workspace_nav.egg-info/dependency_links.txt
+writing entry points to ../build/workspace_nav/workspace_nav.egg-info/entry_points.txt
+writing requirements to ../build/workspace_nav/workspace_nav.egg-info/requires.txt
+writing top-level names to ../build/workspace_nav/workspace_nav.egg-info/top_level.txt
+writing manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+reading manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+writing manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/tugmirk/Desktop/garp-test/build/workspace_nav/build
+creating /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib
+creating /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib/scripts
+copying scripts/waypoint_transform.py -> /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib/scripts
+copying scripts/__init__.py -> /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib/scripts
+copying scripts/waypoint_with_state.py -> /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib/scripts
+running install
+running install_lib
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+copying /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib/scripts/waypoint_transform.py -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+copying /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib/scripts/__init__.py -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+copying /home/tugmirk/Desktop/garp-test/build/workspace_nav/build/lib/scripts/waypoint_with_state.py -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+byte-compiling /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/waypoint_transform.py to waypoint_transform.cpython-312.pyc
+byte-compiling /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/waypoint_with_state.py to waypoint_with_state.cpython-312.pyc
+running install_data
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/ament_index
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/ament_index/resource_index
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/ament_index/resource_index/packages
+copying resource/workspace_nav -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/ament_index/resource_index/packages
+copying package.xml -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/config
+copying config/nav2_params.yaml -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/config
+copying config/map.yaml -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/config
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/launch
+copying launch/nav2.launch.py -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/launch
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/scripts
+copying scripts/waypoint_transform.py -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/scripts
+copying scripts/__init__.py -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/scripts
+copying scripts/waypoint_with_state.py -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/scripts
+creating /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/map
+copying map/map.pgm -> /home/tugmirk/Desktop/garp-test/install/workspace_nav/share/workspace_nav/map
+running install_egg_info
+Copying ../build/workspace_nav/workspace_nav.egg-info to /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace_nav-0.0.0-py3.12.egg-info
+running install_scripts
+Installing waypoint_transform script to /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/workspace_nav
+Installing waypoint_with_state script to /home/tugmirk/Desktop/garp-test/install/workspace_nav/lib/workspace_nav
+writing list of installed files to '/home/tugmirk/Desktop/garp-test/build/workspace_nav/install.log'

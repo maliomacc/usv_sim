@@ -1,0 +1,762 @@
+[0.000000] (-) TimerEvent: {}
+[0.000129] (-) JobUnselected: {'identifier': 'workspace_nav'}
+[0.000214] (workspace_gz) JobQueued: {'identifier': 'workspace_gz', 'dependencies': OrderedDict()}
+[0.000243] (workspace_ros) JobQueued: {'identifier': 'workspace_ros', 'dependencies': OrderedDict()}
+[0.000265] (workspace_gz) JobStarted: {'identifier': 'workspace_gz'}
+[0.004354] (workspace_ros) JobStarted: {'identifier': 'workspace_ros'}
+[0.009250] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'cmake'}
+[0.009654] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz'], 'cwd': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'ngen', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'ANTIGRAVITY_CLI_ALIAS': 'agy', 'HOME': '/home/ngen', 'CHROME_DESKTOP': 'antigravity.desktop', 'OLDPWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV', 'TERM_PROGRAM_VERSION': '1.104.0', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/antigravity/antigravity', 'MANAGERPID': '1712', 'SYSTEMD_EXEC_PID': '2316', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'ANTIGRAVITY_AGENT': '1', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3846', 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'ngen', 'JOURNAL_STREAM': '9:18002', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.SettingsDaemon.MediaKeys.service/memory.pressure', 'CLAUDE_CODE_SSE_PORT': '16668', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'ngen', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '1', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/ngen/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/ngen:@/tmp/.ICE-unix/2150,unix/ngen:/tmp/.ICE-unix/2150', 'INVOCATION_ID': 'b38d09888e42448396d56b98f4457b21', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'GZ_PARTITION': 'sim99', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'GZ_IP': '127.0.0.1', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'SBX_CHROME_API_RQ': '1', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-28d7230746.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '99', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:07bd77aa-78a3-4919-9728-858a92c9dc5d', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GZ_DISCOVERY_MULTICAST': '0', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'SANDBOX_LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.099492] (-) TimerEvent: {}
+[0.184954] (workspace_gz) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.199564] (-) TimerEvent: {}
+[0.237125] (workspace_gz) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[0.258219] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.299668] (-) TimerEvent: {}
+[0.349089] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.356185] (workspace_gz) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.356492] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.357069] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.366660] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.399752] (-) TimerEvent: {}
+[0.442786] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.449092] (workspace_gz) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.449219] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.449672] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.459899] (workspace_gz) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[0.499881] (-) TimerEvent: {}
+[0.586285] (workspace_gz) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[0.599993] (-) TimerEvent: {}
+[0.661516] (workspace_gz) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.700190] (-) TimerEvent: {}
+[0.720793] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sim8 -- found version 8.10.0\n'}
+[0.731005] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sim8\n'}
+[0.732507] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[0.732623] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of sdformat14\n'}
+[0.734022] (workspace_ros) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/build', '--no-deps', 'symlink_data'], 'cwd': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'ngen', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'ANTIGRAVITY_CLI_ALIAS': 'agy', 'HOME': '/home/ngen', 'CHROME_DESKTOP': 'antigravity.desktop', 'OLDPWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV', 'TERM_PROGRAM_VERSION': '1.104.0', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/antigravity/antigravity', 'MANAGERPID': '1712', 'SYSTEMD_EXEC_PID': '2316', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'ANTIGRAVITY_AGENT': '1', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3846', 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'ngen', 'JOURNAL_STREAM': '9:18002', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.SettingsDaemon.MediaKeys.service/memory.pressure', 'CLAUDE_CODE_SSE_PORT': '16668', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'ngen', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '1', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/ngen/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/ngen:@/tmp/.ICE-unix/2150,unix/ngen:/tmp/.ICE-unix/2150', 'INVOCATION_ID': 'b38d09888e42448396d56b98f4457b21', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'GZ_PARTITION': 'sim99', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'GZ_IP': '127.0.0.1', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'SBX_CHROME_API_RQ': '1', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-28d7230746.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '99', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:07bd77aa-78a3-4919-9728-858a92c9dc5d', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GZ_DISCOVERY_MULTICAST': '0', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'SANDBOX_LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}, 'shell': False}
+[0.739576] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'tinyxml2'\n"}
+[0.755343] (workspace_gz) StdoutLine: {'line': b'--   Found tinyxml2, version 10.0.0\n'}
+[0.791623] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[0.791912] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-math7\n'}
+[0.794276] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.794581] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-utils2\n'}
+[0.797043] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.797251] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-utils2\n'}
+[0.797330] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-utils2> component [cli]\n'}
+[0.799311] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2-cli -- found version 2.2.1\n'}
+[0.799478] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-utils2-cli\n'}
+[0.800369] (-) TimerEvent: {}
+[0.802069] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[0.802282] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-plugin2\n'}
+[0.802368] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.803238] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-plugin2> component [loader]\n'}
+[0.804521] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2-loader -- found version 2.0.4\n'}
+[0.804677] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-plugin2-loader\n'}
+[0.805222] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-plugin2> component [register]\n'}
+[0.806548] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2-register -- found version 2.0.4\n'}
+[0.806707] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-plugin2-register\n'}
+[0.808147] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[0.808306] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-transport13\n'}
+[0.900467] (-) TimerEvent: {}
+[0.932070] (workspace_gz) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.21.12") \n'}
+[0.942631] (workspace_gz) StdoutLine: {'line': b'-- Config-file not installed for ZeroMQ -- checking for pkg-config\n'}
+[0.947042] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libzmq >= 4'\n"}
+[0.962173] (workspace_gz) StdoutLine: {'line': b'--   Found libzmq, version 4.3.5\n'}
+[0.966907] (workspace_ros) StdoutLine: {'line': b'running develop\n'}
+[1.000558] (-) TimerEvent: {}
+[1.005097] (workspace_gz) StdoutLine: {'line': b'-- Found ZeroMQ: TRUE (Required is at least version "4") \n'}
+[1.012013] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'uuid'\n"}
+[1.026494] (workspace_gz) StdoutLine: {'line': b'--   Found uuid, version 2.39.3\n'}
+[1.056716] (workspace_gz) StdoutLine: {'line': b'-- Found UUID: TRUE  \n'}
+[1.057022] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.059285] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.059525] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-msgs10\n'}
+[1.076741] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.077116] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.084988] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-transport13> component [log]\n'}
+[1.086192] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-transport13-log -- found version 13.5.0\n'}
+[1.086284] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-transport13-log\n'}
+[1.086876] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-transport13> component [parameters]\n'}
+[1.088091] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-transport13-parameters -- found version 13.5.0\n'}
+[1.088184] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-transport13-parameters\n'}
+[1.089150] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.091473] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.091778] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5\n'}
+[1.091825] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.092376] (workspace_gz) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[1.093610] (workspace_gz) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[1.094637] (workspace_gz) StdoutLine: {'line': b'-- Found DL: TRUE  \n'}
+[1.100624] (-) TimerEvent: {}
+[1.101487] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [av]\n'}
+[1.103105] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5-av -- found version 5.7.1\n'}
+[1.103199] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-av\n'}
+[1.108103] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libswscale'\n"}
+[1.111384] (workspace_ros) StdoutLine: {'line': b'running egg_info\n'}
+[1.111482] (workspace_ros) StdoutLine: {'line': b'creating workspace_ros.egg-info\n'}
+[1.122249] (workspace_gz) StdoutLine: {'line': b'--   Found libswscale, version 7.5.100\n'}
+[1.126032] (workspace_ros) StdoutLine: {'line': b'writing workspace_ros.egg-info/PKG-INFO\n'}
+[1.126131] (workspace_ros) StdoutLine: {'line': b'writing dependency_links to workspace_ros.egg-info/dependency_links.txt\n'}
+[1.126214] (workspace_ros) StdoutLine: {'line': b'writing entry points to workspace_ros.egg-info/entry_points.txt\n'}
+[1.126262] (workspace_ros) StdoutLine: {'line': b'writing requirements to workspace_ros.egg-info/requires.txt\n'}
+[1.126303] (workspace_ros) StdoutLine: {'line': b'writing top-level names to workspace_ros.egg-info/top_level.txt\n'}
+[1.126384] (workspace_ros) StdoutLine: {'line': b"writing manifest file 'workspace_ros.egg-info/SOURCES.txt'\n"}
+[1.155446] (workspace_gz) StdoutLine: {'line': b'-- Found SWSCALE: TRUE  \n'}
+[1.155762] (workspace_ros) StdoutLine: {'line': b"reading manifest file 'workspace_ros.egg-info/SOURCES.txt'\n"}
+[1.156108] (workspace_ros) StdoutLine: {'line': b"writing manifest file 'workspace_ros.egg-info/SOURCES.txt'\n"}
+[1.159984] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavdevice >= 56.4.100'\n"}
+[1.171330] (workspace_ros) StdoutLine: {'line': b'running build_ext\n'}
+[1.171437] (workspace_ros) StdoutLine: {'line': b'Creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/python3.12/site-packages/workspace-ros.egg-link (link to .)\n'}
+[1.171915] (workspace_ros) StdoutLine: {'line': b'Installing converter script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172012] (workspace_ros) StdoutLine: {'line': b'Installing gps_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172138] (workspace_ros) StdoutLine: {'line': b'Installing imu_covariance_repub script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172186] (workspace_ros) StdoutLine: {'line': b'Installing kamikaze script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172227] (workspace_ros) StdoutLine: {'line': b'Installing lidar_processor script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172267] (workspace_ros) StdoutLine: {'line': b'Installing manual_control script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172303] (workspace_ros) StdoutLine: {'line': b'Installing static_transform_publisher script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172341] (workspace_ros) StdoutLine: {'line': b'Installing target_buoy script to /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/lib/workspace_ros\n'}
+[1.172517] (workspace_ros) StdoutLine: {'line': b'\n'}
+[1.172666] (workspace_ros) StdoutLine: {'line': b'Installed /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros\n'}
+[1.172716] (workspace_ros) StdoutLine: {'line': b'running symlink_data\n'}
+[1.172760] (workspace_ros) StdoutLine: {'line': b'creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/ament_index\n'}
+[1.172803] (workspace_ros) StdoutLine: {'line': b'creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/ament_index/resource_index\n'}
+[1.172845] (workspace_ros) StdoutLine: {'line': b'creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/ament_index/resource_index/packages\n'}
+[1.172885] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/resource/workspace_ros -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/ament_index/resource_index/packages\n'}
+[1.172965] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/package.xml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros\n'}
+[1.173007] (workspace_ros) StdoutLine: {'line': b'creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config\n'}
+[1.173047] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/static_transform.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config\n'}
+[1.173088] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/ekf.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config\n'}
+[1.173127] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/lidar_rviz.rviz -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config\n'}
+[1.173167] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/kiss_icp.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config\n'}
+[1.173219] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/navsat.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config\n'}
+[1.173260] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/config/lidar_filter.yaml -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/config\n'}
+[1.173297] (workspace_ros) StdoutLine: {'line': b'creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.173334] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/localization.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.173409] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/mola_slam.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.173445] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/kiss_icp.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.173484] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/launch/lidar_filter.launch.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.173518] (workspace_ros) StdoutLine: {'line': b'creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173552] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/static_transform_publisher.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173587] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/converter.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173622] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/__init__.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173659] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/lidar_processor.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173692] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/imu_covariance_repub.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173726] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/kamikaze.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173759] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/gps_covariance_repub.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173792] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/target_buoy.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173826] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/manual_control.py -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.173860] (workspace_ros) StdoutLine: {'line': b'creating /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/YOLOv11\n'}
+[1.173894] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/YOLOv11/YOLOv11.pt -> /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_ros/share/workspace_ros/YOLOv11\n'}
+[1.174156] (workspace_gz) StdoutLine: {'line': b'--   Found libavdevice, version 60.3.100\n'}
+[1.194275] (workspace_ros) CommandEnded: {'returncode': 0}
+[1.200670] (workspace_ros) JobEnded: {'identifier': 'workspace_ros', 'rc': 0}
+[1.200866] (-) TimerEvent: {}
+[1.216869] (workspace_gz) StdoutLine: {'line': b'-- Found AVDEVICE: TRUE (Required is at least version "56.4.100") \n'}
+[1.220470] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavformat'\n"}
+[1.232091] (workspace_gz) StdoutLine: {'line': b'--   Found libavformat, version 60.16.100\n'}
+[1.261562] (workspace_gz) StdoutLine: {'line': b'-- Found AVFORMAT: TRUE  \n'}
+[1.265975] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavcodec'\n"}
+[1.278574] (workspace_gz) StdoutLine: {'line': b'--   Found libavcodec, version 60.31.102\n'}
+[1.301059] (-) TimerEvent: {}
+[1.310089] (workspace_gz) StdoutLine: {'line': b'-- Found AVCODEC: TRUE  \n'}
+[1.314465] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavutil'\n"}
+[1.325912] (workspace_gz) StdoutLine: {'line': b'--   Found libavutil, version 58.29.100\n'}
+[1.354661] (workspace_gz) StdoutLine: {'line': b'-- Found AVUTIL: TRUE  \n'}
+[1.355610] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [events]\n'}
+[1.357580] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5-events -- found version 5.7.1\n'}
+[1.357890] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-events\n'}
+[1.358119] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.358921] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [graphics]\n'}
+[1.360344] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5-graphics -- found version 5.7.1\n'}
+[1.360449] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-graphics\n'}
+[1.360668] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.364698] (workspace_gz) StdoutLine: {'line': b'-- Found GzAssimp: TRUE (found version "5.3.0") \n'}
+[1.365229] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [io]\n'}
+[1.366303] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5-io -- found version 5.7.1\n'}
+[1.366379] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-io\n'}
+[1.366913] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [profiler]\n'}
+[1.367923] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5-profiler -- found version 5.7.1\n'}
+[1.368012] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-profiler\n'}
+[1.369830] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-fuel_tools9 -- found version 9.1.1\n'}
+[1.369915] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-fuel_tools9\n'}
+[1.401231] (-) TimerEvent: {}
+[1.440757] (workspace_gz) StdoutLine: {'line': b'-- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "8.5.0")  \n'}
+[1.448716] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'jsoncpp'\n"}
+[1.461342] (workspace_gz) StdoutLine: {'line': b'--   Found jsoncpp, version 1.9.5\n'}
+[1.490072] (workspace_gz) StdoutLine: {'line': b'-- Found JSONCPP: TRUE  \n'}
+[1.501462] (-) TimerEvent: {}
+[1.502835] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'yaml-0.1'\n"}
+[1.515079] (workspace_gz) StdoutLine: {'line': b'--   Found yaml-0.1, version 0.2.5\n'}
+[1.544101] (workspace_gz) StdoutLine: {'line': b'-- Found YAML: TRUE  \n'}
+[1.548382] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libzip'\n"}
+[1.561135] (workspace_gz) StdoutLine: {'line': b'--   Found libzip, version 1.7.3\n'}
+[1.591051] (workspace_gz) StdoutLine: {'line': b'-- Found ZIP: TRUE  \n'}
+[1.591341] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.591752] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.591973] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5\n'}
+[1.592238] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.592437] (workspace_gz) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[1.592516] (workspace_gz) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[1.599132] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [testing]\n'}
+[1.601322] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5-testing -- found version 5.7.1\n'}
+[1.601559] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-testing\n'}
+[1.601623] (-) TimerEvent: {}
+[1.602831] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.603066] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.604887] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-gui8 -- found version 8.4.0\n'}
+[1.604960] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-gui8\n'}
+[1.620815] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.621042] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.621248] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.621336] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[1.621677] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[1.622938] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.2\n'}
+[1.623008] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-rendering8\n'}
+[1.623103] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.623199] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-math7\n'}
+[1.623398] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.623512] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-math7> component [eigen3]\n'}
+[1.624802] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7-eigen3 -- found version 7.5.2\n'}
+[1.624931] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-math7-eigen3\n'}
+[1.631974] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.632046] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5\n'}
+[1.632154] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.632247] (workspace_gz) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[1.632300] (workspace_gz) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[1.639236] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [graphics]\n'}
+[1.639282] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [events]\n'}
+[1.639317] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-common5> component [geospatial]\n'}
+[1.640581] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5-geospatial -- found version 5.7.1\n'}
+[1.640715] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-geospatial\n'}
+[1.640948] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.641212] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.642251] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[1.642341] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-plugin2\n'}
+[1.642549] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.642658] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-plugin2> component [all]\n'}
+[1.644160] (workspace_gz) StdoutLine: {'line': b'-- Looking for all libraries of gz-plugin2 -- found version 2.0.4\n'}
+[1.644629] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[1.645402] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.654851] (workspace_gz) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL \n'}
+[1.655967] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.686189] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-physics7 -- found version 7.6.0\n'}
+[1.686339] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7\n'}
+[1.686602] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.686850] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.687119] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[1.687244] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.688399] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-physics7> component [heightmap]\n'}
+[1.689327] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-physics7-heightmap -- found version 7.6.0\n'}
+[1.689372] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7-heightmap\n'}
+[1.689683] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.690114] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-physics7> component [mesh]\n'}
+[1.691180] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-physics7-mesh -- found version 7.6.0\n'}
+[1.691227] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7-mesh\n'}
+[1.691436] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.692050] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-physics7> component [sdf]\n'}
+[1.692872] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-physics7-sdf -- found version 7.6.0\n'}
+[1.692928] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7-sdf\n'}
+[1.693054] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[1.695778] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.695824] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8\n'}
+[1.701710] (-) TimerEvent: {}
+[1.711575] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.711785] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.712075] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[1.712294] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.2\n'}
+[1.712650] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.712830] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[1.713569] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [air_pressure]\n'}
+[1.714602] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-air_pressure -- found version 8.2.2\n'}
+[1.714672] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-air_pressure\n'}
+[1.715227] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [air_speed]\n'}
+[1.716084] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-air_speed -- found version 8.2.2\n'}
+[1.716149] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-air_speed\n'}
+[1.716733] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [altimeter]\n'}
+[1.717481] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-altimeter -- found version 8.2.2\n'}
+[1.717595] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-altimeter\n'}
+[1.718162] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [imu]\n'}
+[1.718940] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-imu -- found version 8.2.2\n'}
+[1.719024] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-imu\n'}
+[1.719565] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [force_torque]\n'}
+[1.720392] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-force_torque -- found version 8.2.2\n'}
+[1.720494] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-force_torque\n'}
+[1.720987] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [logical_camera]\n'}
+[1.721674] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-logical_camera -- found version 8.2.2\n'}
+[1.721754] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-logical_camera\n'}
+[1.722246] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [magnetometer]\n'}
+[1.723090] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-magnetometer -- found version 8.2.2\n'}
+[1.723191] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-magnetometer\n'}
+[1.723700] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [navsat]\n'}
+[1.724475] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-navsat -- found version 8.2.2\n'}
+[1.724586] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-navsat\n'}
+[1.725118] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [dvl]\n'}
+[1.725929] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-dvl -- found version 8.2.2\n'}
+[1.725990] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-dvl\n'}
+[1.726208] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.726309] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8\n'}
+[1.743893] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.744160] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.744408] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[1.744773] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.2\n'}
+[1.745009] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.745348] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[1.745473] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [rendering]\n'}
+[1.746442] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-rendering -- found version 8.2.2\n'}
+[1.746580] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-rendering\n'}
+[1.748082] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [rendering]\n'}
+[1.748126] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [lidar]\n'}
+[1.748938] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-lidar -- found version 8.2.2\n'}
+[1.749069] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-lidar\n'}
+[1.749360] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.750035] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [gpu_lidar]\n'}
+[1.750892] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-gpu_lidar -- found version 8.2.2\n'}
+[1.750976] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-gpu_lidar\n'}
+[1.751230] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.751890] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [camera]\n'}
+[1.752859] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-camera -- found version 8.2.2\n'}
+[1.752933] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-camera\n'}
+[1.753192] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.753870] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [boundingbox_camera]\n'}
+[1.754739] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-boundingbox_camera -- found version 8.2.2\n'}
+[1.754818] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-boundingbox_camera\n'}
+[1.755423] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [segmentation_camera]\n'}
+[1.756318] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-segmentation_camera -- found version 8.2.2\n'}
+[1.756411] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-segmentation_camera\n'}
+[1.757039] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [depth_camera]\n'}
+[1.757799] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-depth_camera -- found version 8.2.2\n'}
+[1.757883] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-depth_camera\n'}
+[1.758101] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.758749] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [rgbd_camera]\n'}
+[1.759518] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-rgbd_camera -- found version 8.2.2\n'}
+[1.759642] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-rgbd_camera\n'}
+[1.759922] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.760597] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [thermal_camera]\n'}
+[1.761452] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-thermal_camera -- found version 8.2.2\n'}
+[1.761509] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-thermal_camera\n'}
+[1.761729] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.762383] (workspace_gz) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [wide_angle_camera]\n'}
+[1.763300] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8-wide_angle_camera -- found version 8.2.2\n'}
+[1.763385] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-wide_angle_camera\n'}
+[1.764275] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.2\n'}
+[1.764482] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.764725] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.779584] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.779729] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.779976] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[1.780225] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[1.780506] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.2\n'}
+[1.780763] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.780994] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.781226] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[1.783835] (workspace_gz) StdoutLine: {'line': b'-- Found std_msgs: 5.3.6 (/opt/ros/jazzy/share/std_msgs/cmake)\n'}
+[1.801874] (-) TimerEvent: {}
+[1.829135] (workspace_gz) StdoutLine: {'line': b'-- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)\n'}
+[1.847228] (workspace_gz) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)\n'}
+[1.869425] (workspace_gz) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.892000] (workspace_gz) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.902032] (-) TimerEvent: {}
+[1.928867] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.929134] (workspace_gz) StdoutLine: {'line': b'-- Looking for gz-fuel_tools9 -- found version 9.1.1\n'}
+[1.995216] (workspace_gz) StdoutLine: {'line': b'-- Configuring done (2.0s)\n'}
+[2.002187] (-) TimerEvent: {}
+[2.092397] (workspace_gz) StdoutLine: {'line': b'-- Generating done (0.1s)\n'}
+[2.102343] (-) TimerEvent: {}
+[2.112384] (workspace_gz) StdoutLine: {'line': b'-- Build files have been written to: /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz\n'}
+[2.125538] (workspace_gz) CommandEnded: {'returncode': 0}
+[2.125839] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'build'}
+[2.125857] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz', '--', '-j20', '-l20'], 'cwd': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'ngen', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'ANTIGRAVITY_CLI_ALIAS': 'agy', 'HOME': '/home/ngen', 'CHROME_DESKTOP': 'antigravity.desktop', 'OLDPWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV', 'TERM_PROGRAM_VERSION': '1.104.0', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/antigravity/antigravity', 'MANAGERPID': '1712', 'SYSTEMD_EXEC_PID': '2316', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'ANTIGRAVITY_AGENT': '1', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3846', 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'ngen', 'JOURNAL_STREAM': '9:18002', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.SettingsDaemon.MediaKeys.service/memory.pressure', 'CLAUDE_CODE_SSE_PORT': '16668', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'ngen', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '1', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/ngen/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/ngen:@/tmp/.ICE-unix/2150,unix/ngen:/tmp/.ICE-unix/2150', 'INVOCATION_ID': 'b38d09888e42448396d56b98f4457b21', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'GZ_PARTITION': 'sim99', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'GZ_IP': '127.0.0.1', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'SBX_CHROME_API_RQ': '1', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-28d7230746.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '99', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:07bd77aa-78a3-4919-9728-858a92c9dc5d', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GZ_DISCOVERY_MULTICAST': '0', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'SANDBOX_LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[2.165817] (workspace_gz) StdoutLine: {'line': b'[  2%] Building CXX object CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o\n'}
+[2.166569] (workspace_gz) StdoutLine: {'line': b'[  4%] Building CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o\n'}
+[2.202413] (-) TimerEvent: {}
+[2.302570] (-) TimerEvent: {}
+[2.402720] (-) TimerEvent: {}
+[2.502873] (-) TimerEvent: {}
+[2.603045] (-) TimerEvent: {}
+[2.703222] (-) TimerEvent: {}
+[2.803401] (-) TimerEvent: {}
+[2.903663] (-) TimerEvent: {}
+[3.003844] (-) TimerEvent: {}
+[3.104085] (-) TimerEvent: {}
+[3.204325] (-) TimerEvent: {}
+[3.304493] (-) TimerEvent: {}
+[3.404642] (-) TimerEvent: {}
+[3.504822] (-) TimerEvent: {}
+[3.605056] (-) TimerEvent: {}
+[3.705292] (-) TimerEvent: {}
+[3.805489] (-) TimerEvent: {}
+[3.905656] (-) TimerEvent: {}
+[4.005885] (-) TimerEvent: {}
+[4.106110] (-) TimerEvent: {}
+[4.206344] (-) TimerEvent: {}
+[4.306498] (-) TimerEvent: {}
+[4.406647] (-) TimerEvent: {}
+[4.506838] (-) TimerEvent: {}
+[4.607077] (-) TimerEvent: {}
+[4.707296] (-) TimerEvent: {}
+[4.745355] (workspace_gz) StdoutLine: {'line': b'[  6%] Linking CXX shared library libWaves.so\n'}
+[4.807485] (-) TimerEvent: {}
+[4.907629] (-) TimerEvent: {}
+[4.933112] (workspace_gz) StdoutLine: {'line': b'[  6%] Built target Waves\n'}
+[4.951350] (workspace_gz) StdoutLine: {'line': b'[  8%] Building CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/ShapeVolume.cc.o\n'}
+[4.951515] (workspace_gz) StdoutLine: {'line': b'[ 10%] Building CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o\n'}
+[4.951810] (workspace_gz) StdoutLine: {'line': b'[ 12%] Building CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedronVolume.cc.o\n'}
+[5.007733] (-) TimerEvent: {}
+[5.107989] (-) TimerEvent: {}
+[5.208246] (-) TimerEvent: {}
+[5.308493] (-) TimerEvent: {}
+[5.408655] (-) TimerEvent: {}
+[5.508830] (-) TimerEvent: {}
+[5.609061] (-) TimerEvent: {}
+[5.709226] (-) TimerEvent: {}
+[5.786095] (workspace_gz) StdoutLine: {'line': b'[ 14%] Linking CXX shared library libScoringPlugin.so\n'}
+[5.809341] (-) TimerEvent: {}
+[5.909496] (-) TimerEvent: {}
+[5.978486] (workspace_gz) StdoutLine: {'line': b'[ 14%] Built target ScoringPlugin\n'}
+[6.007581] (workspace_gz) StdoutLine: {'line': b'[ 20%] Building CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o\n'}
+[6.007813] (workspace_gz) StdoutLine: {'line': b'[ 20%] Building CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o\n'}
+[6.007933] (workspace_gz) StdoutLine: {'line': b'[ 20%] Building CXX object CMakeFiles/LightBuoyPlugin.dir/plugins/LightBuoyPlugin.cc.o\n'}
+[6.008084] (workspace_gz) StdoutLine: {'line': b'[ 22%] Building CXX object CMakeFiles/GymkhanaScoringPlugin.dir/plugins/GymkhanaScoringPlugin.cc.o\n'}
+[6.008171] (workspace_gz) StdoutLine: {'line': b'[ 27%] Building CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/AcousticPerceptionScoringPlugin.cc.o\n'}
+[6.008256] (workspace_gz) StdoutLine: {'line': b'[ 27%] Building CXX object CMakeFiles/NavigationScoringPlugin.dir/plugins/NavigationScoringPlugin.cc.o\n'}
+[6.008343] (workspace_gz) StdoutLine: {'line': b'[ 29%] Building CXX object CMakeFiles/BallShooterPlugin.dir/plugins/BallShooterPlugin.cc.o\n'}
+[6.008451] (workspace_gz) StdoutLine: {'line': b'[ 33%] Building CXX object CMakeFiles/AcousticPingerPlugin.dir/plugins/AcousticPingerPlugin.cc.o\n'}
+[6.008543] (workspace_gz) StdoutLine: {'line': b'[ 33%] Building CXX object CMakeFiles/PublisherPlugin.dir/plugins/PublisherPlugin.cc.o\n'}
+[6.008629] (workspace_gz) StdoutLine: {'line': b'[ 35%] Building CXX object CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/AcousticTrackingScoringPlugin.cc.o\n'}
+[6.009444] (workspace_gz) StdoutLine: {'line': b'[ 39%] Building CXX object CMakeFiles/WildlifeScoringPlugin.dir/plugins/WildlifeScoringPlugin.cc.o\n'}
+[6.009621] (-) TimerEvent: {}
+[6.009643] (workspace_gz) StdoutLine: {'line': b'[ 39%] Building CXX object CMakeFiles/USVWind.dir/plugins/USVWind.cc.o\n'}
+[6.009730] (workspace_gz) StdoutLine: {'line': b'[ 43%] Building CXX object CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o\n'}
+[6.009818] (workspace_gz) StdoutLine: {'line': b'[ 43%] Building CXX object CMakeFiles/ScanDockScoringPlugin.dir/plugins/ScanDockScoringPlugin.cc.o\n'}
+[6.011037] (workspace_gz) StdoutLine: {'line': b'[ 47%] Building CXX object CMakeFiles/PlacardPlugin.dir/plugins/PlacardPlugin.cc.o\n'}
+[6.011320] (workspace_gz) StdoutLine: {'line': b'[ 47%] Building CXX object CMakeFiles/Surface.dir/plugins/Surface.cc.o\n'}
+[6.014777] (workspace_gz) StdoutLine: {'line': b'[ 50%] Building CXX object CMakeFiles/PerceptionScoringPlugin.dir/plugins/PerceptionScoringPlugin.cc.o\n'}
+[6.015798] (workspace_gz) StdoutLine: {'line': b'[ 52%] Building CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o\n'}
+[6.109768] (-) TimerEvent: {}
+[6.210453] (-) TimerEvent: {}
+[6.310681] (-) TimerEvent: {}
+[6.410920] (-) TimerEvent: {}
+[6.498439] (workspace_gz) StdoutLine: {'line': b'[ 54%] Building CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o\n'}
+[6.511064] (-) TimerEvent: {}
+[6.611321] (-) TimerEvent: {}
+[6.711590] (-) TimerEvent: {}
+[6.812458] (-) TimerEvent: {}
+[6.912734] (-) TimerEvent: {}
+[7.013003] (-) TimerEvent: {}
+[7.113636] (-) TimerEvent: {}
+[7.213904] (-) TimerEvent: {}
+[7.314490] (-) TimerEvent: {}
+[7.415465] (-) TimerEvent: {}
+[7.515727] (-) TimerEvent: {}
+[7.615995] (-) TimerEvent: {}
+[7.716259] (-) TimerEvent: {}
+[7.817465] (-) TimerEvent: {}
+[7.917727] (-) TimerEvent: {}
+[8.017987] (-) TimerEvent: {}
+[8.118258] (-) TimerEvent: {}
+[8.218533] (-) TimerEvent: {}
+[8.320215] (-) TimerEvent: {}
+[8.420469] (-) TimerEvent: {}
+[8.520735] (-) TimerEvent: {}
+[8.620995] (-) TimerEvent: {}
+[8.721263] (-) TimerEvent: {}
+[8.821539] (-) TimerEvent: {}
+[8.921805] (-) TimerEvent: {}
+[9.022460] (-) TimerEvent: {}
+[9.122735] (-) TimerEvent: {}
+[9.223445] (-) TimerEvent: {}
+[9.323825] (-) TimerEvent: {}
+[9.424507] (-) TimerEvent: {}
+[9.524813] (-) TimerEvent: {}
+[9.625461] (-) TimerEvent: {}
+[9.725718] (-) TimerEvent: {}
+[9.826500] (-) TimerEvent: {}
+[9.926820] (-) TimerEvent: {}
+[10.027466] (-) TimerEvent: {}
+[10.127716] (-) TimerEvent: {}
+[10.233481] (-) TimerEvent: {}
+[10.333773] (-) TimerEvent: {}
+[10.434043] (-) TimerEvent: {}
+[10.543457] (-) TimerEvent: {}
+[10.643715] (-) TimerEvent: {}
+[10.743978] (-) TimerEvent: {}
+[10.844276] (-) TimerEvent: {}
+[10.944587] (-) TimerEvent: {}
+[11.044850] (-) TimerEvent: {}
+[11.145108] (-) TimerEvent: {}
+[11.245396] (-) TimerEvent: {}
+[11.345663] (-) TimerEvent: {}
+[11.449485] (-) TimerEvent: {}
+[11.549829] (-) TimerEvent: {}
+[11.650100] (-) TimerEvent: {}
+[11.750394] (-) TimerEvent: {}
+[11.852468] (-) TimerEvent: {}
+[11.952741] (-) TimerEvent: {}
+[12.053520] (-) TimerEvent: {}
+[12.156480] (-) TimerEvent: {}
+[12.256834] (-) TimerEvent: {}
+[12.357124] (-) TimerEvent: {}
+[12.457411] (-) TimerEvent: {}
+[12.558003] (-) TimerEvent: {}
+[12.658257] (-) TimerEvent: {}
+[12.758521] (-) TimerEvent: {}
+[12.858781] (-) TimerEvent: {}
+[12.959052] (-) TimerEvent: {}
+[13.059688] (-) TimerEvent: {}
+[13.159950] (-) TimerEvent: {}
+[13.260207] (-) TimerEvent: {}
+[13.360469] (-) TimerEvent: {}
+[13.460724] (-) TimerEvent: {}
+[13.560971] (-) TimerEvent: {}
+[13.661236] (-) TimerEvent: {}
+[13.764469] (-) TimerEvent: {}
+[13.868338] (-) TimerEvent: {}
+[13.968835] (-) TimerEvent: {}
+[14.072844] (-) TimerEvent: {}
+[14.173970] (-) TimerEvent: {}
+[14.274638] (-) TimerEvent: {}
+[14.374902] (-) TimerEvent: {}
+[14.475156] (-) TimerEvent: {}
+[14.575423] (-) TimerEvent: {}
+[14.675677] (-) TimerEvent: {}
+[14.775929] (-) TimerEvent: {}
+[14.876185] (-) TimerEvent: {}
+[14.976455] (-) TimerEvent: {}
+[15.076702] (-) TimerEvent: {}
+[15.176947] (-) TimerEvent: {}
+[15.277201] (-) TimerEvent: {}
+[15.377468] (-) TimerEvent: {}
+[15.477719] (-) TimerEvent: {}
+[15.518057] (workspace_gz) StdoutLine: {'line': b'[ 58%] Linking CXX shared library libPublisherPlugin.so\n'}
+[15.522494] (workspace_gz) StdoutLine: {'line': b'[ 56%] Building CXX object CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/WaypointMarkers.cc.o\n'}
+[15.577853] (-) TimerEvent: {}
+[15.678082] (-) TimerEvent: {}
+[15.778320] (-) TimerEvent: {}
+[15.878589] (-) TimerEvent: {}
+[15.906812] (workspace_gz) StdoutLine: {'line': b'[ 60%] Linking CXX shared library libLightBuoyPlugin.so\n'}
+[15.978725] (-) TimerEvent: {}
+[16.078969] (-) TimerEvent: {}
+[16.164621] (workspace_gz) StdoutLine: {'line': b'[ 60%] Built target PublisherPlugin\n'}
+[16.179102] (-) TimerEvent: {}
+[16.186461] (workspace_gz) StdoutLine: {'line': b'[ 62%] Building CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WaypointMarkers.cc.o\n'}
+[16.279460] (-) TimerEvent: {}
+[16.379729] (-) TimerEvent: {}
+[16.435442] (workspace_gz) StdoutLine: {'line': b'[ 62%] Built target LightBuoyPlugin\n'}
+[16.456714] (workspace_gz) StdoutLine: {'line': b'[ 64%] Building CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o\n'}
+[16.480466] (-) TimerEvent: {}
+[16.580702] (-) TimerEvent: {}
+[16.680932] (-) TimerEvent: {}
+[16.781188] (-) TimerEvent: {}
+[16.881475] (-) TimerEvent: {}
+[16.983467] (-) TimerEvent: {}
+[17.045166] (workspace_gz) StdoutLine: {'line': b'[ 66%] Linking CXX shared library libPolyhedraBuoyancyDrag.so\n'}
+[17.083610] (-) TimerEvent: {}
+[17.137969] (workspace_gz) StdoutLine: {'line': b'[ 68%] Linking CXX shared library libGymkhanaScoringPlugin.so\n'}
+[17.174691] (workspace_gz) StdoutLine: {'line': b'[ 70%] Linking CXX shared library libPlacardPlugin.so\n'}
+[17.187464] (-) TimerEvent: {}
+[17.246764] (workspace_gz) StdoutLine: {'line': b'[ 72%] Linking CXX shared library libSurface.so\n'}
+[17.287608] (-) TimerEvent: {}
+[17.351665] (workspace_gz) StdoutLine: {'line': b'[ 75%] Linking CXX shared library libSimpleHydrodynamics.so\n'}
+[17.387752] (-) TimerEvent: {}
+[17.488002] (-) TimerEvent: {}
+[17.588253] (-) TimerEvent: {}
+[17.688467] (-) TimerEvent: {}
+[17.743559] (workspace_gz) StdoutLine: {'line': b'[ 75%] Built target PolyhedraBuoyancyDrag\n'}
+[17.755771] (workspace_gz) StdoutLine: {'line': b'[ 75%] Built target PlacardPlugin\n'}
+[17.765575] (workspace_gz) StdoutLine: {'line': b'[ 75%] Built target GymkhanaScoringPlugin\n'}
+[17.788597] (-) TimerEvent: {}
+[17.888975] (-) TimerEvent: {}
+[17.907478] (workspace_gz) StdoutLine: {'line': b'[ 75%] Built target Surface\n'}
+[17.922075] (workspace_gz) StdoutLine: {'line': b'[ 75%] Built target SimpleHydrodynamics\n'}
+[17.989090] (-) TimerEvent: {}
+[18.090791] (-) TimerEvent: {}
+[18.192443] (-) TimerEvent: {}
+[18.292659] (-) TimerEvent: {}
+[18.392876] (-) TimerEvent: {}
+[18.493105] (-) TimerEvent: {}
+[18.593338] (-) TimerEvent: {}
+[18.688851] (workspace_gz) StdoutLine: {'line': b'[ 77%] Linking CXX shared library libAcousticPerceptionScoringPlugin.so\n'}
+[18.695474] (-) TimerEvent: {}
+[18.795704] (-) TimerEvent: {}
+[18.884539] (workspace_gz) StdoutLine: {'line': b'[ 79%] Linking CXX shared library libPerceptionScoringPlugin.so\n'}
+[18.895831] (-) TimerEvent: {}
+[18.955795] (workspace_gz) StdoutLine: {'line': b'[ 81%] Linking CXX shared library libAcousticPingerPlugin.so\n'}
+[18.995979] (-) TimerEvent: {}
+[19.096203] (-) TimerEvent: {}
+[19.196451] (-) TimerEvent: {}
+[19.247496] (workspace_gz) StdoutLine: {'line': b'[ 81%] Built target AcousticPerceptionScoringPlugin\n'}
+[19.296570] (-) TimerEvent: {}
+[19.334299] (workspace_gz) StdoutLine: {'line': b'[ 81%] Built target AcousticPingerPlugin\n'}
+[19.396691] (-) TimerEvent: {}
+[19.397806] (workspace_gz) StdoutLine: {'line': b'[ 81%] Built target PerceptionScoringPlugin\n'}
+[19.408865] (workspace_gz) StdoutLine: {'line': b'[ 83%] Linking CXX shared library libWaveVisual.so\n'}
+[19.496821] (-) TimerEvent: {}
+[19.516513] (workspace_gz) StdoutLine: {'line': b'[ 85%] Linking CXX shared library libWildlifeScoringPlugin.so\n'}
+[19.596952] (-) TimerEvent: {}
+[19.697161] (-) TimerEvent: {}
+[19.718246] (workspace_gz) StdoutLine: {'line': b'[ 85%] Built target WaveVisual\n'}
+[19.797295] (-) TimerEvent: {}
+[19.839843] (workspace_gz) StdoutLine: {'line': b'[ 87%] Linking CXX shared library libNavigationScoringPlugin.so\n'}
+[19.868683] (workspace_gz) StdoutLine: {'line': b'[ 87%] Built target WildlifeScoringPlugin\n'}
+[19.897463] (-) TimerEvent: {}
+[19.997671] (-) TimerEvent: {}
+[20.097994] (-) TimerEvent: {}
+[20.148486] (workspace_gz) StdoutLine: {'line': b'[ 89%] Linking CXX shared library libUSVWind.so\n'}
+[20.198106] (-) TimerEvent: {}
+[20.212528] (workspace_gz) StdoutLine: {'line': b'[ 89%] Built target NavigationScoringPlugin\n'}
+[20.298347] (-) TimerEvent: {}
+[20.364959] (workspace_gz) StdoutLine: {'line': b'[ 91%] Linking CXX shared library libBallShooterPlugin.so\n'}
+[20.398555] (-) TimerEvent: {}
+[20.423959] (workspace_gz) StdoutLine: {'line': b'[ 91%] Built target USVWind\n'}
+[20.498682] (-) TimerEvent: {}
+[20.598994] (-) TimerEvent: {}
+[20.673835] (workspace_gz) StdoutLine: {'line': b'[ 91%] Built target BallShooterPlugin\n'}
+[20.699131] (-) TimerEvent: {}
+[20.799421] (-) TimerEvent: {}
+[20.899651] (-) TimerEvent: {}
+[20.939397] (workspace_gz) StdoutLine: {'line': b'[ 93%] Linking CXX shared library libScanDockScoringPlugin.so\n'}
+[20.999799] (-) TimerEvent: {}
+[21.100092] (-) TimerEvent: {}
+[21.131452] (workspace_gz) StdoutLine: {'line': b'[ 95%] Linking CXX shared library libWayfindingScoringPlugin.so\n'}
+[21.160760] (workspace_gz) StdoutLine: {'line': b'[ 97%] Linking CXX shared library libAcousticTrackingScoringPlugin.so\n'}
+[21.180864] (workspace_gz) StdoutLine: {'line': b'[ 97%] Built target ScanDockScoringPlugin\n'}
+[21.200309] (-) TimerEvent: {}
+[21.300549] (-) TimerEvent: {}
+[21.378760] (workspace_gz) StdoutLine: {'line': b'[ 97%] Built target WayfindingScoringPlugin\n'}
+[21.397192] (workspace_gz) StdoutLine: {'line': b'[ 97%] Built target AcousticTrackingScoringPlugin\n'}
+[21.400608] (-) TimerEvent: {}
+[21.500743] (-) TimerEvent: {}
+[21.575239] (workspace_gz) StdoutLine: {'line': b'[100%] Linking CXX shared library libStationkeepingScoringPlugin.so\n'}
+[21.600880] (-) TimerEvent: {}
+[21.701083] (-) TimerEvent: {}
+[21.766692] (workspace_gz) StdoutLine: {'line': b'[100%] Built target StationkeepingScoringPlugin\n'}
+[21.779673] (workspace_gz) CommandEnded: {'returncode': 0}
+[21.780771] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'install'}
+[21.789074] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz'], 'cwd': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'ngen', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'ANTIGRAVITY_CLI_ALIAS': 'agy', 'HOME': '/home/ngen', 'CHROME_DESKTOP': 'antigravity.desktop', 'OLDPWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV', 'TERM_PROGRAM_VERSION': '1.104.0', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/antigravity/antigravity', 'MANAGERPID': '1712', 'SYSTEMD_EXEC_PID': '2316', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'ANTIGRAVITY_AGENT': '1', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3846', 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'ngen', 'JOURNAL_STREAM': '9:18002', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.SettingsDaemon.MediaKeys.service/memory.pressure', 'CLAUDE_CODE_SSE_PORT': '16668', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'ngen', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '1', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/ngen/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/ngen:@/tmp/.ICE-unix/2150,unix/ngen:/tmp/.ICE-unix/2150', 'INVOCATION_ID': 'b38d09888e42448396d56b98f4457b21', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'GZ_PARTITION': 'sim99', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'GZ_IP': '127.0.0.1', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'SBX_CHROME_API_RQ': '1', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-28d7230746.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '99', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:07bd77aa-78a3-4919-9728-858a92c9dc5d', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GZ_DISCOVERY_MULTICAST': '0', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'SANDBOX_LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[21.796724] (workspace_gz) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[21.797416] (workspace_gz) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[21.797938] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libWaves.so\n'}
+[21.801144] (-) TimerEvent: {}
+[21.805941] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libPolyhedraBuoyancyDrag.so\n'}
+[21.813894] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libScoringPlugin.so\n'}
+[21.820038] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libStationkeepingScoringPlugin.so\n'}
+[21.826783] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libWayfindingScoringPlugin.so\n'}
+[21.834848] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libAcousticPerceptionScoringPlugin.so\n'}
+[21.840049] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libAcousticTrackingScoringPlugin.so\n'}
+[21.845989] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libAcousticPingerPlugin.so\n'}
+[21.853405] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libBallShooterPlugin.so\n'}
+[21.859086] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libLightBuoyPlugin.so\n'}
+[21.865734] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libNavigationScoringPlugin.so\n'}
+[21.871669] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libGymkhanaScoringPlugin.so\n'}
+[21.877474] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libPerceptionScoringPlugin.so\n'}
+[21.884969] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libPlacardPlugin.so\n'}
+[21.892532] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libPublisherPlugin.so\n'}
+[21.898815] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libScanDockScoringPlugin.so\n'}
+[21.901337] (-) TimerEvent: {}
+[21.903948] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libSimpleHydrodynamics.so\n'}
+[21.908741] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libSurface.so\n'}
+[21.915786] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libUSVWind.so\n'}
+[21.920720] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libWaveVisual.so\n'}
+[21.927252] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/lib/libWildlifeScoringPlugin.so\n'}
+[21.935931] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//description/roboboat/roboboat.xacro\n'}
+[21.941278] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//launch/simulation.launch.py\n'}
+[21.952369] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[21.958843] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png\n'}
+[21.965271] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/meshes/marker_buoy.dae\n'}
+[21.972849] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/model.config\n'}
+[21.978985] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/model.sdf\n'}
+[21.984445] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[21.989675] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png\n'}
+[21.997638] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/meshes/marker_buoy.dae\n'}
+[22.001519] (-) TimerEvent: {}
+[22.003985] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/model.config\n'}
+[22.009233] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/model.sdf\n'}
+[22.015614] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[22.020510] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png\n'}
+[22.026461] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/meshes/marker_buoy.dae\n'}
+[22.031868] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/model.config\n'}
+[22.040136] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/model.sdf\n'}
+[22.046927] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[22.052082] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png\n'}
+[22.059009] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/meshes/marker_buoy.dae\n'}
+[22.065701] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/model.config\n'}
+[22.070695] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/model.sdf\n'}
+[22.078479] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[22.085888] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png\n'}
+[22.093585] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae\n'}
+[22.098757] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/model.config\n'}
+[22.101583] (-) TimerEvent: {}
+[22.106165] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/model.sdf\n'}
+[22.111314] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png\n'}
+[22.117825] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png\n'}
+[22.125406] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/meshes/round_buoy.dae\n'}
+[22.130928] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/model.config\n'}
+[22.137763] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/model.sdf\n'}
+[22.145322] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_albedo.png\n'}
+[22.150556] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_metalness.png\n'}
+[22.157382] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_normal.png\n'}
+[22.164506] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_roughness.png\n'}
+[22.169972] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/thruster_albedo.png\n'}
+[22.177206] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/thruster_roughness.png\n'}
+[22.185746] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/housing.dae\n'}
+[22.191234] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/mount.dae\n'}
+[22.197061] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/prop.dae\n'}
+[22.201642] (-) TimerEvent: {}
+[22.202472] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/roboboat.dae\n'}
+[22.209202] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera.png\n'}
+[22.217528] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_albedo.png\n'}
+[22.222700] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_metalness.png\n'}
+[22.228546] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_normal.png\n'}
+[22.235839] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_roughness.png\n'}
+[22.241595] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/meshes/camera.dae\n'}
+[22.247561] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/meshes/camera_albedo.png\n'}
+[22.255178] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/materials/textures/post_albedo.png\n'}
+[22.261136] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/meshes/post.dae\n'}
+[22.267395] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/meshes/post_albedo.jpg\n'}
+[22.274732] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png\n'}
+[22.281051] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png\n'}
+[22.287128] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/meshes/drybox.dae\n'}
+[22.291723] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/materials/textures/gps_albedo.png\n'}
+[22.299012] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/meshes/gps.dae\n'}
+[22.301730] (-) TimerEvent: {}
+[22.305479] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/meshes/gps_albedo.png\n'}
+[22.310811] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar.png\n'}
+[22.317123] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png\n'}
+[22.322241] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png\n'}
+[22.329080] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_normal.png\n'}
+[22.336646] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png\n'}
+[22.341669] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/meshes/lidar.dae\n'}
+[22.347997] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/meshes/lidar_albedo.png\n'}
+[22.353816] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png\n'}
+[22.360152] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/meshes/post.dae\n'}
+[22.366731] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg\n'}
+[22.371707] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/waves/materials/programs/GerstnerWaves_fs_330.glsl\n'}
+[22.376896] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/waves/materials/programs/GerstnerWaves_vs_330.glsl\n'}
+[22.382036] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/waves/materials/textures/skybox_lowres.dds\n'}
+[22.387871] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/waves/materials/textures/wave_normals.dds\n'}
+[22.393090] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/waves/meshes/waterlow.dae\n'}
+[22.398849] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/waves/model.config\n'}
+[22.401820] (-) TimerEvent: {}
+[22.404116] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//models/waves/model.sdf\n'}
+[22.410434] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz//worlds/world.sdf\n'}
+[22.419326] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/environment/library_path.sh\n'}
+[22.424330] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/environment/library_path.dsv\n'}
+[22.431608] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz\n'}
+[22.437373] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz\n'}
+[22.444513] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh\n'}
+[22.450725] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv\n'}
+[22.456445] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/environment/path.sh\n'}
+[22.462552] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/environment/path.dsv\n'}
+[22.468333] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/local_setup.bash\n'}
+[22.474335] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/local_setup.sh\n'}
+[22.481306] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/local_setup.zsh\n'}
+[22.487219] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/local_setup.dsv\n'}
+[22.492023] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/package.dsv\n'}
+[22.497205] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz\n'}
+[22.501923] (-) TimerEvent: {}
+[22.502227] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[22.507754] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[22.513970] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake\n'}
+[22.521164] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake\n'}
+[22.527599] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/share/workspace_gz/package.xml\n'}
+[22.535871] (workspace_gz) CommandEnded: {'returncode': 0}
+[22.548541] (workspace_gz) JobEnded: {'identifier': 'workspace_gz', 'rc': 0}
+[22.548954] (-) EventReactorShutdown: {}

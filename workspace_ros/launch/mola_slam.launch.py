@@ -52,8 +52,8 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments={
-            # LiDAR topic - using 3D PointCloud directly from Gazebo
-            'lidar_topic_name': '/roboboat/lidar/points',
+            # LiDAR topic - using Filtered PointCloud
+            'lidar_topic_name': '/roboboat/lidar/filtered',
 
             # IMU topic for LIO (LiDAR-Inertial Odometry)
             'imu_topic_name': '/roboboat/sensors/imu/imu/data',
@@ -95,7 +95,7 @@ def generate_launch_description():
     return LaunchDescription([
         # Log info
         LogInfo(msg='Starting MOLA LiDAR SLAM for YILDIZ USV...'),
-        LogInfo(msg='  LiDAR topic: /roboboat/lidar/filtered_best_effort'),
+        LogInfo(msg='  LiDAR topic: /roboboat/lidar/filtered'),
         LogInfo(msg='  IMU topic:   /roboboat/sensors/imu/imu/data'),
         LogInfo(msg='  GPS topic:   /roboboat/sensors/gps/navsat/fix'),
 

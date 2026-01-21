@@ -1,11 +1,18 @@
 
-
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04-blue.svg "Ubuntu 24.04 LTS")](https://releases.ubuntu.com/24.04/)
 [![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue.svg "ROS 2 Jazzy")](https://docs.ros.org/en/jazzy/)
 [![Gazebo](https://img.shields.io/badge/Gazebo-Harmonic-orange.svg "Gazebo Harmonic")](https://gazebosim.org/docs/harmonic/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg "Apache License 2.0")](./LICENSE.txt)
 
-This repository provides a Gazebo Harmonic-based simulation and ROS 2 Jazzy toolchain for rapid prototyping and validation of localization, perception, and Navigation2-based autonomy
+This repository provides a Gazebo Harmonic-based simulation and ROS 2 Jazzy toolchain for rapid prototyping and validation of localization, perception, and Navigation2-based autonomy.
+
+## ✨ Key Features
+
+- 🚀 **One-command startup** - `./start_all.sh mola`
+- 📡 **Unitree L2 4D LiDAR simulation** - 360°×90° FOV, 4400×70 channels
+- 🗺️ **MOLA SLAM integration** - Real-time 3D mapping
+- 🎮 **WASD Keyboard Teleop** - Direct thruster control
+- 🌊 **Advanced water filtering** - SOR + Z-passthrough
 
 ---
 
@@ -176,16 +183,27 @@ source ~/yildiz_ws/install/setup.bash
 
 ## Quick Start Guide
 
-This guide explains how to start the complete system from scratch. **Open 5 separate terminal windows** and run the commands in order.
+### 🚀 One-Command Startup (Recommended)
 
-### Before Starting
+```bash
+cd ~/yildiz_ws/src/YILDIZ-USV
+./start_all.sh mola    # Starts Gazebo + MOLA SLAM + LiDAR Filter + RViz
+```
 
-In **each terminal**, source the environment:
+**To stop everything:**
+```bash
+./stop_all.sh
+```
+
+### Manual Startup (5 Terminals)
+
+If you prefer running components individually:
+
+**In each terminal**, source the environment:
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source ~/yildiz_ws/install/setup.bash
-source ~/yildiz_venv/bin/activate
+source ~/yildiz_ws/src/YILDIZ-USV/install/setup.bash
 ```
 
 ---
@@ -318,6 +336,21 @@ ros2 run workspace_nav waypoint_with_state
 
 ### Manual Control (Keyboard Teleop)
 
+**WASD Teleop (Recommended):**
+```bash
+ros2 run workspace_ros wasd_teleop
+```
+
+| Key | Action |
+|-----|--------|
+| W | Forward |
+| S | Backward |
+| A | Turn Left |
+| D | Turn Right |
+| Q | Stop |
+| ESC | Exit |
+
+**Legacy Manual Control:**
 ```bash
 ros2 run workspace_ros manual_control
 ```

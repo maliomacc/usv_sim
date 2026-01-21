@@ -394,51 +394,46 @@
   <gazebo reference="lidar_link">
 
     <!--
-        Velodyne VLP-16 Puck - Gerçekçi Simülasyon
-
-        Teknik Özellikler:
-        - 16 kanal
-        - 300,000 nokta/saniye @ 10 Hz
-        - Horizontal: 360° FOV, 0.2° çözünürlük (1800 sample)
-        - Vertical: 30° FOV (±15°), 2° çözünürlük
-        - Menzil: 100m
-        - Hassasiyet: ±3 cm
-
-        Kaynak: https://docs.pal-robotics.com/sdk/23.12/hardware/extra/velodyne.html
+        Unitree L2 4D LiDAR Simulation (Custom High-Res)
+        
+        Kullanıcı Spesifikasyonu:
+        - Yatay: 4400 sample
+        - Dikey: 70 kanal
+        - Toplam: ~308,000 pts/frame (128k/sec @ ~2.4Hz effective)
+        - FOV: 360° × 90°
     -->
     <sensor name="sensor_lidar" type="gpu_lidar">
-      <pose>0 0 0 0 0 0</pose>
       <topic>roboboat/lidar/points</topic>
+      <gz_frame_id>lidar_link</gz_frame_id>
+      <visualize>true</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
           <horizontal>
-            <samples>1800</samples>
+            <samples>4400</samples>
             <resolution>1</resolution>
             <min_angle>-3.141592653589793</min_angle>
             <max_angle>3.141592653589793</max_angle>
           </horizontal>
           <vertical>
-            <samples>16</samples>
+            <samples>70</samples>
             <resolution>1</resolution>
-            <min_angle>-0.261799</min_angle>
-            <max_angle>0.261799</max_angle>
+            <min_angle>-0.785398</min_angle>
+            <max_angle>0.785398</max_angle>
           </vertical>
         </scan>
         <range>
-          <min>0.1</min>
-          <max>100.0</max>
-          <resolution>0.003</resolution>
+          <min>0.05</min>
+          <max>30.0</max>
+          <resolution>0.002</resolution>
         </range>
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
-          <stddev>0.03</stddev>
+          <stddev>0.015</stddev>
         </noise>
       </ray>
       <always_on>true</always_on>
-      <visualize>true</visualize>
-      <gz_frame_id>lidar_link</gz_frame_id>
     </sensor>
 
   </gazebo>

@@ -178,22 +178,10 @@ planner_server:
     use_sim_time: true
     planner_plugins: ["GridBased"]
     GridBased:
-      plugin: "nav2_smac_planner/SmacPlanner2D"
-      tolerance: 0.125
-      cost_travel_multiplier: 2.0 
-      downsample_costmap: false
-      downsampling_factor: 1
+      plugin: "nav2_navfn_planner::NavfnPlanner"
+      tolerance: 0.5
+      use_astar: false
       allow_unknown: true
-      max_iterations: 1000000
-      max_on_approach_iterations: 1000
-      max_planning_time: 3.0
-      smoother:
-        max_iterations: 1000
-        w_smooth: 0.4
-        w_data: 0.2
-        tolerance: 1.0e-10
-        do_refinement: true 
-        refinement_num: 2
         
         
 behavior_server:

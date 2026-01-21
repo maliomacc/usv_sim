@@ -46,7 +46,18 @@ echo -e "${GREEN}[2/4] Eski process'ler temizleniyor...${NC}"
 pkill -f "gz sim" 2>/dev/null || true
 pkill -f "ruby.*gz" 2>/dev/null || true
 pkill -f "parameter_bridge" 2>/dev/null || true
-sleep 2
+pkill -f "lidar_processor" 2>/dev/null || true
+pkill -f "robot_state_publisher" 2>/dev/null || true
+pkill -f "joint_state_publisher" 2>/dev/null || true
+pkill -f "mola_lidar_odometry" 2>/dev/null || true
+pkill -f "molaviz" 2>/dev/null || true
+pkill -f "rviz2" 2>/dev/null || true
+pkill -f "kiss_icp" 2>/dev/null || true
+pkill -f "mission_manager" 2>/dev/null || true
+pkill -f "waypoint_with_state" 2>/dev/null || true
+pkill -f "map_to_odom_tf" 2>/dev/null || true
+pkill -f "static_transforms_publisher" 2>/dev/null || true
+sleep 3
 
 # Gazebo için environment değişkenleri (önemli!)
 export GZ_SIM_RESOURCE_PATH="${SCRIPT_DIR}/install/workspace_gz/share/workspace_gz/models:${GZ_SIM_RESOURCE_PATH}"
@@ -68,18 +79,31 @@ sleep 15
 echo -e "${GREEN}[4/4] Simülasyon başlatılıyor (unpause)...${NC}"
 gz service -s /world/default/control --reqtype gz.msgs.WorldControl --reptype gz.msgs.Boolean --timeout 5000 --req 'pause: false' 2>/dev/null || true
 
-# KISS-ICP LiDAR Odometry başlat (MOLA yerine daha basit ve robust)
-echo -e "${CYAN}KISS-ICP LiDAR Odometry başlatılıyor...${NC}"
+# LiDAR Filtresi başlat
+echo -e "${CYAN}LiDAR Filtresi başlatılıyor...${NC}"
+ros2 launch workspace_ros lidar_filter.launch.py rviz:=false &
+FILTER_PID=$!
+echo -e "  └─ Filter PID: ${FILTER_PID}"
+
+# SLAM/Odometry başlat (mod'a göre)
 sleep 3
 
-# vrx_ws'den kiss_icp paketini source et
-if [ -f "/home/ngen/vrx_ws/install/setup.bash" ]; then
-    source /home/ngen/vrx_ws/install/setup.bash
+# vrx_ws'den ek paketleri source et (eğer varsa)
+if [ -f "$HOME/vrx_ws/install/setup.bash" ]; then
+    source $HOME/vrx_ws/install/setup.bash
 fi
 
-ros2 launch workspace_ros kiss_icp.launch.py topic:=/roboboat/lidar/points visualize:=true &
-KISS_PID=$!
-echo -e "  └─ KISS-ICP PID: ${KISS_PID}"
+if [ "$MODE" == "mola" ]; then
+    echo -e "${CYAN}MOLA SLAM başlatılıyor (MolaViz ile)...${NC}"
+    ros2 launch workspace_ros mola_slam.launch.py use_mola_gui:=true use_rviz:=true &
+    SLAM_PID=$!
+    echo -e "  └─ MOLA SLAM PID: ${SLAM_PID}"
+else
+    echo -e "${CYAN}KISS-ICP LiDAR Odometry başlatılıyor...${NC}"
+    ros2 launch workspace_ros kiss_icp.launch.py topic:=/roboboat/lidar/filtered visualize:=true &
+    SLAM_PID=$!
+    echo -e "  └─ KISS-ICP PID: ${SLAM_PID}"
+fi
 
 echo ""
 echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
@@ -106,6 +130,8 @@ cleanup() {
     pkill -f "mola" 2>/dev/null || true
     pkill -f "rviz2" 2>/dev/null || true
     pkill -f "parameter_bridge" 2>/dev/null || true
+    pkill -f "lidar_processor" 2>/dev/null || true
+    pkill -f "robot_state_publisher" 2>/dev/null || true
     echo -e "${GREEN}Tüm servisler durduruldu.${NC}"
     exit 0
 }
