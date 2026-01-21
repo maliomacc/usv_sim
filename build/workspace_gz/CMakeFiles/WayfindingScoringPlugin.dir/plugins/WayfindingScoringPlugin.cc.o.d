@@ -1,5 +1,5 @@
 CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o: \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/WayfindingScoringPlugin.cc \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/WayfindingScoringPlugin.cc \
  /usr/include/stdc-predef.h /usr/include/c++/13/chrono \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -689,7 +689,7 @@ CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o: \
  /opt/ros/jazzy/opt/gz_math_vendor/include/gz/math7/gz/math/detail/Sphere.hh \
  /opt/ros/jazzy/opt/sdformat_vendor/include/gz/sdformat14/sdf/Surface.hh \
  /opt/ros/jazzy/opt/sdformat_vendor/include/gz/sdformat14/sdf/Visual.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/WayfindingScoringPlugin.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/WayfindingScoringPlugin.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/System.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/EventManager.hh \
  /opt/ros/jazzy/opt/gz_common_vendor/include/gz/common5/gz/common/Event.hh \
@@ -705,7 +705,7 @@ CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o: \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/parameters/Export.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/parameters/detail/Export.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/parameters/Interface.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/ScoringPlugin.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/ScoringPlugin.hh \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/contacts.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/details/contacts.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/contact.pb.h \
@@ -714,4 +714,4 @@ CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o: \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/details/joint_wrench.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/wrench.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/details/wrench.pb.h \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/WaypointMarkers.hh
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/WaypointMarkers.hh

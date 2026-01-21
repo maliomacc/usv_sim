@@ -1,5 +1,5 @@
 CMakeFiles/NavigationScoringPlugin.dir/plugins/NavigationScoringPlugin.cc.o: \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/NavigationScoringPlugin.cc \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/NavigationScoringPlugin.cc \
  /usr/include/stdc-predef.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/float.pb.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/memoryfwd.h \
@@ -611,7 +611,7 @@ CMakeFiles/NavigationScoringPlugin.dir/plugins/NavigationScoringPlugin.cc.o: \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/detail/View.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/detail/BaseView.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/detail/EntityComponentManager.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/NavigationScoringPlugin.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/NavigationScoringPlugin.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/config.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/AdvertiseOptions.hh \
@@ -694,7 +694,7 @@ CMakeFiles/NavigationScoringPlugin.dir/plugins/NavigationScoringPlugin.cc.o: \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/detail/Node.hh \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/empty.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/details/empty.pb.h \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/ScoringPlugin.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/ScoringPlugin.hh \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/contacts.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/details/contacts.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/contact.pb.h \

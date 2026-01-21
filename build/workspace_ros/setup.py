@@ -1,1 +1,1 @@
-/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_ros/setup.py
+/home/tugmirk/Desktop/garp-test/workspace_ros/setup.py

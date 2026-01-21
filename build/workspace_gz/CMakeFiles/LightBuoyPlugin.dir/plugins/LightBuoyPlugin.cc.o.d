@@ -1,5 +1,5 @@
 CMakeFiles/LightBuoyPlugin.dir/plugins/LightBuoyPlugin.cc.o: \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/LightBuoyPlugin.cc \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/LightBuoyPlugin.cc \
  /usr/include/stdc-predef.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/color.pb.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/memoryfwd.h \
@@ -485,7 +485,7 @@ CMakeFiles/LightBuoyPlugin.dir/plugins/LightBuoyPlugin.cc.o: \
  /opt/ros/jazzy/opt/sdformat_vendor/include/gz/sdformat14/sdf/Visual.hh \
  /opt/ros/jazzy/opt/sdformat_vendor/include/gz/sdformat14/sdf/World.hh \
  /opt/ros/jazzy/opt/gz_math_vendor/include/gz/math7/gz/math/SphericalCoordinates.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/LightBuoyPlugin.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/LightBuoyPlugin.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/System.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/EntityComponentManager.hh \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/serialized.pb.h \

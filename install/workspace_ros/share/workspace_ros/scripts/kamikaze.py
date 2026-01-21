@@ -1,1 +1,1 @@
-/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/kamikaze.py
+/home/tugmirk/Desktop/garp-test/build/workspace_ros/scripts/kamikaze.py

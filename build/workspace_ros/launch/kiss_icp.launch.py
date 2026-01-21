@@ -1,1 +1,1 @@
-/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_ros/launch/kiss_icp.launch.py
+/home/tugmirk/Desktop/garp-test/workspace_ros/launch/kiss_icp.launch.py

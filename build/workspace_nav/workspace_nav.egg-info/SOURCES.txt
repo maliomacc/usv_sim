@@ -1,13 +1,6 @@
 package.xml
 setup.cfg
 setup.py
-../build/workspace_nav/workspace_nav.egg-info/PKG-INFO
-../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt
-../build/workspace_nav/workspace_nav.egg-info/dependency_links.txt
-../build/workspace_nav/workspace_nav.egg-info/entry_points.txt
-../build/workspace_nav/workspace_nav.egg-info/requires.txt
-../build/workspace_nav/workspace_nav.egg-info/top_level.txt
-../build/workspace_nav/workspace_nav.egg-info/zip-safe
 config/map.yaml
 config/nav2_params.yaml
 launch/nav2.launch.py
@@ -16,3 +9,10 @@ resource/workspace_nav
 scripts/__init__.py
 scripts/waypoint_transform.py
 scripts/waypoint_with_state.py
+workspace_nav.egg-info/PKG-INFO
+workspace_nav.egg-info/SOURCES.txt
+workspace_nav.egg-info/dependency_links.txt
+workspace_nav.egg-info/entry_points.txt
+workspace_nav.egg-info/requires.txt
+workspace_nav.egg-info/top_level.txt
+workspace_nav.egg-info/zip-safe

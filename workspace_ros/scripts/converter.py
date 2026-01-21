@@ -1,37 +1,68 @@
 #!/usr/bin/env python3
 
 # ----------------------------------------------------------------------------------------------- #
-#  Node that converts /cmd_vel_nav Twist commands into left and right thruster Float64 outputs
+#  Node that converts Twist velocity commands into left and right thruster Float64 outputs
 #  for the RoboBoat. It scales linear and angular velocities and publishes corresponding thrust
 #  values to the thruster topics for motion control.
+#
+#  Subscribes to /cmd_vel_smooth (from velocity_smoother) by default.
+#  Can also subscribe directly to /cmd_vel_nav for backward compatibility.
 # ----------------------------------------------------------------------------------------------- #
 
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Float64
+
 
 class Nav2ThrusterController(Node):
     def __init__(self):
         super().__init__('converter')
 
-        self.left_thruster_topic = '/roboboat/thrusters/left/thrust'
-        self.right_thruster_topic = '/roboboat/thrusters/right/thrust'
+        # Declare parameters
+        self.declare_parameter('input_topic', '/cmd_vel')
+        self.declare_parameter('left_thruster_topic', '/roboboat/thrusters/left/thrust')
+        self.declare_parameter('right_thruster_topic', '/roboboat/thrusters/right/thrust')
+        self.declare_parameter('linear_scale', 1.75)
+        self.declare_parameter('angular_scale', 20.0)
 
-        self.left_thruster_pub = self.create_publisher(Float64, self.left_thruster_topic, 20)
-        self.right_thruster_pub = self.create_publisher(Float64, self.right_thruster_topic, 20)
+        # Get parameters
+        input_topic = self.get_parameter('input_topic').value
+        self.left_thruster_topic = self.get_parameter('left_thruster_topic').value
+        self.right_thruster_topic = self.get_parameter('right_thruster_topic').value
+        self.linear_scale = self.get_parameter('linear_scale').value
+        self.angular_scale = self.get_parameter('angular_scale').value
 
-        self.linear_scale = 1.75
-        self.angular_scale = 20.0
-
-        self.cmd_vel_sub = self.create_subscription(
-            Twist,
-            '/cmd_vel_nav',
-            self.cmd_vel_callback,
-            20
+        # QoS profile
+        reliable_qos = QoSProfile(
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10
         )
 
+        self.left_thruster_pub = self.create_publisher(Float64, self.left_thruster_topic, reliable_qos)
+        self.right_thruster_pub = self.create_publisher(Float64, self.right_thruster_topic, reliable_qos)
+
+        # Primary subscription (smoothed velocity)
+        self.cmd_vel_sub = self.create_subscription(
+            Twist,
+            input_topic,
+            self.cmd_vel_callback,
+            reliable_qos
+        )
+
+        # Fallback subscription to /cmd_vel_nav if smoother is not running
+        if input_topic != '/cmd_vel_nav':
+            self.fallback_sub = self.create_subscription(
+                Twist,
+                '/cmd_vel_nav',
+                self.cmd_vel_callback,
+                reliable_qos
+            )
+
         self.stop_motors()
+        self.get_logger().info(f'Converter started: {input_topic} -> thrusters')
 
     def cmd_vel_callback(self, msg):
         self.get_logger().info(

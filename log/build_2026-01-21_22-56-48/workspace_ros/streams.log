@@ -1,0 +1,33 @@
+[0.426s] Invoking command in '/home/tugmirk/Desktop/garp-test/build/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/tugmirk/Desktop/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tugmirk/Desktop/garp-test/build/workspace_ros/build --no-deps symlink_data
+[0.582s] running develop
+[0.673s] running egg_info
+[0.682s] writing workspace_ros.egg-info/PKG-INFO
+[0.682s] writing dependency_links to workspace_ros.egg-info/dependency_links.txt
+[0.682s] writing entry points to workspace_ros.egg-info/entry_points.txt
+[0.682s] writing requirements to workspace_ros.egg-info/requires.txt
+[0.683s] writing top-level names to workspace_ros.egg-info/top_level.txt
+[0.701s] reading manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[0.702s] writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[0.711s] running build_ext
+[0.711s] Creating /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace-ros.egg-link (link to .)
+[0.712s] Installing autonomous_nav script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing converter script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing gps_covariance_repub script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing imu_covariance_repub script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing kamikaze script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing lidar_processor script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing manual_control script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing obstacle_avoidance script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing obstacle_detector script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing static_transform_publisher script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing target_buoy script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] Installing wasd_teleop script to /home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/workspace_ros
+[0.712s] 
+[0.713s] Installed /home/tugmirk/Desktop/garp-test/build/workspace_ros
+[0.713s] running symlink_data
+[0.713s] symbolically linking /home/tugmirk/Desktop/garp-test/build/workspace_ros/config/obstacle_avoidance.yaml -> /home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/config
+[0.713s] symbolically linking /home/tugmirk/Desktop/garp-test/build/workspace_ros/launch/obstacle_avoidance.launch.py -> /home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/launch
+[0.713s] symbolically linking /home/tugmirk/Desktop/garp-test/build/workspace_ros/scripts/obstacle_avoidance.py -> /home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[0.713s] symbolically linking /home/tugmirk/Desktop/garp-test/build/workspace_ros/scripts/obstacle_detector.py -> /home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[0.713s] symbolically linking /home/tugmirk/Desktop/garp-test/build/workspace_ros/scripts/autonomous_nav.py -> /home/tugmirk/Desktop/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[0.730s] Invoked command in '/home/tugmirk/Desktop/garp-test/build/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/tugmirk/Desktop/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tugmirk/Desktop/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tugmirk/Desktop/garp-test/build/workspace_ros/build --no-deps symlink_data

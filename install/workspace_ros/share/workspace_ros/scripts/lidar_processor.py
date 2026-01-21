@@ -1,1 +1,1 @@
-/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_ros/scripts/lidar_processor.py
+/home/tugmirk/Desktop/garp-test/build/workspace_ros/scripts/lidar_processor.py

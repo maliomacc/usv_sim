@@ -1,0 +1,66 @@
+# Obstacle Avoidance Configuration for YILDIZ USV
+# VFH-lite based reactive obstacle avoidance
+
+obstacle_detector:
+  ros__parameters:
+    # Input/Output
+    input_topic: "/roboboat/lidar/filtered"
+
+    # Sector configuration
+    num_sectors: 36           # 10 degree per sector (360/36)
+
+    # Detection range
+    max_range: 15.0           # Maximum detection range (meters)
+    min_range: 0.5            # Minimum range - ignore boat hull
+
+    # Height filter (relative to LiDAR frame)
+    height_min: -0.5          # Below LiDAR level
+    height_max: 2.0           # Above LiDAR level
+
+    # Front sector definition
+    front_angle: 120.0        # Front detection cone (degrees)
+
+obstacle_avoidance:
+  ros__parameters:
+    # Sector configuration (must match detector)
+    num_sectors: 36
+    max_range: 15.0
+
+    # Distance thresholds (meters)
+    critical_distance: 1.5    # Emergency stop/reverse
+    slow_distance: 4.0        # Start slowing down
+    avoid_distance: 6.0       # Start avoidance maneuvers
+
+    # Velocity limits
+    max_linear_vel: 2.0       # m/s forward speed
+    max_angular_vel: 1.5      # rad/s turn rate
+
+    # VFH weights
+    front_weight: 2.0         # Weight for front sector obstacles
+    side_weight: 1.0          # Weight for side sector obstacles
+    goal_weight: 0.5          # Weight for goal attraction
+    avoidance_gain: 1.5       # Avoidance steering gain
+
+autonomous_nav:
+  ros__parameters:
+    # Sector configuration (must match detector)
+    num_sectors: 36
+    max_range: 15.0
+
+    # Distance thresholds (meters)
+    critical_distance: 1.5    # Emergency stop/reverse
+    slow_distance: 4.0        # Slow down significantly
+    avoid_distance: 6.0       # Start gentle avoidance
+
+    # Velocity limits
+    max_linear_vel: 2.0       # m/s
+    max_angular_vel: 1.5      # rad/s
+
+    # Navigation parameters (for waypoint mode)
+    waypoint_tolerance: 2.0   # meters
+    heading_kp: 1.0           # Heading control gain
+
+    # EXPLORE MODE - Fully autonomous!
+    explore_speed: 1.5        # Cruise speed during exploration (m/s)
+    wander_interval: 5.0      # Seconds between random direction changes
+    prefer_open_space: true   # Bias toward more open areas

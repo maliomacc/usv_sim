@@ -1,8 +1,8 @@
-# Install script for directory: /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz
+# Install script for directory: /home/tugmirk/Desktop/garp-test/workspace_gz
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz")
+  set(CMAKE_INSTALL_PREFIX "/home/tugmirk/Desktop/garp-test/install/workspace_gz")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,7 +43,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
+  include("/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -54,5 +54,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tugmirk/Desktop/garp-test/build/workspace_gz/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

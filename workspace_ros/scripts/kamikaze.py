@@ -20,7 +20,7 @@ from sensor_msgs.msg import Image
 from ament_index_python.packages import get_package_share_directory
 
 IMAGE_TOPIC = "/roboboat/sensors/camera/image"
-CMD_VEL_TOPIC = "/cmd_vel_nav"
+CMD_VEL_TOPIC = "/cmd_vel_task"  # Changed from /cmd_vel_nav to avoid conflicts
 TARGET_JSON_FILENAME = "target_buoy.json"
 WINDOW_NAME = "KAMIKAZE"
 WINDOW_WIDTH = 1280

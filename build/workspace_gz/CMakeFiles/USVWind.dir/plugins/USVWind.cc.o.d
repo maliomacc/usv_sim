@@ -1,5 +1,5 @@
 CMakeFiles/USVWind.dir/plugins/USVWind.cc.o: \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/USVWind.cc \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/USVWind.cc \
  /usr/include/stdc-predef.h /usr/include/c++/13/string \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -972,7 +972,7 @@ CMakeFiles/USVWind.dir/plugins/USVWind.cc.o: \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/wrench.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/details/wrench.pb.h \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/components/Pose.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/USVWind.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/USVWind.hh \
  /usr/include/c++/13/random /usr/include/c++/13/bits/random.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h \
  /usr/include/c++/13/bits/random.tcc \

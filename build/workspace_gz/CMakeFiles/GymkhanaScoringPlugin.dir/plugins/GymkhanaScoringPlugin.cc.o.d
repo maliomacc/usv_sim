@@ -1,5 +1,5 @@
 CMakeFiles/GymkhanaScoringPlugin.dir/plugins/GymkhanaScoringPlugin.cc.o: \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/GymkhanaScoringPlugin.cc \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/GymkhanaScoringPlugin.cc \
  /usr/include/stdc-predef.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/param.pb.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/memoryfwd.h \
@@ -537,7 +537,7 @@ CMakeFiles/GymkhanaScoringPlugin.dir/plugins/GymkhanaScoringPlugin.cc.o: \
  /opt/ros/jazzy/opt/sdformat_vendor/include/gz/sdformat14/sdf/Surface.hh \
  /opt/ros/jazzy/opt/sdformat_vendor/include/gz/sdformat14/sdf/Visual.hh \
  /opt/ros/jazzy/opt/sdformat_vendor/include/gz/sdformat14/sdf/World.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/GymkhanaScoringPlugin.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/GymkhanaScoringPlugin.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/System.hh \
  /opt/ros/jazzy/opt/gz_sim_vendor/include/gz/sim8/gz/sim/EventManager.hh \
  /opt/ros/jazzy/opt/gz_common_vendor/include/gz/common5/gz/common/Event.hh \
@@ -554,7 +554,7 @@ CMakeFiles/GymkhanaScoringPlugin.dir/plugins/GymkhanaScoringPlugin.cc.o: \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/parameters/Export.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/parameters/detail/Export.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/parameters/Interface.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/ScoringPlugin.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/ScoringPlugin.hh \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/contacts.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/details/contacts.pb.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/contact.pb.h \

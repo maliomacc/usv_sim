@@ -23,7 +23,7 @@ function(ament_cmake_symlink_install_directory cmake_current_source_dir)
 
   # make destination absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/home/tugmirk/Desktop/garp-test/install/workspace_gz/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -123,7 +123,7 @@ function(ament_cmake_symlink_install_files cmake_current_source_dir)
 
   # make destination an absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/home/tugmirk/Desktop/garp-test/install/workspace_gz/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -181,7 +181,7 @@ function(ament_cmake_symlink_install_programs cmake_current_source_dir)
 
   # make destination an absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/home/tugmirk/Desktop/garp-test/install/workspace_gz/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -251,7 +251,7 @@ function(ament_cmake_symlink_install_targets)
 
     # make destination an absolute path and ensure that it exists
     if(NOT IS_ABSOLUTE "${destination}")
-      set(destination "/home/ngen/yildiz_ws/src/YILDIZ-USV/install/workspace_gz/${destination}")
+      set(destination "/home/tugmirk/Desktop/garp-test/install/workspace_gz/${destination}")
     endif()
     if(NOT EXISTS "${destination}")
       file(MAKE_DIRECTORY "${destination}")
@@ -311,61 +311,61 @@ message(STATUS "Execute custom install script")
 # begin of custom install code
 
 # install("TARGETS" "Waves" "PolyhedraBuoyancyDrag" "ScoringPlugin" "StationkeepingScoringPlugin" "WayfindingScoringPlugin" "AcousticPerceptionScoringPlugin" "AcousticTrackingScoringPlugin" "AcousticPingerPlugin" "BallShooterPlugin" "LightBuoyPlugin" "NavigationScoringPlugin" "GymkhanaScoringPlugin" "PerceptionScoringPlugin" "PlacardPlugin" "PublisherPlugin" "ScanDockScoringPlugin" "SimpleHydrodynamics" "Surface" "USVWind" "WaveVisual" "WildlifeScoringPlugin" "DESTINATION" "lib")
-include("/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+include("/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
 # install(DIRECTORY "description" "launch" "models" "worlds" "DESTINATION" "share/workspace_gz/")
-ament_cmake_symlink_install_directory("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" DIRECTORY "description" "launch" "models" "worlds" "DESTINATION" "share/workspace_gz/")
+ament_cmake_symlink_install_directory("/home/tugmirk/Desktop/garp-test/workspace_gz" DIRECTORY "description" "launch" "models" "worlds" "DESTINATION" "share/workspace_gz/")
 
 # install(FILES "/opt/ros/jazzy/lib/python3.12/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/workspace_gz/environment")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/opt/ros/jazzy/lib/python3.12/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/workspace_gz/environment")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/opt/ros/jazzy/lib/python3.12/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/workspace_gz/environment")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/workspace_gz/environment")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/workspace_gz/environment")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/workspace_gz/environment")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/workspace_gz/environment")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/workspace_gz" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/workspace_gz" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/workspace_gz" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/workspace_gz" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/workspace_gz" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/workspace_gz" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/workspace_gz" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/workspace_gz" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
 
 # install(FILES "/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/workspace_gz/environment")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/workspace_gz/environment")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/workspace_gz/environment")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/workspace_gz/environment")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/workspace_gz/environment")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/workspace_gz/environment")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/workspace_gz/environment")
 
 # install(FILES "/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/workspace_gz/environment")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/workspace_gz/environment")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/workspace_gz/environment")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/workspace_gz/environment")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/workspace_gz/environment")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/workspace_gz/environment")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/workspace_gz/environment")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/workspace_gz")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/workspace_gz")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/workspace_gz")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/workspace_gz")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/workspace_gz")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/workspace_gz")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/workspace_gz")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/workspace_gz")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/workspace_gz")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/workspace_gz")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/workspace_gz")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/workspace_gz")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/workspace_gz")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/workspace_gz")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/workspace_gz")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/workspace_gz")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/workspace_gz")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/workspace_gz")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/workspace_gz")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/workspace_gz")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/packages/workspace_gz" "DESTINATION" "share/ament_index/resource_index/packages")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/packages/workspace_gz" "DESTINATION" "share/ament_index/resource_index/packages")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/packages/workspace_gz" "DESTINATION" "share/ament_index/resource_index/packages")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_index/share/ament_index/resource_index/packages/workspace_gz" "DESTINATION" "share/ament_index/resource_index/packages")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/workspace_gz/cmake")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_core/workspace_gzConfig.cmake" "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_core/workspace_gzConfig-version.cmake" "DESTINATION" "share/workspace_gz/cmake")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_core/workspace_gzConfig.cmake" "/home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_core/workspace_gzConfig-version.cmake" "DESTINATION" "share/workspace_gz/cmake")
+# install(FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_core/workspace_gzConfig.cmake" "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_core/workspace_gzConfig-version.cmake" "DESTINATION" "share/workspace_gz/cmake")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_core/workspace_gzConfig.cmake" "/home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_core/workspace_gzConfig-version.cmake" "DESTINATION" "share/workspace_gz/cmake")
 
-# install(FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/package.xml" "DESTINATION" "share/workspace_gz")
-ament_cmake_symlink_install_files("/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz" FILES "/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/package.xml" "DESTINATION" "share/workspace_gz")
+# install(FILES "/home/tugmirk/Desktop/garp-test/workspace_gz/package.xml" "DESTINATION" "share/workspace_gz")
+ament_cmake_symlink_install_files("/home/tugmirk/Desktop/garp-test/workspace_gz" FILES "/home/tugmirk/Desktop/garp-test/workspace_gz/package.xml" "DESTINATION" "share/workspace_gz")

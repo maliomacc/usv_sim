@@ -56,6 +56,11 @@ setup(
             'target_buoy = scripts.target_buoy:main',
             'lidar_processor = scripts.lidar_processor:main',
             'wasd_teleop = scripts.wasd_teleop:main',
+            'obstacle_detector = scripts.obstacle_detector:main',
+            'obstacle_avoidance = scripts.obstacle_avoidance:main',
+            'autonomous_nav = scripts.autonomous_nav:main',
+            'velocity_arbiter = scripts.velocity_arbiter:main',
+            'velocity_smoother = scripts.velocity_smoother:main',
         ],
     },
 )

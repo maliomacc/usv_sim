@@ -1,0 +1,259 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-276e5ad6ee9824e63fe8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "workspace_gz",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "AcousticPerceptionScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AcousticPerceptionScoringPlugin-284557d739b36ff1851e.json",
+					"name" : "AcousticPerceptionScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "AcousticPingerPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AcousticPingerPlugin-f2eae368090bb73b63ff.json",
+					"name" : "AcousticPingerPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "AcousticTrackingScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AcousticTrackingScoringPlugin-1a5b3157bcd4426253a9.json",
+					"name" : "AcousticTrackingScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BallShooterPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BallShooterPlugin-a0ced554505f2f31c18e.json",
+					"name" : "BallShooterPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GymkhanaScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GymkhanaScoringPlugin-c2ecb12748502798d782.json",
+					"name" : "GymkhanaScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "LightBuoyPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-LightBuoyPlugin-c457fefbb4d12be6ea3f.json",
+					"name" : "LightBuoyPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "NavigationScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-NavigationScoringPlugin-43cf5903002dbc35d1ab.json",
+					"name" : "NavigationScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PerceptionScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PerceptionScoringPlugin-00096bccd96b84ddd3b0.json",
+					"name" : "PerceptionScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PlacardPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PlacardPlugin-993da4db5372d1698055.json",
+					"name" : "PlacardPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PolyhedraBuoyancyDrag::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PolyhedraBuoyancyDrag-d6bf4d5b4fdf6c5152d4.json",
+					"name" : "PolyhedraBuoyancyDrag",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PublisherPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PublisherPlugin-8fa040e6ccc968942869.json",
+					"name" : "PublisherPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ScanDockScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ScanDockScoringPlugin-370404d7ff5781af3177.json",
+					"name" : "ScanDockScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ScoringPlugin-a773138cff9f9d122281.json",
+					"name" : "ScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SimpleHydrodynamics::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SimpleHydrodynamics-4ceb5004249b3a4ca9d3.json",
+					"name" : "SimpleHydrodynamics",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "StationkeepingScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-StationkeepingScoringPlugin-c99a7c0c49aabe54601d.json",
+					"name" : "StationkeepingScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Surface::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Surface-4ed6e28eaee4845ea7ea.json",
+					"name" : "Surface",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "USVWind::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-USVWind-6ab2fe54136127ce8f6d.json",
+					"name" : "USVWind",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "WaveVisual::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-WaveVisual-ea015a040b482bd49bc2.json",
+					"name" : "WaveVisual",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Waves::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Waves-a5c5f2cf9a6d647b01f0.json",
+					"name" : "Waves",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "WayfindingScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-WayfindingScoringPlugin-6a236608441db456778f.json",
+					"name" : "WayfindingScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "WildlifeScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-WildlifeScoringPlugin-a2bed9582596b4667df6.json",
+					"name" : "WildlifeScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-58f065f7a4e6cc693d7d.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "workspace_gz_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-workspace_gz_uninstall-1a211213954da0240cda.json",
+					"name" : "workspace_gz_uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/tugmirk/Desktop/garp-test/build/workspace_gz",
+		"source" : "/home/tugmirk/Desktop/garp-test/workspace_gz"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

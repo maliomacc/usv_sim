@@ -1,0 +1,1 @@
+/home/tugmirk/Desktop/garp-test/build/workspace_ros/scripts/autonomous_nav.py

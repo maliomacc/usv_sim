@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz
+CMAKE_SOURCE_DIR = /home/tugmirk/Desktop/garp-test/workspace_gz
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz
+CMAKE_BINARY_DIR = /home/tugmirk/Desktop/garp-test/build/workspace_gz
 
 # Utility rule file for workspace_gz_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/workspace_gz_uninstall.dir/compiler_depend.make
 include CMakeFiles/workspace_gz_uninstall.dir/progress.make
 
 CMakeFiles/workspace_gz_uninstall:
-	/usr/bin/cmake -P /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/tugmirk/Desktop/garp-test/build/workspace_gz/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 workspace_gz_uninstall: CMakeFiles/workspace_gz_uninstall
 workspace_gz_uninstall: CMakeFiles/workspace_gz_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/workspace_gz_uninstall.dir/clean:
 .PHONY : CMakeFiles/workspace_gz_uninstall.dir/clean
 
 CMakeFiles/workspace_gz_uninstall.dir/depend:
-	cd /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/CMakeFiles/workspace_gz_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/tugmirk/Desktop/garp-test/build/workspace_gz && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tugmirk/Desktop/garp-test/workspace_gz /home/tugmirk/Desktop/garp-test/workspace_gz /home/tugmirk/Desktop/garp-test/build/workspace_gz /home/tugmirk/Desktop/garp-test/build/workspace_gz /home/tugmirk/Desktop/garp-test/build/workspace_gz/CMakeFiles/workspace_gz_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/workspace_gz_uninstall.dir/depend
 

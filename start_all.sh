@@ -4,8 +4,9 @@
 # ROS 2 Jazzy + Gazebo Harmonic + MOLA SLAM
 #
 # Kullanım:
-#   ./start_all.sh          - Sadece Gazebo simülasyon + robot
-#   ./start_all.sh mola     - Simülasyon + MOLA SLAM
+#   ./start_all.sh          - Sadece Gazebo simülasyon + KISS-ICP
+#   ./start_all.sh mola     - Simülasyon + MOLA SLAM + Localization + Nav2
+#   ./start_all.sh auto     - Tam otonom mod (mola + waypoint follower)
 #
 
 set -e
@@ -85,6 +86,23 @@ ros2 launch workspace_ros lidar_filter.launch.py rviz:=false &
 FILTER_PID=$!
 echo -e "  └─ Filter PID: ${FILTER_PID}"
 
+# PointCloud2 -> LaserScan dönüştürücü (engel algılama için)
+sleep 2
+echo -e "${CYAN}PointCloud to LaserScan başlatılıyor...${NC}"
+ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node \
+    --ros-args \
+    -r cloud_in:=/roboboat/lidar/filtered \
+    -r scan:=/roboboat/sensors/lidar/scan \
+    -p target_frame:=lidar_link \
+    -p min_height:=-0.5 \
+    -p max_height:=2.0 \
+    -p range_min:=0.3 \
+    -p range_max:=50.0 \
+    -p use_inf:=true \
+    -p use_sim_time:=true &
+PC2LS_PID=$!
+echo -e "  └─ PC2LS PID: ${PC2LS_PID}"
+
 # SLAM/Odometry başlat (mod'a göre)
 sleep 3
 
@@ -93,7 +111,7 @@ if [ -f "$HOME/vrx_ws/install/setup.bash" ]; then
     source $HOME/vrx_ws/install/setup.bash
 fi
 
-if [ "$MODE" == "mola" ]; then
+if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ] || [ "$MODE" == "parkour" ]; then
     echo -e "${CYAN}MOLA SLAM başlatılıyor (MolaViz ile)...${NC}"
     ros2 launch workspace_ros mola_slam.launch.py use_mola_gui:=true use_rviz:=true &
     SLAM_PID=$!
@@ -103,6 +121,46 @@ else
     ros2 launch workspace_ros kiss_icp.launch.py topic:=/roboboat/lidar/filtered visualize:=true &
     SLAM_PID=$!
     echo -e "  └─ KISS-ICP PID: ${SLAM_PID}"
+fi
+
+# Otonomi bileşenlerini başlat
+if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ] || [ "$MODE" == "parkour" ]; then
+    sleep 5  # SLAM'ın TF yayınlamasını bekle
+    
+    echo -e "${CYAN}Localization (EKF + NavSat) başlatılıyor...${NC}"
+    ros2 launch workspace_ros localization.launch.py &
+    LOC_PID=$!
+    echo -e "  └─ Localization PID: ${LOC_PID}"
+    
+    sleep 3  # Localization'ın hazır olmasını bekle
+    
+    if [ "$MODE" == "parkour" ]; then
+        echo -e "${CYAN}Parkur Navigasyonu (Kanal Takibi) başlatılıyor...${NC}"
+        python3 workspace_nav/scripts/reactive_obstacle_avoidance.py &
+        NAV_PID=$!
+        echo -e "  └─ Parkour Logic PID: ${NAV_PID}"
+    else
+        echo -e "${CYAN}Nav2 Navigation Stack başlatılıyor...${NC}"
+        ros2 launch workspace_nav nav2.launch.py &
+        NAV_PID=$!
+        echo -e "  └─ Nav2 PID: ${NAV_PID}"
+    fi
+    
+    # Auto modunda waypoint follower'ı da başlat
+    if [ "$MODE" == "auto" ]; then
+        sleep 5  # Nav2'nin hazır olmasını bekle
+        echo -e "${CYAN}Waypoint State Machine başlatılıyor...${NC}"
+        ros2 run workspace_nav waypoint_with_state &
+        WP_PID=$!
+        echo -e "  └─ Waypoint PID: ${WP_PID}"
+    fi
+    
+    # cmd_vel -> thruster dönüştürücü başlat
+    sleep 2
+    echo -e "${CYAN}Thruster Converter başlatılıyor...${NC}"
+    ros2 run workspace_ros converter &
+    CONV_PID=$!
+    echo -e "  └─ Converter PID: ${CONV_PID}"
 fi
 
 echo ""

@@ -1,4 +1,0 @@
-CMake Error: The current CMakeCache.txt directory /home/ngen/yildiz_ws/src/YILDIZ-USV/build/workspace_gz/CMakeCache.txt is different than the directory /home/tugmirk/Desktop/garp-test/build/workspace_gz where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
-CMake Error: The source directory "/home/tugmirk/Desktop/garp-test/workspace_gz" does not exist.
-Specify --help for usage, or press the help button on the CMake GUI.
-gmake: *** [Makefile:1177: cmake_check_build_system] Error 1

@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/StationkeepingScoringPlugin.cc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o" "gcc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o.d"
-  "/home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/WaypointMarkers.cc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o" "gcc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o.d"
+  "/home/tugmirk/Desktop/garp-test/workspace_gz/plugins/StationkeepingScoringPlugin.cc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o" "gcc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o.d"
+  "/home/tugmirk/Desktop/garp-test/workspace_gz/plugins/WaypointMarkers.cc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o" "gcc" "CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -1,5 +1,5 @@
 CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/WaypointMarkers.cc.o: \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/WaypointMarkers.cc \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/WaypointMarkers.cc \
  /usr/include/stdc-predef.h \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/marker.pb.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/memoryfwd.h \
@@ -452,7 +452,7 @@ CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/WaypointMarkers.cc.o: \
  /usr/include/c++/13/cstdarg \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/config.hh \
  /opt/ros/jazzy/opt/gz_msgs_vendor/include/gz/msgs10/gz/msgs/detail/PointCloudPackedUtils.hh \
- /home/ngen/yildiz_ws/src/YILDIZ-USV/workspace_gz/plugins/WaypointMarkers.hh \
+ /home/tugmirk/Desktop/garp-test/workspace_gz/plugins/WaypointMarkers.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/Node.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/AdvertiseOptions.hh \
  /opt/ros/jazzy/opt/gz_transport_vendor/include/gz/transport13/gz/transport/config.hh \
