@@ -1,1 +1,0 @@
-/home/tugmirk/Desktop/garp-test/build/workspace_ros/launch/obstacle_avoidance.launch.py

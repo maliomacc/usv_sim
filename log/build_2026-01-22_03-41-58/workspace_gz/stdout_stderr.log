@@ -1,0 +1,139 @@
+[  4%] Built target Waves
+[  8%] Built target ScoringPlugin
+[ 12%] Built target PlacardPlugin
+[ 16%] Built target Surface
+[ 25%] Built target ScanDockScoringPlugin
+[ 25%] Built target WaveVisual
+[ 29%] Built target PerceptionScoringPlugin
+[ 33%] Built target GymkhanaScoringPlugin
+[ 37%] Built target USVWind
+[ 43%] Built target PublisherPlugin
+[ 45%] Built target LightBuoyPlugin
+[ 50%] Built target WildlifeScoringPlugin
+[ 54%] Built target BallShooterPlugin
+[ 58%] Built target NavigationScoringPlugin
+[ 62%] Built target AcousticPingerPlugin
+[ 77%] Built target WayfindingScoringPlugin
+[ 77%] Built target PolyhedraBuoyancyDrag
+[ 81%] Built target SimpleHydrodynamics
+[ 87%] Built target StationkeepingScoringPlugin
+[ 93%] Built target AcousticTrackingScoringPlugin
+[100%] Built target AcousticPerceptionScoringPlugin
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libWaves.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libPolyhedraBuoyancyDrag.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libStationkeepingScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libWayfindingScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libAcousticPerceptionScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libAcousticTrackingScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libAcousticPingerPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libBallShooterPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libLightBuoyPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libNavigationScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libGymkhanaScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libPerceptionScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libPlacardPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libPublisherPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libScanDockScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libSimpleHydrodynamics.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libSurface.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libUSVWind.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libWaveVisual.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/lib/libWildlifeScoringPlugin.so
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//description/roboboat/roboboat.xacro
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//launch/simulation.launch.py
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/meshes/marker_buoy.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/model.config
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/model.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/meshes/marker_buoy.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/model.config
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/model.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/meshes/marker_buoy.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/model.config
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/model.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/meshes/marker_buoy.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/model.config
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/model.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/model.config
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/model.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/meshes/round_buoy.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/model.config
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/model.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_metalness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_normal.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/thruster_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/thruster_roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/housing.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/mount.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/prop.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/roboboat.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_metalness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_normal.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/meshes/camera.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/meshes/camera_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/materials/textures/post_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/meshes/post.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/meshes/post_albedo.jpg
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/meshes/drybox.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/materials/textures/gps_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/meshes/gps.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/meshes/gps_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_normal.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/meshes/lidar.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/meshes/lidar_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/meshes/post.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/programs/GerstnerWaves_fs_330.glsl
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/programs/GerstnerWaves_vs_330.glsl
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/textures/skybox_lowres.dds
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/textures/wave_normals.dds
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/waves/meshes/waterlow.dae
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/waves/model.config
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//models/waves/model.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz//worlds/world.sdf
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/environment/library_path.sh
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/environment/library_path.dsv
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/environment/path.sh
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/environment/path.dsv
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/local_setup.bash
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/local_setup.sh
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/local_setup.zsh
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/local_setup.dsv
+-- Symlinking: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/package.dsv
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/cmake/ament_cmake_export_libraries-extras.cmake
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake
+-- Up-to-date symlink: /home/tugmirk/Desktop/garp-test/install/workspace_gz/share/workspace_gz/package.xml

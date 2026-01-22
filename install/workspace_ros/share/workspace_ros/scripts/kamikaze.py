@@ -1,1 +1,0 @@
-/home/tugmirk/Desktop/garp-test/build/workspace_ros/scripts/kamikaze.py

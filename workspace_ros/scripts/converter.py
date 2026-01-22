@@ -24,8 +24,8 @@ class Nav2ThrusterController(Node):
         self.declare_parameter('input_topic', '/cmd_vel')
         self.declare_parameter('left_thruster_topic', '/roboboat/thrusters/left/thrust')
         self.declare_parameter('right_thruster_topic', '/roboboat/thrusters/right/thrust')
-        self.declare_parameter('linear_scale', 1.75)
-        self.declare_parameter('angular_scale', 20.0)
+        self.declare_parameter('linear_scale', 5.0)
+        self.declare_parameter('angular_scale', 25.0)
 
         # Get parameters
         input_topic = self.get_parameter('input_topic').value

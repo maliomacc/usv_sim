@@ -3,12 +3,13 @@ setup.cfg
 setup.py
 config/map.yaml
 config/nav2_params.yaml
+config/parkour_nav.yaml
 launch/nav2.launch.py
+launch/parkour_nav.launch.py
 map/map.pgm
 resource/workspace_nav
 scripts/__init__.py
-scripts/waypoint_transform.py
-scripts/waypoint_with_state.py
+scripts/parkour_navigation.py
 workspace_nav.egg-info/PKG-INFO
 workspace_nav.egg-info/SOURCES.txt
 workspace_nav.egg-info/dependency_links.txt

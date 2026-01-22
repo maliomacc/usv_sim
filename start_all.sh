@@ -135,10 +135,10 @@ if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ] || [ "$MODE" == "parkour" ]; t
     sleep 3  # Localization'ın hazır olmasını bekle
     
     if [ "$MODE" == "parkour" ]; then
-        echo -e "${CYAN}Parkur Navigasyonu (Kanal Takibi) başlatılıyor...${NC}"
-        python3 workspace_nav/scripts/reactive_obstacle_avoidance.py &
+        echo -e "${CYAN}Parkur Navigasyonu (State Machine + FGM) başlatılıyor...${NC}"
+        python3 ${SCRIPT_DIR}/workspace_nav/scripts/parkour_navigation.py &
         NAV_PID=$!
-        echo -e "  └─ Parkour Logic PID: ${NAV_PID}"
+        echo -e "  └─ Parkour Navigation PID: ${NAV_PID}"
     else
         echo -e "${CYAN}Nav2 Navigation Stack başlatılıyor...${NC}"
         ros2 launch workspace_nav nav2.launch.py &

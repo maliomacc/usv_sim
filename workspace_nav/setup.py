@@ -49,8 +49,7 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-            'waypoint_transform = scripts.waypoint_transform:main',
-            'waypoint_with_state = scripts.waypoint_with_state:main',
+            'parkour_navigation = scripts.parkour_navigation:main',
         ],
     },
 )
