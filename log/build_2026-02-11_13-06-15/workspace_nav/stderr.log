@@ -1,0 +1,5 @@
+  File "/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/parkour_navigation.py", line 263
+    = '__main__':
+    ^
+SyntaxError: invalid syntax
+

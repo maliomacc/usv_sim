@@ -1,1 +1,72 @@
-/home/tugmirk/Desktop/garp-test/build/workspace_nav/config/parkour_nav.yaml
+parkour_navigation:
+  ros__parameters:
+    # Topics
+    topics:
+      lidar_scan: "/roboboat/sensors/lidar/scan"
+      odometry: "/odometry/filtered"
+      cmd_vel_output: "/cmd_vel"
+
+    # State Machine
+    state_machine:
+      channel_width_threshold: 4.0    # m - dar kanal algılama
+      exit_clearance_threshold: 8.0   # m - çıkış algılama
+      min_gap_width: 1.5              # m - minimum gap genişliği
+
+    # Gap Analysis
+    gap_analysis:
+      fov_min_angle: -90.0            # derece
+      fov_max_angle: 90.0             # derece
+      bubble_radius: 1.0              # m - engel etrafındaki güvenlik balonu
+      center_bias_k: 3.0              # merkez tercih faktörü
+      min_gap_depth: 2.0              # m - minimum gap derinliği
+      persistence_window: 5           # frame sayısı - gap tutarlılık penceresi
+      weights:
+        width: 0.15                   # geniş gap = güvenli
+        depth: 0.20                   # derin gap = açık yol
+        alignment: 0.15               # düz ileri = tercih
+        persistence: 0.10             # tutarlı gap = güvenilir
+        center_bias: 0.10             # merkez bias = parkur girişi
+        forward_momentum: 0.30        # YENİ: ileri momentum = zigzag için kritik
+
+    # Anti-Backtrack (Geri Dönüş Engelleme) - ZIGZAG PARKUR İÇİN
+    anti_backtrack:
+      enabled: true                   # anti-backtrack aktif
+      backtrack_angle_threshold: 90.0 # derece - bu açıdan büyükse geri dönüş sayılır
+      backtrack_penalty: 0.8          # 0-1 arası - geri dönük gap'lere ceza (0.8 = %80 ceza)
+      momentum_smoothing: 0.7         # 0-1 arası - seyahat yönü smoothing (0.7 = ağır smooth)
+
+    # Speed Control
+    speed_control:
+      max_linear_speed: 2.0           # m/s
+      min_linear_speed: 0.3           # m/s
+      max_angular_speed: 1.5          # rad/s
+      steering_kp: 2.0                # P-control kazancı
+      state_speed_factors:
+        searching: 0.60
+        entering: 0.40
+        navigating: 0.80
+        exiting: 0.70
+        recovery: 0.30
+
+    # Recovery Behaviors
+    recovery:
+      stuck_time_threshold: 3.0       # s - hareketsizlik süresi
+      stuck_velocity_threshold: 0.1   # m/s - hareketsizlik eşiği
+      oscillation_count_threshold: 5  # yön değişimi sayısı
+      oscillation_time_window: 2.0    # s - zaman penceresi
+      backup_distance: 1.0            # m - geri gitme mesafesi
+      backup_speed: -0.5              # m/s - geri gitme hızı
+      spin_angle: 45.0                # derece - dönüş açısı
+      spin_speed: 0.8                 # rad/s - dönüş hızı
+      max_recovery_attempts: 3        # maksimum recovery denemesi
+
+    # Safety
+    safety:
+      critical_distance: 1.0          # m - acil duruş mesafesi
+      front_sector_angle: 20.0        # derece - ön sektör açısı
+      emergency_stop_enabled: true
+
+    # Timing
+    timing:
+      control_loop_rate: 10.0         # Hz
+      use_sim_time: true

@@ -1,0 +1,27 @@
+[1.388s] Invoking command in '/home/aliomac/garp-test/build/workspace_nav': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomac/garp-test/build/workspace_nav/build --no-deps symlink_data --force
+[2.039s] running develop
+[2.921s] running egg_info
+[3.026s] writing workspace_nav.egg-info/PKG-INFO
+[3.027s] writing dependency_links to workspace_nav.egg-info/dependency_links.txt
+[3.027s] writing entry points to workspace_nav.egg-info/entry_points.txt
+[3.028s] writing requirements to workspace_nav.egg-info/requires.txt
+[3.028s] writing top-level names to workspace_nav.egg-info/top_level.txt
+[3.189s] reading manifest file 'workspace_nav.egg-info/SOURCES.txt'
+[3.193s] writing manifest file 'workspace_nav.egg-info/SOURCES.txt'
+[3.342s] running build_ext
+[3.342s] Creating /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace-nav.egg-link (link to .)
+[3.373s] Installing parkour_navigation script to /home/aliomac/garp-test/install/workspace_nav/lib/workspace_nav
+[3.373s] 
+[3.373s] Installed /home/aliomac/garp-test/build/workspace_nav
+[3.373s] running symlink_data
+[3.374s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/resource/workspace_nav -> /home/aliomac/garp-test/install/workspace_nav/share/ament_index/resource_index/packages
+[3.374s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/package.xml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav
+[3.374s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/config/map.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+[3.374s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/config/parkour_nav.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+[3.374s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/config/nav2_params.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+[3.381s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/launch/nav2.launch.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/launch
+[3.381s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/launch/parkour_nav.launch.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/launch
+[3.381s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/scripts/parkour_navigation.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+[3.381s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+[3.381s] symbolically linking /home/aliomac/garp-test/build/workspace_nav/map/map.pgm -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/map
+[3.615s] Invoked command in '/home/aliomac/garp-test/build/workspace_nav' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomac/garp-test/build/workspace_nav/build --no-deps symlink_data --force

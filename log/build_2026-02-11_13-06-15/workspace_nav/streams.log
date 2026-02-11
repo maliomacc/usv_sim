@@ -1,0 +1,49 @@
+[3.099s] Invoking command in '/home/aliomac/garp-test/build/workspace_nav': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aliomac/garp-test/build/workspace_nav/build
+[3.827s] running develop
+[4.411s] Removing /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace-nav.egg-link (link to .)
+[4.546s] Invoked command in '/home/aliomac/garp-test/build/workspace_nav' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aliomac/garp-test/build/workspace_nav/build
+[4.550s] Invoking command in '/home/aliomac/garp-test/workspace_nav': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_nav build --build-base /home/aliomac/garp-test/build/workspace_nav/build install --record /home/aliomac/garp-test/build/workspace_nav/install.log --single-version-externally-managed install_data --force
+[5.523s] running egg_info
+[5.695s] writing ../build/workspace_nav/workspace_nav.egg-info/PKG-INFO
+[5.695s] writing dependency_links to ../build/workspace_nav/workspace_nav.egg-info/dependency_links.txt
+[5.707s] writing entry points to ../build/workspace_nav/workspace_nav.egg-info/entry_points.txt
+[5.708s] writing requirements to ../build/workspace_nav/workspace_nav.egg-info/requires.txt
+[5.708s] writing top-level names to ../build/workspace_nav/workspace_nav.egg-info/top_level.txt
+[5.848s] reading manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+[5.850s] writing manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+[5.851s] running build
+[5.852s] running build_py
+[5.853s] copying scripts/parkour_navigation.py -> /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts
+[5.854s] copying scripts/mola_parkur_aigasyon.py -> /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts
+[5.854s] running install
+[5.876s] running install_lib
+[5.947s] creating /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+[5.947s] copying /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts/parkour_navigation.py -> /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+[5.948s] copying /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+[5.949s] copying /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts/mola_parkur_aigasyon.py -> /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+[5.959s] byte-compiling /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/parkour_navigation.py to parkour_navigation.cpython-312.pyc
+[5.960s] byte-compiling /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/__init__.py to __init__.cpython-312.pyc
+[5.962s] byte-compiling /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/mola_parkur_aigasyon.py to mola_parkur_aigasyon.cpython-312.pyc
+[5.963s]   File "/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/parkour_navigation.py", line 263
+[5.965s]     = '__main__':
+[5.966s]     ^
+[5.966s] SyntaxError: invalid syntax
+[5.967s] 
+[5.970s] running install_data
+[5.970s] copying resource/workspace_nav -> /home/aliomac/garp-test/install/workspace_nav/share/ament_index/resource_index/packages
+[5.971s] copying package.xml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav
+[5.971s] copying config/map.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+[5.971s] copying config/parkour_nav.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+[5.972s] copying config/nav2_params.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+[5.972s] copying launch/nav2.launch.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/launch
+[5.973s] copying launch/parkour_nav.launch.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/launch
+[5.974s] copying scripts/parkour_navigation.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+[5.975s] copying scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+[5.975s] copying scripts/mola_parkur_aigasyon.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+[5.976s] copying map/map.pgm -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/map
+[5.978s] running install_egg_info
+[6.049s] Copying ../build/workspace_nav/workspace_nav.egg-info to /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace_nav-0.0.0-py3.12.egg-info
+[6.053s] running install_scripts
+[6.480s] Installing parkour_navigation script to /home/aliomac/garp-test/install/workspace_nav/lib/workspace_nav
+[6.480s] writing list of installed files to '/home/aliomac/garp-test/build/workspace_nav/install.log'
+[6.623s] Invoked command in '/home/aliomac/garp-test/workspace_nav' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_nav build --build-base /home/aliomac/garp-test/build/workspace_nav/build install --record /home/aliomac/garp-test/build/workspace_nav/install.log --single-version-externally-managed install_data --force

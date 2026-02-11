@@ -1,0 +1,64 @@
+[3.094s] Invoking command in '/home/aliomac/garp-test/build/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aliomac/garp-test/build/workspace_ros/build
+[3.806s] running develop
+[4.345s] Removing /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace-ros.egg-link (link to .)
+[4.490s] Invoked command in '/home/aliomac/garp-test/build/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aliomac/garp-test/build/workspace_ros/build
+[4.495s] Invoking command in '/home/aliomac/garp-test/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/aliomac/garp-test/build/workspace_ros/build install --record /home/aliomac/garp-test/build/workspace_ros/install.log --single-version-externally-managed install_data --force
+[5.377s] running egg_info
+[5.445s] writing ../build/workspace_ros/workspace_ros.egg-info/PKG-INFO
+[5.445s] writing dependency_links to ../build/workspace_ros/workspace_ros.egg-info/dependency_links.txt
+[5.446s] writing entry points to ../build/workspace_ros/workspace_ros.egg-info/entry_points.txt
+[5.446s] writing requirements to ../build/workspace_ros/workspace_ros.egg-info/requires.txt
+[5.447s] writing top-level names to ../build/workspace_ros/workspace_ros.egg-info/top_level.txt
+[5.665s] reading manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[5.670s] writing manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[5.671s] running build
+[5.671s] running build_py
+[5.671s] running install
+[5.731s] running install_lib
+[5.926s] creating /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.926s] copying /home/aliomac/garp-test/build/workspace_ros/build/lib/scripts/gps_covariance_repub.py -> /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.926s] copying /home/aliomac/garp-test/build/workspace_ros/build/lib/scripts/lidar_processor.py -> /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.927s] copying /home/aliomac/garp-test/build/workspace_ros/build/lib/scripts/wasd_teleop.py -> /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.927s] copying /home/aliomac/garp-test/build/workspace_ros/build/lib/scripts/imu_covariance_repub.py -> /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.927s] copying /home/aliomac/garp-test/build/workspace_ros/build/lib/scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.928s] copying /home/aliomac/garp-test/build/workspace_ros/build/lib/scripts/converter.py -> /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.935s] copying /home/aliomac/garp-test/build/workspace_ros/build/lib/scripts/static_transform_publisher.py -> /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts
+[5.946s] byte-compiling /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts/gps_covariance_repub.py to gps_covariance_repub.cpython-312.pyc
+[5.955s] byte-compiling /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts/lidar_processor.py to lidar_processor.cpython-312.pyc
+[5.971s] byte-compiling /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts/wasd_teleop.py to wasd_teleop.cpython-312.pyc
+[5.975s] byte-compiling /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts/imu_covariance_repub.py to imu_covariance_repub.cpython-312.pyc
+[5.981s] byte-compiling /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts/__init__.py to __init__.cpython-312.pyc
+[5.981s] byte-compiling /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts/converter.py to converter.cpython-312.pyc
+[5.983s] byte-compiling /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/scripts/static_transform_publisher.py to static_transform_publisher.cpython-312.pyc
+[5.996s] running install_data
+[5.996s] copying resource/workspace_ros -> /home/aliomac/garp-test/install/workspace_ros/share/ament_index/resource_index/packages
+[6.000s] copying package.xml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros
+[6.006s] copying config/ekf.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[6.010s] copying config/kiss_icp.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[6.010s] copying config/lidar_filter.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[6.014s] copying config/static_transform.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[6.014s] copying config/lidar_rviz.rviz -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[6.014s] copying config/navsat.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[6.015s] copying launch/localization.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[6.015s] copying launch/mola_slam.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[6.015s] copying launch/lidar_filter.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[6.016s] copying launch/kiss_icp.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[6.016s] copying scripts/gps_covariance_repub.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[6.016s] copying scripts/lidar_processor.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[6.016s] copying scripts/wasd_teleop.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[6.017s] copying scripts/imu_covariance_repub.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[6.017s] copying scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[6.025s] copying scripts/converter.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[6.026s] copying scripts/static_transform_publisher.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[6.026s] copying YOLOv11/YOLOv11.pt -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/YOLOv11
+[6.106s] running install_egg_info
+[6.375s] Copying ../build/workspace_ros/workspace_ros.egg-info to /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info
+[6.392s] running install_scripts
+[7.220s] Installing converter script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[7.220s] Installing gps_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[7.220s] Installing imu_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[7.220s] Installing lidar_processor script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[7.221s] Installing static_transform_publisher script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[7.221s] Installing wasd_teleop script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[7.221s] writing list of installed files to '/home/aliomac/garp-test/build/workspace_ros/install.log'
+[7.315s] Invoked command in '/home/aliomac/garp-test/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/aliomac/garp-test/build/workspace_ros/build install --record /home/aliomac/garp-test/build/workspace_ros/install.log --single-version-externally-managed install_data --force

@@ -1,0 +1,42 @@
+[1.341s] Invoking command in '/home/aliomac/garp-test/build/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomac/garp-test/build/workspace_ros/build --no-deps symlink_data --force
+[2.109s] running develop
+[2.857s] running egg_info
+[2.941s] writing workspace_ros.egg-info/PKG-INFO
+[2.941s] writing dependency_links to workspace_ros.egg-info/dependency_links.txt
+[2.941s] writing entry points to workspace_ros.egg-info/entry_points.txt
+[2.942s] writing requirements to workspace_ros.egg-info/requires.txt
+[2.948s] writing top-level names to workspace_ros.egg-info/top_level.txt
+[3.107s] reading manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[3.109s] writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[3.256s] running build_ext
+[3.263s] Creating /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace-ros.egg-link (link to .)
+[3.263s] Installing converter script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[3.266s] Installing gps_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[3.266s] Installing imu_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[3.266s] Installing lidar_processor script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[3.266s] Installing static_transform_publisher script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[3.266s] Installing wasd_teleop script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[3.266s] 
+[3.267s] Installed /home/aliomac/garp-test/build/workspace_ros
+[3.267s] running symlink_data
+[3.267s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/resource/workspace_ros -> /home/aliomac/garp-test/install/workspace_ros/share/ament_index/resource_index/packages
+[3.267s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/package.xml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros
+[3.267s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/config/ekf.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[3.267s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/config/kiss_icp.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[3.267s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/config/lidar_filter.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[3.268s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/config/static_transform.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[3.268s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/config/lidar_rviz.rviz -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[3.268s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/config/navsat.yaml -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/config
+[3.269s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/launch/localization.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[3.269s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/launch/mola_slam.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[3.270s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/launch/lidar_filter.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[3.271s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/launch/kiss_icp.launch.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/launch
+[3.277s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/scripts/gps_covariance_repub.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[3.277s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/scripts/lidar_processor.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[3.277s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/scripts/wasd_teleop.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[3.277s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/scripts/imu_covariance_repub.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[3.277s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[3.278s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/scripts/converter.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[3.278s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/scripts/static_transform_publisher.py -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/scripts
+[3.278s] symbolically linking /home/aliomac/garp-test/build/workspace_ros/YOLOv11/YOLOv11.pt -> /home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/YOLOv11
+[3.500s] Invoked command in '/home/aliomac/garp-test/build/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomac/garp-test/build/workspace_ros/build --no-deps symlink_data --force

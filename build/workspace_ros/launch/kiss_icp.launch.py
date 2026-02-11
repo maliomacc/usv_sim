@@ -1,1 +1,1 @@
-/home/tugmirk/Desktop/garp-test/workspace_ros/launch/kiss_icp.launch.py
+/home/aliomac/garp-test/workspace_ros/launch/kiss_icp.launch.py

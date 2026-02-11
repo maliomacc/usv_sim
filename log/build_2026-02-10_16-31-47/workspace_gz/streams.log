@@ -1,0 +1,554 @@
+[0.022s] Invoking command in '/home/aliomac/garp-test/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/aliomac/garp-test/workspace_gz -DCMAKE_INSTALL_PREFIX=/home/aliomac/garp-test/install/workspace_gz
+[0.289s] -- The C compiler identification is GNU 13.3.0
+[0.290s] -- The CXX compiler identification is GNU 13.3.0
+[0.290s] -- Detecting C compiler ABI info
+[0.369s] -- Detecting C compiler ABI info - done
+[0.381s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.382s] -- Detecting C compile features
+[0.382s] -- Detecting C compile features - done
+[0.392s] -- Detecting CXX compiler ABI info
+[0.496s] -- Detecting CXX compiler ABI info - done
+[0.507s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.507s] -- Detecting CXX compile features
+[0.508s] -- Detecting CXX compile features - done
+[0.527s] -- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.707s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.871s] -- Looking for gz-sim8 -- found version 8.10.0
+[0.886s] -- Searching for dependencies of gz-sim8
+[0.889s] -- Looking for sdformat14 -- found version 14.8.0
+[0.889s] -- Searching for dependencies of sdformat14
+[0.899s] -- Checking for module 'tinyxml2'
+[0.916s] --   Found tinyxml2, version 10.0.0
+[0.952s] -- Looking for gz-math7 -- found version 7.5.2
+[0.952s] -- Searching for dependencies of gz-math7
+[0.955s] -- Looking for gz-utils2 -- found version 2.2.1
+[0.955s] -- Searching for dependencies of gz-utils2
+[0.957s] -- Looking for gz-utils2 -- found version 2.2.1
+[0.958s] -- Searching for dependencies of gz-utils2
+[0.958s] -- Searching for <gz-utils2> component [cli]
+[0.960s] -- Looking for gz-utils2-cli -- found version 2.2.1
+[0.960s] -- Searching for dependencies of gz-utils2-cli
+[0.964s] -- Looking for gz-plugin2 -- found version 2.0.4
+[0.964s] -- Searching for dependencies of gz-plugin2
+[0.964s] -- Looking for gz-utils2 -- found version 2.2.1
+[0.966s] -- Searching for <gz-plugin2> component [loader]
+[0.968s] -- Looking for gz-plugin2-loader -- found version 2.0.4
+[0.968s] -- Searching for dependencies of gz-plugin2-loader
+[0.969s] -- Searching for <gz-plugin2> component [register]
+[0.971s] -- Looking for gz-plugin2-register -- found version 2.0.4
+[0.971s] -- Searching for dependencies of gz-plugin2-register
+[0.973s] -- Looking for gz-transport13 -- found version 13.5.0
+[0.974s] -- Searching for dependencies of gz-transport13
+[1.132s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.21.12") 
+[1.149s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[1.154s] -- Checking for module 'libzmq >= 4'
+[1.167s] --   Found libzmq, version 4.3.5
+[1.206s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[1.211s] -- Checking for module 'uuid'
+[1.228s] --   Found uuid, version 2.39.3
+[1.256s] -- Found UUID: TRUE  
+[1.257s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.260s] -- Looking for gz-msgs10 -- found version 10.3.2
+[1.260s] -- Searching for dependencies of gz-msgs10
+[1.281s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.281s] -- Looking for gz-math7 -- found version 7.5.2
+[1.289s] -- Searching for <gz-transport13> component [log]
+[1.291s] -- Looking for gz-transport13-log -- found version 13.5.0
+[1.291s] -- Searching for dependencies of gz-transport13-log
+[1.292s] -- Searching for <gz-transport13> component [parameters]
+[1.293s] -- Looking for gz-transport13-parameters -- found version 13.5.0
+[1.294s] -- Searching for dependencies of gz-transport13-parameters
+[1.295s] -- Looking for gz-msgs10 -- found version 10.3.2
+[1.298s] -- Looking for gz-common5 -- found version 5.7.1
+[1.298s] -- Searching for dependencies of gz-common5
+[1.298s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.299s] -- Looking for dlfcn.h - found
+[1.301s] -- Looking for libdl - found
+[1.303s] -- Found DL: TRUE  
+[1.311s] -- Searching for <gz-common5> component [av]
+[1.313s] -- Looking for gz-common5-av -- found version 5.7.1
+[1.313s] -- Searching for dependencies of gz-common5-av
+[1.319s] -- Checking for module 'libswscale'
+[1.342s] --   Found libswscale, version 7.5.100
+[1.392s] -- Found SWSCALE: TRUE  
+[1.399s] -- Checking for module 'libavdevice >= 56.4.100'
+[1.421s] --   Found libavdevice, version 60.3.100
+[1.469s] -- Found AVDEVICE: TRUE (Required is at least version "56.4.100") 
+[1.475s] -- Checking for module 'libavformat'
+[1.490s] --   Found libavformat, version 60.16.100
+[1.529s] -- Found AVFORMAT: TRUE  
+[1.536s] -- Checking for module 'libavcodec'
+[1.553s] --   Found libavcodec, version 60.31.102
+[1.583s] -- Found AVCODEC: TRUE  
+[1.588s] -- Checking for module 'libavutil'
+[1.601s] --   Found libavutil, version 58.29.100
+[1.630s] -- Found AVUTIL: TRUE  
+[1.632s] -- Searching for <gz-common5> component [events]
+[1.635s] -- Looking for gz-common5-events -- found version 5.7.1
+[1.635s] -- Searching for dependencies of gz-common5-events
+[1.636s] -- Looking for gz-math7 -- found version 7.5.2
+[1.637s] -- Searching for <gz-common5> component [graphics]
+[1.640s] -- Looking for gz-common5-graphics -- found version 5.7.1
+[1.640s] -- Searching for dependencies of gz-common5-graphics
+[1.641s] -- Looking for gz-math7 -- found version 7.5.2
+[1.651s] -- Found GzAssimp: TRUE (found version "5.3.0") 
+[1.652s] -- Searching for <gz-common5> component [io]
+[1.654s] -- Looking for gz-common5-io -- found version 5.7.1
+[1.654s] -- Searching for dependencies of gz-common5-io
+[1.655s] -- Searching for <gz-common5> component [profiler]
+[1.657s] -- Looking for gz-common5-profiler -- found version 5.7.1
+[1.657s] -- Searching for dependencies of gz-common5-profiler
+[1.660s] -- Looking for gz-fuel_tools9 -- found version 9.1.1
+[1.660s] -- Searching for dependencies of gz-fuel_tools9
+[1.747s] -- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "8.5.0")  
+[1.758s] -- Checking for module 'jsoncpp'
+[1.772s] --   Found jsoncpp, version 1.9.5
+[1.799s] -- Found JSONCPP: TRUE  
+[1.817s] -- Checking for module 'yaml-0.1'
+[1.831s] --   Found yaml-0.1, version 0.2.5
+[1.861s] -- Found YAML: TRUE  
+[1.866s] -- Checking for module 'libzip'
+[1.880s] --   Found libzip, version 1.7.3
+[1.913s] -- Found ZIP: TRUE  
+[1.914s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.914s] -- Looking for gz-common5 -- found version 5.7.1
+[1.914s] -- Searching for dependencies of gz-common5
+[1.915s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.915s] -- Looking for dlfcn.h - found
+[1.915s] -- Looking for libdl - found
+[1.924s] -- Searching for <gz-common5> component [testing]
+[1.926s] -- Looking for gz-common5-testing -- found version 5.7.1
+[1.926s] -- Searching for dependencies of gz-common5-testing
+[1.927s] -- Looking for gz-math7 -- found version 7.5.2
+[1.928s] -- Looking for gz-msgs10 -- found version 10.3.2
+[1.931s] -- Looking for gz-gui8 -- found version 8.4.0
+[1.931s] -- Searching for dependencies of gz-gui8
+[1.957s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.958s] -- Looking for gz-math7 -- found version 7.5.2
+[1.958s] -- Looking for gz-common5 -- found version 5.7.1
+[1.959s] -- Looking for gz-plugin2 -- found version 2.0.4
+[1.959s] -- Looking for gz-transport13 -- found version 13.5.0
+[1.961s] -- Looking for gz-rendering8 -- found version 8.2.3
+[1.962s] -- Searching for dependencies of gz-rendering8
+[1.962s] -- Looking for gz-math7 -- found version 7.5.2
+[1.962s] -- Searching for dependencies of gz-math7
+[1.963s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.963s] -- Searching for <gz-math7> component [eigen3]
+[1.965s] -- Looking for gz-math7-eigen3 -- found version 7.5.2
+[1.965s] -- Searching for dependencies of gz-math7-eigen3
+[1.977s] -- Looking for gz-common5 -- found version 5.7.1
+[1.977s] -- Searching for dependencies of gz-common5
+[1.977s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.977s] -- Looking for dlfcn.h - found
+[1.978s] -- Looking for libdl - found
+[1.985s] -- Searching for <gz-common5> component [graphics]
+[1.985s] -- Searching for <gz-common5> component [events]
+[1.985s] -- Searching for <gz-common5> component [geospatial]
+[1.988s] -- Looking for gz-common5-geospatial -- found version 5.7.1
+[1.988s] -- Searching for dependencies of gz-common5-geospatial
+[1.989s] -- Looking for gz-math7 -- found version 7.5.2
+[1.989s] -- Looking for gz-common5 -- found version 5.7.1
+[1.991s] -- Looking for gz-plugin2 -- found version 2.0.4
+[1.991s] -- Searching for dependencies of gz-plugin2
+[1.991s] -- Looking for gz-utils2 -- found version 2.2.1
+[1.991s] -- Searching for <gz-plugin2> component [all]
+[1.993s] -- Looking for all libraries of gz-plugin2 -- found version 2.0.4
+[1.994s] -- Looking for gz-plugin2 -- found version 2.0.4
+[1.995s] -- Looking for gz-utils2 -- found version 2.2.1
+[2.010s] -- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL 
+[2.012s] -- Looking for gz-msgs10 -- found version 10.3.2
+[2.054s] -- Looking for gz-physics7 -- found version 7.6.0
+[2.054s] -- Searching for dependencies of gz-physics7
+[2.055s] -- Looking for gz-common5 -- found version 5.7.1
+[2.055s] -- Looking for gz-math7 -- found version 7.5.2
+[2.055s] -- Looking for gz-plugin2 -- found version 2.0.4
+[2.056s] -- Looking for gz-utils2 -- found version 2.2.1
+[2.057s] -- Searching for <gz-physics7> component [heightmap]
+[2.059s] -- Looking for gz-physics7-heightmap -- found version 7.6.0
+[2.059s] -- Searching for dependencies of gz-physics7-heightmap
+[2.060s] -- Looking for gz-common5 -- found version 5.7.1
+[2.060s] -- Searching for <gz-physics7> component [mesh]
+[2.062s] -- Looking for gz-physics7-mesh -- found version 7.6.0
+[2.062s] -- Searching for dependencies of gz-physics7-mesh
+[2.063s] -- Looking for gz-common5 -- found version 5.7.1
+[2.063s] -- Searching for <gz-physics7> component [sdf]
+[2.065s] -- Looking for gz-physics7-sdf -- found version 7.6.0
+[2.065s] -- Searching for dependencies of gz-physics7-sdf
+[2.065s] -- Looking for sdformat14 -- found version 14.8.0
+[2.069s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.069s] -- Searching for dependencies of gz-sensors8
+[2.094s] -- Looking for gz-math7 -- found version 7.5.2
+[2.094s] -- Looking for gz-common5 -- found version 5.7.1
+[2.095s] -- Looking for gz-transport13 -- found version 13.5.0
+[2.096s] -- Looking for gz-rendering8 -- found version 8.2.3
+[2.096s] -- Looking for gz-msgs10 -- found version 10.3.2
+[2.097s] -- Looking for sdformat14 -- found version 14.8.0
+[2.098s] -- Searching for <gz-sensors8> component [air_pressure]
+[2.099s] -- Looking for gz-sensors8-air_pressure -- found version 8.2.2
+[2.100s] -- Searching for dependencies of gz-sensors8-air_pressure
+[2.101s] -- Searching for <gz-sensors8> component [air_speed]
+[2.102s] -- Looking for gz-sensors8-air_speed -- found version 8.2.2
+[2.103s] -- Searching for dependencies of gz-sensors8-air_speed
+[2.104s] -- Searching for <gz-sensors8> component [altimeter]
+[2.106s] -- Looking for gz-sensors8-altimeter -- found version 8.2.2
+[2.106s] -- Searching for dependencies of gz-sensors8-altimeter
+[2.107s] -- Searching for <gz-sensors8> component [imu]
+[2.109s] -- Looking for gz-sensors8-imu -- found version 8.2.2
+[2.109s] -- Searching for dependencies of gz-sensors8-imu
+[2.110s] -- Searching for <gz-sensors8> component [force_torque]
+[2.112s] -- Looking for gz-sensors8-force_torque -- found version 8.2.2
+[2.112s] -- Searching for dependencies of gz-sensors8-force_torque
+[2.113s] -- Searching for <gz-sensors8> component [logical_camera]
+[2.114s] -- Looking for gz-sensors8-logical_camera -- found version 8.2.2
+[2.115s] -- Searching for dependencies of gz-sensors8-logical_camera
+[2.115s] -- Searching for <gz-sensors8> component [magnetometer]
+[2.117s] -- Looking for gz-sensors8-magnetometer -- found version 8.2.2
+[2.117s] -- Searching for dependencies of gz-sensors8-magnetometer
+[2.118s] -- Searching for <gz-sensors8> component [navsat]
+[2.120s] -- Looking for gz-sensors8-navsat -- found version 8.2.2
+[2.120s] -- Searching for dependencies of gz-sensors8-navsat
+[2.121s] -- Searching for <gz-sensors8> component [dvl]
+[2.123s] -- Looking for gz-sensors8-dvl -- found version 8.2.2
+[2.123s] -- Searching for dependencies of gz-sensors8-dvl
+[2.123s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.123s] -- Searching for dependencies of gz-sensors8
+[2.149s] -- Looking for gz-math7 -- found version 7.5.2
+[2.149s] -- Looking for gz-common5 -- found version 5.7.1
+[2.150s] -- Looking for gz-transport13 -- found version 13.5.0
+[2.151s] -- Looking for gz-rendering8 -- found version 8.2.3
+[2.151s] -- Looking for gz-msgs10 -- found version 10.3.2
+[2.152s] -- Looking for sdformat14 -- found version 14.8.0
+[2.153s] -- Searching for <gz-sensors8> component [rendering]
+[2.155s] -- Looking for gz-sensors8-rendering -- found version 8.2.2
+[2.156s] -- Searching for dependencies of gz-sensors8-rendering
+[2.156s] -- Searching for <gz-sensors8> component [rendering]
+[2.157s] -- Searching for <gz-sensors8> component [lidar]
+[2.158s] -- Looking for gz-sensors8-lidar -- found version 8.2.2
+[2.161s] -- Searching for dependencies of gz-sensors8-lidar
+[2.161s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.162s] -- Searching for <gz-sensors8> component [gpu_lidar]
+[2.162s] -- Looking for gz-sensors8-gpu_lidar -- found version 8.2.2
+[2.162s] -- Searching for dependencies of gz-sensors8-gpu_lidar
+[2.163s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.164s] -- Searching for <gz-sensors8> component [camera]
+[2.166s] -- Looking for gz-sensors8-camera -- found version 8.2.2
+[2.166s] -- Searching for dependencies of gz-sensors8-camera
+[2.167s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.167s] -- Searching for <gz-sensors8> component [boundingbox_camera]
+[2.169s] -- Looking for gz-sensors8-boundingbox_camera -- found version 8.2.2
+[2.169s] -- Searching for dependencies of gz-sensors8-boundingbox_camera
+[2.170s] -- Searching for <gz-sensors8> component [segmentation_camera]
+[2.172s] -- Looking for gz-sensors8-segmentation_camera -- found version 8.2.2
+[2.173s] -- Searching for dependencies of gz-sensors8-segmentation_camera
+[2.174s] -- Searching for <gz-sensors8> component [depth_camera]
+[2.175s] -- Looking for gz-sensors8-depth_camera -- found version 8.2.2
+[2.176s] -- Searching for dependencies of gz-sensors8-depth_camera
+[2.176s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.177s] -- Searching for <gz-sensors8> component [rgbd_camera]
+[2.179s] -- Looking for gz-sensors8-rgbd_camera -- found version 8.2.2
+[2.179s] -- Searching for dependencies of gz-sensors8-rgbd_camera
+[2.180s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.181s] -- Searching for <gz-sensors8> component [thermal_camera]
+[2.183s] -- Looking for gz-sensors8-thermal_camera -- found version 8.2.2
+[2.183s] -- Searching for dependencies of gz-sensors8-thermal_camera
+[2.183s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.185s] -- Searching for <gz-sensors8> component [wide_angle_camera]
+[2.186s] -- Looking for gz-sensors8-wide_angle_camera -- found version 8.2.2
+[2.187s] -- Searching for dependencies of gz-sensors8-wide_angle_camera
+[2.187s] -- Looking for gz-rendering8 -- found version 8.2.3
+[2.188s] -- Looking for gz-math7 -- found version 7.5.2
+[2.189s] -- Looking for gz-utils2 -- found version 2.2.1
+[2.213s] -- Looking for gz-common5 -- found version 5.7.1
+[2.213s] -- Looking for gz-math7 -- found version 7.5.2
+[2.214s] -- Looking for gz-transport13 -- found version 13.5.0
+[2.214s] -- Looking for gz-plugin2 -- found version 2.0.4
+[2.215s] -- Looking for gz-rendering8 -- found version 8.2.3
+[2.215s] -- Looking for gz-sensors8 -- found version 8.2.2
+[2.216s] -- Looking for gz-utils2 -- found version 2.2.1
+[2.216s] -- Looking for sdformat14 -- found version 14.8.0
+[2.221s] -- Found std_msgs: 5.3.6 (/opt/ros/jazzy/share/std_msgs/cmake)
+[2.287s] -- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[2.309s] -- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[2.339s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.372s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.419s] -- Looking for gz-msgs10 -- found version 10.3.2
+[2.419s] -- Looking for gz-fuel_tools9 -- found version 9.1.1
+[2.518s] -- Configuring done (2.5s)
+[2.649s] -- Generating done (0.1s)
+[2.675s] -- Build files have been written to: /home/aliomac/garp-test/build/workspace_gz
+[2.689s] Invoked command in '/home/aliomac/garp-test/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/aliomac/garp-test/workspace_gz -DCMAKE_INSTALL_PREFIX=/home/aliomac/garp-test/install/workspace_gz
+[2.691s] Invoking command in '/home/aliomac/garp-test/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/aliomac/garp-test/build/workspace_gz -- -j8 -l8
+[2.746s] [  4%] [32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o[0m
+[2.746s] [  4%] [32mBuilding CXX object CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o[0m
+[6.852s] [  6%] [32m[1mLinking CXX shared library libWaves.so[0m
+[7.095s] [  6%] Built target Waves
+[7.117s] [ 10%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/ShapeVolume.cc.o[0m
+[7.117s] [ 10%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedronVolume.cc.o[0m
+[7.117s] [ 12%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o[0m
+[8.467s] [ 14%] [32m[1mLinking CXX shared library libScoringPlugin.so[0m
+[8.762s] [ 14%] Built target ScoringPlugin
+[8.796s] [ 20%] [32mBuilding CXX object CMakeFiles/AcousticPingerPlugin.dir/plugins/AcousticPingerPlugin.cc.o[0m
+[8.796s] [ 20%] [32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o[0m
+[8.799s] [ 27%] [32mBuilding CXX object CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/AcousticTrackingScoringPlugin.cc.o[0m
+[8.799s] [ 27%] [32mBuilding CXX object CMakeFiles/BallShooterPlugin.dir/plugins/BallShooterPlugin.cc.o[0m
+[8.799s] [ 27%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o[0m
+[8.800s] [ 20%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/AcousticPerceptionScoringPlugin.cc.o[0m
+[9.145s] [ 29%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[16.010s] [ 31%] [32mBuilding CXX object CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[16.938s] [ 33%] [32m[1mLinking CXX shared library libPolyhedraBuoyancyDrag.so[0m
+[17.621s] [ 33%] Built target PolyhedraBuoyancyDrag
+[17.637s] [ 35%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[19.517s] [ 37%] [32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[19.888s] [ 39%] [32mBuilding CXX object CMakeFiles/LightBuoyPlugin.dir/plugins/LightBuoyPlugin.cc.o[0m
+[20.155s] [ 41%] [32m[1mLinking CXX shared library libAcousticPingerPlugin.so[0m
+[20.194s] [ 43%] [32mBuilding CXX object CMakeFiles/NavigationScoringPlugin.dir/plugins/NavigationScoringPlugin.cc.o[0m
+[20.322s] [ 45%] [32m[1mLinking CXX shared library libWayfindingScoringPlugin.so[0m
+[20.758s] [ 45%] Built target AcousticPingerPlugin
+[20.806s] [ 47%] [32mBuilding CXX object CMakeFiles/GymkhanaScoringPlugin.dir/plugins/GymkhanaScoringPlugin.cc.o[0m
+[21.031s] [ 47%] Built target WayfindingScoringPlugin
+[21.079s] [ 50%] [32mBuilding CXX object CMakeFiles/PerceptionScoringPlugin.dir/plugins/PerceptionScoringPlugin.cc.o[0m
+[21.775s] [ 52%] [32m[1mLinking CXX shared library libBallShooterPlugin.so[0m
+[22.408s] [ 52%] Built target BallShooterPlugin
+[22.448s] [ 54%] [32mBuilding CXX object CMakeFiles/PlacardPlugin.dir/plugins/PlacardPlugin.cc.o[0m
+[23.401s] [ 56%] [32m[1mLinking CXX shared library libAcousticTrackingScoringPlugin.so[0m
+[24.090s] [ 56%] Built target AcousticTrackingScoringPlugin
+[24.128s] [ 58%] [32mBuilding CXX object CMakeFiles/PublisherPlugin.dir/plugins/PublisherPlugin.cc.o[0m
+[24.544s] [ 60%] [32m[1mLinking CXX shared library libAcousticPerceptionScoringPlugin.so[0m
+[25.194s] [ 60%] Built target AcousticPerceptionScoringPlugin
+[25.235s] [ 62%] [32mBuilding CXX object CMakeFiles/ScanDockScoringPlugin.dir/plugins/ScanDockScoringPlugin.cc.o[0m
+[26.063s] [ 64%] [32m[1mLinking CXX shared library libStationkeepingScoringPlugin.so[0m
+[26.686s] [ 64%] Built target StationkeepingScoringPlugin
+[26.722s] [ 66%] [32mBuilding CXX object CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o[0m
+[27.410s] [ 68%] [32m[1mLinking CXX shared library libLightBuoyPlugin.so[0m
+[27.945s] [ 68%] Built target LightBuoyPlugin
+[27.988s] [ 70%] [32mBuilding CXX object CMakeFiles/Surface.dir/plugins/Surface.cc.o[0m
+[28.983s] [ 72%] [32m[1mLinking CXX shared library libGymkhanaScoringPlugin.so[0m
+[29.600s] [ 72%] Built target GymkhanaScoringPlugin
+[29.647s] [ 75%] [32mBuilding CXX object CMakeFiles/USVWind.dir/plugins/USVWind.cc.o[0m
+[30.744s] [ 77%] [32m[1mLinking CXX shared library libPublisherPlugin.so[0m
+[31.164s] [ 77%] Built target PublisherPlugin
+[31.204s] [ 79%] [32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o[0m
+[31.241s] [ 81%] [32m[1mLinking CXX shared library libPlacardPlugin.so[0m
+[31.792s] [ 81%] Built target PlacardPlugin
+[31.830s] [ 83%] [32mBuilding CXX object CMakeFiles/WildlifeScoringPlugin.dir/plugins/WildlifeScoringPlugin.cc.o[0m
+[32.029s] [ 85%] [32m[1mLinking CXX shared library libPerceptionScoringPlugin.so[0m
+[32.034s] [ 87%] [32m[1mLinking CXX shared library libNavigationScoringPlugin.so[0m
+[32.629s] [ 87%] Built target NavigationScoringPlugin
+[32.725s] [ 87%] Built target PerceptionScoringPlugin
+[35.061s] [ 89%] [32m[1mLinking CXX shared library libSimpleHydrodynamics.so[0m
+[35.482s] [ 89%] Built target SimpleHydrodynamics
+[36.111s] [ 91%] [32m[1mLinking CXX shared library libSurface.so[0m
+[36.645s] [ 91%] Built target Surface
+[37.534s] [ 93%] [32m[1mLinking CXX shared library libScanDockScoringPlugin.so[0m
+[37.955s] [ 93%] Built target ScanDockScoringPlugin
+[39.084s] [ 95%] [32m[1mLinking CXX shared library libUSVWind.so[0m
+[39.391s] [ 95%] Built target USVWind
+[39.799s] [ 97%] [32m[1mLinking CXX shared library libWildlifeScoringPlugin.so[0m
+[40.072s] [100%] [32m[1mLinking CXX shared library libWaveVisual.so[0m
+[40.126s] [100%] Built target WildlifeScoringPlugin
+[40.383s] [100%] Built target WaveVisual
+[40.397s] Invoked command in '/home/aliomac/garp-test/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/aliomac/garp-test/build/workspace_gz -- -j8 -l8
+[40.407s] Invoking command in '/home/aliomac/garp-test/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/aliomac/garp-test/build/workspace_gz
+[40.416s] -- Install configuration: ""
+[40.417s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libWaves.so
+[40.417s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libWaves.so" to ""
+[40.418s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libPolyhedraBuoyancyDrag.so
+[40.419s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libPolyhedraBuoyancyDrag.so" to ""
+[40.419s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libScoringPlugin.so
+[40.420s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libScoringPlugin.so" to ""
+[40.420s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libStationkeepingScoringPlugin.so
+[40.421s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libStationkeepingScoringPlugin.so" to ""
+[40.422s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libWayfindingScoringPlugin.so
+[40.423s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libWayfindingScoringPlugin.so" to ""
+[40.423s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libAcousticPerceptionScoringPlugin.so
+[40.424s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libAcousticPerceptionScoringPlugin.so" to ""
+[40.425s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libAcousticTrackingScoringPlugin.so
+[40.426s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libAcousticTrackingScoringPlugin.so" to ""
+[40.426s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libAcousticPingerPlugin.so
+[40.427s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libAcousticPingerPlugin.so" to ""
+[40.427s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libBallShooterPlugin.so
+[40.429s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libBallShooterPlugin.so" to ""
+[40.429s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libLightBuoyPlugin.so
+[40.430s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libLightBuoyPlugin.so" to ""
+[40.430s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libNavigationScoringPlugin.so
+[40.431s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libNavigationScoringPlugin.so" to ""
+[40.432s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libGymkhanaScoringPlugin.so
+[40.433s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libGymkhanaScoringPlugin.so" to ""
+[40.433s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libPerceptionScoringPlugin.so
+[40.434s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libPerceptionScoringPlugin.so" to ""
+[40.434s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libPlacardPlugin.so
+[40.435s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libPlacardPlugin.so" to ""
+[40.435s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libPublisherPlugin.so
+[40.436s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libPublisherPlugin.so" to ""
+[40.436s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libScanDockScoringPlugin.so
+[40.438s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libScanDockScoringPlugin.so" to ""
+[40.438s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libSimpleHydrodynamics.so
+[40.439s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libSimpleHydrodynamics.so" to ""
+[40.439s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libSurface.so
+[40.440s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libSurface.so" to ""
+[40.440s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libUSVWind.so
+[40.441s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libUSVWind.so" to ""
+[40.441s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libWaveVisual.so
+[40.442s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libWaveVisual.so" to ""
+[40.443s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/lib/libWildlifeScoringPlugin.so
+[40.444s] -- Set non-toolchain portion of runtime path of "/home/aliomac/garp-test/install/workspace_gz/lib/libWildlifeScoringPlugin.so" to ""
+[40.444s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//description
+[40.444s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//description/roboboat
+[40.444s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//description/roboboat/roboboat.xacro
+[40.444s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//launch
+[40.444s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//launch/simulation.launch.py
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/model.sdf
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/programs
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/programs/GerstnerWaves_vs_330.glsl
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/programs/GerstnerWaves_fs_330.glsl
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/textures
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/textures/skybox_lowres.dds
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/materials/textures/wave_normals.dds
+[40.445s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/meshes
+[40.446s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/meshes/waterlow.dae
+[40.454s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/waves/model.config
+[40.454s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat
+[40.454s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials
+[40.454s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures
+[40.454s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_roughness.png
+[40.456s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/thruster_roughness.png
+[40.457s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_metalness.png
+[40.457s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_normal.png
+[40.458s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/thruster_albedo.png
+[40.458s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/materials/textures/roboboat_albedo.png
+[40.462s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes
+[40.462s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/housing.dae
+[40.462s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/mount.dae
+[40.462s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/prop.dae
+[40.462s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/meshes/roboboat.dae
+[40.463s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors
+[40.463s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar
+[40.463s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials
+[40.463s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures
+[40.463s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png
+[40.463s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar.png
+[40.464s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_normal.png
+[40.464s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png
+[40.464s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png
+[40.464s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/meshes
+[40.464s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/meshes/lidar_albedo.png
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar/meshes/lidar.dae
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/materials
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/materials/textures
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/materials/textures/gps_albedo.png
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/meshes
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/meshes/gps.dae
+[40.465s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/gps/meshes/gps_albedo.png
+[40.466s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post
+[40.466s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/materials
+[40.466s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/materials/textures
+[40.466s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png
+[40.466s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/meshes
+[40.466s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg
+[40.466s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/lidar_post/meshes/post.dae
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_metalness.png
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_albedo.png
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera.png
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_normal.png
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/materials/textures/camera_roughness.png
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/meshes
+[40.467s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/meshes/camera_albedo.png
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera/meshes/camera.dae
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/materials
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/materials/textures
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/materials/textures/post_albedo.png
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/meshes
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/meshes/post_albedo.jpg
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/camera_post/meshes/post.dae
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox
+[40.468s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials
+[40.469s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials/textures
+[40.469s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png
+[40.472s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png
+[40.477s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/meshes
+[40.477s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/roboboat/sensors/drybox/meshes/drybox.dae
+[40.478s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys
+[40.478s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green
+[40.478s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/model.sdf
+[40.478s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials
+[40.478s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials/textures
+[40.478s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png
+[40.479s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png
+[40.479s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/meshes
+[40.479s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/meshes/marker_buoy.dae
+[40.479s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_green/model.config
+[40.479s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black
+[40.479s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/model.sdf
+[40.480s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials
+[40.480s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials/textures
+[40.480s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png
+[40.480s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/meshes
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/meshes/marker_buoy.dae
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_black/model.config
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/model.sdf
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials/textures
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png
+[40.481s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png
+[40.482s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/meshes
+[40.482s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/meshes/round_buoy.dae
+[40.483s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/round_buoy_orange/model.config
+[40.483s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red
+[40.483s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/model.sdf
+[40.483s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials
+[40.483s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials/textures
+[40.483s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png
+[40.484s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png
+[40.484s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/meshes
+[40.484s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/meshes/marker_buoy.dae
+[40.484s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_red/model.config
+[40.484s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange
+[40.484s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/model.sdf
+[40.485s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials
+[40.485s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials/textures
+[40.485s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png
+[40.485s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/meshes
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/meshes/marker_buoy.dae
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_orange/model.config
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/model.sdf
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials/textures
+[40.486s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png
+[40.487s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png
+[40.487s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/meshes
+[40.487s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae
+[40.487s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//models/buoys/marker_buoy_yellow/model.config
+[40.487s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//worlds
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz//worlds/world.sdf
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/environment/library_path.sh
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/environment/library_path.dsv
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv
+[40.488s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/environment/path.sh
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/environment/path.dsv
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/local_setup.bash
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/local_setup.sh
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/local_setup.zsh
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/local_setup.dsv
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.dsv
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz
+[40.489s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/cmake/ament_cmake_export_libraries-extras.cmake
+[40.490s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/cmake/ament_cmake_export_dependencies-extras.cmake
+[40.490s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake
+[40.490s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake
+[40.490s] -- Installing: /home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.xml
+[40.492s] Invoked command in '/home/aliomac/garp-test/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/aliomac/garp-test/build/workspace_gz

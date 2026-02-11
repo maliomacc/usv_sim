@@ -1,0 +1,245 @@
+[0.121s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.121s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x769beb7aec00>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x769beb8c6fc0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x769beb8c6fc0>>, mixin_verb=('build',))
+[0.160s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.160s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.160s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.160s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.160s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.160s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.160s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/aliomac/garp-test'
+[0.160s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.161s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['ignore', 'ignore_ament_install']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'ignore'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'ignore_ament_install'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['colcon_pkg']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'colcon_pkg'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['colcon_meta']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'colcon_meta'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extensions ['ros']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_gz) by extension 'ros'
+[0.194s] DEBUG:colcon.colcon_core.package_identification:Package 'workspace_gz' with type 'ros.ament_cmake' and name 'workspace_gz'
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['ignore', 'ignore_ament_install']
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'ignore'
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'ignore_ament_install'
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['colcon_pkg']
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'colcon_pkg'
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['colcon_meta']
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'colcon_meta'
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extensions ['ros']
+[0.194s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_nav) by extension 'ros'
+[0.196s] DEBUG:colcon.colcon_core.package_identification:Package 'workspace_nav' with type 'ros.ament_python' and name 'workspace_nav'
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'ignore'
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'ignore_ament_install'
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['colcon_pkg']
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'colcon_pkg'
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['colcon_meta']
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'colcon_meta'
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extensions ['ros']
+[0.196s] Level 1:colcon.colcon_core.package_identification:_identify(workspace_ros) by extension 'ros'
+[0.198s] DEBUG:colcon.colcon_core.package_identification:Package 'workspace_ros' with type 'ros.ament_python' and name 'workspace_ros'
+[0.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.216s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.217s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.218s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/aliomac/garp-test/install/workspace_ros' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.218s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/aliomac/garp-test/install/workspace_nav' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.218s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/aliomac/garp-test/install/workspace_gz' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.218s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/aliomac/garp-test/install/kiss_icp' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.218s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/aliomac/garp-test/install/workspace_gz' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.218s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/aliomac/garp-test/install/kiss_icp' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.219s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /home/aliomac/garp-test/install
+[0.220s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 8 installed packages in /home/aliomac/vrx_ws/install
+[0.220s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 6 installed packages in /home/aliomac/thesis_USV_gazebo/install
+[0.222s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 418 installed packages in /opt/ros/jazzy
+[0.225s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_args' from command line to 'None'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_target' from command line to 'None'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_clean_cache' from command line to 'False'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_clean_first' from command line to 'False'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_force_configure' from command line to 'False'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'ament_cmake_args' from command line to 'None'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'catkin_cmake_args' from command line to 'None'
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.287s] DEBUG:colcon.colcon_core.verb:Building package 'workspace_gz' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aliomac/garp-test/build/workspace_gz', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aliomac/garp-test/install/workspace_gz', 'merge_install': False, 'path': '/home/aliomac/garp-test/workspace_gz', 'symlink_install': False, 'test_result_base': None}
+[0.287s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_args' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_target' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_clean_cache' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_clean_first' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_force_configure' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'ament_cmake_args' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'catkin_cmake_args' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.288s] DEBUG:colcon.colcon_core.verb:Building package 'workspace_nav' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aliomac/garp-test/build/workspace_nav', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aliomac/garp-test/install/workspace_nav', 'merge_install': False, 'path': '/home/aliomac/garp-test/workspace_nav', 'symlink_install': False, 'test_result_base': None}
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_args' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_target' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.288s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.288s] DEBUG:colcon.colcon_core.verb:Building package 'workspace_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aliomac/garp-test/build/workspace_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aliomac/garp-test/install/workspace_ros', 'merge_install': False, 'path': '/home/aliomac/garp-test/workspace_ros', 'symlink_install': False, 'test_result_base': None}
+[0.288s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.289s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.289s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aliomac/garp-test/workspace_gz' with build type 'ament_cmake'
+[0.289s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aliomac/garp-test/workspace_gz'
+[0.291s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.291s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.291s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.296s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aliomac/garp-test/workspace_nav' with build type 'ament_python'
+[0.296s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_nav', 'ament_prefix_path')
+[0.296s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/hook/ament_prefix_path.ps1'
+[0.297s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/hook/ament_prefix_path.dsv'
+[0.297s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/hook/ament_prefix_path.sh'
+[0.298s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.298s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.302s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aliomac/garp-test/workspace_ros' with build type 'ament_python'
+[0.302s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_ros', 'ament_prefix_path')
+[0.302s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.ps1'
+[0.303s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.dsv'
+[0.303s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.sh'
+[0.303s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.304s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.312s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomac/garp-test/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/aliomac/garp-test/workspace_gz -DCMAKE_INSTALL_PREFIX=/home/aliomac/garp-test/install/workspace_gz
+[0.572s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aliomac/garp-test/workspace_nav'
+[0.572s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.573s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.852s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aliomac/garp-test/workspace_ros'
+[0.853s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.853s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.658s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomac/garp-test/workspace_nav': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_nav build --build-base /home/aliomac/garp-test/build/workspace_nav/build install --record /home/aliomac/garp-test/build/workspace_nav/install.log --single-version-externally-managed install_data
+[1.685s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomac/garp-test/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/aliomac/garp-test/build/workspace_ros/build install --record /home/aliomac/garp-test/build/workspace_ros/install.log --single-version-externally-managed install_data
+[2.437s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomac/garp-test/workspace_nav' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_nav build --build-base /home/aliomac/garp-test/build/workspace_nav/build install --record /home/aliomac/garp-test/build/workspace_nav/install.log --single-version-externally-managed install_data
+[2.441s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_nav' for CMake module files
+[2.443s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_nav' for CMake config files
+[2.444s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_nav/lib'
+[2.444s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_nav/bin'
+[2.444s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_nav/lib/pkgconfig/workspace_nav.pc'
+[2.445s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages'
+[2.445s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_nav', 'pythonpath')
+[2.445s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/hook/pythonpath.ps1'
+[2.447s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/hook/pythonpath.dsv'
+[2.447s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/hook/pythonpath.sh'
+[2.449s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_nav/bin'
+[2.449s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_nav)
+[2.449s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/package.ps1'
+[2.452s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/package.dsv'
+[2.453s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/package.sh'
+[2.454s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/package.bash'
+[2.456s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/package.zsh'
+[2.457s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomac/garp-test/install/workspace_nav/share/colcon-core/packages/workspace_nav)
+[2.471s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_ros' for CMake module files
+[2.472s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomac/garp-test/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/aliomac/garp-test/build/workspace_ros/build install --record /home/aliomac/garp-test/build/workspace_ros/install.log --single-version-externally-managed install_data
+[2.472s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_ros' for CMake config files
+[2.473s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_ros/lib'
+[2.473s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_ros/bin'
+[2.474s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_ros/lib/pkgconfig/workspace_ros.pc'
+[2.474s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages'
+[2.474s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_ros', 'pythonpath')
+[2.474s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/hook/pythonpath.ps1'
+[2.475s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/hook/pythonpath.dsv'
+[2.475s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/hook/pythonpath.sh'
+[2.476s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_ros/bin'
+[2.476s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_ros)
+[2.476s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/package.ps1'
+[2.477s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/package.dsv'
+[2.478s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/package.sh'
+[2.478s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/package.bash'
+[2.479s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_ros/share/workspace_ros/package.zsh'
+[2.479s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomac/garp-test/install/workspace_ros/share/colcon-core/packages/workspace_ros)
+[2.979s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomac/garp-test/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/aliomac/garp-test/workspace_gz -DCMAKE_INSTALL_PREFIX=/home/aliomac/garp-test/install/workspace_gz
+[2.980s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomac/garp-test/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/aliomac/garp-test/build/workspace_gz -- -j8 -l8
+[40.687s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomac/garp-test/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/aliomac/garp-test/build/workspace_gz -- -j8 -l8
+[40.697s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomac/garp-test/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/aliomac/garp-test/build/workspace_gz
+[40.781s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_gz)
+[40.781s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz' for CMake module files
+[40.782s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomac/garp-test/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomac/garp-test/install/workspace_ros:/home/aliomac/garp-test/install/workspace_nav:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/aliomac/garp-test/build/workspace_gz
+[40.782s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz' for CMake config files
+[40.783s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_gz', 'cmake_prefix_path')
+[40.784s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.ps1'
+[40.784s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.dsv'
+[40.784s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.sh'
+[40.785s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/lib'
+[40.785s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_gz', 'ld_library_path_lib')
+[40.785s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/ld_library_path_lib.ps1'
+[40.785s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/ld_library_path_lib.dsv'
+[40.786s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/ld_library_path_lib.sh'
+[40.786s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/bin'
+[40.786s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/lib/pkgconfig/workspace_gz.pc'
+[40.786s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/lib/python3.12/site-packages'
+[40.787s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/bin'
+[40.787s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.ps1'
+[40.787s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.dsv'
+[40.788s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.sh'
+[40.788s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.bash'
+[40.789s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.zsh'
+[40.789s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomac/garp-test/install/workspace_gz/share/colcon-core/packages/workspace_gz)
+[40.789s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_gz)
+[40.790s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz' for CMake module files
+[40.790s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz' for CMake config files
+[40.791s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_gz', 'cmake_prefix_path')
+[40.791s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.ps1'
+[40.792s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.dsv'
+[40.792s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.sh'
+[40.792s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/lib'
+[40.793s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_gz', 'ld_library_path_lib')
+[40.793s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/ld_library_path_lib.ps1'
+[40.793s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/ld_library_path_lib.dsv'
+[40.793s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/hook/ld_library_path_lib.sh'
+[40.794s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/bin'
+[40.794s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/lib/pkgconfig/workspace_gz.pc'
+[40.794s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/lib/python3.12/site-packages'
+[40.794s] Level 1:colcon.colcon_core.environment:checking '/home/aliomac/garp-test/install/workspace_gz/bin'
+[40.795s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.ps1'
+[40.795s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.dsv'
+[40.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.sh'
+[40.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.bash'
+[40.797s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomac/garp-test/install/workspace_gz/share/workspace_gz/package.zsh'
+[40.797s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomac/garp-test/install/workspace_gz/share/colcon-core/packages/workspace_gz)
+[40.797s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[40.797s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[40.797s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[40.797s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[40.804s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[40.804s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[40.804s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[40.818s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[40.818s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomac/garp-test/install/local_setup.ps1'
+[40.819s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aliomac/garp-test/install/_local_setup_util_ps1.py'
+[40.820s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomac/garp-test/install/setup.ps1'
+[40.822s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomac/garp-test/install/local_setup.sh'
+[40.822s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aliomac/garp-test/install/_local_setup_util_sh.py'
+[40.823s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomac/garp-test/install/setup.sh'
+[40.824s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomac/garp-test/install/local_setup.bash'
+[40.825s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomac/garp-test/install/setup.bash'
+[40.826s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomac/garp-test/install/local_setup.zsh'
+[40.826s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomac/garp-test/install/setup.zsh'

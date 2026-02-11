@@ -394,13 +394,13 @@
   <gazebo reference="lidar_link">
 
     <!--
-        Unitree L2 4D LiDAR Simulation (Custom High-Res)
+        Unitree L2 4D LiDAR Simulation (Custom High-Res) - Parkour Optimized
         
         Kullanıcı Spesifikasyonu:
-        - Yatay: 4400 sample
+        - Yatay: 2200 sample (180° FOV için optimize edildi)
         - Dikey: 70 kanal
-        - Toplam: ~308,000 pts/frame (128k/sec @ ~2.4Hz effective)
-        - FOV: 360° × 90°
+        - Toplam: ~154,000 pts/frame (parkour için daha verimli)
+        - FOV: 180° × 90° (SADECE ÖN - geri dönüşü önler!)
     -->
     <sensor name="sensor_lidar" type="gpu_lidar">
       <topic>roboboat/lidar/points</topic>
@@ -410,10 +410,10 @@
       <ray>
         <scan>
           <horizontal>
-            <samples>4400</samples>
+            <samples>2200</samples>
             <resolution>1</resolution>
-            <min_angle>-3.141592653589793</min_angle>
-            <max_angle>3.141592653589793</max_angle>
+            <min_angle>-1.5707963267948966</min_angle>
+            <max_angle>1.5707963267948966</max_angle>
           </horizontal>
           <vertical>
             <samples>70</samples>

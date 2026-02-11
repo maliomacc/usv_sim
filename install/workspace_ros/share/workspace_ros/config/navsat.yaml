@@ -1,1 +1,5 @@
-/home/tugmirk/Desktop/garp-test/build/workspace_ros/config/navsat.yaml
+navsat_transform_node:
+  ros__parameters:
+    use_odometry_yaw: true
+    frequency: 15.0
+    delay: 1.0

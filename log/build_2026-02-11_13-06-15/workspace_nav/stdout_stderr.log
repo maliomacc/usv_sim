@@ -1,0 +1,45 @@
+running develop
+Removing /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace-nav.egg-link (link to .)
+running egg_info
+writing ../build/workspace_nav/workspace_nav.egg-info/PKG-INFO
+writing dependency_links to ../build/workspace_nav/workspace_nav.egg-info/dependency_links.txt
+writing entry points to ../build/workspace_nav/workspace_nav.egg-info/entry_points.txt
+writing requirements to ../build/workspace_nav/workspace_nav.egg-info/requires.txt
+writing top-level names to ../build/workspace_nav/workspace_nav.egg-info/top_level.txt
+reading manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+writing manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+running build
+running build_py
+copying scripts/parkour_navigation.py -> /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts
+copying scripts/mola_parkur_aigasyon.py -> /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts
+running install
+running install_lib
+creating /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+copying /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts/parkour_navigation.py -> /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+copying /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+copying /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts/mola_parkur_aigasyon.py -> /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+byte-compiling /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/parkour_navigation.py to parkour_navigation.cpython-312.pyc
+byte-compiling /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/mola_parkur_aigasyon.py to mola_parkur_aigasyon.cpython-312.pyc
+  File "/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/parkour_navigation.py", line 263
+    = '__main__':
+    ^
+SyntaxError: invalid syntax
+
+running install_data
+copying resource/workspace_nav -> /home/aliomac/garp-test/install/workspace_nav/share/ament_index/resource_index/packages
+copying package.xml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav
+copying config/map.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+copying config/parkour_nav.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+copying config/nav2_params.yaml -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/config
+copying launch/nav2.launch.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/launch
+copying launch/parkour_nav.launch.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/launch
+copying scripts/parkour_navigation.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+copying scripts/__init__.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+copying scripts/mola_parkur_aigasyon.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+copying map/map.pgm -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/map
+running install_egg_info
+Copying ../build/workspace_nav/workspace_nav.egg-info to /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace_nav-0.0.0-py3.12.egg-info
+running install_scripts
+Installing parkour_navigation script to /home/aliomac/garp-test/install/workspace_nav/lib/workspace_nav
+writing list of installed files to '/home/aliomac/garp-test/build/workspace_nav/install.log'

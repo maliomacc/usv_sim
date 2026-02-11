@@ -1,1 +1,1 @@
-/home/tugmirk/Desktop/garp-test/workspace_ros/launch/mola_slam.launch.py
+/home/aliomac/garp-test/workspace_ros/launch/mola_slam.launch.py

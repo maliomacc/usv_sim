@@ -1,0 +1,24 @@
+running egg_info
+writing ../build/workspace_ros/workspace_ros.egg-info/PKG-INFO
+writing dependency_links to ../build/workspace_ros/workspace_ros.egg-info/dependency_links.txt
+writing entry points to ../build/workspace_ros/workspace_ros.egg-info/entry_points.txt
+writing requirements to ../build/workspace_ros/workspace_ros.egg-info/requires.txt
+writing top-level names to ../build/workspace_ros/workspace_ros.egg-info/top_level.txt
+reading manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+writing manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../build/workspace_ros/workspace_ros.egg-info to /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info
+running install_scripts
+Installing converter script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+Installing gps_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+Installing imu_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+Installing lidar_processor script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+Installing static_transform_publisher script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+Installing wasd_teleop script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+writing list of installed files to '/home/aliomac/garp-test/build/workspace_ros/install.log'

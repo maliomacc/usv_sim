@@ -1,1 +1,1 @@
-/home/tugmirk/Desktop/garp-test/workspace_nav/launch/nav2.launch.py
+/home/aliomac/garp-test/workspace_nav/launch/nav2.launch.py

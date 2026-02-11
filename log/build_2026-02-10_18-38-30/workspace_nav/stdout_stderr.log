@@ -1,0 +1,23 @@
+running egg_info
+writing ../build/workspace_nav/workspace_nav.egg-info/PKG-INFO
+writing dependency_links to ../build/workspace_nav/workspace_nav.egg-info/dependency_links.txt
+writing entry points to ../build/workspace_nav/workspace_nav.egg-info/entry_points.txt
+writing requirements to ../build/workspace_nav/workspace_nav.egg-info/requires.txt
+writing top-level names to ../build/workspace_nav/workspace_nav.egg-info/top_level.txt
+reading manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+writing manifest file '../build/workspace_nav/workspace_nav.egg-info/SOURCES.txt'
+running build
+running build_py
+copying scripts/parkour_navigation.py -> /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts
+running install
+running install_lib
+copying /home/aliomac/garp-test/build/workspace_nav/build/lib/scripts/parkour_navigation.py -> /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts
+byte-compiling /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/scripts/parkour_navigation.py to parkour_navigation.cpython-312.pyc
+running install_data
+copying scripts/parkour_navigation.py -> /home/aliomac/garp-test/install/workspace_nav/share/workspace_nav/scripts
+running install_egg_info
+removing '/home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace_nav-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../build/workspace_nav/workspace_nav.egg-info to /home/aliomac/garp-test/install/workspace_nav/lib/python3.12/site-packages/workspace_nav-0.0.0-py3.12.egg-info
+running install_scripts
+Installing parkour_navigation script to /home/aliomac/garp-test/install/workspace_nav/lib/workspace_nav
+writing list of installed files to '/home/aliomac/garp-test/build/workspace_nav/install.log'

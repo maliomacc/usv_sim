@@ -1,0 +1,26 @@
+[1.528s] Invoking command in '/home/aliomac/garp-test/workspace_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/aliomac/garp-test/build/workspace_ros/build install --record /home/aliomac/garp-test/build/workspace_ros/install.log --single-version-externally-managed install_data
+[1.929s] running egg_info
+[1.959s] writing ../build/workspace_ros/workspace_ros.egg-info/PKG-INFO
+[1.959s] writing dependency_links to ../build/workspace_ros/workspace_ros.egg-info/dependency_links.txt
+[1.960s] writing entry points to ../build/workspace_ros/workspace_ros.egg-info/entry_points.txt
+[1.960s] writing requirements to ../build/workspace_ros/workspace_ros.egg-info/requires.txt
+[1.960s] writing top-level names to ../build/workspace_ros/workspace_ros.egg-info/top_level.txt
+[2.041s] reading manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[2.050s] writing manifest file '../build/workspace_ros/workspace_ros.egg-info/SOURCES.txt'
+[2.051s] running build
+[2.051s] running build_py
+[2.051s] running install
+[2.072s] running install_lib
+[2.126s] running install_data
+[2.127s] running install_egg_info
+[2.175s] removing '/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info' (and everything under it)
+[2.178s] Copying ../build/workspace_ros/workspace_ros.egg-info to /home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages/workspace_ros-0.0.0-py3.12.egg-info
+[2.178s] running install_scripts
+[2.379s] Installing converter script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[2.379s] Installing gps_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[2.379s] Installing imu_covariance_repub script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[2.379s] Installing lidar_processor script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[2.380s] Installing static_transform_publisher script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[2.380s] Installing wasd_teleop script to /home/aliomac/garp-test/install/workspace_ros/lib/workspace_ros
+[2.380s] writing list of installed files to '/home/aliomac/garp-test/build/workspace_ros/install.log'
+[2.438s] Invoked command in '/home/aliomac/garp-test/workspace_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aliomac/garp-test/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomac/garp-test/install/workspace_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/workspace_ros build --build-base /home/aliomac/garp-test/build/workspace_ros/build install --record /home/aliomac/garp-test/build/workspace_ros/install.log --single-version-externally-managed install_data
