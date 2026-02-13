@@ -263,6 +263,11 @@ class KamikazeControl(Node):
         self.kamikaze_active = False
         self.latest_image = None
         
+        # Tracking state
+        self.target_locked = False
+        self.lock_start_time = None
+        self.attack_countdown = 3.0  # 3 saniye countdown
+        
         # QoS (Görüntü aktarımı için Best Effort şart)
         sensor_qos = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT, durability=DurabilityPolicy.VOLATILE, depth=10)
         
@@ -318,7 +323,13 @@ class KamikazeControl(Node):
                             center_y = (y1 + y2) / 2 / height
                             red_buoy = (center_x, center_y, area)
         
-        if red_buoy:
+        # Hedef tespit edildi mi?
+        if red_buoy and red_buoy[2] > 1500:  # Minimum alan threshold
+            if not self.target_locked:
+                self.target_locked = True
+                self.lock_start_time = self.get_clock().now().nanoseconds / 1e9
+            
+            # Publish target
             target_msg = Point()
             target_msg.x = red_buoy[0]
             target_msg.y = red_buoy[1]
@@ -326,9 +337,85 @@ class KamikazeControl(Node):
             self.target_pub.publish(target_msg)
             
             cx, cy = int(red_buoy[0] * width), int(red_buoy[1] * height)
-            cv2.line(frame, (cx-20, cy), (cx+20, cy), (0,0,255), 2)
-            cv2.line(frame, (cx, cy-20), (cx, cy+20), (0,0,255), 2)
-            cv2.putText(frame, f"TARGET {red_buoy[2]:.0f}", (cx+10, cy), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 2)
+            
+            # Countdown hesapla
+            current_time = self.get_clock().now().nanoseconds / 1e9
+            elapsed = current_time - self.lock_start_time
+            remaining = max(0, self.attack_countdown - elapsed)
+            
+            # ═══════════════════════════════════════════════════════
+            # GÖRSEL EFEKTLER
+            # ═══════════════════════════════════════════════════════
+            
+            # 1. Hedef işaretleyici (crosshair)
+            crosshair_size = 30
+            crosshair_color = (0, 0, 255)
+            cv2.line(frame, (cx - crosshair_size, cy), (cx + crosshair_size, cy), crosshair_color, 3)
+            cv2.line(frame, (cx, cy - crosshair_size), (cx, cy + crosshair_size), crosshair_color, 3)
+            cv2.circle(frame, (cx, cy), 40, crosshair_color, 2)
+            
+            # 2. Merkez noktası (ekran merkezi)
+            center_x_screen = width // 2
+            center_y_screen = height // 2
+            
+            # 3. Hizalama çizgisi (merkez → hedef)
+            cv2.line(frame, (center_x_screen, center_y_screen), (cx, cy), (0, 255, 255), 2)
+            
+            # 4. Merkez işareti
+            cv2.circle(frame, (center_x_screen, center_y_screen), 10, (0, 255, 0), 2)
+            cv2.line(frame, (center_x_screen - 15, center_y_screen), (center_x_screen + 15, center_y_screen), (0, 255, 0), 2)
+            cv2.line(frame, (center_x_screen, center_y_screen - 15), (center_x_screen, center_y_screen + 15), (0, 255, 0), 2)
+            
+            # 5. Hizalama durumu
+            alignment_threshold = 50  # piksel
+            distance_to_center = ((cx - center_x_screen)**2 + (cy - center_y_screen)**2)**0.5
+            
+            if distance_to_center < alignment_threshold:
+                alignment_text = "HİZALANDI ✓"
+                alignment_color = (0, 255, 0)
+            else:
+                alignment_text = "HİZALANIYOR..."
+                alignment_color = (0, 165, 255)
+            
+            # 6. Üst bilgi paneli (siyah arka plan)
+            overlay = frame.copy()
+            cv2.rectangle(overlay, (0, 0), (width, 120), (0, 0, 0), -1)
+            cv2.addWeighted(overlay, 0.6, frame, 0.4, 0, frame)
+            
+            # 7. Hizalama yazısı (büyük)
+            cv2.putText(frame, alignment_text, (20, 50), 
+                       cv2.FONT_HERSHEY_BOLD, 1.5, alignment_color, 3)
+            
+            # 8. Hedef bilgisi
+            cv2.putText(frame, f"Hedef Alan: {red_buoy[2]:.0f} px²", (20, 85), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+            
+            # 9. Countdown veya SALDIRI!
+            if remaining > 0:
+                countdown_text = f"SALDIRI: {remaining:.1f}s"
+                countdown_color = (0, 255, 255)
+            else:
+                countdown_text = "SALDIRI!"
+                countdown_color = (0, 0, 255)
+                # Yanıp sönen efekt
+                if int(elapsed * 5) % 2 == 0:
+                    countdown_color = (255, 255, 255)
+            
+            cv2.putText(frame, countdown_text, (width - 250, 50), 
+                       cv2.FONT_HERSHEY_BOLD, 1.2, countdown_color, 3)
+            
+            # 10. Mesafe göstergesi
+            cv2.putText(frame, f"Sapma: {distance_to_center:.0f}px", (width - 250, 85), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+            
+        else:
+            # Hedef yok
+            self.target_locked = False
+            self.lock_start_time = None
+            
+            # Arama modu
+            cv2.putText(frame, "HEDEF ARANIYOR...", (20, 50), 
+                       cv2.FONT_HERSHEY_BOLD, 1.5, (0, 255, 255), 3)
 
         cv2.imshow('Kamikaze Vision', frame)
         cv2.waitKey(1)

@@ -26,10 +26,10 @@ class TeknofestGPSMission(Node):
         self.declare_parameter('max_speed', 2.0)        # Maksimum hız
         self.declare_parameter('waypoint_tolerance', 1.0) # Hedefe ulaşma toleransı (2.0 → 1.0 hassasiyet için)
         
-        # PID Katsayıları (Maksimum düz çıkış için ultra-smooth)
-        self.kp_steering = 1.8   # Proportional gain (2.2 → 1.8, çok yumuşak)
-        self.ki_steering = 0.02  # Integral gain (0.03 → 0.02, minimum oscillation)
-        self.kd_steering = 4.0   # Derivative gain (3.2 → 4.0, ultra damping)
+        # PID Katsayıları (Hızlı tekne için optimize)
+        self.kp_steering = 2.5   # Proportional gain (1.8 → 2.5, hızlı tepki)
+        self.ki_steering = 0.02  # Integral gain (minimum oscillation)
+        self.kd_steering = 5.0   # Derivative gain (4.0 → 5.0, yüksek hızda damping)
         
         # Pivot Turn ve Approach Parametreleri
         self.pivot_threshold = 1.57      # 90 derece (radyan) - Yerinde dönüş
@@ -191,10 +191,10 @@ class TeknofestGPSMission(Node):
     def get_lidar_steering(self):
         """
         Lidar ile en iyi boşluğu (gap) bulur.
-        Returns: (angle, gap_width, closest_obstacle_dist) veya None
+        Returns: (angle, gap_width, closest_obstacle_dist) veya (None, None, 3.5)
         """
         if self.latest_scan is None: 
-            return None, None, None
+            return None, None, 3.5  # Güvenli varsayılan
             
         ranges = np.array(self.latest_scan.ranges)
         ranges[np.isinf(ranges)] = 3.5
@@ -229,7 +229,7 @@ class TeknofestGPSMission(Node):
         ends = np.where(np.diff(padded.astype(int)) == -1)[0]
         
         if len(starts) == 0:
-            return None, None, closest_obstacle
+            return None, None, closest_obstacle  # Güvenli varsayılan
         
         # En geniş boşluğu bul
         best_idx = np.argmax(ends - starts)
@@ -244,7 +244,7 @@ class TeknofestGPSMission(Node):
         min_safe_gap_deg = 30.0
         if gap_width_deg < min_safe_gap_deg:
             # Çok dar, geçilemez
-            return None, gap_width_deg, closest_obstacle
+            return None, gap_width_deg, closest_obstacle  # Güvenli varsayılan
         
         # Boşluğun merkezi
         center = (gap_start + gap_end) / 2
@@ -513,20 +513,20 @@ class TeknofestGPSMission(Node):
                 parkur2_target = self.waypoints_xy[4]  # WP5
                 gps_heading_err, target_dist = self.get_heading_error(parkur2_target)
                 
-                # Hedefe ulaşıldı mı?
-                # NOT: Minimum 10m mesafe kat edilmeden tamamlanma kontrolü yapma
-                # (Başlangıçta WP5'e yakın olabilir)
+                # Parkur 2 başlangıç mesafesini kaydet (ilk kez)
                 if not hasattr(self, 'parkur2_started'):
                     self.parkur2_started = False
-                    self.parkur2_max_dist = 0.0
+                    self.parkur2_start_dist = target_dist  # İLK mesafeyi kaydet
                 
-                # Maksimum mesafeyi takip et
-                if target_dist > self.parkur2_max_dist:
-                    self.parkur2_max_dist = target_dist
+                # Kat edilen mesafe = Başlangıç mesafesi - Şimdiki mesafe
+                distance_traveled = self.parkur2_start_dist - target_dist
                 
                 # En az 10m mesafe kat edilmişse parkur başlamış say
-                if self.parkur2_max_dist > 10.0:
+                if distance_traveled > 10.0:
                     self.parkur2_started = True
+                    self.get_logger().info(
+                        f"🚩 PARKUR 2 AKTIF - Kat edilen: {distance_traveled:.1f}m, Kalan: {target_dist:.1f}m"
+                    )
                 
                 # Sadece parkur başlamışsa ve hedefe yakınsak tamamla
                 if self.parkur2_started and target_dist < 2.0:  # 2m tolerance
@@ -568,6 +568,10 @@ class TeknofestGPSMission(Node):
             
             # DURUM 2: HİBRİT KONTROL - GPS + Lidar
             abs_gap_angle = abs(gap_angle)
+            
+            # closest_obstacle güvenlik kontrolü
+            if closest_obstacle is None:
+                closest_obstacle = 3.5  # Güvenli varsayılan
             
             # GPS heading varsa, Lidar ile birleştir
             if gps_heading_err is not None:
@@ -660,13 +664,26 @@ class TeknofestGPSMission(Node):
 
         self.pub_cmd.publish(cmd)
 
+    def destroy_node(self):
+        """Node kapatılırken tekneyi durdur"""
+        try:
+            # Sıfır hız komutu gönder
+            stop_cmd = Twist()
+            stop_cmd.linear.x = 0.0
+            stop_cmd.angular.z = 0.0
+            self.pub_cmd.publish(stop_cmd)
+            self.get_logger().info("⛔ NAVIGASYON DURDURULDU - Tekne durduruldu")
+        except:
+            pass
+        super().destroy_node()
+
 def main(args=None):
     rclpy.init(args=args)
     node = TeknofestGPSMission()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        pass
+        node.get_logger().info("\n🛑 Ctrl+C algılandı - Kapatılıyor...")
     finally:
         node.destroy_node()
         rclpy.shutdown()
