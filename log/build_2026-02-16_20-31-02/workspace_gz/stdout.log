@@ -1,0 +1,62 @@
+[35m[1mConsolidate compiler generated dependencies of target Waves[0m
+[35m[1mConsolidate compiler generated dependencies of target ScoringPlugin[0m
+[  1%] [32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o[0m
+[  3%] [32mBuilding CXX object CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o[0m
+[  5%] [32m[1mLinking CXX shared library libWaves.so[0m
+[  5%] Built target Waves
+[  7%] [32m[1mLinking CXX shared library libScoringPlugin.so[0m
+[  7%] Built target ScoringPlugin
+[35m[1mConsolidate compiler generated dependencies of target PolyhedraBuoyancyDrag[0m
+[35m[1mConsolidate compiler generated dependencies of target WaveVisual[0m
+[35m[1mConsolidate compiler generated dependencies of target Surface[0m
+[35m[1mConsolidate compiler generated dependencies of target USVWind[0m
+[35m[1mConsolidate compiler generated dependencies of target StationkeepingScoringPlugin[0m
+[35m[1mConsolidate compiler generated dependencies of target SimpleHydrodynamics[0m
+[35m[1mConsolidate compiler generated dependencies of target AcousticPerceptionScoringPlugin[0m
+[35m[1mConsolidate compiler generated dependencies of target WayfindingScoringPlugin[0m
+[  9%] [32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o[0m
+[ 13%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o[0m
+[ 13%] [32mBuilding CXX object CMakeFiles/Surface.dir/plugins/Surface.cc.o[0m
+[ 15%] [32mBuilding CXX object CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o[0m
+[ 18%] [32mBuilding CXX object CMakeFiles/USVWind.dir/plugins/USVWind.cc.o[0m
+[ 20%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/AcousticPerceptionScoringPlugin.cc.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o[0m
+[ 24%] [32m[1mLinking CXX shared library libSimpleHydrodynamics.so[0m
+[ 24%] Built target SimpleHydrodynamics
+[ 26%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedronVolume.cc.o[0m
+[ 32%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[ 33%] [32m[1mLinking CXX shared library libSurface.so[0m
+[ 33%] Built target Surface
+[ 35%] [32m[1mLinking CXX shared library libUSVWind.so[0m
+[ 37%] [32m[1mLinking CXX shared library libWaveVisual.so[0m
+[ 37%] Built target USVWind
+[ 37%] Built target WaveVisual
+[ 39%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/ShapeVolume.cc.o[0m
+[ 41%] [32m[1mLinking CXX shared library libPolyhedraBuoyancyDrag.so[0m
+[ 43%] [32m[1mLinking CXX shared library libStationkeepingScoringPlugin.so[0m
+[ 43%] Built target PolyhedraBuoyancyDrag
+[ 45%] [32m[1mLinking CXX shared library libAcousticPerceptionScoringPlugin.so[0m
+[ 47%] [32m[1mLinking CXX shared library libWayfindingScoringPlugin.so[0m
+[ 47%] Built target StationkeepingScoringPlugin
+[ 47%] Built target AcousticPerceptionScoringPlugin
+[ 47%] Built target WayfindingScoringPlugin
+[ 49%] [32mBuilding CXX object CMakeFiles/PerceptionScoringPlugin.dir/plugins/PerceptionScoringPlugin.cc.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/PerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[ 52%] [32mBuilding CXX object CMakeFiles/PlacardPlugin.dir/plugins/PlacardPlugin.cc.o[0m
+[ 54%] [32mBuilding CXX object CMakeFiles/GymkhanaScoringPlugin.dir/plugins/GymkhanaScoringPlugin.cc.o[0m
+[ 56%] [32mBuilding CXX object CMakeFiles/NavigationScoringPlugin.dir/plugins/NavigationScoringPlugin.cc.o[0m
+[ 58%] [32mBuilding CXX object CMakeFiles/LightBuoyPlugin.dir/plugins/LightBuoyPlugin.cc.o[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/BallShooterPlugin.dir/plugins/BallShooterPlugin.cc.o[0m
+[ 62%] [32m[1mLinking CXX shared library libPerceptionScoringPlugin.so[0m
+[ 62%] Built target PerceptionScoringPlugin
+[ 64%] [32mBuilding CXX object CMakeFiles/GymkhanaScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/NavigationScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[ 67%] [32m[1mLinking CXX shared library libBallShooterPlugin.so[0m
+[ 67%] Built target BallShooterPlugin
+[ 69%] [32m[1mLinking CXX shared library libGymkhanaScoringPlugin.so[0m
+[ 69%] Built target GymkhanaScoringPlugin
+[ 71%] [32m[1mLinking CXX shared library libNavigationScoringPlugin.so[0m
+[ 71%] Built target NavigationScoringPlugin

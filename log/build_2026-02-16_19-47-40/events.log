@@ -1,0 +1,5 @@
+[0.000000] (-) TimerEvent: {}
+[0.000352] (-) JobUnselected: {'identifier': 'vrx_gz'}
+[0.000433] (-) JobUnselected: {'identifier': 'workspace_nav'}
+[0.000452] (-) JobUnselected: {'identifier': 'workspace_ros'}
+[0.000560] (-) EventReactorShutdown: {}

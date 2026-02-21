@@ -1,0 +1,142 @@
+[0.014s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[0.069s] [  7%] Built target ScoringPlugin
+[0.069s] [  7%] Built target Waves
+[0.085s] [35m[1mConsolidate compiler generated dependencies of target WaveVisual[0m
+[0.106s] [ 18%] Built target PolyhedraBuoyancyDrag
+[0.106s] [ 18%] Built target SimpleHydrodynamics
+[0.106s] [ 22%] Built target Surface
+[0.106s] [ 28%] Built target AcousticPerceptionScoringPlugin
+[0.108s] [ 32%] Built target USVWind
+[0.108s] [ 37%] Built target WayfindingScoringPlugin
+[0.114s] [ 43%] Built target StationkeepingScoringPlugin
+[0.122s] [ 45%] [32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o[0m
+[0.154s] [ 49%] Built target AcousticPingerPlugin
+[0.154s] [ 54%] Built target AcousticTrackingScoringPlugin
+[0.156s] [ 58%] Built target LightBuoyPlugin
+[0.157s] [ 62%] Built target BallShooterPlugin
+[0.175s] [ 67%] Built target NavigationScoringPlugin
+[0.179s] [ 73%] Built target GymkhanaScoringPlugin
+[0.186s] [ 79%] Built target PerceptionScoringPlugin
+[0.203s] [ 83%] Built target PublisherPlugin
+[0.210s] [ 88%] Built target ScanDockScoringPlugin
+[0.211s] [ 92%] Built target PlacardPlugin
+[0.216s] [ 98%] Built target WildlifeScoringPlugin
+[17.177s] [100%] [32m[1mLinking CXX shared library libWaveVisual.so[0m
+[19.046s] [100%] Built target WaveVisual
+[19.096s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[19.137s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz
+[19.164s] -- Install configuration: "Release"
+[19.165s] -- Execute custom install script
+[19.168s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaves.so
+[19.169s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScoringPlugin.so
+[19.169s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSimpleHydrodynamics.so
+[19.169s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPolyhedraBuoyancyDrag.so
+[19.170s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSurface.so
+[19.174s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libUSVWind.so
+[19.174s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaveVisual.so
+[19.174s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libStationkeepingScoringPlugin.so
+[19.175s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWayfindingScoringPlugin.so
+[19.175s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPerceptionScoringPlugin.so
+[19.175s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticTrackingScoringPlugin.so
+[19.175s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPingerPlugin.so
+[19.175s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libBallShooterPlugin.so
+[19.176s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libLightBuoyPlugin.so
+[19.177s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libNavigationScoringPlugin.so
+[19.177s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libGymkhanaScoringPlugin.so
+[19.177s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPerceptionScoringPlugin.so
+[19.177s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPlacardPlugin.so
+[19.177s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPublisherPlugin.so
+[19.177s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScanDockScoringPlugin.so
+[19.178s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWildlifeScoringPlugin.so
+[19.178s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/launch/simulation.launch.py
+[19.179s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png
+[19.179s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png
+[19.179s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/meshes/marker_buoy.dae
+[19.179s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.config
+[19.180s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.sdf
+[19.180s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png
+[19.180s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png
+[19.180s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/meshes/marker_buoy.dae
+[19.181s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.config
+[19.181s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.sdf
+[19.181s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png
+[19.181s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png
+[19.183s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/meshes/marker_buoy.dae
+[19.183s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.config
+[19.183s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.sdf
+[19.184s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png
+[19.185s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png
+[19.185s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/meshes/marker_buoy.dae
+[19.185s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.config
+[19.185s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.sdf
+[19.185s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png
+[19.186s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png
+[19.186s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae
+[19.186s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.config
+[19.187s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.sdf
+[19.187s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png
+[19.187s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png
+[19.187s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/meshes/round_buoy.dae
+[19.187s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.config
+[19.188s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.sdf
+[19.189s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_albedo.png
+[19.189s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_metalness.png
+[19.190s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_normal.png
+[19.190s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_roughness.png
+[19.190s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_albedo.png
+[19.190s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_roughness.png
+[19.190s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/housing.dae
+[19.190s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/mount.dae
+[19.191s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/prop.dae
+[19.191s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/roboboat.dae
+[19.191s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera.png
+[19.192s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_albedo.png
+[19.192s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_metalness.png
+[19.192s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_normal.png
+[19.192s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_roughness.png
+[19.193s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera.dae
+[19.193s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera_albedo.png
+[19.193s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/materials/textures/post_albedo.png
+[19.193s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post.dae
+[19.193s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post_albedo.jpg
+[19.193s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png
+[19.194s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png
+[19.195s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/meshes/drybox.dae
+[19.196s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/materials/textures/gps_albedo.png
+[19.197s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps.dae
+[19.197s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps_albedo.png
+[19.198s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar.png
+[19.198s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png
+[19.198s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png
+[19.198s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_normal.png
+[19.198s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png
+[19.198s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar.dae
+[19.198s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar_albedo.png
+[19.199s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png
+[19.199s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post.dae
+[19.199s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg
+[19.199s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_fs_330.glsl
+[19.200s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_vs_330.glsl
+[19.200s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/skybox_lowres.dds
+[19.200s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/wave_normals.dds
+[19.200s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/meshes/waterlow.dae
+[19.201s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.config
+[19.201s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.sdf
+[19.201s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/worlds/world.sdf
+[19.201s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/description/roboboat/roboboat.xacro
+[19.202s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz
+[19.203s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz
+[19.203s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh
+[19.203s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv
+[19.203s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.sh
+[19.203s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.dsv
+[19.203s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.bash
+[19.204s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.sh
+[19.204s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.zsh
+[19.204s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.dsv
+[19.204s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.dsv
+[19.240s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz
+[19.241s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake
+[19.241s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake
+[19.241s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.xml
+[19.249s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz

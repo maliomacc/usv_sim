@@ -1,0 +1,241 @@
+[0.010s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/usv_sim/workspace_gz -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz
+[0.065s] -- The C compiler identification is GNU 11.4.0
+[0.123s] -- The CXX compiler identification is GNU 11.4.0
+[0.130s] -- Detecting C compiler ABI info
+[0.196s] -- Detecting C compiler ABI info - done
+[0.204s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.205s] -- Detecting C compile features
+[0.205s] -- Detecting C compile features - done
+[0.208s] -- Detecting CXX compiler ABI info
+[0.285s] -- Detecting CXX compiler ABI info - done
+[0.292s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.293s] -- Detecting CXX compile features
+[0.293s] -- Detecting CXX compile features - done
+[0.296s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.459s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.520s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.559s] -- Looking for ignition-gazebo6 -- found version 6.17.1
+[0.566s] -- Searching for dependencies of ignition-gazebo6
+[0.568s] -- Looking for sdformat12 -- found version 12.9.0
+[0.569s] -- Searching for dependencies of sdformat12
+[0.573s] -- Checking for module 'tinyxml2'
+[0.582s] --   Found tinyxml2, version 9.0.0
+[0.612s] -- Looking for ignition-math6 -- found version 6.15.1
+[0.613s] -- Searching for dependencies of ignition-math6
+[0.616s] -- Looking for ignition-utils1 -- found version 1.5.1
+[0.616s] -- Searching for dependencies of ignition-utils1
+[0.620s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[0.620s] -- Searching for dependencies of ignition-plugin1
+[0.621s] -- Searching for <ignition-plugin1> component [loader]
+[0.623s] -- Looking for ignition-plugin1-loader -- found version 1.4.0
+[0.624s] -- Searching for dependencies of ignition-plugin1-loader
+[0.624s] -- Searching for <ignition-plugin1> component [register]
+[0.627s] -- Looking for ignition-plugin1-register -- found version 1.4.0
+[0.627s] -- Searching for dependencies of ignition-plugin1-register
+[0.632s] -- Looking for ignition-transport11 -- found version 11.4.2
+[0.632s] -- Searching for dependencies of ignition-transport11
+[0.793s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[0.805s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[0.809s] -- Checking for module 'libzmq >= 4'
+[0.821s] --   Found libzmq , version 4.3.4
+[0.856s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[0.862s] -- Checking for module 'uuid'
+[0.872s] --   Found uuid, version 2.37.2
+[0.897s] -- Found UUID: TRUE  
+[0.898s] -- Looking for ignition-utils1 -- found version 1.5.1
+[0.898s] -- Searching for dependencies of ignition-utils1
+[0.898s] -- Searching for <ignition-utils1> component [cli]
+[0.901s] -- Looking for ignition-utils1-cli -- found version 1.5.1
+[0.902s] -- Searching for dependencies of ignition-utils1-cli
+[0.905s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[0.905s] -- Searching for dependencies of ignition-msgs8
+[0.923s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") 
+[0.923s] -- Looking for ignition-math6 -- found version 6.15.1
+[0.936s] -- Searching for <ignition-transport11> component [log]
+[0.939s] -- Looking for ignition-transport11-log -- found version 11.4.2
+[0.939s] -- Searching for dependencies of ignition-transport11-log
+[0.940s] -- Searching for <ignition-transport11> component [parameters]
+[0.943s] -- Looking for ignition-transport11-parameters -- found version 11.4.2
+[0.943s] -- Searching for dependencies of ignition-transport11-parameters
+[0.944s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[0.947s] -- Looking for ignition-common4 -- found version 4.8.0
+[0.947s] -- Searching for dependencies of ignition-common4
+[0.948s] -- Looking for dlfcn.h - found
+[0.949s] -- Looking for libdl - found
+[0.950s] -- Found DL: TRUE  
+[0.958s] -- Searching for <ignition-common4> component [profiler]
+[0.961s] -- Looking for ignition-common4-profiler -- found version 4.8.0
+[0.961s] -- Searching for dependencies of ignition-common4-profiler
+[0.962s] -- Searching for <ignition-common4> component [events]
+[0.964s] -- Looking for ignition-common4-events -- found version 4.8.0
+[0.965s] -- Searching for dependencies of ignition-common4-events
+[0.965s] -- Looking for ignition-math6 -- found version 6.15.1
+[0.966s] -- Searching for <ignition-common4> component [av]
+[0.968s] -- Looking for ignition-common4-av -- found version 4.8.0
+[0.969s] -- Searching for dependencies of ignition-common4-av
+[0.973s] -- Checking for module 'libswscale'
+[0.984s] --   Found libswscale, version 5.9.100
+[1.011s] -- Found SWSCALE: TRUE  
+[1.015s] -- Checking for module 'libavdevice >= 56.4.100'
+[1.027s] --   Found libavdevice , version 58.13.100
+[1.060s] -- Found AVDEVICE: TRUE (Required is at least version "56.4.100") 
+[1.065s] -- Checking for module 'libavformat'
+[1.076s] --   Found libavformat, version 58.76.100
+[1.106s] -- Found AVFORMAT: TRUE  
+[1.112s] -- Checking for module 'libavcodec'
+[1.122s] --   Found libavcodec, version 58.134.100
+[1.155s] -- Found AVCODEC: TRUE  
+[1.160s] -- Checking for module 'libavutil'
+[1.170s] --   Found libavutil, version 56.70.100
+[1.197s] -- Found AVUTIL: TRUE  
+[1.200s] -- Looking for ignition-fuel_tools7 -- found version 7.3.1
+[1.201s] -- Searching for dependencies of ignition-fuel_tools7
+[1.273s] -- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  
+[1.282s] -- Checking for module 'jsoncpp'
+[1.292s] --   Found jsoncpp, version 1.9.5
+[1.322s] -- Found JSONCPP: TRUE  
+[1.328s] -- Checking for module 'libzip'
+[1.341s] --   Found libzip, version 1.7.3
+[1.369s] -- Found ZIP: TRUE  
+[1.369s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.370s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.370s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[1.374s] -- Looking for ignition-gui6 -- found version 6.9.0
+[1.374s] -- Searching for dependencies of ignition-gui6
+[1.392s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[1.400s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.400s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.401s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[1.401s] -- Looking for ignition-transport11 -- found version 11.4.2
+[1.404s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[1.405s] -- Searching for dependencies of ignition-rendering6
+[1.405s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.406s] -- Searching for dependencies of ignition-math6
+[1.406s] -- Searching for <ignition-math6> component [eigen3]
+[1.409s] -- Looking for ignition-math6-eigen3 -- found version 6.15.1
+[1.409s] -- Searching for dependencies of ignition-math6-eigen3
+[1.417s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.417s] -- Searching for dependencies of ignition-common4
+[1.418s] -- Looking for dlfcn.h - found
+[1.418s] -- Looking for libdl - found
+[1.426s] -- Searching for <ignition-common4> component [graphics]
+[1.429s] -- Looking for ignition-common4-graphics -- found version 4.8.0
+[1.430s] -- Searching for dependencies of ignition-common4-graphics
+[1.430s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.431s] -- Looking for ignition-utils1 -- found version 1.5.1
+[1.431s] -- Searching for <ignition-common4> component [events]
+[1.432s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[1.433s] -- Searching for dependencies of ignition-plugin1
+[1.433s] -- Searching for <ignition-plugin1> component [all]
+[1.437s] -- Looking for all libraries of ignition-plugin1 -- found version 1.4.0
+[1.437s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[1.439s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[1.461s] -- Looking for ignition-physics5 -- found version 5.4.0
+[1.461s] -- Searching for dependencies of ignition-physics5
+[1.462s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.462s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[1.462s] -- Looking for ignition-utils1 -- found version 1.5.1
+[1.463s] -- Searching for <ignition-physics5> component [heightmap]
+[1.466s] -- Looking for ignition-physics5-heightmap -- found version 5.4.0
+[1.466s] -- Searching for dependencies of ignition-physics5-heightmap
+[1.466s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.467s] -- Searching for <ignition-physics5> component [mesh]
+[1.469s] -- Looking for ignition-physics5-mesh -- found version 5.4.0
+[1.470s] -- Searching for dependencies of ignition-physics5-mesh
+[1.470s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.470s] -- Searching for <ignition-physics5> component [sdf]
+[1.473s] -- Looking for ignition-physics5-sdf -- found version 5.4.0
+[1.473s] -- Searching for dependencies of ignition-physics5-sdf
+[1.474s] -- Looking for sdformat12 -- found version 12.9.0
+[1.477s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.478s] -- Searching for dependencies of ignition-sensors6
+[1.497s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.497s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.498s] -- Looking for ignition-transport11 -- found version 11.4.2
+[1.498s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[1.499s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[1.499s] -- Looking for sdformat12 -- found version 12.9.0
+[1.500s] -- Searching for <ignition-sensors6> component [air_pressure]
+[1.502s] -- Looking for ignition-sensors6-air_pressure -- found version 6.9.0
+[1.503s] -- Searching for dependencies of ignition-sensors6-air_pressure
+[1.503s] -- Searching for <ignition-sensors6> component [altimeter]
+[1.506s] -- Looking for ignition-sensors6-altimeter -- found version 6.9.0
+[1.507s] -- Searching for dependencies of ignition-sensors6-altimeter
+[1.507s] -- Searching for <ignition-sensors6> component [imu]
+[1.510s] -- Looking for ignition-sensors6-imu -- found version 6.9.0
+[1.510s] -- Searching for dependencies of ignition-sensors6-imu
+[1.511s] -- Searching for <ignition-sensors6> component [force_torque]
+[1.513s] -- Looking for ignition-sensors6-force_torque -- found version 6.9.0
+[1.513s] -- Searching for dependencies of ignition-sensors6-force_torque
+[1.514s] -- Searching for <ignition-sensors6> component [logical_camera]
+[1.516s] -- Looking for ignition-sensors6-logical_camera -- found version 6.9.0
+[1.517s] -- Searching for dependencies of ignition-sensors6-logical_camera
+[1.517s] -- Searching for <ignition-sensors6> component [magnetometer]
+[1.520s] -- Looking for ignition-sensors6-magnetometer -- found version 6.9.0
+[1.521s] -- Searching for dependencies of ignition-sensors6-magnetometer
+[1.521s] -- Searching for <ignition-sensors6> component [navsat]
+[1.524s] -- Looking for ignition-sensors6-navsat -- found version 6.9.0
+[1.524s] -- Searching for dependencies of ignition-sensors6-navsat
+[1.525s] -- Searching for <ignition-sensors6> component [rendering]
+[1.528s] -- Looking for ignition-sensors6-rendering -- found version 6.9.0
+[1.528s] -- Searching for dependencies of ignition-sensors6-rendering
+[1.529s] -- Searching for <ignition-sensors6> component [lidar]
+[1.533s] -- Looking for ignition-sensors6-lidar -- found version 6.9.0
+[1.533s] -- Searching for dependencies of ignition-sensors6-lidar
+[1.534s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.534s] -- Searching for <ignition-sensors6> component [gpu_lidar]
+[1.537s] -- Looking for ignition-sensors6-gpu_lidar -- found version 6.9.0
+[1.537s] -- Searching for dependencies of ignition-sensors6-gpu_lidar
+[1.538s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.538s] -- Searching for <ignition-sensors6> component [camera]
+[1.541s] -- Looking for ignition-sensors6-camera -- found version 6.9.0
+[1.542s] -- Searching for dependencies of ignition-sensors6-camera
+[1.542s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.542s] -- Searching for <ignition-sensors6> component [boundingbox_camera]
+[1.545s] -- Looking for ignition-sensors6-boundingbox_camera -- found version 6.9.0
+[1.546s] -- Searching for dependencies of ignition-sensors6-boundingbox_camera
+[1.546s] -- Searching for <ignition-sensors6> component [segmentation_camera]
+[1.548s] -- Looking for ignition-sensors6-segmentation_camera -- found version 6.9.0
+[1.549s] -- Searching for dependencies of ignition-sensors6-segmentation_camera
+[1.549s] -- Searching for <ignition-sensors6> component [depth_camera]
+[1.552s] -- Looking for ignition-sensors6-depth_camera -- found version 6.9.0
+[1.552s] -- Searching for dependencies of ignition-sensors6-depth_camera
+[1.553s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.553s] -- Searching for <ignition-sensors6> component [rgbd_camera]
+[1.556s] -- Looking for ignition-sensors6-rgbd_camera -- found version 6.9.0
+[1.556s] -- Searching for dependencies of ignition-sensors6-rgbd_camera
+[1.556s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.557s] -- Searching for <ignition-sensors6> component [thermal_camera]
+[1.560s] -- Looking for ignition-sensors6-thermal_camera -- found version 6.9.0
+[1.560s] -- Searching for dependencies of ignition-sensors6-thermal_camera
+[1.560s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.562s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[1.562s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.565s] -- Looking for ignition-utils1 -- found version 1.5.1
+[1.584s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.584s] -- Looking for ignition-fuel_tools7 -- found version 7.3.1
+[1.584s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.585s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[1.585s] -- Looking for ignition-transport11 -- found version 11.4.2
+[1.585s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[1.586s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[1.586s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[1.587s] -- Looking for ignition-utils1 -- found version 1.5.1
+[1.587s] -- Looking for sdformat12 -- found version 12.9.0
+[1.603s] -- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+[1.660s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.668s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.681s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.700s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.722s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.757s] [31mCMake Error at /opt/ros/humble/share/ament_cmake_core/cmake/core/assert_file_exists.cmake:20 (message):
+[1.757s]   ament_environment_hooks() the passed hook file
+[1.758s]   'hooks/resource_paths.dsv.in' does not exist
+[1.758s] Call Stack (most recent call first):
+[1.758s]   /opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/ament_environment_hooks.cmake:35 (assert_file_exists)
+[1.758s]   CMakeLists.txt:45 (ament_environment_hooks)
+[1.758s] 
+[1.758s] [0m
+[1.758s] -- Configuring incomplete, errors occurred!
+[1.758s] See also "/home/aliomacc/sti_usv/build/workspace_gz/CMakeFiles/CMakeOutput.log".
+[1.768s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/usv_sim/workspace_gz -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz

@@ -1,0 +1,1 @@
+/home/aliomacc/sti_usv/build/workspace_nav/scripts/final_parkour_navigator.py

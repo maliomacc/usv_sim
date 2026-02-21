@@ -1,0 +1,13 @@
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:[m[K In member function ‘[01m[Kvoid vrx::WavefieldPrivate::Recalculate()[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:292:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kgzwarn[m[K’ was not declared in this scope; did you mean ‘[01m[Kignwarn[m[K’?
+  292 |     [01;31m[Kgzwarn[m[K << "Wavefield model specified as <" << this->model
+      |     [01;31m[K^~~~~~[m[K
+      |     [32m[Kignwarn[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:[m[K In member function ‘[01m[Kvoid vrx::Wavefield::DebugPrint() const[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:719:3:[m[K [01;31m[Kerror: [m[K‘[01m[Kgzmsg[m[K’ was not declared in this scope; did you mean ‘[01m[Kignmsg[m[K’?
+  719 |   [01;31m[Kgzmsg[m[K << "Input Parameters:" << std::endl;
+      |   [01;31m[K^~~~~[m[K
+      |   [32m[Kignmsg[m[K
+gmake[2]: *** [CMakeFiles/Waves.dir/build.make:76: CMakeFiles/Waves.dir/plugins/Wavefield.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:153: CMakeFiles/Waves.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

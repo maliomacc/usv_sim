@@ -1,0 +1,3 @@
+gmake[2]: *** [CMakeFiles/Waves.dir/build.make:76: CMakeFiles/Waves.dir/plugins/Wavefield.cc.o] Sistem kesmesi
+gmake[1]: *** [CMakeFiles/Makefile2:153: CMakeFiles/Waves.dir/all] Sistem kesmesi
+gmake: *** [Makefile:146: all] Sistem kesmesi

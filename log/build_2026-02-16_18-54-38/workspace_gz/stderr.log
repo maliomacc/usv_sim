@@ -1,0 +1,65 @@
+In file included from [01m[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22[m[K,
+                 from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/SimpleHydrodynamics.cc:23[m[K:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/SimpleHydrodynamics.cc:293:1:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[Knamespace[m[K’
+  293 | [01;31m[KIGNITION_ADD_PLUGIN[m[K(vrx::SimpleHydrodynamics, ignition::gazebo::System)
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22[m[K,
+                 from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:29[m[K:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:665:1:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[Knamespace[m[K’
+  665 | [01;31m[KIGNITION_ADD_PLUGIN[m[K(vrx::ScoringPlugin, ignition::gazebo::System)
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22[m[K,
+                 from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Surface.cc:24[m[K:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Surface.cc:317:1:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[Knamespace[m[K’
+  317 | [01;31m[KIGNITION_ADD_PLUGIN[m[K(vrx::Surface, ignition::gazebo::System)
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22[m[K,
+                 from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:29[m[K:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:301:1:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[Knamespace[m[K’
+  301 | [01;31m[KIGNITION_ADD_PLUGIN[m[K(vrx::WayfindingScoringPlugin, ignition::gazebo::System)
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22[m[K,
+                 from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedraBuoyancyDrag.cc:32[m[K:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedraBuoyancyDrag.cc:385:1:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[Knamespace[m[K’
+  385 | [01;31m[KIGNITION_ADD_PLUGIN[m[K(vrx::PolyhedraBuoyancyDrag, ignition::gazebo::System)
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/StationkeepingScoringPlugin.cc:300:66:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion at end of input
+  300 |               vrx::StationkeepingScoringPlugin::ISystemPreUpdate)
+      |                                                                  [01;31m[K^[m[K
+gmake[2]: *** [CMakeFiles/SimpleHydrodynamics.dir/build.make:76: CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:257: CMakeFiles/SimpleHydrodynamics.dir/all] Error 2
+gmake[1]: *** Bitmemiş işler için bekliyor....
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:[m[K In member function ‘[01m[Kvoid vrx::WaveVisualPrivate::OnUpdate()[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:273:58:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kstd::add_pointer_t<unsigned int>[m[K’ {aka ‘[01m[Kunsigned int*[m[K’} to ‘[01m[Kconst uint64_t*[m[K’ {aka ‘[01m[Kconst long unsigned int*[m[K’} in initialization
+  273 |         const uint64_t *value = [01;31m[Kstd::get_if<unsigned int>(&variant)[m[K;
+      |                                 [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~[m[K
+      |                                                          [01;31m[K|[m[K
+      |                                                          [01;31m[Kstd::add_pointer_t<unsigned int> {aka unsigned int*}[m[K
+In file included from [01m[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22[m[K,
+                 from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:27[m[K:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:[m[K At global scope:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:449:1:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[Knamespace[m[K’
+  449 | [01;31m[KIGNITION_ADD_PLUGIN[m[K(WaveVisual, ignition::gazebo::System)
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/ScoringPlugin.dir/build.make:76: CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:179: CMakeFiles/ScoringPlugin.dir/all] Error 2
+In file included from [01m[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22[m[K,
+                 from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:6[m[K:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:365:1:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[Knamespace[m[K’
+  365 | [01;31m[KIGNITION_ADD_PLUGIN[m[K(vrx::USVWind, ignition::gazebo::System)
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/PolyhedraBuoyancyDrag.dir/build.make:76: CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:361: CMakeFiles/PolyhedraBuoyancyDrag.dir/all] Error 2
+gmake[2]: *** [CMakeFiles/Surface.dir/build.make:76: CMakeFiles/Surface.dir/plugins/Surface.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:283: CMakeFiles/Surface.dir/all] Error 2
+gmake[2]: *** [CMakeFiles/WayfindingScoringPlugin.dir/build.make:76: CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o] Error 1
+gmake[2]: *** Bitmemiş işler için bekliyor....
+gmake[2]: *** [CMakeFiles/StationkeepingScoringPlugin.dir/build.make:76: CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o] Error 1
+gmake[2]: *** Bitmemiş işler için bekliyor....
+gmake[2]: *** [CMakeFiles/WaveVisual.dir/build.make:76: CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:335: CMakeFiles/WaveVisual.dir/all] Error 2
+gmake[2]: *** [CMakeFiles/USVWind.dir/build.make:76: CMakeFiles/USVWind.dir/plugins/USVWind.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:309: CMakeFiles/USVWind.dir/all] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:205: CMakeFiles/StationkeepingScoringPlugin.dir/all] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:231: CMakeFiles/WayfindingScoringPlugin.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

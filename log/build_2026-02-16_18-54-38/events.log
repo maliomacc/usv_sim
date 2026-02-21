@@ -1,0 +1,649 @@
+[0.000000] (-) TimerEvent: {}
+[0.000579] (-) JobUnselected: {'identifier': 'workspace_nav'}
+[0.000655] (-) JobUnselected: {'identifier': 'workspace_ros'}
+[0.000680] (workspace_gz) JobQueued: {'identifier': 'workspace_gz', 'dependencies': OrderedDict()}
+[0.000701] (workspace_gz) JobStarted: {'identifier': 'workspace_gz'}
+[0.009012] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'cmake'}
+[0.009469] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aliomacc'), ('OLDPWD', '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1119'), ('SYSTEMD_EXEC_PID', '1535'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3448'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:12878'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1477,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1477'), ('INVOCATION_ID', '8bb2c71350dd440785a65a077b4f78af'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:32fde568-3ee8-49c9-8756-c8696b50bded'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[0.064958] (workspace_gz) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.099771] (-) TimerEvent: {}
+[0.121272] (workspace_gz) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.131348] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.199898] (-) TimerEvent: {}
+[0.200500] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.208353] (workspace_gz) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.208572] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.208929] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.211917] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.285063] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.292826] (workspace_gz) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.293074] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.293572] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.296274] (workspace_gz) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.299953] (-) TimerEvent: {}
+[0.400127] (-) TimerEvent: {}
+[0.447660] (workspace_gz) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.500212] (-) TimerEvent: {}
+[0.508472] (workspace_gz) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.545421] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-gazebo6 -- found version 6.17.1\n'}
+[0.552276] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-gazebo6\n'}
+[0.555414] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[0.555780] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of sdformat12\n'}
+[0.560300] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'tinyxml2'\n"}
+[0.569787] (workspace_gz) StdoutLine: {'line': b'--   Found tinyxml2, version 9.0.0\n'}
+[0.596410] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[0.596800] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6\n'}
+[0.599896] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[0.600288] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-utils1\n'}
+[0.600361] (-) TimerEvent: {}
+[0.604030] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[0.604408] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1\n'}
+[0.604793] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-plugin1> component [loader]\n'}
+[0.607782] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1-loader -- found version 1.4.0\n'}
+[0.608261] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1-loader\n'}
+[0.608651] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-plugin1> component [register]\n'}
+[0.611310] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1-register -- found version 1.4.0\n'}
+[0.611717] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1-register\n'}
+[0.614625] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[0.614965] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport11\n'}
+[0.700461] (-) TimerEvent: {}
+[0.782585] (workspace_gz) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") \n'}
+[0.795877] (workspace_gz) StdoutLine: {'line': b'-- Config-file not installed for ZeroMQ -- checking for pkg-config\n'}
+[0.800276] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libzmq >= 4'\n"}
+[0.800529] (-) TimerEvent: {}
+[0.814521] (workspace_gz) StdoutLine: {'line': b'--   Found libzmq , version 4.3.4\n'}
+[0.852524] (workspace_gz) StdoutLine: {'line': b'-- Found ZeroMQ: TRUE (Required is at least version "4") \n'}
+[0.860527] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'uuid'\n"}
+[0.872180] (workspace_gz) StdoutLine: {'line': b'--   Found uuid, version 2.37.2\n'}
+[0.899628] (workspace_gz) StdoutLine: {'line': b'-- Found UUID: TRUE  \n'}
+[0.900021] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[0.900496] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-utils1\n'}
+[0.900574] (-) TimerEvent: {}
+[0.900695] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-utils1> component [cli]\n'}
+[0.903426] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1-cli -- found version 1.5.1\n'}
+[0.903872] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-utils1-cli\n'}
+[0.907009] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[0.907476] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-msgs8\n'}
+[0.925909] (workspace_gz) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") \n'}
+[0.926743] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[0.940285] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-transport11> component [log]\n'}
+[0.943496] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11-log -- found version 11.4.2\n'}
+[0.943936] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport11-log\n'}
+[0.944440] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-transport11> component [parameters]\n'}
+[0.947275] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11-parameters -- found version 11.4.2\n'}
+[0.947736] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport11-parameters\n'}
+[0.948646] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[0.951597] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[0.951986] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4\n'}
+[0.952314] (workspace_gz) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[0.953278] (workspace_gz) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[0.954653] (workspace_gz) StdoutLine: {'line': b'-- Found DL: TRUE  \n'}
+[0.962727] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [profiler]\n'}
+[0.965518] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-profiler -- found version 4.8.0\n'}
+[0.965955] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-profiler\n'}
+[0.966404] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [events]\n'}
+[0.969189] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-events -- found version 4.8.0\n'}
+[0.969669] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-events\n'}
+[0.969961] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[0.970538] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [av]\n'}
+[0.973346] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-av -- found version 4.8.0\n'}
+[0.973827] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-av\n'}
+[0.978412] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libswscale'\n"}
+[0.990027] (workspace_gz) StdoutLine: {'line': b'--   Found libswscale, version 5.9.100\n'}
+[1.000703] (-) TimerEvent: {}
+[1.014347] (workspace_gz) StdoutLine: {'line': b'-- Found SWSCALE: TRUE  \n'}
+[1.018790] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavdevice >= 56.4.100'\n"}
+[1.031447] (workspace_gz) StdoutLine: {'line': b'--   Found libavdevice , version 58.13.100\n'}
+[1.067610] (workspace_gz) StdoutLine: {'line': b'-- Found AVDEVICE: TRUE (Required is at least version "56.4.100") \n'}
+[1.074360] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavformat'\n"}
+[1.086764] (workspace_gz) StdoutLine: {'line': b'--   Found libavformat, version 58.76.100\n'}
+[1.100807] (-) TimerEvent: {}
+[1.118558] (workspace_gz) StdoutLine: {'line': b'-- Found AVFORMAT: TRUE  \n'}
+[1.123644] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavcodec'\n"}
+[1.137926] (workspace_gz) StdoutLine: {'line': b'--   Found libavcodec, version 58.134.100\n'}
+[1.176971] (workspace_gz) StdoutLine: {'line': b'-- Found AVCODEC: TRUE  \n'}
+[1.182055] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavutil'\n"}
+[1.196073] (workspace_gz) StdoutLine: {'line': b'--   Found libavutil, version 56.70.100\n'}
+[1.200892] (-) TimerEvent: {}
+[1.223442] (workspace_gz) StdoutLine: {'line': b'-- Found AVUTIL: TRUE  \n'}
+[1.227474] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-fuel_tools7 -- found version 7.3.1\n'}
+[1.228152] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-fuel_tools7\n'}
+[1.297724] (workspace_gz) StdoutLine: {'line': b'-- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  \n'}
+[1.300961] (-) TimerEvent: {}
+[1.306159] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'jsoncpp'\n"}
+[1.319558] (workspace_gz) StdoutLine: {'line': b'--   Found jsoncpp, version 1.9.5\n'}
+[1.364636] (workspace_gz) StdoutLine: {'line': b'-- Found JSONCPP: TRUE  \n'}
+[1.372457] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libzip'\n"}
+[1.386571] (workspace_gz) StdoutLine: {'line': b'--   Found libzip, version 1.7.3\n'}
+[1.401063] (-) TimerEvent: {}
+[1.417571] (workspace_gz) StdoutLine: {'line': b'-- Found ZIP: TRUE  \n'}
+[1.418019] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.418546] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.418979] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.422617] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-gui6 -- found version 6.9.0\n'}
+[1.423133] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-gui6\n'}
+[1.445324] (workspace_gz) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") \n'}
+[1.454430] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.454913] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.455996] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.456299] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[1.463101] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.464815] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-rendering6\n'}
+[1.465601] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.466626] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6\n'}
+[1.466882] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-math6> component [eigen3]\n'}
+[1.472051] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6-eigen3 -- found version 6.15.1\n'}
+[1.472867] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6-eigen3\n'}
+[1.491821] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.493683] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4\n'}
+[1.494457] (workspace_gz) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[1.494868] (workspace_gz) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[1.501461] (-) TimerEvent: {}
+[1.527301] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [graphics]\n'}
+[1.534107] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-graphics -- found version 4.8.0\n'}
+[1.535064] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-graphics\n'}
+[1.536449] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.537636] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.539862] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [events]\n'}
+[1.541463] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.543004] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1\n'}
+[1.543334] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-plugin1> component [all]\n'}
+[1.549757] (workspace_gz) StdoutLine: {'line': b'-- Looking for all libraries of ignition-plugin1 -- found version 1.4.0\n'}
+[1.550507] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.555627] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.597806] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5 -- found version 5.4.0\n'}
+[1.598469] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5\n'}
+[1.599028] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.599645] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.600267] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.601507] (-) TimerEvent: {}
+[1.601955] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-physics5> component [heightmap]\n'}
+[1.606040] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5-heightmap -- found version 5.4.0\n'}
+[1.606854] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5-heightmap\n'}
+[1.607494] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.608223] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-physics5> component [mesh]\n'}
+[1.612174] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5-mesh -- found version 5.4.0\n'}
+[1.612735] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5-mesh\n'}
+[1.613134] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.613681] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-physics5> component [sdf]\n'}
+[1.618207] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5-sdf -- found version 5.4.0\n'}
+[1.619590] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5-sdf\n'}
+[1.620060] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[1.624673] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.625246] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6\n'}
+[1.660628] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.661479] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.662254] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[1.663077] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.663679] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.664339] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[1.665420] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [air_pressure]\n'}
+[1.670427] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-air_pressure -- found version 6.9.0\n'}
+[1.671397] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-air_pressure\n'}
+[1.672117] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [altimeter]\n'}
+[1.676047] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-altimeter -- found version 6.9.0\n'}
+[1.677034] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-altimeter\n'}
+[1.677716] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [imu]\n'}
+[1.681569] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-imu -- found version 6.9.0\n'}
+[1.682395] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-imu\n'}
+[1.683210] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [force_torque]\n'}
+[1.687438] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-force_torque -- found version 6.9.0\n'}
+[1.688039] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-force_torque\n'}
+[1.688722] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [logical_camera]\n'}
+[1.692251] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-logical_camera -- found version 6.9.0\n'}
+[1.692832] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-logical_camera\n'}
+[1.693399] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [magnetometer]\n'}
+[1.696507] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-magnetometer -- found version 6.9.0\n'}
+[1.697019] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-magnetometer\n'}
+[1.697536] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [navsat]\n'}
+[1.700461] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-navsat -- found version 6.9.0\n'}
+[1.700946] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-navsat\n'}
+[1.701442] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [rendering]\n'}
+[1.701586] (-) TimerEvent: {}
+[1.704440] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-rendering -- found version 6.9.0\n'}
+[1.704970] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-rendering\n'}
+[1.705487] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [lidar]\n'}
+[1.708865] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-lidar -- found version 6.9.0\n'}
+[1.709356] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-lidar\n'}
+[1.709881] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.710861] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [gpu_lidar]\n'}
+[1.713965] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-gpu_lidar -- found version 6.9.0\n'}
+[1.714445] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-gpu_lidar\n'}
+[1.714828] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.715475] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [camera]\n'}
+[1.719008] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-camera -- found version 6.9.0\n'}
+[1.719516] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-camera\n'}
+[1.719964] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.720706] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [boundingbox_camera]\n'}
+[1.724386] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-boundingbox_camera -- found version 6.9.0\n'}
+[1.725290] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-boundingbox_camera\n'}
+[1.725822] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [segmentation_camera]\n'}
+[1.729446] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-segmentation_camera -- found version 6.9.0\n'}
+[1.730338] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-segmentation_camera\n'}
+[1.732346] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [depth_camera]\n'}
+[1.735730] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-depth_camera -- found version 6.9.0\n'}
+[1.736256] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-depth_camera\n'}
+[1.736669] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.737293] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [rgbd_camera]\n'}
+[1.741371] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-rgbd_camera -- found version 6.9.0\n'}
+[1.741906] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-rgbd_camera\n'}
+[1.742287] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.742902] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [thermal_camera]\n'}
+[1.746069] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-thermal_camera -- found version 6.9.0\n'}
+[1.746586] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-thermal_camera\n'}
+[1.746983] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.748454] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.748862] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.752519] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.777605] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.777989] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.778514] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[1.778926] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.779526] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.780047] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.780549] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.780997] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.781466] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[1.801711] (-) TimerEvent: {}
+[1.875160] (workspace_gz) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.901808] (-) TimerEvent: {}
+[1.920778] (workspace_gz) StdoutLine: {'line': b'-- Generating done\n'}
+[1.942660] (workspace_gz) StdoutLine: {'line': b'-- Build files have been written to: /home/aliomacc/sti_usv/build/workspace_gz\n'}
+[2.002241] (-) TimerEvent: {}
+[2.028219] (workspace_gz) CommandEnded: {'returncode': 0}
+[2.031679] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'build'}
+[2.035419] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aliomacc/sti_usv/build/workspace_gz', '--', '-j8', '-l8'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aliomacc'), ('OLDPWD', '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1119'), ('SYSTEMD_EXEC_PID', '1535'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3448'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:12878'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1477,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1477'), ('INVOCATION_ID', '8bb2c71350dd440785a65a077b4f78af'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:32fde568-3ee8-49c9-8756-c8696b50bded'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[2.102371] (-) TimerEvent: {}
+[2.150075] (workspace_gz) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o\x1b[0m\n'}
+[2.202459] (-) TimerEvent: {}
+[2.302927] (-) TimerEvent: {}
+[2.403801] (-) TimerEvent: {}
+[2.504184] (-) TimerEvent: {}
+[2.604522] (-) TimerEvent: {}
+[2.705145] (-) TimerEvent: {}
+[2.805666] (-) TimerEvent: {}
+[2.905917] (-) TimerEvent: {}
+[3.006397] (-) TimerEvent: {}
+[3.107606] (-) TimerEvent: {}
+[3.208643] (-) TimerEvent: {}
+[3.309284] (-) TimerEvent: {}
+[3.410135] (-) TimerEvent: {}
+[3.510810] (-) TimerEvent: {}
+[3.612189] (-) TimerEvent: {}
+[3.713762] (-) TimerEvent: {}
+[3.815099] (-) TimerEvent: {}
+[3.915988] (-) TimerEvent: {}
+[4.016431] (-) TimerEvent: {}
+[4.116744] (-) TimerEvent: {}
+[4.217019] (-) TimerEvent: {}
+[4.317402] (-) TimerEvent: {}
+[4.417689] (-) TimerEvent: {}
+[4.517975] (-) TimerEvent: {}
+[4.618255] (-) TimerEvent: {}
+[4.718510] (-) TimerEvent: {}
+[4.818795] (-) TimerEvent: {}
+[4.919055] (-) TimerEvent: {}
+[5.019368] (-) TimerEvent: {}
+[5.119641] (-) TimerEvent: {}
+[5.219928] (-) TimerEvent: {}
+[5.320138] (-) TimerEvent: {}
+[5.420384] (-) TimerEvent: {}
+[5.520628] (-) TimerEvent: {}
+[5.620916] (-) TimerEvent: {}
+[5.721199] (-) TimerEvent: {}
+[5.821471] (-) TimerEvent: {}
+[5.921733] (-) TimerEvent: {}
+[6.022007] (-) TimerEvent: {}
+[6.122253] (-) TimerEvent: {}
+[6.222482] (-) TimerEvent: {}
+[6.322730] (-) TimerEvent: {}
+[6.422955] (-) TimerEvent: {}
+[6.523184] (-) TimerEvent: {}
+[6.623448] (-) TimerEvent: {}
+[6.723758] (-) TimerEvent: {}
+[6.824056] (-) TimerEvent: {}
+[6.924311] (-) TimerEvent: {}
+[7.024586] (-) TimerEvent: {}
+[7.124840] (-) TimerEvent: {}
+[7.225258] (-) TimerEvent: {}
+[7.325509] (-) TimerEvent: {}
+[7.425789] (-) TimerEvent: {}
+[7.526017] (-) TimerEvent: {}
+[7.626282] (-) TimerEvent: {}
+[7.726526] (-) TimerEvent: {}
+[7.826784] (-) TimerEvent: {}
+[7.927043] (-) TimerEvent: {}
+[8.027320] (-) TimerEvent: {}
+[8.127751] (-) TimerEvent: {}
+[8.228663] (-) TimerEvent: {}
+[8.329071] (-) TimerEvent: {}
+[8.429306] (-) TimerEvent: {}
+[8.529840] (-) TimerEvent: {}
+[8.630370] (-) TimerEvent: {}
+[8.730837] (-) TimerEvent: {}
+[8.827098] (workspace_gz) StdoutLine: {'line': b'[  9%] \x1b[32m\x1b[1mLinking CXX shared library libWaves.so\x1b[0m\n'}
+[8.830868] (-) TimerEvent: {}
+[8.931116] (-) TimerEvent: {}
+[9.031401] (-) TimerEvent: {}
+[9.107266] (workspace_gz) StdoutLine: {'line': b'[  9%] Built target Waves\n'}
+[9.131586] (-) TimerEvent: {}
+[9.136996] (workspace_gz) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o\x1b[0m\n'}
+[9.137529] (workspace_gz) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding CXX object CMakeFiles/Surface.dir/plugins/Surface.cc.o\x1b[0m\n'}
+[9.138201] (workspace_gz) StdoutLine: {'line': b'[ 23%] \x1b[32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o\x1b[0m\n'}
+[9.141756] (workspace_gz) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/USVWind.dir/plugins/USVWind.cc.o\x1b[0m\n'}
+[9.143442] (workspace_gz) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o\x1b[0m\n'}
+[9.143712] (workspace_gz) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o\x1b[0m\n'}
+[9.145115] (workspace_gz) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o\x1b[0m\n'}
+[9.145346] (workspace_gz) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o\x1b[0m\n'}
+[9.234176] (-) TimerEvent: {}
+[9.334655] (-) TimerEvent: {}
+[9.434958] (-) TimerEvent: {}
+[9.535323] (-) TimerEvent: {}
+[9.638253] (-) TimerEvent: {}
+[9.738719] (-) TimerEvent: {}
+[9.839149] (-) TimerEvent: {}
+[9.939561] (-) TimerEvent: {}
+[10.040025] (-) TimerEvent: {}
+[10.140437] (-) TimerEvent: {}
+[10.244169] (-) TimerEvent: {}
+[10.344629] (-) TimerEvent: {}
+[10.445164] (-) TimerEvent: {}
+[10.545598] (-) TimerEvent: {}
+[10.646257] (-) TimerEvent: {}
+[10.746859] (-) TimerEvent: {}
+[10.847269] (-) TimerEvent: {}
+[10.949161] (-) TimerEvent: {}
+[11.049528] (-) TimerEvent: {}
+[11.149896] (-) TimerEvent: {}
+[11.250352] (-) TimerEvent: {}
+[11.354367] (-) TimerEvent: {}
+[11.454780] (-) TimerEvent: {}
+[11.555168] (-) TimerEvent: {}
+[11.655531] (-) TimerEvent: {}
+[11.755889] (-) TimerEvent: {}
+[11.856277] (-) TimerEvent: {}
+[11.956668] (-) TimerEvent: {}
+[12.057057] (-) TimerEvent: {}
+[12.157454] (-) TimerEvent: {}
+[12.257798] (-) TimerEvent: {}
+[12.359164] (-) TimerEvent: {}
+[12.459524] (-) TimerEvent: {}
+[12.559939] (-) TimerEvent: {}
+[12.662173] (-) TimerEvent: {}
+[12.762560] (-) TimerEvent: {}
+[12.862928] (-) TimerEvent: {}
+[12.963474] (-) TimerEvent: {}
+[13.063911] (-) TimerEvent: {}
+[13.165282] (-) TimerEvent: {}
+[13.266244] (-) TimerEvent: {}
+[13.366829] (-) TimerEvent: {}
+[13.468790] (-) TimerEvent: {}
+[13.571372] (-) TimerEvent: {}
+[13.674001] (-) TimerEvent: {}
+[13.775495] (-) TimerEvent: {}
+[13.878754] (-) TimerEvent: {}
+[13.981260] (-) TimerEvent: {}
+[14.081672] (-) TimerEvent: {}
+[14.184267] (-) TimerEvent: {}
+[14.285166] (-) TimerEvent: {}
+[14.388000] (-) TimerEvent: {}
+[14.488463] (-) TimerEvent: {}
+[14.592431] (-) TimerEvent: {}
+[14.692868] (-) TimerEvent: {}
+[14.793457] (-) TimerEvent: {}
+[14.893841] (-) TimerEvent: {}
+[14.994618] (-) TimerEvent: {}
+[15.095007] (-) TimerEvent: {}
+[15.195404] (-) TimerEvent: {}
+[15.298227] (-) TimerEvent: {}
+[15.398603] (-) TimerEvent: {}
+[15.501209] (-) TimerEvent: {}
+[15.602583] (-) TimerEvent: {}
+[15.703113] (-) TimerEvent: {}
+[15.805292] (-) TimerEvent: {}
+[15.905723] (-) TimerEvent: {}
+[16.006373] (-) TimerEvent: {}
+[16.106848] (-) TimerEvent: {}
+[16.209163] (-) TimerEvent: {}
+[16.309679] (-) TimerEvent: {}
+[16.410810] (-) TimerEvent: {}
+[16.511255] (-) TimerEvent: {}
+[16.611842] (-) TimerEvent: {}
+[16.712735] (-) TimerEvent: {}
+[16.814148] (-) TimerEvent: {}
+[16.914642] (-) TimerEvent: {}
+[17.016012] (-) TimerEvent: {}
+[17.118720] (-) TimerEvent: {}
+[17.220452] (-) TimerEvent: {}
+[17.321113] (-) TimerEvent: {}
+[17.423178] (-) TimerEvent: {}
+[17.523653] (-) TimerEvent: {}
+[17.626969] (-) TimerEvent: {}
+[17.727428] (-) TimerEvent: {}
+[17.828287] (-) TimerEvent: {}
+[17.931589] (-) TimerEvent: {}
+[18.032959] (-) TimerEvent: {}
+[18.134168] (-) TimerEvent: {}
+[18.235236] (-) TimerEvent: {}
+[18.261368] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22\x1b[m\x1b[K,\n'}
+[18.261769] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/SimpleHydrodynamics.cc:23\x1b[m\x1b[K:\n'}
+[18.261953] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/SimpleHydrodynamics.cc:293:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion before \xe2\x80\x98\x1b[01m\x1b[Knamespace\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.262121] (workspace_gz) StderrLine: {'line': b'  293 | \x1b[01;31m\x1b[KIGNITION_ADD_PLUGIN\x1b[m\x1b[K(vrx::SimpleHydrodynamics, ignition::gazebo::System)\n'}
+[18.262296] (workspace_gz) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[18.335474] (-) TimerEvent: {}
+[18.437369] (-) TimerEvent: {}
+[18.543801] (-) TimerEvent: {}
+[18.645863] (-) TimerEvent: {}
+[18.746692] (-) TimerEvent: {}
+[18.847068] (-) TimerEvent: {}
+[18.949164] (-) TimerEvent: {}
+[19.052171] (-) TimerEvent: {}
+[19.152599] (-) TimerEvent: {}
+[19.252997] (-) TimerEvent: {}
+[19.353385] (-) TimerEvent: {}
+[19.453785] (-) TimerEvent: {}
+[19.554186] (-) TimerEvent: {}
+[19.654799] (-) TimerEvent: {}
+[19.755216] (-) TimerEvent: {}
+[19.848411] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22\x1b[m\x1b[K,\n'}
+[19.851471] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:29\x1b[m\x1b[K:\n'}
+[19.851654] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:665:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion before \xe2\x80\x98\x1b[01m\x1b[Knamespace\x1b[m\x1b[K\xe2\x80\x99\n'}
+[19.851786] (workspace_gz) StderrLine: {'line': b'  665 | \x1b[01;31m\x1b[KIGNITION_ADD_PLUGIN\x1b[m\x1b[K(vrx::ScoringPlugin, ignition::gazebo::System)\n'}
+[19.851898] (workspace_gz) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[19.855336] (-) TimerEvent: {}
+[19.955736] (-) TimerEvent: {}
+[20.056143] (-) TimerEvent: {}
+[20.156980] (-) TimerEvent: {}
+[20.257368] (-) TimerEvent: {}
+[20.358181] (-) TimerEvent: {}
+[20.459395] (-) TimerEvent: {}
+[20.560613] (-) TimerEvent: {}
+[20.623677] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22\x1b[m\x1b[K,\n'}
+[20.623983] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Surface.cc:24\x1b[m\x1b[K:\n'}
+[20.624113] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Surface.cc:317:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion before \xe2\x80\x98\x1b[01m\x1b[Knamespace\x1b[m\x1b[K\xe2\x80\x99\n'}
+[20.624220] (workspace_gz) StderrLine: {'line': b'  317 | \x1b[01;31m\x1b[KIGNITION_ADD_PLUGIN\x1b[m\x1b[K(vrx::Surface, ignition::gazebo::System)\n'}
+[20.624314] (workspace_gz) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[20.634754] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22\x1b[m\x1b[K,\n'}
+[20.635101] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:29\x1b[m\x1b[K:\n'}
+[20.635250] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:301:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion before \xe2\x80\x98\x1b[01m\x1b[Knamespace\x1b[m\x1b[K\xe2\x80\x99\n'}
+[20.635371] (workspace_gz) StderrLine: {'line': b'  301 | \x1b[01;31m\x1b[KIGNITION_ADD_PLUGIN\x1b[m\x1b[K(vrx::WayfindingScoringPlugin, ignition::gazebo::System)\n'}
+[20.635484] (workspace_gz) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[20.660725] (-) TimerEvent: {}
+[20.709158] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22\x1b[m\x1b[K,\n'}
+[20.709486] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedraBuoyancyDrag.cc:32\x1b[m\x1b[K:\n'}
+[20.709710] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedraBuoyancyDrag.cc:385:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion before \xe2\x80\x98\x1b[01m\x1b[Knamespace\x1b[m\x1b[K\xe2\x80\x99\n'}
+[20.709932] (workspace_gz) StderrLine: {'line': b'  385 | \x1b[01;31m\x1b[KIGNITION_ADD_PLUGIN\x1b[m\x1b[K(vrx::PolyhedraBuoyancyDrag, ignition::gazebo::System)\n'}
+[20.710125] (workspace_gz) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[20.760834] (-) TimerEvent: {}
+[20.861446] (-) TimerEvent: {}
+[20.943248] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/StationkeepingScoringPlugin.cc:300:66:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion at end of input\n'}
+[20.943516] (workspace_gz) StderrLine: {'line': b'  300 |               vrx::StationkeepingScoringPlugin::ISystemPreUpdate)\n'}
+[20.943657] (workspace_gz) StderrLine: {'line': b'      |                                                                  \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[20.964161] (-) TimerEvent: {}
+[21.064624] (-) TimerEvent: {}
+[21.165026] (-) TimerEvent: {}
+[21.191790] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/SimpleHydrodynamics.dir/build.make:76: CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o] Error 1\n'}
+[21.192171] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:257: CMakeFiles/SimpleHydrodynamics.dir/all] Error 2\n'}
+[21.192641] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** Bitmemi\xc5\x9f i\xc5\x9fler i\xc3\xa7in bekliyor....\n'}
+[21.209244] (workspace_gz) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o\x1b[0m\n'}
+[21.266547] (-) TimerEvent: {}
+[21.366926] (-) TimerEvent: {}
+[21.467399] (-) TimerEvent: {}
+[21.567796] (-) TimerEvent: {}
+[21.669173] (-) TimerEvent: {}
+[21.694239] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrx::WaveVisualPrivate::OnUpdate()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[21.694562] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:273:58:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kcannot convert \xe2\x80\x98\x1b[01m\x1b[Kstd::add_pointer_t<unsigned int>\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kunsigned int*\x1b[m\x1b[K\xe2\x80\x99} to \xe2\x80\x98\x1b[01m\x1b[Kconst uint64_t*\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kconst long unsigned int*\x1b[m\x1b[K\xe2\x80\x99} in initialization\n'}
+[21.694746] (workspace_gz) StderrLine: {'line': b'  273 |         const uint64_t *value = \x1b[01;31m\x1b[Kstd::get_if<unsigned int>(&variant)\x1b[m\x1b[K;\n'}
+[21.698357] (workspace_gz) StderrLine: {'line': b'      |                                 \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~\x1b[m\x1b[K\n'}
+[21.698580] (workspace_gz) StderrLine: {'line': b'      |                                                          \x1b[01;31m\x1b[K|\x1b[m\x1b[K\n'}
+[21.698732] (workspace_gz) StderrLine: {'line': b'      |                                                          \x1b[01;31m\x1b[Kstd::add_pointer_t<unsigned int> {aka unsigned int*}\x1b[m\x1b[K\n'}
+[21.716231] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22\x1b[m\x1b[K,\n'}
+[21.716525] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:27\x1b[m\x1b[K:\n'}
+[21.716680] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:\x1b[m\x1b[K At global scope:\n'}
+[21.716808] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:449:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion before \xe2\x80\x98\x1b[01m\x1b[Knamespace\x1b[m\x1b[K\xe2\x80\x99\n'}
+[21.716953] (workspace_gz) StderrLine: {'line': b'  449 | \x1b[01;31m\x1b[KIGNITION_ADD_PLUGIN\x1b[m\x1b[K(WaveVisual, ignition::gazebo::System)\n'}
+[21.717075] (workspace_gz) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[21.771180] (-) TimerEvent: {}
+[21.871614] (-) TimerEvent: {}
+[21.972161] (-) TimerEvent: {}
+[22.075163] (-) TimerEvent: {}
+[22.175572] (-) TimerEvent: {}
+[22.279375] (-) TimerEvent: {}
+[22.384221] (-) TimerEvent: {}
+[22.484969] (-) TimerEvent: {}
+[22.585372] (-) TimerEvent: {}
+[22.686879] (-) TimerEvent: {}
+[22.788002] (-) TimerEvent: {}
+[22.890046] (-) TimerEvent: {}
+[22.990660] (-) TimerEvent: {}
+[23.080714] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ScoringPlugin.dir/build.make:76: CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o] Error 1\n'}
+[23.081202] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:179: CMakeFiles/ScoringPlugin.dir/all] Error 2\n'}
+[23.090903] (-) TimerEvent: {}
+[23.114278] (workspace_gz) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WaypointMarkers.cc.o\x1b[0m\n'}
+[23.192149] (-) TimerEvent: {}
+[23.292689] (-) TimerEvent: {}
+[23.397128] (-) TimerEvent: {}
+[23.499504] (-) TimerEvent: {}
+[23.599932] (-) TimerEvent: {}
+[23.622411] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/plugin1/gz/plugin/Register.hh:22\x1b[m\x1b[K,\n'}
+[23.622755] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:6\x1b[m\x1b[K:\n'}
+[23.622987] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:365:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected constructor, destructor, or type conversion before \xe2\x80\x98\x1b[01m\x1b[Knamespace\x1b[m\x1b[K\xe2\x80\x99\n'}
+[23.623197] (workspace_gz) StderrLine: {'line': b'  365 | \x1b[01;31m\x1b[KIGNITION_ADD_PLUGIN\x1b[m\x1b[K(vrx::USVWind, ignition::gazebo::System)\n'}
+[23.623414] (workspace_gz) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.700059] (-) TimerEvent: {}
+[23.800516] (-) TimerEvent: {}
+[23.905504] (-) TimerEvent: {}
+[24.005904] (-) TimerEvent: {}
+[24.106276] (-) TimerEvent: {}
+[24.210436] (-) TimerEvent: {}
+[24.315195] (-) TimerEvent: {}
+[24.415625] (-) TimerEvent: {}
+[24.516223] (-) TimerEvent: {}
+[24.616854] (-) TimerEvent: {}
+[24.717312] (-) TimerEvent: {}
+[24.734182] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/PolyhedraBuoyancyDrag.dir/build.make:76: CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o] Error 1\n'}
+[24.735324] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:361: CMakeFiles/PolyhedraBuoyancyDrag.dir/all] Error 2\n'}
+[24.778278] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/Surface.dir/build.make:76: CMakeFiles/Surface.dir/plugins/Surface.cc.o] Error 1\n'}
+[24.778555] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:283: CMakeFiles/Surface.dir/all] Error 2\n'}
+[24.817433] (-) TimerEvent: {}
+[24.917877] (-) TimerEvent: {}
+[24.967973] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/WayfindingScoringPlugin.dir/build.make:76: CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o] Error 1\n'}
+[24.968620] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** Bitmemi\xc5\x9f i\xc5\x9fler i\xc3\xa7in bekliyor....\n'}
+[25.017993] (-) TimerEvent: {}
+[25.118411] (-) TimerEvent: {}
+[25.142327] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/StationkeepingScoringPlugin.dir/build.make:76: CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o] Error 1\n'}
+[25.142640] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** Bitmemi\xc5\x9f i\xc5\x9fler i\xc3\xa7in bekliyor....\n'}
+[25.218608] (-) TimerEvent: {}
+[25.319015] (-) TimerEvent: {}
+[25.419526] (-) TimerEvent: {}
+[25.520342] (-) TimerEvent: {}
+[25.620761] (-) TimerEvent: {}
+[25.721308] (-) TimerEvent: {}
+[25.752870] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/WaveVisual.dir/build.make:76: CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o] Error 1\n'}
+[25.753790] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:335: CMakeFiles/WaveVisual.dir/all] Error 2\n'}
+[25.821435] (-) TimerEvent: {}
+[25.921785] (-) TimerEvent: {}
+[26.022184] (-) TimerEvent: {}
+[26.122666] (-) TimerEvent: {}
+[26.223109] (-) TimerEvent: {}
+[26.323673] (-) TimerEvent: {}
+[26.424072] (-) TimerEvent: {}
+[26.524376] (-) TimerEvent: {}
+[26.599886] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/USVWind.dir/build.make:76: CMakeFiles/USVWind.dir/plugins/USVWind.cc.o] Error 1\n'}
+[26.600120] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:309: CMakeFiles/USVWind.dir/all] Error 2\n'}
+[26.624480] (-) TimerEvent: {}
+[26.724827] (-) TimerEvent: {}
+[26.825126] (-) TimerEvent: {}
+[26.925438] (-) TimerEvent: {}
+[27.025708] (-) TimerEvent: {}
+[27.126238] (-) TimerEvent: {}
+[27.226649] (-) TimerEvent: {}
+[27.326939] (-) TimerEvent: {}
+[27.427208] (-) TimerEvent: {}
+[27.527638] (-) TimerEvent: {}
+[27.628004] (-) TimerEvent: {}
+[27.728663] (-) TimerEvent: {}
+[27.829058] (-) TimerEvent: {}
+[27.929685] (-) TimerEvent: {}
+[28.030250] (-) TimerEvent: {}
+[28.131150] (-) TimerEvent: {}
+[28.231448] (-) TimerEvent: {}
+[28.331876] (-) TimerEvent: {}
+[28.432208] (-) TimerEvent: {}
+[28.532470] (-) TimerEvent: {}
+[28.632740] (-) TimerEvent: {}
+[28.733012] (-) TimerEvent: {}
+[28.833332] (-) TimerEvent: {}
+[28.933617] (-) TimerEvent: {}
+[29.033950] (-) TimerEvent: {}
+[29.134213] (-) TimerEvent: {}
+[29.234467] (-) TimerEvent: {}
+[29.334747] (-) TimerEvent: {}
+[29.435014] (-) TimerEvent: {}
+[29.535453] (-) TimerEvent: {}
+[29.635873] (-) TimerEvent: {}
+[29.736272] (-) TimerEvent: {}
+[29.836857] (-) TimerEvent: {}
+[29.937166] (-) TimerEvent: {}
+[30.037533] (-) TimerEvent: {}
+[30.137853] (-) TimerEvent: {}
+[30.238124] (-) TimerEvent: {}
+[30.338458] (-) TimerEvent: {}
+[30.438755] (-) TimerEvent: {}
+[30.539156] (-) TimerEvent: {}
+[30.639581] (-) TimerEvent: {}
+[30.740239] (-) TimerEvent: {}
+[30.840530] (-) TimerEvent: {}
+[30.941120] (-) TimerEvent: {}
+[31.042145] (-) TimerEvent: {}
+[31.142438] (-) TimerEvent: {}
+[31.242679] (-) TimerEvent: {}
+[31.342974] (-) TimerEvent: {}
+[31.443247] (-) TimerEvent: {}
+[31.543779] (-) TimerEvent: {}
+[31.644105] (-) TimerEvent: {}
+[31.744385] (-) TimerEvent: {}
+[31.844691] (-) TimerEvent: {}
+[31.945017] (-) TimerEvent: {}
+[32.045331] (-) TimerEvent: {}
+[32.145714] (-) TimerEvent: {}
+[32.236567] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:205: CMakeFiles/StationkeepingScoringPlugin.dir/all] Error 2\n'}
+[32.245801] (-) TimerEvent: {}
+[32.346059] (-) TimerEvent: {}
+[32.446404] (-) TimerEvent: {}
+[32.546645] (-) TimerEvent: {}
+[32.646924] (-) TimerEvent: {}
+[32.747519] (-) TimerEvent: {}
+[32.847824] (-) TimerEvent: {}
+[32.948138] (-) TimerEvent: {}
+[33.048491] (-) TimerEvent: {}
+[33.148876] (-) TimerEvent: {}
+[33.249269] (-) TimerEvent: {}
+[33.349603] (-) TimerEvent: {}
+[33.449935] (-) TimerEvent: {}
+[33.520035] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:231: CMakeFiles/WayfindingScoringPlugin.dir/all] Error 2\n'}
+[33.520290] (workspace_gz) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[33.523914] (workspace_gz) CommandEnded: {'returncode': 2}
+[33.538598] (workspace_gz) JobEnded: {'identifier': 'workspace_gz', 'rc': 2}
+[33.550284] (-) TimerEvent: {}
+[33.550915] (-) EventReactorShutdown: {}

@@ -1,0 +1,15 @@
+running develop
+running egg_info
+writing workspace_nav.egg-info/PKG-INFO
+writing dependency_links to workspace_nav.egg-info/dependency_links.txt
+writing entry points to workspace_nav.egg-info/entry_points.txt
+writing requirements to workspace_nav.egg-info/requires.txt
+writing top-level names to workspace_nav.egg-info/top_level.txt
+reading manifest file 'workspace_nav.egg-info/SOURCES.txt'
+writing manifest file 'workspace_nav.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages/workspace-nav.egg-link (link to .)
+Installing parkour_navigation script to /home/aliomacc/sti_usv/install/workspace_nav/lib/workspace_nav
+
+Installed /home/aliomacc/sti_usv/build/workspace_nav
+running symlink_data

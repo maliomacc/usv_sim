@@ -1,0 +1,1 @@
+/home/aliomacc/sti_usv/build/workspace_ros/scripts/static_transform_publisher.py

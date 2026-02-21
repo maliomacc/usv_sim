@@ -1,0 +1,51 @@
+[0.986s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_ros': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_ros/build --no-deps symlink_data
+[1.277s] running develop
+[1.482s] running egg_info
+[1.482s] creating workspace_ros.egg-info
+[1.482s] writing workspace_ros.egg-info/PKG-INFO
+[1.482s] writing dependency_links to workspace_ros.egg-info/dependency_links.txt
+[1.482s] writing entry points to workspace_ros.egg-info/entry_points.txt
+[1.482s] writing requirements to workspace_ros.egg-info/requires.txt
+[1.482s] writing top-level names to workspace_ros.egg-info/top_level.txt
+[1.482s] writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[1.484s] reading manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[1.485s] writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[1.486s] running build_ext
+[1.486s] Creating /home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages/workspace-ros.egg-link (link to .)
+[1.487s] Installing converter script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[1.487s] Installing gps_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[1.487s] Installing imu_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[1.487s] Installing lidar_processor script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[1.487s] Installing static_transform_publisher script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[1.487s] Installing wasd_teleop script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[1.488s] 
+[1.488s] Installed /home/aliomacc/sti_usv/build/workspace_ros
+[1.488s] running symlink_data
+[1.488s] creating /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index
+[1.488s] creating /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index/resource_index
+[1.488s] creating /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index/resource_index/packages
+[1.488s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/resource/workspace_ros -> /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index/resource_index/packages
+[1.488s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/package.xml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros
+[1.488s] creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config
+[1.488s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/ekf.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config
+[1.488s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/static_transform.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config
+[1.488s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/lidar_filter.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config
+[1.488s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/kiss_icp.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/lidar_rviz.rviz -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/navsat.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config
+[1.489s] creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/mola_slam.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/localization.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/lidar_filter.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/kiss_icp.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch
+[1.489s] creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/imu_covariance_repub.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/converter.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/wasd_teleop.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/gps_covariance_repub.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.489s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/__init__.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.490s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/lidar_processor.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.490s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/static_transform_publisher.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts
+[1.490s] creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/YOLOv11
+[1.490s] symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/YOLOv11/YOLOv11.pt -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/YOLOv11
+[1.522s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_ros' returned '0': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_ros/build --no-deps symlink_data

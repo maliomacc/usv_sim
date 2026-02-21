@@ -1,0 +1,266 @@
+[0.000000] (-) TimerEvent: {}
+[0.000325] (-) JobUnselected: {'identifier': 'kiss_icp'}
+[0.000449] (-) JobUnselected: {'identifier': 'workspace_nav'}
+[0.000500] (-) JobUnselected: {'identifier': 'workspace_ros'}
+[0.000520] (workspace_gz) JobQueued: {'identifier': 'workspace_gz', 'dependencies': OrderedDict()}
+[0.000538] (workspace_gz) JobStarted: {'identifier': 'workspace_gz'}
+[0.007986] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'cmake'}
+[0.008583] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'build'}
+[0.009166] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aliomacc/sti_usv/build/workspace_gz', '--', '-j8', '-l8'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/sti_usv/install/kiss_icp/lib:/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('ANTIGRAVITY_CLI_ALIAS', 'agy'), ('HOME', '/home/aliomacc'), ('CHROME_DESKTOP', 'antigravity.desktop'), ('OLDPWD', '/home/aliomacc/sti_usv'), ('TERM_PROGRAM_VERSION', '1.107.0'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/antigravity.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/antigravity/antigravity'), ('MANAGERPID', '1126'), ('SYSTEMD_EXEC_PID', '1544'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ANTIGRAVITY_AGENT', '1'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3849'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:15384'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1517,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1517'), ('INVOCATION_ID', 'cba7c210d1e84445b3ac91c2745e99da'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('PYTHONSTARTUP', '/home/aliomacc/.config/Antigravity/User/workspaceStorage/adcec5be029c3f352e9861eec07a976e/ms-python.python/pythonrc.py'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-c5327147f8.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('IGN_GAZEBO_RESOURCE_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models:/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/sti_usv/build/workspace_ros:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:/home/aliomacc/sti_usv/build/workspace_nav:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[0.067585] (workspace_gz) StdoutLine: {'line': b'[  7%] Built target Waves\n'}
+[0.067757] (workspace_gz) StdoutLine: {'line': b'[  7%] Built target ScoringPlugin\n'}
+[0.100575] (-) TimerEvent: {}
+[0.103928] (workspace_gz) StdoutLine: {'line': b'[ 18%] Built target Surface\n'}
+[0.104994] (workspace_gz) StdoutLine: {'line': b'[ 18%] Built target SimpleHydrodynamics\n'}
+[0.105179] (workspace_gz) StdoutLine: {'line': b'[ 24%] Built target AcousticPerceptionScoringPlugin\n'}
+[0.105290] (workspace_gz) StdoutLine: {'line': b'[ 28%] Built target PolyhedraBuoyancyDrag\n'}
+[0.105715] (workspace_gz) StdoutLine: {'line': b'[ 33%] Built target StationkeepingScoringPlugin\n'}
+[0.111500] (workspace_gz) StdoutLine: {'line': b'[ 37%] Built target USVWind\n'}
+[0.112240] (workspace_gz) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o\x1b[0m\n'}
+[0.113851] (workspace_gz) StdoutLine: {'line': b'[ 45%] Built target WayfindingScoringPlugin\n'}
+[0.150170] (workspace_gz) StdoutLine: {'line': b'[ 50%] Built target BallShooterPlugin\n'}
+[0.150610] (workspace_gz) StdoutLine: {'line': b'[ 52%] Built target AcousticPingerPlugin\n'}
+[0.154928] (workspace_gz) StdoutLine: {'line': b'[ 58%] Built target NavigationScoringPlugin\n'}
+[0.155235] (workspace_gz) StdoutLine: {'line': b'[ 67%] Built target LightBuoyPlugin\n'}
+[0.155359] (workspace_gz) StdoutLine: {'line': b'[ 67%] Built target AcousticTrackingScoringPlugin\n'}
+[0.158146] (workspace_gz) StdoutLine: {'line': b'[ 73%] Built target GymkhanaScoringPlugin\n'}
+[0.161107] (workspace_gz) StdoutLine: {'line': b'[ 79%] Built target PerceptionScoringPlugin\n'}
+[0.177671] (workspace_gz) StdoutLine: {'line': b'[ 83%] Built target PlacardPlugin\n'}
+[0.179714] (workspace_gz) StdoutLine: {'line': b'[ 86%] Built target PublisherPlugin\n'}
+[0.182628] (workspace_gz) StdoutLine: {'line': b'[ 92%] Built target ScanDockScoringPlugin\n'}
+[0.183102] (workspace_gz) StdoutLine: {'line': b'[ 98%] Built target WildlifeScoringPlugin\n'}
+[0.200685] (-) TimerEvent: {}
+[0.301052] (-) TimerEvent: {}
+[0.401704] (-) TimerEvent: {}
+[0.502687] (-) TimerEvent: {}
+[0.603031] (-) TimerEvent: {}
+[0.703383] (-) TimerEvent: {}
+[0.803734] (-) TimerEvent: {}
+[0.904193] (-) TimerEvent: {}
+[1.004654] (-) TimerEvent: {}
+[1.104979] (-) TimerEvent: {}
+[1.205350] (-) TimerEvent: {}
+[1.305687] (-) TimerEvent: {}
+[1.406056] (-) TimerEvent: {}
+[1.506399] (-) TimerEvent: {}
+[1.606768] (-) TimerEvent: {}
+[1.707106] (-) TimerEvent: {}
+[1.807440] (-) TimerEvent: {}
+[1.907763] (-) TimerEvent: {}
+[2.008119] (-) TimerEvent: {}
+[2.108425] (-) TimerEvent: {}
+[2.208811] (-) TimerEvent: {}
+[2.309102] (-) TimerEvent: {}
+[2.409464] (-) TimerEvent: {}
+[2.509782] (-) TimerEvent: {}
+[2.610166] (-) TimerEvent: {}
+[2.710470] (-) TimerEvent: {}
+[2.810793] (-) TimerEvent: {}
+[2.911094] (-) TimerEvent: {}
+[3.011448] (-) TimerEvent: {}
+[3.111756] (-) TimerEvent: {}
+[3.212054] (-) TimerEvent: {}
+[3.312430] (-) TimerEvent: {}
+[3.412749] (-) TimerEvent: {}
+[3.513012] (-) TimerEvent: {}
+[3.613277] (-) TimerEvent: {}
+[3.713558] (-) TimerEvent: {}
+[3.813853] (-) TimerEvent: {}
+[3.914189] (-) TimerEvent: {}
+[4.014551] (-) TimerEvent: {}
+[4.114861] (-) TimerEvent: {}
+[4.215191] (-) TimerEvent: {}
+[4.315483] (-) TimerEvent: {}
+[4.415797] (-) TimerEvent: {}
+[4.516144] (-) TimerEvent: {}
+[4.616428] (-) TimerEvent: {}
+[4.716749] (-) TimerEvent: {}
+[4.817123] (-) TimerEvent: {}
+[4.917464] (-) TimerEvent: {}
+[5.017786] (-) TimerEvent: {}
+[5.118197] (-) TimerEvent: {}
+[5.218637] (-) TimerEvent: {}
+[5.318986] (-) TimerEvent: {}
+[5.419345] (-) TimerEvent: {}
+[5.519730] (-) TimerEvent: {}
+[5.620090] (-) TimerEvent: {}
+[5.720445] (-) TimerEvent: {}
+[5.820768] (-) TimerEvent: {}
+[5.921133] (-) TimerEvent: {}
+[6.021523] (-) TimerEvent: {}
+[6.121870] (-) TimerEvent: {}
+[6.222208] (-) TimerEvent: {}
+[6.322434] (-) TimerEvent: {}
+[6.422715] (-) TimerEvent: {}
+[6.522981] (-) TimerEvent: {}
+[6.623230] (-) TimerEvent: {}
+[6.723475] (-) TimerEvent: {}
+[6.823726] (-) TimerEvent: {}
+[6.924005] (-) TimerEvent: {}
+[7.024318] (-) TimerEvent: {}
+[7.124622] (-) TimerEvent: {}
+[7.224992] (-) TimerEvent: {}
+[7.325330] (-) TimerEvent: {}
+[7.425622] (-) TimerEvent: {}
+[7.525975] (-) TimerEvent: {}
+[7.626421] (-) TimerEvent: {}
+[7.727853] (-) TimerEvent: {}
+[7.828210] (-) TimerEvent: {}
+[7.928508] (-) TimerEvent: {}
+[8.028823] (-) TimerEvent: {}
+[8.129227] (-) TimerEvent: {}
+[8.229592] (-) TimerEvent: {}
+[8.329925] (-) TimerEvent: {}
+[8.430274] (-) TimerEvent: {}
+[8.530687] (-) TimerEvent: {}
+[8.631042] (-) TimerEvent: {}
+[8.731282] (-) TimerEvent: {}
+[8.831532] (-) TimerEvent: {}
+[8.931772] (-) TimerEvent: {}
+[9.032080] (-) TimerEvent: {}
+[9.132445] (-) TimerEvent: {}
+[9.232719] (-) TimerEvent: {}
+[9.333039] (-) TimerEvent: {}
+[9.433350] (-) TimerEvent: {}
+[9.533701] (-) TimerEvent: {}
+[9.634096] (-) TimerEvent: {}
+[9.734693] (-) TimerEvent: {}
+[9.835041] (-) TimerEvent: {}
+[9.935727] (-) TimerEvent: {}
+[10.036071] (-) TimerEvent: {}
+[10.136422] (-) TimerEvent: {}
+[10.236737] (-) TimerEvent: {}
+[10.337099] (-) TimerEvent: {}
+[10.437452] (-) TimerEvent: {}
+[10.537779] (-) TimerEvent: {}
+[10.638123] (-) TimerEvent: {}
+[10.738500] (-) TimerEvent: {}
+[10.838990] (-) TimerEvent: {}
+[10.939496] (-) TimerEvent: {}
+[11.039922] (-) TimerEvent: {}
+[11.132716] (workspace_gz) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library libWaveVisual.so\x1b[0m\n'}
+[11.140032] (-) TimerEvent: {}
+[11.240427] (-) TimerEvent: {}
+[11.340874] (-) TimerEvent: {}
+[11.421472] (workspace_gz) StdoutLine: {'line': b'[100%] Built target WaveVisual\n'}
+[11.429808] (workspace_gz) CommandEnded: {'returncode': 0}
+[11.430317] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'install'}
+[11.438061] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/aliomacc/sti_usv/build/workspace_gz'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/sti_usv/install/kiss_icp/lib:/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('ANTIGRAVITY_CLI_ALIAS', 'agy'), ('HOME', '/home/aliomacc'), ('CHROME_DESKTOP', 'antigravity.desktop'), ('OLDPWD', '/home/aliomacc/sti_usv'), ('TERM_PROGRAM_VERSION', '1.107.0'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/antigravity.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/antigravity/antigravity'), ('MANAGERPID', '1126'), ('SYSTEMD_EXEC_PID', '1544'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ANTIGRAVITY_AGENT', '1'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3849'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:15384'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1517,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1517'), ('INVOCATION_ID', 'cba7c210d1e84445b3ac91c2745e99da'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('PYTHONSTARTUP', '/home/aliomacc/.config/Antigravity/User/workspaceStorage/adcec5be029c3f352e9861eec07a976e/ms-python.python/pythonrc.py'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-c5327147f8.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('IGN_GAZEBO_RESOURCE_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models:/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/sti_usv/build/workspace_ros:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:/home/aliomacc/sti_usv/build/workspace_nav:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[11.440959] (-) TimerEvent: {}
+[11.446022] (workspace_gz) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[11.446799] (workspace_gz) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[11.447898] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaves.so\n'}
+[11.448130] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScoringPlugin.so\n'}
+[11.448220] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSimpleHydrodynamics.so\n'}
+[11.448291] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPolyhedraBuoyancyDrag.so\n'}
+[11.448478] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSurface.so\n'}
+[11.448625] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libUSVWind.so\n'}
+[11.448801] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaveVisual.so\n'}
+[11.448971] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libStationkeepingScoringPlugin.so\n'}
+[11.449141] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWayfindingScoringPlugin.so\n'}
+[11.449313] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPerceptionScoringPlugin.so\n'}
+[11.449489] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticTrackingScoringPlugin.so\n'}
+[11.449647] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPingerPlugin.so\n'}
+[11.449807] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libBallShooterPlugin.so\n'}
+[11.449967] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libLightBuoyPlugin.so\n'}
+[11.450124] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libNavigationScoringPlugin.so\n'}
+[11.450282] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libGymkhanaScoringPlugin.so\n'}
+[11.450446] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPerceptionScoringPlugin.so\n'}
+[11.450614] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPlacardPlugin.so\n'}
+[11.450771] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPublisherPlugin.so\n'}
+[11.450925] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScanDockScoringPlugin.so\n'}
+[11.451084] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWildlifeScoringPlugin.so\n'}
+[11.451552] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/launch/simulation.launch.py\n'}
+[11.454191] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[11.454427] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png\n'}
+[11.454511] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/meshes/marker_buoy.dae\n'}
+[11.454597] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.config\n'}
+[11.454668] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.sdf\n'}
+[11.454778] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[11.454930] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png\n'}
+[11.455079] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/meshes/marker_buoy.dae\n'}
+[11.455299] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.config\n'}
+[11.455732] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.sdf\n'}
+[11.456125] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[11.456313] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png\n'}
+[11.456534] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/meshes/marker_buoy.dae\n'}
+[11.456728] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.config\n'}
+[11.456911] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.sdf\n'}
+[11.457162] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[11.457326] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png\n'}
+[11.457492] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/meshes/marker_buoy.dae\n'}
+[11.457621] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.config\n'}
+[11.457749] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.sdf\n'}
+[11.457924] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[11.458044] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png\n'}
+[11.458183] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae\n'}
+[11.458300] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.config\n'}
+[11.458441] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.sdf\n'}
+[11.458580] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png\n'}
+[11.458716] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png\n'}
+[11.458904] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/meshes/round_buoy.dae\n'}
+[11.459102] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.config\n'}
+[11.459309] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.sdf\n'}
+[11.459529] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_albedo.png\n'}
+[11.459687] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_metalness.png\n'}
+[11.459858] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_normal.png\n'}
+[11.460130] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_roughness.png\n'}
+[11.460296] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_albedo.png\n'}
+[11.460475] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_roughness.png\n'}
+[11.460687] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/housing.dae\n'}
+[11.460958] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/mount.dae\n'}
+[11.461522] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/prop.dae\n'}
+[11.461913] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/roboboat.dae\n'}
+[11.462017] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera.png\n'}
+[11.462156] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_albedo.png\n'}
+[11.462305] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_metalness.png\n'}
+[11.462449] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_normal.png\n'}
+[11.462590] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_roughness.png\n'}
+[11.462737] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera.dae\n'}
+[11.462871] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera_albedo.png\n'}
+[11.463090] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/materials/textures/post_albedo.png\n'}
+[11.463282] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post.dae\n'}
+[11.463515] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post_albedo.jpg\n'}
+[11.463746] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png\n'}
+[11.463968] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png\n'}
+[11.464161] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/meshes/drybox.dae\n'}
+[11.464302] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/materials/textures/gps_albedo.png\n'}
+[11.464445] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps.dae\n'}
+[11.464613] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps_albedo.png\n'}
+[11.464751] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar.png\n'}
+[11.464888] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png\n'}
+[11.465035] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png\n'}
+[11.465188] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_normal.png\n'}
+[11.465310] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png\n'}
+[11.465448] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar.dae\n'}
+[11.465589] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar_albedo.png\n'}
+[11.465769] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png\n'}
+[11.466067] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post.dae\n'}
+[11.466268] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg\n'}
+[11.466453] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_fs_330.glsl\n'}
+[11.466664] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_vs_330.glsl\n'}
+[11.466879] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/skybox_lowres.dds\n'}
+[11.467039] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/wave_normals.dds\n'}
+[11.467188] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/meshes/waterlow.dae\n'}
+[11.467381] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.config\n'}
+[11.467570] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.sdf\n'}
+[11.468371] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/worlds/world.sdf\n'}
+[11.470072] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/description/roboboat/roboboat.xacro\n'}
+[11.470291] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz\n'}
+[11.470441] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz\n'}
+[11.470607] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh\n'}
+[11.470766] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv\n'}
+[11.470979] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.sh\n'}
+[11.471212] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.dsv\n'}
+[11.471520] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.bash\n'}
+[11.471793] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.sh\n'}
+[11.472068] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.zsh\n'}
+[11.472232] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.dsv\n'}
+[11.472359] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.dsv\n'}
+[11.479186] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz\n'}
+[11.479325] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake\n'}
+[11.479455] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake\n'}
+[11.479630] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.xml\n'}
+[11.481236] (workspace_gz) CommandEnded: {'returncode': 0}
+[11.501366] (workspace_gz) JobEnded: {'identifier': 'workspace_gz', 'rc': 0}
+[11.501909] (-) EventReactorShutdown: {}

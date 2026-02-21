@@ -1,0 +1,547 @@
+[0.175s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/usv_sim/workspace_gz -DCMAKE_BUILD_TYPE=Release -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz
+[2.301s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.302s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.306s] -- Looking for ignition-gazebo6 -- found version 6.17.1
+[2.306s] -- Searching for dependencies of ignition-gazebo6
+[2.307s] -- Looking for sdformat12 -- found version 12.9.0
+[2.307s] -- Searching for dependencies of sdformat12
+[2.308s] -- Checking for module 'tinyxml2'
+[2.308s] --   Found tinyxml2, version 9.0.0
+[2.309s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.309s] -- Searching for dependencies of ignition-math6
+[2.309s] -- Looking for ignition-utils1 -- found version 1.5.1
+[2.310s] -- Searching for dependencies of ignition-utils1
+[2.311s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[2.311s] -- Searching for dependencies of ignition-plugin1
+[2.311s] -- Searching for <ignition-plugin1> component [loader]
+[2.312s] -- Looking for ignition-plugin1-loader -- found version 1.4.0
+[2.313s] -- Searching for dependencies of ignition-plugin1-loader
+[2.313s] -- Searching for <ignition-plugin1> component [register]
+[2.314s] -- Looking for ignition-plugin1-register -- found version 1.4.0
+[2.314s] -- Searching for dependencies of ignition-plugin1-register
+[2.314s] -- Looking for ignition-transport11 -- found version 11.4.2
+[2.315s] -- Searching for dependencies of ignition-transport11
+[2.315s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[2.316s] -- Checking for module 'libzmq >= 4'
+[2.316s] --   Found libzmq , version 4.3.4
+[2.316s] -- Checking for module 'uuid'
+[2.317s] --   Found uuid, version 2.37.2
+[2.414s] -- Looking for ignition-utils1 -- found version 1.5.1
+[2.416s] -- Searching for dependencies of ignition-utils1
+[2.417s] -- Searching for <ignition-utils1> component [cli]
+[2.420s] -- Looking for ignition-utils1-cli -- found version 1.5.1
+[2.422s] -- Searching for dependencies of ignition-utils1-cli
+[2.428s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[2.431s] -- Searching for dependencies of ignition-msgs8
+[2.530s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") 
+[2.536s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.670s] -- Searching for <ignition-transport11> component [log]
+[2.673s] -- Looking for ignition-transport11-log -- found version 11.4.2
+[2.675s] -- Searching for dependencies of ignition-transport11-log
+[2.679s] -- Searching for <ignition-transport11> component [parameters]
+[2.682s] -- Looking for ignition-transport11-parameters -- found version 11.4.2
+[2.684s] -- Searching for dependencies of ignition-transport11-parameters
+[2.689s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[2.692s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.695s] -- Searching for dependencies of ignition-common4
+[2.697s] -- Looking for dlfcn.h - found
+[2.697s] -- Looking for libdl - found
+[2.744s] -- Searching for <ignition-common4> component [profiler]
+[2.747s] -- Looking for ignition-common4-profiler -- found version 4.8.0
+[2.750s] -- Searching for dependencies of ignition-common4-profiler
+[2.754s] -- Searching for <ignition-common4> component [events]
+[2.759s] -- Looking for ignition-common4-events -- found version 4.8.0
+[2.764s] -- Searching for dependencies of ignition-common4-events
+[2.767s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.772s] -- Searching for <ignition-common4> component [av]
+[2.778s] -- Looking for ignition-common4-av -- found version 4.8.0
+[2.781s] -- Searching for dependencies of ignition-common4-av
+[2.806s] -- Checking for module 'libswscale'
+[2.862s] --   Found libswscale, version 5.9.100
+[3.027s] -- Checking for module 'libavdevice >= 56.4.100'
+[3.094s] --   Found libavdevice , version 58.13.100
+[3.287s] -- Checking for module 'libavformat'
+[3.354s] --   Found libavformat, version 58.76.100
+[3.510s] -- Checking for module 'libavcodec'
+[3.556s] --   Found libavcodec, version 58.134.100
+[3.712s] -- Checking for module 'libavutil'
+[3.753s] --   Found libavutil, version 56.70.100
+[3.878s] -- Looking for ignition-fuel_tools7 -- found version 7.3.1
+[3.880s] -- Searching for dependencies of ignition-fuel_tools7
+[4.077s] -- Checking for module 'jsoncpp'
+[4.131s] --   Found jsoncpp, version 1.9.5
+[4.300s] -- Checking for module 'libzip'
+[4.362s] --   Found libzip, version 1.7.3
+[4.486s] -- Looking for ignition-common4 -- found version 4.8.0
+[4.488s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.492s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[4.501s] -- Looking for ignition-gui6 -- found version 6.9.0
+[4.505s] -- Searching for dependencies of ignition-gui6
+[4.611s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[4.654s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.658s] -- Looking for ignition-common4 -- found version 4.8.0
+[4.660s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[4.663s] -- Looking for ignition-transport11 -- found version 11.4.2
+[4.666s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[4.672s] -- Searching for dependencies of ignition-rendering6
+[4.672s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.674s] -- Searching for dependencies of ignition-math6
+[4.677s] -- Searching for <ignition-math6> component [eigen3]
+[4.678s] -- Looking for ignition-math6-eigen3 -- found version 6.15.1
+[4.680s] -- Searching for dependencies of ignition-math6-eigen3
+[4.689s] -- Looking for ignition-common4 -- found version 4.8.0
+[4.694s] -- Searching for dependencies of ignition-common4
+[4.695s] -- Looking for dlfcn.h - found
+[4.696s] -- Looking for libdl - found
+[4.729s] -- Searching for <ignition-common4> component [graphics]
+[4.732s] -- Looking for ignition-common4-graphics -- found version 4.8.0
+[4.735s] -- Searching for dependencies of ignition-common4-graphics
+[4.737s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.739s] -- Looking for ignition-utils1 -- found version 1.5.1
+[4.742s] -- Searching for <ignition-common4> component [events]
+[4.746s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[4.748s] -- Searching for dependencies of ignition-plugin1
+[4.749s] -- Searching for <ignition-plugin1> component [all]
+[4.751s] -- Looking for all libraries of ignition-plugin1 -- found version 1.4.0
+[4.754s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[4.766s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[4.905s] -- Looking for ignition-physics5 -- found version 5.4.0
+[4.911s] -- Searching for dependencies of ignition-physics5
+[4.914s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.915s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[4.916s] -- Looking for ignition-utils1 -- found version 1.5.1
+[4.925s] -- Searching for <ignition-physics5> component [heightmap]
+[4.929s] -- Looking for ignition-physics5-heightmap -- found version 5.4.0
+[4.930s] -- Searching for dependencies of ignition-physics5-heightmap
+[4.933s] -- Looking for ignition-common4 -- found version 4.8.0
+[4.941s] -- Searching for <ignition-physics5> component [mesh]
+[4.941s] -- Looking for ignition-physics5-mesh -- found version 5.4.0
+[4.942s] -- Searching for dependencies of ignition-physics5-mesh
+[4.943s] -- Looking for ignition-common4 -- found version 4.8.0
+[4.946s] -- Searching for <ignition-physics5> component [sdf]
+[4.948s] -- Looking for ignition-physics5-sdf -- found version 5.4.0
+[4.954s] -- Searching for dependencies of ignition-physics5-sdf
+[4.954s] -- Looking for sdformat12 -- found version 12.9.0
+[4.961s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[4.962s] -- Searching for dependencies of ignition-sensors6
+[5.068s] -- Looking for ignition-math6 -- found version 6.15.1
+[5.071s] -- Looking for ignition-common4 -- found version 4.8.0
+[5.075s] -- Looking for ignition-transport11 -- found version 11.4.2
+[5.076s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[5.080s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[5.084s] -- Looking for sdformat12 -- found version 12.9.0
+[5.099s] -- Searching for <ignition-sensors6> component [air_pressure]
+[5.104s] -- Looking for ignition-sensors6-air_pressure -- found version 6.9.0
+[5.106s] -- Searching for dependencies of ignition-sensors6-air_pressure
+[5.112s] -- Searching for <ignition-sensors6> component [altimeter]
+[5.116s] -- Looking for ignition-sensors6-altimeter -- found version 6.9.0
+[5.121s] -- Searching for dependencies of ignition-sensors6-altimeter
+[5.127s] -- Searching for <ignition-sensors6> component [imu]
+[5.134s] -- Looking for ignition-sensors6-imu -- found version 6.9.0
+[5.135s] -- Searching for dependencies of ignition-sensors6-imu
+[5.137s] -- Searching for <ignition-sensors6> component [force_torque]
+[5.140s] -- Looking for ignition-sensors6-force_torque -- found version 6.9.0
+[5.143s] -- Searching for dependencies of ignition-sensors6-force_torque
+[5.146s] -- Searching for <ignition-sensors6> component [logical_camera]
+[5.150s] -- Looking for ignition-sensors6-logical_camera -- found version 6.9.0
+[5.152s] -- Searching for dependencies of ignition-sensors6-logical_camera
+[5.156s] -- Searching for <ignition-sensors6> component [magnetometer]
+[5.159s] -- Looking for ignition-sensors6-magnetometer -- found version 6.9.0
+[5.161s] -- Searching for dependencies of ignition-sensors6-magnetometer
+[5.164s] -- Searching for <ignition-sensors6> component [navsat]
+[5.166s] -- Looking for ignition-sensors6-navsat -- found version 6.9.0
+[5.168s] -- Searching for dependencies of ignition-sensors6-navsat
+[5.171s] -- Searching for <ignition-sensors6> component [rendering]
+[5.174s] -- Looking for ignition-sensors6-rendering -- found version 6.9.0
+[5.177s] -- Searching for dependencies of ignition-sensors6-rendering
+[5.179s] -- Searching for <ignition-sensors6> component [lidar]
+[5.182s] -- Looking for ignition-sensors6-lidar -- found version 6.9.0
+[5.184s] -- Searching for dependencies of ignition-sensors6-lidar
+[5.186s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[5.189s] -- Searching for <ignition-sensors6> component [gpu_lidar]
+[5.191s] -- Looking for ignition-sensors6-gpu_lidar -- found version 6.9.0
+[5.194s] -- Searching for dependencies of ignition-sensors6-gpu_lidar
+[5.197s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[5.200s] -- Searching for <ignition-sensors6> component [camera]
+[5.203s] -- Looking for ignition-sensors6-camera -- found version 6.9.0
+[5.206s] -- Searching for dependencies of ignition-sensors6-camera
+[5.208s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[5.211s] -- Searching for <ignition-sensors6> component [boundingbox_camera]
+[5.215s] -- Looking for ignition-sensors6-boundingbox_camera -- found version 6.9.0
+[5.218s] -- Searching for dependencies of ignition-sensors6-boundingbox_camera
+[5.222s] -- Searching for <ignition-sensors6> component [segmentation_camera]
+[5.225s] -- Looking for ignition-sensors6-segmentation_camera -- found version 6.9.0
+[5.228s] -- Searching for dependencies of ignition-sensors6-segmentation_camera
+[5.234s] -- Searching for <ignition-sensors6> component [depth_camera]
+[5.238s] -- Looking for ignition-sensors6-depth_camera -- found version 6.9.0
+[5.239s] -- Searching for dependencies of ignition-sensors6-depth_camera
+[5.242s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[5.247s] -- Searching for <ignition-sensors6> component [rgbd_camera]
+[5.250s] -- Looking for ignition-sensors6-rgbd_camera -- found version 6.9.0
+[5.252s] -- Searching for dependencies of ignition-sensors6-rgbd_camera
+[5.255s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[5.258s] -- Searching for <ignition-sensors6> component [thermal_camera]
+[5.261s] -- Looking for ignition-sensors6-thermal_camera -- found version 6.9.0
+[5.265s] -- Searching for dependencies of ignition-sensors6-thermal_camera
+[5.269s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[5.276s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[5.278s] -- Looking for ignition-math6 -- found version 6.15.1
+[5.283s] -- Looking for ignition-utils1 -- found version 1.5.1
+[5.403s] -- Looking for ignition-common4 -- found version 4.8.0
+[5.411s] -- Looking for ignition-math6 -- found version 6.15.1
+[5.414s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[5.417s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[5.417s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[5.424s] -- Looking for ignition-transport11 -- found version 11.4.2
+[5.425s] -- Looking for ignition-utils1 -- found version 1.5.1
+[5.425s] -- Looking for sdformat12 -- found version 12.9.0
+[5.813s] -- Configuring done
+[6.419s] -- Generating done
+[6.579s] -- Build files have been written to: /home/aliomacc/sti_usv/build/workspace_gz
+[6.624s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/usv_sim/workspace_gz -DCMAKE_BUILD_TYPE=Release -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz
+[6.642s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[6.844s] [35m[1mConsolidate compiler generated dependencies of target Waves[0m
+[6.845s] [35m[1mConsolidate compiler generated dependencies of target ScoringPlugin[0m
+[6.983s] [  1%] [32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o[0m
+[6.998s] [  3%] [32mBuilding CXX object CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o[0m
+[30.376s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:[m[K In constructor ‘[01m[Kvrx::WavefieldPrivate::WavefieldPrivate()[m[K’:
+[30.384s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:137:18:[m[K [01;35m[Kwarning: [m[K‘[01m[Kvrx::WavefieldPrivate::wavenumber[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[30.385s]   137 |   public: double [01;35m[Kwavenumber[m[K;
+[30.385s]       |                  [01;35m[K^~~~~~~~~~[m[K
+[30.385s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:125:18:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kdouble vrx::WavefieldPrivate::tau[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[30.386s]   125 |   public: double [01;35m[Ktau[m[K;
+[30.386s]       |                  [01;35m[K^~~[m[K
+[30.387s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:50:11:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[30.387s]    50 |   public: [01;35m[KWavefieldPrivate[m[K():
+[30.401s]       |           [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[30.908s] /home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc: In instantiation of ‘[01m[Kvrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:24, auto:25, auto:26, auto:27&, auto:28&, auto:29&)> [with auto:24 = Eigen::Matrix<double, 2, 1>; auto:25 = Eigen::Matrix<double, 2, 1>; auto:26 = double; auto:27 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::WaveParams; auto:28 = Eigen::Matrix<double, 2, 1>; auto:29 = Eigen::Matrix<double, 2, 2>][m[K’:
+[30.909s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:853:18:[m[K   required from ‘[01m[Kvrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:30&, auto:31, auto:32, auto:33, auto:34&, auto:35, auto:36)> [with auto:30 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:24, auto:25, auto:26, auto:27&, auto:28&, auto:29&)>; auto:31 = Eigen::Matrix<double, 2, 1>; auto:32 = Eigen::Matrix<double, 2, 1>; auto:33 = double; auto:34 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::WaveParams; auto:35 = double; auto:36 = double][m[K’
+[30.909s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:878:27:[m[K   required from here
+[30.910s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:810:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kconst size_t[m[K’ {aka ‘[01m[Kconst long unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[30.910s]   810 | r (auto&& i = 0; [01;35m[Ki < n[m[K; ++i) // NOLINT
+[30.915s]       |                  [01;35m[K~~^~~[m[K
+[30.916s] 
+[43.403s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::ScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[43.403s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:374:50:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[43.404s]   374 | void ScoringPlugin::Configure([01;35m[Kconst sim::Entity &_entity[m[K,
+[43.411s]       |                               [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[43.412s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:376:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[43.413s]   376 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+[43.413s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[43.434s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:[m[K In member function ‘[01m[Kvoid vrx::ScoringPlugin::OnContacts(const ignition::msgs::Contacts&)[m[K’:
+[43.435s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:614:30:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kunsigned int[m[K’ and ‘[01m[Kint[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[43.435s]   614 |   for (unsigned int i = 0; [01;35m[Ki < _contacts.contact_size()[m[K; ++i)
+[43.436s]       |                            [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[58.022s] [  5%] [32m[1mLinking CXX shared library libWaves.so[0m
+[59.348s] [  5%] Built target Waves
+[78.475s] [  7%] [32m[1mLinking CXX shared library libScoringPlugin.so[0m
+[79.644s] [  7%] Built target ScoringPlugin
+[79.686s] [35m[1mConsolidate compiler generated dependencies of target SimpleHydrodynamics[0m
+[79.757s] [  9%] [32mBuilding CXX object CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o[0m
+[80.766s] [35m[1mConsolidate compiler generated dependencies of target AcousticPerceptionScoringPlugin[0m
+[80.836s] [ 11%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/AcousticPerceptionScoringPlugin.cc.o[0m
+[81.847s] [35m[1mConsolidate compiler generated dependencies of target WayfindingScoringPlugin[0m
+[81.933s] [ 13%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o[0m
+[82.927s] [35m[1mConsolidate compiler generated dependencies of target StationkeepingScoringPlugin[0m
+[83.041s] [ 15%] [32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o[0m
+[84.066s] [35m[1mConsolidate compiler generated dependencies of target WaveVisual[0m
+[84.266s] [ 16%] [32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o[0m
+[117.005s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::WayfindingScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[117.006s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:205:21:[m[K [01;35m[Kwarning: [m[Kloop variable ‘[01m[Kwaypoint[m[K’ creates a copy from type ‘[01m[Kconst ignition::math::v6::Vector3<double>[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wrange-loop-construct-Wrange-loop-construct]8;;[m[K]
+[117.006s]   205 |     for (const auto [01;35m[Kwaypoint[m[K : this->dataPtr->localWaypoints)
+[117.007s]       |                     [01;35m[K^~~~~~~~[m[K
+[117.007s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:205:21:[m[K [01;36m[Knote: [m[Kuse reference type to prevent copying
+[117.016s]   205 |     for (const auto [01;36m[Kwaypoint[m[K : this->dataPtr->localWaypoints)
+[117.017s]       |                     [01;36m[K^~~~~~~~[m[K
+[117.018s]       |                     [32m[K&[m[K
+[139.978s] [ 18%] [32m[1mLinking CXX shared library libSimpleHydrodynamics.so[0m
+[141.884s] [ 18%] Built target SimpleHydrodynamics
+[158.189s] [ 20%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[163.170s] [ 22%] [32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[164.710s] [ 24%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[170.098s] [ 26%] [32m[1mLinking CXX shared library libWaveVisual.so[0m
+[171.967s] [ 26%] Built target WaveVisual
+[216.201s] [ 28%] [32m[1mLinking CXX shared library libAcousticPerceptionScoringPlugin.so[0m
+[218.037s] [ 28%] Built target AcousticPerceptionScoringPlugin
+[220.607s] [ 30%] [32m[1mLinking CXX shared library libWayfindingScoringPlugin.so[0m
+[220.999s] [ 32%] [32m[1mLinking CXX shared library libStationkeepingScoringPlugin.so[0m
+[222.765s] [ 32%] Built target WayfindingScoringPlugin
+[222.902s] [ 32%] Built target StationkeepingScoringPlugin
+[222.950s] [35m[1mConsolidate compiler generated dependencies of target LightBuoyPlugin[0m
+[223.015s] [ 33%] [32mBuilding CXX object CMakeFiles/LightBuoyPlugin.dir/plugins/LightBuoyPlugin.cc.o[0m
+[236.315s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::LightBuoyPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[236.316s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:310:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[236.317s]   310 | [01;35m[K:EntityComponentManager &_ecm[m[K,
+[236.317s]       | [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[236.318s] 
+[236.320s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::LightBuoyPlugin::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[236.321s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:332:32:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[236.322s]   332 | [01;35m[K:EntityComponentManager &_ecm[m[K)
+[236.322s]       | [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[236.323s] 
+[266.574s] [ 35%] [32m[1mLinking CXX shared library libLightBuoyPlugin.so[0m
+[267.360s] [ 35%] Built target LightBuoyPlugin
+[267.399s] [35m[1mConsolidate compiler generated dependencies of target NavigationScoringPlugin[0m
+[267.486s] [ 37%] [32mBuilding CXX object CMakeFiles/NavigationScoringPlugin.dir/plugins/NavigationScoringPlugin.cc.o[0m
+[270.484s] [35m[1mConsolidate compiler generated dependencies of target GymkhanaScoringPlugin[0m
+[270.553s] [ 39%] [32mBuilding CXX object CMakeFiles/GymkhanaScoringPlugin.dir/plugins/GymkhanaScoringPlugin.cc.o[0m
+[271.569s] [35m[1mConsolidate compiler generated dependencies of target BallShooterPlugin[0m
+[271.674s] [ 41%] [32mBuilding CXX object CMakeFiles/BallShooterPlugin.dir/plugins/BallShooterPlugin.cc.o[0m
+[272.664s] [35m[1mConsolidate compiler generated dependencies of target AcousticPingerPlugin[0m
+[272.750s] [35m[1mConsolidate compiler generated dependencies of target AcousticTrackingScoringPlugin[0m
+[272.761s] [ 43%] [32mBuilding CXX object CMakeFiles/AcousticPingerPlugin.dir/plugins/AcousticPingerPlugin.cc.o[0m
+[272.877s] [ 45%] [32mBuilding CXX object CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/AcousticTrackingScoringPlugin.cc.o[0m
+[273.854s] [35m[1mConsolidate compiler generated dependencies of target USVWind[0m
+[274.017s] [ 47%] [32mBuilding CXX object CMakeFiles/USVWind.dir/plugins/USVWind.cc.o[0m
+[274.977s] [35m[1mConsolidate compiler generated dependencies of target Surface[0m
+[275.149s] [ 49%] [32mBuilding CXX object CMakeFiles/Surface.dir/plugins/Surface.cc.o[0m
+[276.166s] [35m[1mConsolidate compiler generated dependencies of target PolyhedraBuoyancyDrag[0m
+[276.364s] [ 50%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o[0m
+[312.097s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:[m[K In member function ‘[01m[Kbool vrx::AcousticPingerPlugin::Implementation::ParseSDFParameters(ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[312.098s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:100:32:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[312.098s]   100 |   [01;35m[Ksim::EntityComponentManager &_ecm[m[K)
+[312.099s]       |   [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[312.135s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::AcousticPingerPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[312.136s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:197:57:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_eventMgr[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[312.136s]   197 |   sim::EntityComponentManager &_ecm, [01;35m[Ksim::EventManager &_eventMgr[m[K)
+[312.137s]       |                                      [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~~~[m[K
+[318.605s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/BallShooterPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::BallShooterPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[318.610s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/BallShooterPlugin.cc:90:54:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[318.611s]    90 | void BallShooterPlugin::Configure([01;35m[Kconst sim::Entity &_entity[m[K,
+[318.611s]       |                                   [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[318.620s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/BallShooterPlugin.cc:92:57:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_eventMgr[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[318.621s]    92 |   sim::EntityComponentManager &_ecm, [01;35m[Ksim::EventManager &_eventMgr[m[K)
+[318.622s]       |                                      [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~~~[m[K
+[318.662s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/BallShooterPlugin.cc:[m[K In member function ‘[01m[Kvoid vrx::BallShooterPlugin::Implementation::OnFire(const ignition::msgs::Boolean&)[m[K’:
+[318.668s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/BallShooterPlugin.cc:292:69:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_msg[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[318.671s]   292 | void BallShooterPlugin::Implementation::OnFire([01;35m[Kconst msgs::Boolean &_msg[m[K)
+[318.671s]       |                                                [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[327.408s] In file included from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:16[m[K:
+[327.412s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.hh:92:44:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[327.413s]    92 |          IGN_UTILS_UNIQUE_IMPL_PTR(dataPtr)[01;35m[K;[m[K
+[327.418s]       |                                            [01;35m[K^[m[K
+[327.424s]       |                                            [31m[K-[m[K
+[327.651s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:[m[K In member function ‘[01m[Kvirtual void vrx::USVWind::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[327.652s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:116:44:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[327.659s]   116 | void USVWind::Configure([01;35m[Kconst sim::Entity &_entity[m[K,
+[327.662s]       |                         [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[327.663s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:118:54:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[327.663s]   118 |                         [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+[327.664s]       |                         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[356.388s] [ 52%] [32mBuilding CXX object CMakeFiles/GymkhanaScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[372.603s] [ 54%] [32m[1mLinking CXX shared library libAcousticPingerPlugin.so[0m
+[374.771s] [ 56%] [32mBuilding CXX object CMakeFiles/AcousticTrackingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[374.772s] [ 56%] Built target AcousticPingerPlugin
+[374.776s] [ 58%] [32m[1mLinking CXX shared library libSurface.so[0m
+[376.408s] [ 60%] [32mBuilding CXX object CMakeFiles/NavigationScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[376.931s] [ 60%] Built target Surface
+[382.097s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedraBuoyancyDrag.cc:[m[K In member function ‘[01m[Kvirtual void vrx::PolyhedraBuoyancyDrag::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[382.098s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedraBuoyancyDrag.cc:311:70:[m[K [01;35m[Kwarning: [m[K‘[01m[KsimTime[m[K’ may be used uninitialized in this function [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmaybe-uninitialized-Wmaybe-uninitialized]8;;[m[K]
+[382.098s]   311 |       double waveHeight = [01;35m[Kthis->dataPtr->wavefield.ComputeDepthSimply([m[K
+[382.103s]       |                           [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+[382.103s]   312 | [01;35m[K        linkFrame.Pos(), simTime)[m[K;
+[382.113s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~[m[K                                     
+[382.113s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedraBuoyancyDrag.cc:313:66:[m[K [01;35m[Kwarning: [m[K‘[01m[Kdt[m[K’ may be used uninitialized in this function [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmaybe-uninitialized-Wmaybe-uninitialized]8;;[m[K]
+[382.114s]   313 |       buoyancyObj.waterSpeed = [01;35m[K(waveHeight - buoyancyObj.height) / dt[m[K;
+[382.114s]       |                                [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[384.997s] [ 62%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedronVolume.cc.o[0m
+[385.375s] [ 64%] [32m[1mLinking CXX shared library libUSVWind.so[0m
+[386.848s] [ 64%] Built target USVWind
+[388.838s] [ 66%] [32m[1mLinking CXX shared library libBallShooterPlugin.so[0m
+[390.326s] [ 66%] Built target BallShooterPlugin
+[404.021s] [ 67%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/ShapeVolume.cc.o[0m
+[408.564s] [ 69%] [32m[1mLinking CXX shared library libGymkhanaScoringPlugin.so[0m
+[409.521s] [ 69%] Built target GymkhanaScoringPlugin
+[416.067s] [ 71%] [32m[1mLinking CXX shared library libAcousticTrackingScoringPlugin.so[0m
+[417.135s] [ 71%] Built target AcousticTrackingScoringPlugin
+[417.996s] [ 73%] [32m[1mLinking CXX shared library libNavigationScoringPlugin.so[0m
+[419.045s] [ 73%] Built target NavigationScoringPlugin
+[425.673s] [ 75%] [32m[1mLinking CXX shared library libPolyhedraBuoyancyDrag.so[0m
+[426.661s] [ 75%] Built target PolyhedraBuoyancyDrag
+[426.697s] [35m[1mConsolidate compiler generated dependencies of target WildlifeScoringPlugin[0m
+[426.766s] [ 77%] [32mBuilding CXX object CMakeFiles/WildlifeScoringPlugin.dir/plugins/WildlifeScoringPlugin.cc.o[0m
+[456.820s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:[m[K In constructor ‘[01m[KBuoy::Buoy(const string&, ignition::gazebo::v6::Entity, BuoyGoal, double, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[456.821s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:223:23:[m[K [01;35m[Kwarning: [m[K‘[01m[KBuoy::entityName[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[456.822s]   223 |   public: std::string [01;35m[KentityName[m[K;
+[456.822s]       |                       [01;35m[K^~~~~~~~~~[m[K
+[456.823s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:220:29:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst Entity Buoy::entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[456.823s]   220 |  public: const sim::Entity [01;35m[Kentity[m[K;
+[456.824s]       |                            [01;35m[K^~~~~~[m[K
+[456.824s] 
+[456.825s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:249:1:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[456.825s]   249 | [01;35m[KBuoy[m[K::Buoy(const std::string &_entityName,
+[456.826s]       | [01;35m[K^~~~[m[K
+[456.827s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:265:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kconst unsigned int[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[456.827s]   265 |   for (int i = 0; [01;35m[Ki < this->kNumVirtualGates[m[K; ++i)
+[456.828s]       |                   [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[457.014s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::WildlifeScoringPlugin::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[457.015s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:569:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Buoy>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[457.015s]   569 |     for (auto i = 0; [01;35m[Ki < this->dataPtr->buoys.size()[m[K; ++i)
+[457.016s]       |                      [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[457.016s] 
+[490.930s] [ 79%] [32mBuilding CXX object CMakeFiles/WildlifeScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[536.857s] [ 81%] [32m[1mLinking CXX shared library libWildlifeScoringPlugin.so[0m
+[537.807s] [ 81%] Built target WildlifeScoringPlugin
+[537.843s] [35m[1mConsolidate compiler generated dependencies of target PublisherPlugin[0m
+[537.843s] [35m[1mConsolidate compiler generated dependencies of target PlacardPlugin[0m
+[537.861s] [35m[1mConsolidate compiler generated dependencies of target ScanDockScoringPlugin[0m
+[537.862s] [35m[1mConsolidate compiler generated dependencies of target PerceptionScoringPlugin[0m
+[537.915s] [ 83%] [32mBuilding CXX object CMakeFiles/PublisherPlugin.dir/plugins/PublisherPlugin.cc.o[0m
+[537.934s] [ 84%] [32mBuilding CXX object CMakeFiles/PlacardPlugin.dir/plugins/PlacardPlugin.cc.o[0m
+[537.964s] [ 86%] [32mBuilding CXX object CMakeFiles/PerceptionScoringPlugin.dir/plugins/PerceptionScoringPlugin.cc.o[0m
+[537.972s] [ 88%] [32mBuilding CXX object CMakeFiles/ScanDockScoringPlugin.dir/plugins/ScanDockScoringPlugin.cc.o[0m
+[537.973s] [ 90%] [32mBuilding CXX object CMakeFiles/PerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[538.013s] [ 92%] [32mBuilding CXX object CMakeFiles/ScanDockScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[565.524s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::PublisherPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[565.525s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:72:52:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[565.525s]    72 | void PublisherPlugin::Configure([01;35m[Kconst sim::Entity &_entity[m[K,
+[565.526s]       |                                 [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[565.530s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:74:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[565.531s]    74 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+[565.531s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[565.546s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::PublisherPlugin::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[565.546s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:154:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[565.547s]   154 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K)
+[565.547s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[566.150s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PerceptionScoringPlugin.cc:[m[K In member function ‘[01m[Kvoid vrx::PerceptionScoringPlugin::Implementation::ProcessAttempts(ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[566.152s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PerceptionScoringPlugin.cc:363:25:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kunsigned int[m[K’ and ‘[01m[Kint[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[566.153s]   363 |     for (auto i = 0u; [01;35m[Ki < _msg.header().data_size()[m[K; ++i)
+[566.153s]       |                       [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[566.561s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScanDockScoringPlugin.cc:[m[K In lambda function:
+[566.566s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScanDockScoringPlugin.cc:837:33:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_res[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[566.567s]   837 | ]([01;35m[Kconst msgs::Boolean &_res[m[K, const bool)
+[566.567s]       |   [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[566.568s] 
+[567.203s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::PlacardPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[567.204s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:157:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[567.204s]   157 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+[567.204s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[567.440s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:[m[K In member function ‘[01m[Kvoid vrx::PlacardPlugin::Implementation::ChangeSymbol(const ignition::msgs::Empty&)[m[K’:
+[567.441s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:436:69:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_msg[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[567.441s]   436 | void PlacardPlugin::Implementation::ChangeSymbol([01;35m[Kconst msgs::Empty &_msg[m[K)
+[567.442s]       |                                                  [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[600.114s] [ 94%] [32m[1mLinking CXX shared library libPublisherPlugin.so[0m
+[601.376s] [ 94%] Built target PublisherPlugin
+[611.096s] [ 96%] [32m[1mLinking CXX shared library libPlacardPlugin.so[0m
+[612.722s] [ 96%] Built target PlacardPlugin
+[616.823s] [ 98%] [32m[1mLinking CXX shared library libPerceptionScoringPlugin.so[0m
+[618.795s] [ 98%] Built target PerceptionScoringPlugin
+[622.362s] [100%] [32m[1mLinking CXX shared library libScanDockScoringPlugin.so[0m
+[624.112s] [100%] Built target ScanDockScoringPlugin
+[624.179s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[624.189s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz
+[624.224s] -- Install configuration: "Release"
+[624.227s] -- Execute custom install script
+[624.229s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaves.so
+[624.230s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScoringPlugin.so
+[624.232s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSimpleHydrodynamics.so
+[624.233s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPolyhedraBuoyancyDrag.so
+[624.234s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSurface.so
+[624.235s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libUSVWind.so
+[624.236s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaveVisual.so
+[624.237s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libStationkeepingScoringPlugin.so
+[624.238s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWayfindingScoringPlugin.so
+[624.239s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPerceptionScoringPlugin.so
+[624.240s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticTrackingScoringPlugin.so
+[624.241s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPingerPlugin.so
+[624.242s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libBallShooterPlugin.so
+[624.243s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libLightBuoyPlugin.so
+[624.244s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libNavigationScoringPlugin.so
+[624.246s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libGymkhanaScoringPlugin.so
+[624.247s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPerceptionScoringPlugin.so
+[624.248s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPlacardPlugin.so
+[624.249s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPublisherPlugin.so
+[624.250s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScanDockScoringPlugin.so
+[624.251s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWildlifeScoringPlugin.so
+[624.253s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/launch/simulation.launch.py
+[624.261s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png
+[624.262s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png
+[624.262s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/meshes/marker_buoy.dae
+[624.263s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.config
+[624.263s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.sdf
+[624.264s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png
+[624.265s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png
+[624.268s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/meshes/marker_buoy.dae
+[624.269s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.config
+[624.269s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.sdf
+[624.270s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png
+[624.270s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png
+[624.271s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/meshes/marker_buoy.dae
+[624.272s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.config
+[624.273s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.sdf
+[624.274s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png
+[624.276s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png
+[624.276s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/meshes/marker_buoy.dae
+[624.277s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.config
+[624.278s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.sdf
+[624.278s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png
+[624.279s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png
+[624.280s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae
+[624.281s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.config
+[624.282s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.sdf
+[624.283s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png
+[624.284s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png
+[624.285s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/meshes/round_buoy.dae
+[624.286s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.config
+[624.286s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.sdf
+[624.287s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_albedo.png
+[624.289s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_metalness.png
+[624.289s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_normal.png
+[624.290s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_roughness.png
+[624.291s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_albedo.png
+[624.292s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_roughness.png
+[624.293s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/housing.dae
+[624.294s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/mount.dae
+[624.295s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/prop.dae
+[624.296s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/roboboat.dae
+[624.297s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera.png
+[624.297s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_albedo.png
+[624.298s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_metalness.png
+[624.299s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_normal.png
+[624.299s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_roughness.png
+[624.300s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera.dae
+[624.301s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera_albedo.png
+[624.302s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/materials/textures/post_albedo.png
+[624.303s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post.dae
+[624.303s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post_albedo.jpg
+[624.304s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png
+[624.305s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png
+[624.305s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/meshes/drybox.dae
+[624.306s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/materials/textures/gps_albedo.png
+[624.306s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps.dae
+[624.307s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps_albedo.png
+[624.308s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar.png
+[624.309s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png
+[624.310s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png
+[624.311s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_normal.png
+[624.311s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png
+[624.312s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar.dae
+[624.313s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar_albedo.png
+[624.314s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png
+[624.315s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post.dae
+[624.315s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg
+[624.316s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_fs_330.glsl
+[624.317s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_vs_330.glsl
+[624.317s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/skybox_lowres.dds
+[624.318s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/wave_normals.dds
+[624.318s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/meshes/waterlow.dae
+[624.319s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.config
+[624.320s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.sdf
+[624.320s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/worlds/world.sdf
+[624.322s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/description/roboboat/roboboat.xacro
+[624.324s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz
+[624.324s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz
+[624.325s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh
+[624.326s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv
+[624.326s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.sh
+[624.327s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.dsv
+[624.328s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.bash
+[624.329s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.sh
+[624.330s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.zsh
+[624.332s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.dsv
+[624.332s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.dsv
+[624.380s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz
+[624.380s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake
+[624.381s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake
+[624.382s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.xml
+[624.393s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz

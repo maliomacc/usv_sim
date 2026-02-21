@@ -1,0 +1,1 @@
+/home/aliomacc/sti_usv/build/workspace_nav/launch/nav2.launch.py

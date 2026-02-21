@@ -1,0 +1,1 @@
+/home/aliomacc/sti_usv/build/workspace_nav/scripts/mola_parkur_aigasyon.py

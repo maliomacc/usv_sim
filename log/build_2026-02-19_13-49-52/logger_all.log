@@ -1,0 +1,402 @@
+[1.072s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install', '--cmake-args', '-DCMAKE_BUILD_TYPE=Release']
+[1.072s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=['-DCMAKE_BUILD_TYPE=Release'], cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7bb34d28ce20>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7bb34d28c8b0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7bb34d28c8b0>>, mixin_verb=('build',))
+[2.402s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[2.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[2.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[2.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[2.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[2.404s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[2.404s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/aliomacc/sti_usv'
+[2.405s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[2.406s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[2.406s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[2.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[2.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[2.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[2.408s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[2.408s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[2.408s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[2.529s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[2.529s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[2.529s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[2.530s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[2.531s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[2.532s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[2.533s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[2.533s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[2.534s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[2.535s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[2.535s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[2.536s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[2.537s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[2.537s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[2.538s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[2.538s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[2.539s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[2.539s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[2.539s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[2.540s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[2.540s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[2.541s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[2.541s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[2.542s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[2.542s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[2.542s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[2.543s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[2.543s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[2.544s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extensions ['ignore', 'ignore_ament_install']
+[2.545s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'ignore'
+[2.545s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'ignore_ament_install'
+[2.545s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extensions ['colcon_pkg']
+[2.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'colcon_pkg'
+[2.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extensions ['colcon_meta']
+[2.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'colcon_meta'
+[2.547s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extensions ['ros']
+[2.547s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'ros'
+[2.547s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extensions ['cmake', 'python']
+[2.548s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'cmake'
+[2.548s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'python'
+[2.548s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extensions ['python_setup_py']
+[2.548s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp) by extension 'python_setup_py'
+[2.549s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extensions ['ignore', 'ignore_ament_install']
+[2.550s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'ignore'
+[2.550s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'ignore_ament_install'
+[2.551s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extensions ['colcon_pkg']
+[2.551s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'colcon_pkg'
+[2.552s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extensions ['colcon_meta']
+[2.552s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'colcon_meta'
+[2.553s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extensions ['ros']
+[2.553s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'ros'
+[2.554s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extensions ['cmake', 'python']
+[2.554s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'cmake'
+[2.554s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'python'
+[2.555s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extensions ['python_setup_py']
+[2.555s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/config) by extension 'python_setup_py'
+[2.556s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/cpp) by extensions ['ignore', 'ignore_ament_install']
+[2.556s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/cpp) by extension 'ignore'
+[2.557s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/cpp) ignored
+[2.558s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extensions ['ignore', 'ignore_ament_install']
+[2.558s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'ignore'
+[2.559s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'ignore_ament_install'
+[2.559s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extensions ['colcon_pkg']
+[2.560s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'colcon_pkg'
+[2.560s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extensions ['colcon_meta']
+[2.560s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'colcon_meta'
+[2.560s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extensions ['ros']
+[2.561s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'ros'
+[2.561s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extensions ['cmake', 'python']
+[2.561s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'cmake'
+[2.562s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'python'
+[2.562s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extensions ['python_setup_py']
+[2.562s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/eval) by extension 'python_setup_py'
+[2.562s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/python) by extensions ['ignore', 'ignore_ament_install']
+[2.563s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/python) by extension 'ignore'
+[2.563s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/python) ignored
+[2.564s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extensions ['ignore', 'ignore_ament_install']
+[2.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extension 'ignore'
+[2.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extension 'ignore_ament_install'
+[2.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extensions ['colcon_pkg']
+[2.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extension 'colcon_pkg'
+[2.566s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extensions ['colcon_meta']
+[2.566s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extension 'colcon_meta'
+[2.566s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extensions ['ros']
+[2.566s] Level 1:colcon.colcon_core.package_identification:_identify(src/kiss_icp/ros) by extension 'ros'
+[2.598s] DEBUG:colcon.colcon_core.package_identification:Package 'src/kiss_icp/ros' with type 'ros.ament_cmake' and name 'kiss_icp'
+[2.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extensions ['ignore', 'ignore_ament_install']
+[2.600s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'ignore'
+[2.601s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'ignore_ament_install'
+[2.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extensions ['colcon_pkg']
+[2.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'colcon_pkg'
+[2.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extensions ['colcon_meta']
+[2.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'colcon_meta'
+[2.603s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extensions ['ros']
+[2.603s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'ros'
+[2.604s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extensions ['cmake', 'python']
+[2.604s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'cmake'
+[2.604s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'python'
+[2.604s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extensions ['python_setup_py']
+[2.605s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim) by extension 'python_setup_py'
+[2.605s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[2.607s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'ignore'
+[2.607s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'ignore_ament_install'
+[2.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extensions ['colcon_pkg']
+[2.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'colcon_pkg'
+[2.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extensions ['colcon_meta']
+[2.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'colcon_meta'
+[2.609s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extensions ['ros']
+[2.609s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'ros'
+[2.610s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extensions ['cmake', 'python']
+[2.610s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'cmake'
+[2.610s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'python'
+[2.610s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extensions ['python_setup_py']
+[2.610s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/__pycache__) by extension 'python_setup_py'
+[2.611s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extensions ['ignore', 'ignore_ament_install']
+[2.611s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extension 'ignore'
+[2.612s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extension 'ignore_ament_install'
+[2.612s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extensions ['colcon_pkg']
+[2.612s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extension 'colcon_pkg'
+[2.613s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extensions ['colcon_meta']
+[2.613s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extension 'colcon_meta'
+[2.613s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extensions ['ros']
+[2.613s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_gz) by extension 'ros'
+[2.618s] DEBUG:colcon.colcon_core.package_identification:Package 'src/usv_sim/workspace_gz' with type 'ros.ament_cmake' and name 'workspace_gz'
+[2.619s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extensions ['ignore', 'ignore_ament_install']
+[2.619s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extension 'ignore'
+[2.620s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extension 'ignore_ament_install'
+[2.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extensions ['colcon_pkg']
+[2.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extension 'colcon_pkg'
+[2.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extensions ['colcon_meta']
+[2.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extension 'colcon_meta'
+[2.622s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extensions ['ros']
+[2.622s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_nav) by extension 'ros'
+[2.631s] DEBUG:colcon.colcon_core.package_identification:Package 'src/usv_sim/workspace_nav' with type 'ros.ament_python' and name 'workspace_nav'
+[2.632s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extensions ['ignore', 'ignore_ament_install']
+[2.632s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extension 'ignore'
+[2.632s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extension 'ignore_ament_install'
+[2.633s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extensions ['colcon_pkg']
+[2.633s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extension 'colcon_pkg'
+[2.634s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extensions ['colcon_meta']
+[2.634s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extension 'colcon_meta'
+[2.635s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extensions ['ros']
+[2.635s] Level 1:colcon.colcon_core.package_identification:_identify(src/usv_sim/workspace_ros) by extension 'ros'
+[2.645s] DEBUG:colcon.colcon_core.package_identification:Package 'src/usv_sim/workspace_ros' with type 'ros.ament_python' and name 'workspace_ros'
+[2.645s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[2.645s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[2.645s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[2.645s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[2.645s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[2.796s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[2.796s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[2.812s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 4 installed packages in /home/aliomacc/turtlebot3_ws/install
+[2.816s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 6 installed packages in /home/aliomacc/ros2_ws/install
+[2.827s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 461 installed packages in /opt/ros/humble
+[2.839s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[3.199s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release']'
+[3.200s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'cmake_target' from command line to 'None'
+[3.200s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.200s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'cmake_clean_cache' from command line to 'False'
+[3.200s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'cmake_clean_first' from command line to 'False'
+[3.201s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'cmake_force_configure' from command line to 'False'
+[3.201s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'ament_cmake_args' from command line to 'None'
+[3.201s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'catkin_cmake_args' from command line to 'None'
+[3.201s] Level 5:colcon.colcon_core.verb:set package 'kiss_icp' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.201s] DEBUG:colcon.colcon_core.verb:Building package 'kiss_icp' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aliomacc/sti_usv/build/kiss_icp', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aliomacc/sti_usv/install/kiss_icp', 'merge_install': False, 'path': '/home/aliomacc/sti_usv/src/kiss_icp/ros', 'symlink_install': True, 'test_result_base': None}
+[3.205s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release']'
+[3.205s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_target' from command line to 'None'
+[3.206s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.206s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_clean_cache' from command line to 'False'
+[3.206s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_clean_first' from command line to 'False'
+[3.206s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'cmake_force_configure' from command line to 'False'
+[3.206s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'ament_cmake_args' from command line to 'None'
+[3.206s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'catkin_cmake_args' from command line to 'None'
+[3.206s] Level 5:colcon.colcon_core.verb:set package 'workspace_gz' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.207s] DEBUG:colcon.colcon_core.verb:Building package 'workspace_gz' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aliomacc/sti_usv/build/workspace_gz', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aliomacc/sti_usv/install/workspace_gz', 'merge_install': False, 'path': '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz', 'symlink_install': True, 'test_result_base': None}
+[3.209s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release']'
+[3.210s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_target' from command line to 'None'
+[3.210s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.210s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_clean_cache' from command line to 'False'
+[3.210s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_clean_first' from command line to 'False'
+[3.210s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'cmake_force_configure' from command line to 'False'
+[3.211s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'ament_cmake_args' from command line to 'None'
+[3.211s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'catkin_cmake_args' from command line to 'None'
+[3.211s] Level 5:colcon.colcon_core.verb:set package 'workspace_nav' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.211s] DEBUG:colcon.colcon_core.verb:Building package 'workspace_nav' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aliomacc/sti_usv/build/workspace_nav', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aliomacc/sti_usv/install/workspace_nav', 'merge_install': False, 'path': '/home/aliomacc/sti_usv/src/usv_sim/workspace_nav', 'symlink_install': True, 'test_result_base': None}
+[3.213s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release']'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_target' from command line to 'None'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_clean_first' from command line to 'False'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'cmake_force_configure' from command line to 'False'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'ament_cmake_args' from command line to 'None'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[3.214s] Level 5:colcon.colcon_core.verb:set package 'workspace_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.215s] DEBUG:colcon.colcon_core.verb:Building package 'workspace_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aliomacc/sti_usv/build/workspace_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aliomacc/sti_usv/install/workspace_ros', 'merge_install': False, 'path': '/home/aliomacc/sti_usv/src/usv_sim/workspace_ros', 'symlink_install': True, 'test_result_base': None}
+[3.216s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[3.222s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[3.224s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aliomacc/sti_usv/src/kiss_icp/ros' with build type 'ament_cmake'
+[3.225s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aliomacc/sti_usv/src/kiss_icp/ros'
+[3.246s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[3.248s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.248s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.278s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz' with build type 'ament_cmake'
+[3.279s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz'
+[3.282s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.282s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.309s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aliomacc/sti_usv/src/usv_sim/workspace_nav' with build type 'ament_python'
+[3.310s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_nav', 'ament_prefix_path')
+[3.313s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/hook/ament_prefix_path.ps1'
+[3.320s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/hook/ament_prefix_path.dsv'
+[3.325s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/hook/ament_prefix_path.sh'
+[3.331s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.331s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.359s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aliomacc/sti_usv/src/usv_sim/workspace_ros' with build type 'ament_python'
+[3.360s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_ros', 'ament_prefix_path')
+[3.362s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.ps1'
+[3.366s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.dsv'
+[3.369s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/hook/ament_prefix_path.sh'
+[3.372s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.372s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.422s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/kiss_icp': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/kiss_icp/ros -DCMAKE_BUILD_TYPE=Release -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/kiss_icp
+[3.454s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/usv_sim/workspace_gz -DCMAKE_BUILD_TYPE=Release -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz
+[5.545s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aliomacc/sti_usv/src/usv_sim/workspace_nav'
+[5.547s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.547s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.185s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aliomacc/sti_usv/src/usv_sim/workspace_ros'
+[7.187s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[7.187s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[9.632s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/workspace_nav': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_nav/build --no-deps symlink_data
+[9.647s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/workspace_ros': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_ros/build --no-deps symlink_data
+[9.903s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/usv_sim/workspace_gz -DCMAKE_BUILD_TYPE=Release -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz
+[9.921s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[13.064s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_ros', 'pythonpath_develop')
+[13.066s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/build/workspace_ros/share/workspace_ros/hook/pythonpath_develop.ps1'
+[13.071s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/build/workspace_ros/share/workspace_ros/hook/pythonpath_develop.dsv'
+[13.073s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/workspace_ros' returned '0': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_ros/build --no-deps symlink_data
+[13.079s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/build/workspace_ros/share/workspace_ros/hook/pythonpath_develop.sh'
+[13.111s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_ros' for CMake module files
+[13.113s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_ros' for CMake config files
+[13.116s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_ros/lib'
+[13.117s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_ros/bin'
+[13.117s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_ros/lib/pkgconfig/workspace_ros.pc'
+[13.119s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages'
+[13.119s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_ros', 'pythonpath')
+[13.120s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/hook/pythonpath.ps1'
+[13.122s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/hook/pythonpath.dsv'
+[13.124s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/hook/pythonpath.sh'
+[13.127s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_ros/bin'
+[13.128s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_ros)
+[13.130s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/package.ps1'
+[13.135s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/package.dsv'
+[13.138s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/package.sh'
+[13.142s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/package.bash'
+[13.147s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/package.zsh'
+[13.151s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomacc/sti_usv/install/workspace_ros/share/colcon-core/packages/workspace_ros)
+[13.156s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_nav', 'pythonpath_develop')
+[13.157s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/build/workspace_nav/share/workspace_nav/hook/pythonpath_develop.ps1'
+[13.161s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/workspace_nav' returned '0': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_nav/build --no-deps symlink_data
+[13.162s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/build/workspace_nav/share/workspace_nav/hook/pythonpath_develop.dsv'
+[13.164s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/build/workspace_nav/share/workspace_nav/hook/pythonpath_develop.sh'
+[13.167s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_nav' for CMake module files
+[13.168s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_nav' for CMake config files
+[13.171s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_nav/lib'
+[13.171s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_nav/bin'
+[13.172s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_nav/lib/pkgconfig/workspace_nav.pc'
+[13.173s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages'
+[13.173s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_nav', 'pythonpath')
+[13.174s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/hook/pythonpath.ps1'
+[13.177s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/hook/pythonpath.dsv'
+[13.178s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/hook/pythonpath.sh'
+[13.183s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_nav/bin'
+[13.183s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_nav)
+[13.185s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/package.ps1'
+[13.188s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/package.dsv'
+[13.190s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/package.sh'
+[13.192s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/package.bash'
+[13.194s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/package.zsh'
+[13.195s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomacc/sti_usv/install/workspace_nav/share/colcon-core/packages/workspace_nav)
+[15.313s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/kiss_icp' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake /home/aliomacc/sti_usv/src/kiss_icp/ros -DCMAKE_BUILD_TYPE=Release -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/kiss_icp
+[15.330s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/kiss_icp': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/kiss_icp -- -j8 -l8
+[263.346s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/kiss_icp' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/kiss_icp -- -j8 -l8
+[263.422s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/kiss_icp': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/kiss_icp
+[264.459s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(kiss_icp)
+[264.462s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp' for CMake module files
+[264.466s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/kiss_icp' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/kiss_icp
+[264.468s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp' for CMake config files
+[264.471s] Level 1:colcon.colcon_core.shell:create_environment_hook('kiss_icp', 'cmake_prefix_path')
+[264.474s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/cmake_prefix_path.ps1'
+[264.478s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/cmake_prefix_path.dsv'
+[264.481s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/cmake_prefix_path.sh'
+[264.486s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/lib'
+[264.487s] Level 1:colcon.colcon_core.shell:create_environment_hook('kiss_icp', 'ld_library_path_lib')
+[264.489s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/ld_library_path_lib.ps1'
+[264.492s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/ld_library_path_lib.dsv'
+[264.494s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/ld_library_path_lib.sh'
+[264.497s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/bin'
+[264.498s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/lib/pkgconfig/kiss_icp.pc'
+[264.500s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/lib/python3.10/site-packages'
+[264.502s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/bin'
+[264.506s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.ps1'
+[264.509s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.dsv'
+[264.513s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.sh'
+[264.516s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.bash'
+[264.519s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.zsh'
+[264.522s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomacc/sti_usv/install/kiss_icp/share/colcon-core/packages/kiss_icp)
+[264.526s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(kiss_icp)
+[264.528s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp' for CMake module files
+[264.531s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp' for CMake config files
+[264.533s] Level 1:colcon.colcon_core.shell:create_environment_hook('kiss_icp', 'cmake_prefix_path')
+[264.535s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/cmake_prefix_path.ps1'
+[264.538s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/cmake_prefix_path.dsv'
+[264.541s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/cmake_prefix_path.sh'
+[264.545s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/lib'
+[264.546s] Level 1:colcon.colcon_core.shell:create_environment_hook('kiss_icp', 'ld_library_path_lib')
+[264.548s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/ld_library_path_lib.ps1'
+[264.551s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/ld_library_path_lib.dsv'
+[264.556s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/hook/ld_library_path_lib.sh'
+[264.559s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/bin'
+[264.559s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/lib/pkgconfig/kiss_icp.pc'
+[264.561s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/lib/python3.10/site-packages'
+[264.563s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/kiss_icp/bin'
+[264.566s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.ps1'
+[264.571s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.dsv'
+[264.575s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.sh'
+[264.578s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.bash'
+[264.580s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/kiss_icp/share/kiss_icp/package.zsh'
+[264.582s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomacc/sti_usv/install/kiss_icp/share/colcon-core/packages/kiss_icp)
+[1533.825s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[1533.837s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz
+[1534.034s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_gz)
+[1534.037s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz' for CMake module files
+[1534.040s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz
+[1534.043s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz' for CMake config files
+[1534.045s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_gz', 'cmake_prefix_path')
+[1534.047s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.ps1'
+[1534.049s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.dsv'
+[1534.052s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.sh'
+[1534.055s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/lib'
+[1534.056s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/bin'
+[1534.057s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/lib/pkgconfig/workspace_gz.pc'
+[1534.058s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/lib/python3.10/site-packages'
+[1534.060s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/bin'
+[1534.062s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.ps1'
+[1534.065s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.dsv'
+[1534.068s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.sh'
+[1534.070s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.bash'
+[1534.073s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.zsh'
+[1534.076s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomacc/sti_usv/install/workspace_gz/share/colcon-core/packages/workspace_gz)
+[1534.081s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(workspace_gz)
+[1534.082s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz' for CMake module files
+[1534.086s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz' for CMake config files
+[1534.088s] Level 1:colcon.colcon_core.shell:create_environment_hook('workspace_gz', 'cmake_prefix_path')
+[1534.090s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.ps1'
+[1534.093s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.dsv'
+[1534.095s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/hook/cmake_prefix_path.sh'
+[1534.098s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/lib'
+[1534.100s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/bin'
+[1534.100s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/lib/pkgconfig/workspace_gz.pc'
+[1534.102s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/lib/python3.10/site-packages'
+[1534.103s] Level 1:colcon.colcon_core.environment:checking '/home/aliomacc/sti_usv/install/workspace_gz/bin'
+[1534.105s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.ps1'
+[1534.109s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.dsv'
+[1534.111s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.sh'
+[1534.116s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.bash'
+[1534.119s] INFO:colcon.colcon_core.shell:Creating package script '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.zsh'
+[1534.123s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aliomacc/sti_usv/install/workspace_gz/share/colcon-core/packages/workspace_gz)
+[1534.125s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1534.127s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1534.129s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1534.129s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1534.169s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1534.170s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1534.171s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1534.252s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1534.253s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomacc/sti_usv/install/local_setup.ps1'
+[1534.259s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aliomacc/sti_usv/install/_local_setup_util_ps1.py'
+[1534.266s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomacc/sti_usv/install/setup.ps1'
+[1534.275s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomacc/sti_usv/install/local_setup.sh'
+[1534.279s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aliomacc/sti_usv/install/_local_setup_util_sh.py'
+[1534.284s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomacc/sti_usv/install/setup.sh'
+[1534.294s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomacc/sti_usv/install/local_setup.bash'
+[1534.298s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomacc/sti_usv/install/setup.bash'
+[1534.306s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aliomacc/sti_usv/install/local_setup.zsh'
+[1534.310s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aliomacc/sti_usv/install/setup.zsh'

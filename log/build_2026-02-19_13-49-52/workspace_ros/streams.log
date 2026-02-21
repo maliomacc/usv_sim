@@ -1,0 +1,22 @@
+[6.286s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_ros': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_ros/build --no-deps symlink_data
+[8.102s] running develop
+[9.490s] running egg_info
+[9.491s] writing workspace_ros.egg-info/PKG-INFO
+[9.492s] writing dependency_links to workspace_ros.egg-info/dependency_links.txt
+[9.493s] writing entry points to workspace_ros.egg-info/entry_points.txt
+[9.494s] writing requirements to workspace_ros.egg-info/requires.txt
+[9.495s] writing top-level names to workspace_ros.egg-info/top_level.txt
+[9.507s] reading manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[9.517s] writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+[9.528s] running build_ext
+[9.529s] Creating /home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages/workspace-ros.egg-link (link to .)
+[9.535s] Installing converter script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[9.537s] Installing gps_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[9.538s] Installing imu_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[9.540s] Installing lidar_processor script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[9.544s] Installing static_transform_publisher script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[9.544s] Installing wasd_teleop script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+[9.545s] 
+[9.545s] Installed /home/aliomacc/sti_usv/build/workspace_ros
+[9.546s] running symlink_data
+[9.712s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_ros' returned '0': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_ros/build --no-deps symlink_data

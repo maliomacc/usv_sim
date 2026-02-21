@@ -1,0 +1,1013 @@
+[0.000000] (-) TimerEvent: {}
+[0.002634] (-) JobUnselected: {'identifier': 'kiss_icp'}
+[0.002827] (-) JobUnselected: {'identifier': 'workspace_nav'}
+[0.002869] (-) JobUnselected: {'identifier': 'workspace_ros'}
+[0.002900] (workspace_gz) JobQueued: {'identifier': 'workspace_gz', 'dependencies': OrderedDict()}
+[0.002933] (workspace_gz) JobStarted: {'identifier': 'workspace_gz'}
+[0.052368] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'cmake'}
+[0.061839] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'build'}
+[0.062555] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aliomacc/sti_usv/build/workspace_gz', '--', '-j8', '-l8'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/sti_usv/install/kiss_icp/lib:/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('ANTIGRAVITY_CLI_ALIAS', 'agy'), ('HOME', '/home/aliomacc'), ('CHROME_DESKTOP', 'antigravity.desktop'), ('OLDPWD', '/home/aliomacc/sti_usv'), ('TERM_PROGRAM_VERSION', '1.107.0'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/antigravity.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/antigravity/antigravity'), ('MANAGERPID', '1126'), ('SYSTEMD_EXEC_PID', '1544'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ANTIGRAVITY_AGENT', '1'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3849'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:15384'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1517,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1517'), ('INVOCATION_ID', 'cba7c210d1e84445b3ac91c2745e99da'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('PYTHONSTARTUP', '/home/aliomacc/.config/Antigravity/User/workspaceStorage/adcec5be029c3f352e9861eec07a976e/ms-python.python/pythonrc.py'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-c5327147f8.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('IGN_GAZEBO_RESOURCE_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models:/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/sti_usv/build/workspace_ros:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:/home/aliomacc/sti_usv/build/workspace_nav:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[0.094112] (-) TimerEvent: {}
+[0.195642] (-) TimerEvent: {}
+[0.266156] (workspace_gz) StdoutLine: {'line': b'[  3%] Built target Waves\n'}
+[0.296139] (-) TimerEvent: {}
+[0.387884] (workspace_gz) StdoutLine: {'line': b'[  7%] Built target ScoringPlugin\n'}
+[0.397267] (-) TimerEvent: {}
+[0.498918] (-) TimerEvent: {}
+[0.518568] (workspace_gz) StdoutLine: {'line': b'[ 11%] Built target SimpleHydrodynamics\n'}
+[0.598328] (workspace_gz) StdoutLine: {'line': b'[ 16%] Built target AcousticPerceptionScoringPlugin\n'}
+[0.598882] (-) TimerEvent: {}
+[0.699457] (workspace_gz) StdoutLine: {'line': b'[ 22%] Built target AcousticTrackingScoringPlugin\n'}
+[0.700152] (-) TimerEvent: {}
+[0.801797] (-) TimerEvent: {}
+[0.823360] (workspace_gz) StdoutLine: {'line': b'[ 26%] Built target AcousticPingerPlugin\n'}
+[0.903516] (-) TimerEvent: {}
+[0.972896] (workspace_gz) StdoutLine: {'line': b'[ 30%] Built target BallShooterPlugin\n'}
+[1.004432] (-) TimerEvent: {}
+[1.066304] (workspace_gz) StdoutLine: {'line': b'[ 33%] Built target LightBuoyPlugin\n'}
+[1.104927] (-) TimerEvent: {}
+[1.207054] (workspace_gz) StdoutLine: {'line': b'[ 39%] Built target NavigationScoringPlugin\n'}
+[1.207482] (-) TimerEvent: {}
+[1.311267] (-) TimerEvent: {}
+[1.345098] (workspace_gz) StdoutLine: {'line': b'[ 45%] Built target GymkhanaScoringPlugin\n'}
+[1.412901] (-) TimerEvent: {}
+[1.507218] (workspace_gz) StdoutLine: {'line': b'[ 50%] Built target PerceptionScoringPlugin\n'}
+[1.514850] (-) TimerEvent: {}
+[1.621149] (-) TimerEvent: {}
+[1.673525] (workspace_gz) StdoutLine: {'line': b'[ 54%] Built target PlacardPlugin\n'}
+[1.722576] (-) TimerEvent: {}
+[1.760451] (workspace_gz) StdoutLine: {'line': b'[ 58%] Built target PublisherPlugin\n'}
+[1.822919] (-) TimerEvent: {}
+[1.861854] (workspace_gz) StdoutLine: {'line': b'[ 64%] Built target ScanDockScoringPlugin\n'}
+[1.925261] (-) TimerEvent: {}
+[1.957919] (workspace_gz) StdoutLine: {'line': b'[ 69%] Built target WildlifeScoringPlugin\n'}
+[2.027774] (-) TimerEvent: {}
+[2.047786] (workspace_gz) StdoutLine: {'line': b'[ 75%] Built target WayfindingScoringPlugin\n'}
+[2.128421] (-) TimerEvent: {}
+[2.142221] (workspace_gz) StdoutLine: {'line': b'[ 81%] Built target StationkeepingScoringPlugin\n'}
+[2.190387] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target WaveVisual\x1b[0m\n'}
+[2.228670] (-) TimerEvent: {}
+[2.241527] (workspace_gz) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o\x1b[0m\n'}
+[2.329077] (-) TimerEvent: {}
+[2.430613] (-) TimerEvent: {}
+[2.531331] (-) TimerEvent: {}
+[2.632841] (-) TimerEvent: {}
+[2.734034] (-) TimerEvent: {}
+[2.838198] (-) TimerEvent: {}
+[2.939306] (-) TimerEvent: {}
+[3.040645] (-) TimerEvent: {}
+[3.142374] (-) TimerEvent: {}
+[3.243800] (-) TimerEvent: {}
+[3.345666] (-) TimerEvent: {}
+[3.449223] (-) TimerEvent: {}
+[3.554403] (-) TimerEvent: {}
+[3.657669] (-) TimerEvent: {}
+[3.758390] (-) TimerEvent: {}
+[3.859503] (-) TimerEvent: {}
+[3.960729] (-) TimerEvent: {}
+[4.064316] (-) TimerEvent: {}
+[4.166571] (-) TimerEvent: {}
+[4.272655] (-) TimerEvent: {}
+[4.375571] (-) TimerEvent: {}
+[4.477058] (-) TimerEvent: {}
+[4.582374] (-) TimerEvent: {}
+[4.687325] (-) TimerEvent: {}
+[4.788323] (-) TimerEvent: {}
+[4.890353] (-) TimerEvent: {}
+[4.995356] (-) TimerEvent: {}
+[5.096036] (-) TimerEvent: {}
+[5.197485] (-) TimerEvent: {}
+[5.300762] (-) TimerEvent: {}
+[5.402479] (-) TimerEvent: {}
+[5.505754] (-) TimerEvent: {}
+[5.607113] (-) TimerEvent: {}
+[5.708296] (-) TimerEvent: {}
+[5.811679] (-) TimerEvent: {}
+[5.913471] (-) TimerEvent: {}
+[6.014852] (-) TimerEvent: {}
+[6.118761] (-) TimerEvent: {}
+[6.223847] (-) TimerEvent: {}
+[6.325539] (-) TimerEvent: {}
+[6.428778] (-) TimerEvent: {}
+[6.531200] (-) TimerEvent: {}
+[6.635555] (-) TimerEvent: {}
+[6.736721] (-) TimerEvent: {}
+[6.838352] (-) TimerEvent: {}
+[6.940526] (-) TimerEvent: {}
+[7.042037] (-) TimerEvent: {}
+[7.143547] (-) TimerEvent: {}
+[7.244734] (-) TimerEvent: {}
+[7.345600] (-) TimerEvent: {}
+[7.448866] (-) TimerEvent: {}
+[7.551411] (-) TimerEvent: {}
+[7.652205] (-) TimerEvent: {}
+[7.755834] (-) TimerEvent: {}
+[7.858306] (-) TimerEvent: {}
+[7.960202] (-) TimerEvent: {}
+[8.061436] (-) TimerEvent: {}
+[8.164641] (-) TimerEvent: {}
+[8.267410] (-) TimerEvent: {}
+[8.368746] (-) TimerEvent: {}
+[8.470182] (-) TimerEvent: {}
+[8.572926] (-) TimerEvent: {}
+[8.681135] (-) TimerEvent: {}
+[8.787491] (-) TimerEvent: {}
+[8.891632] (-) TimerEvent: {}
+[9.001374] (-) TimerEvent: {}
+[9.103892] (-) TimerEvent: {}
+[9.206336] (-) TimerEvent: {}
+[9.307576] (-) TimerEvent: {}
+[9.412225] (-) TimerEvent: {}
+[9.517720] (-) TimerEvent: {}
+[9.618865] (-) TimerEvent: {}
+[9.724220] (-) TimerEvent: {}
+[9.826166] (-) TimerEvent: {}
+[9.927072] (-) TimerEvent: {}
+[10.028237] (-) TimerEvent: {}
+[10.141227] (-) TimerEvent: {}
+[10.242183] (-) TimerEvent: {}
+[10.348707] (-) TimerEvent: {}
+[10.452588] (-) TimerEvent: {}
+[10.558695] (-) TimerEvent: {}
+[10.660300] (-) TimerEvent: {}
+[10.766780] (-) TimerEvent: {}
+[10.873738] (-) TimerEvent: {}
+[10.980239] (-) TimerEvent: {}
+[11.082317] (-) TimerEvent: {}
+[11.186755] (-) TimerEvent: {}
+[11.299116] (-) TimerEvent: {}
+[11.401007] (-) TimerEvent: {}
+[11.504394] (-) TimerEvent: {}
+[11.607247] (-) TimerEvent: {}
+[11.711070] (-) TimerEvent: {}
+[11.817117] (-) TimerEvent: {}
+[11.920315] (-) TimerEvent: {}
+[12.024288] (-) TimerEvent: {}
+[12.125576] (-) TimerEvent: {}
+[12.227366] (-) TimerEvent: {}
+[12.333217] (-) TimerEvent: {}
+[12.437945] (-) TimerEvent: {}
+[12.541725] (-) TimerEvent: {}
+[12.649302] (-) TimerEvent: {}
+[12.750814] (-) TimerEvent: {}
+[12.852412] (-) TimerEvent: {}
+[12.958682] (-) TimerEvent: {}
+[13.061357] (-) TimerEvent: {}
+[13.166214] (-) TimerEvent: {}
+[13.267245] (-) TimerEvent: {}
+[13.370310] (-) TimerEvent: {}
+[13.471192] (-) TimerEvent: {}
+[13.574556] (-) TimerEvent: {}
+[13.676338] (-) TimerEvent: {}
+[13.778011] (-) TimerEvent: {}
+[13.885586] (-) TimerEvent: {}
+[13.990312] (-) TimerEvent: {}
+[14.092336] (-) TimerEvent: {}
+[14.196423] (-) TimerEvent: {}
+[14.298033] (-) TimerEvent: {}
+[14.401193] (-) TimerEvent: {}
+[14.504815] (-) TimerEvent: {}
+[14.609303] (-) TimerEvent: {}
+[14.710545] (-) TimerEvent: {}
+[14.813359] (-) TimerEvent: {}
+[14.917532] (-) TimerEvent: {}
+[15.020379] (-) TimerEvent: {}
+[15.124269] (-) TimerEvent: {}
+[15.226467] (-) TimerEvent: {}
+[15.327851] (-) TimerEvent: {}
+[15.432540] (-) TimerEvent: {}
+[15.534643] (-) TimerEvent: {}
+[15.636941] (-) TimerEvent: {}
+[15.741098] (-) TimerEvent: {}
+[15.847366] (-) TimerEvent: {}
+[15.956098] (-) TimerEvent: {}
+[16.059702] (-) TimerEvent: {}
+[16.163327] (-) TimerEvent: {}
+[16.265485] (-) TimerEvent: {}
+[16.368581] (-) TimerEvent: {}
+[16.469635] (-) TimerEvent: {}
+[16.573088] (-) TimerEvent: {}
+[16.677039] (-) TimerEvent: {}
+[16.783414] (-) TimerEvent: {}
+[16.885605] (-) TimerEvent: {}
+[16.988202] (-) TimerEvent: {}
+[17.096083] (-) TimerEvent: {}
+[17.201455] (-) TimerEvent: {}
+[17.304326] (-) TimerEvent: {}
+[17.407419] (-) TimerEvent: {}
+[17.510631] (-) TimerEvent: {}
+[17.612571] (-) TimerEvent: {}
+[17.716344] (-) TimerEvent: {}
+[17.818655] (-) TimerEvent: {}
+[17.919824] (-) TimerEvent: {}
+[18.023101] (-) TimerEvent: {}
+[18.125334] (-) TimerEvent: {}
+[18.227621] (-) TimerEvent: {}
+[18.328837] (-) TimerEvent: {}
+[18.430324] (-) TimerEvent: {}
+[18.538684] (-) TimerEvent: {}
+[18.642309] (-) TimerEvent: {}
+[18.749140] (-) TimerEvent: {}
+[18.854526] (-) TimerEvent: {}
+[18.957239] (-) TimerEvent: {}
+[19.064636] (-) TimerEvent: {}
+[19.167322] (-) TimerEvent: {}
+[19.275893] (-) TimerEvent: {}
+[19.380308] (-) TimerEvent: {}
+[19.482556] (-) TimerEvent: {}
+[19.583925] (-) TimerEvent: {}
+[19.686318] (-) TimerEvent: {}
+[19.788429] (-) TimerEvent: {}
+[19.892539] (-) TimerEvent: {}
+[19.997037] (-) TimerEvent: {}
+[20.102294] (-) TimerEvent: {}
+[20.205697] (-) TimerEvent: {}
+[20.308323] (-) TimerEvent: {}
+[20.418049] (-) TimerEvent: {}
+[20.518714] (-) TimerEvent: {}
+[20.621168] (-) TimerEvent: {}
+[20.728134] (-) TimerEvent: {}
+[20.829231] (-) TimerEvent: {}
+[20.931257] (-) TimerEvent: {}
+[21.034991] (-) TimerEvent: {}
+[21.139512] (-) TimerEvent: {}
+[21.243939] (-) TimerEvent: {}
+[21.349401] (-) TimerEvent: {}
+[21.456341] (-) TimerEvent: {}
+[21.560748] (-) TimerEvent: {}
+[21.663763] (-) TimerEvent: {}
+[21.767014] (-) TimerEvent: {}
+[21.871420] (-) TimerEvent: {}
+[21.974515] (-) TimerEvent: {}
+[22.080534] (-) TimerEvent: {}
+[22.184160] (-) TimerEvent: {}
+[22.295328] (-) TimerEvent: {}
+[22.398666] (-) TimerEvent: {}
+[22.502470] (-) TimerEvent: {}
+[22.605559] (-) TimerEvent: {}
+[22.707975] (-) TimerEvent: {}
+[22.815191] (-) TimerEvent: {}
+[22.919768] (-) TimerEvent: {}
+[23.022665] (-) TimerEvent: {}
+[23.128102] (-) TimerEvent: {}
+[23.228763] (-) TimerEvent: {}
+[23.335843] (-) TimerEvent: {}
+[23.440755] (-) TimerEvent: {}
+[23.542196] (-) TimerEvent: {}
+[23.645071] (-) TimerEvent: {}
+[23.751164] (-) TimerEvent: {}
+[23.855237] (-) TimerEvent: {}
+[23.956222] (-) TimerEvent: {}
+[24.066073] (-) TimerEvent: {}
+[24.166771] (-) TimerEvent: {}
+[24.270129] (-) TimerEvent: {}
+[24.371042] (-) TimerEvent: {}
+[24.476917] (-) TimerEvent: {}
+[24.583934] (-) TimerEvent: {}
+[24.686507] (-) TimerEvent: {}
+[24.792460] (-) TimerEvent: {}
+[24.893539] (-) TimerEvent: {}
+[24.997534] (-) TimerEvent: {}
+[25.098925] (-) TimerEvent: {}
+[25.203266] (-) TimerEvent: {}
+[25.308590] (-) TimerEvent: {}
+[25.409507] (-) TimerEvent: {}
+[25.513999] (-) TimerEvent: {}
+[25.616130] (-) TimerEvent: {}
+[25.717907] (-) TimerEvent: {}
+[25.824237] (-) TimerEvent: {}
+[25.932262] (-) TimerEvent: {}
+[26.037570] (-) TimerEvent: {}
+[26.141913] (-) TimerEvent: {}
+[26.248459] (-) TimerEvent: {}
+[26.353345] (-) TimerEvent: {}
+[26.454853] (-) TimerEvent: {}
+[26.557563] (-) TimerEvent: {}
+[26.659164] (-) TimerEvent: {}
+[26.760719] (-) TimerEvent: {}
+[26.867723] (-) TimerEvent: {}
+[26.969350] (-) TimerEvent: {}
+[27.071891] (-) TimerEvent: {}
+[27.173697] (-) TimerEvent: {}
+[27.276254] (-) TimerEvent: {}
+[27.378473] (-) TimerEvent: {}
+[27.482438] (-) TimerEvent: {}
+[27.587395] (-) TimerEvent: {}
+[27.690097] (-) TimerEvent: {}
+[27.792748] (-) TimerEvent: {}
+[27.898771] (-) TimerEvent: {}
+[28.004246] (-) TimerEvent: {}
+[28.108474] (-) TimerEvent: {}
+[28.210828] (-) TimerEvent: {}
+[28.313274] (-) TimerEvent: {}
+[28.414884] (-) TimerEvent: {}
+[28.526274] (-) TimerEvent: {}
+[28.628751] (-) TimerEvent: {}
+[28.731342] (-) TimerEvent: {}
+[28.835427] (-) TimerEvent: {}
+[28.941200] (-) TimerEvent: {}
+[29.041847] (-) TimerEvent: {}
+[29.148707] (-) TimerEvent: {}
+[29.250382] (-) TimerEvent: {}
+[29.356062] (-) TimerEvent: {}
+[29.464876] (-) TimerEvent: {}
+[29.566618] (-) TimerEvent: {}
+[29.670375] (-) TimerEvent: {}
+[29.776242] (-) TimerEvent: {}
+[29.879716] (-) TimerEvent: {}
+[29.980758] (-) TimerEvent: {}
+[30.085036] (-) TimerEvent: {}
+[30.188228] (-) TimerEvent: {}
+[30.293800] (-) TimerEvent: {}
+[30.396924] (-) TimerEvent: {}
+[30.506433] (-) TimerEvent: {}
+[30.608103] (-) TimerEvent: {}
+[30.712597] (-) TimerEvent: {}
+[30.814126] (-) TimerEvent: {}
+[30.916203] (-) TimerEvent: {}
+[31.026944] (-) TimerEvent: {}
+[31.128456] (-) TimerEvent: {}
+[31.230437] (-) TimerEvent: {}
+[31.334558] (-) TimerEvent: {}
+[31.438794] (-) TimerEvent: {}
+[31.543737] (-) TimerEvent: {}
+[31.646650] (-) TimerEvent: {}
+[31.751652] (-) TimerEvent: {}
+[31.853102] (-) TimerEvent: {}
+[31.955318] (-) TimerEvent: {}
+[32.057488] (-) TimerEvent: {}
+[32.166197] (-) TimerEvent: {}
+[32.267344] (-) TimerEvent: {}
+[32.372249] (-) TimerEvent: {}
+[32.474381] (-) TimerEvent: {}
+[32.578659] (-) TimerEvent: {}
+[32.680905] (-) TimerEvent: {}
+[32.784560] (-) TimerEvent: {}
+[32.886108] (-) TimerEvent: {}
+[32.988187] (-) TimerEvent: {}
+[33.090145] (-) TimerEvent: {}
+[33.192113] (-) TimerEvent: {}
+[33.294044] (-) TimerEvent: {}
+[33.396641] (-) TimerEvent: {}
+[33.502100] (-) TimerEvent: {}
+[33.607306] (-) TimerEvent: {}
+[33.710500] (-) TimerEvent: {}
+[33.811551] (-) TimerEvent: {}
+[33.918557] (-) TimerEvent: {}
+[34.020015] (-) TimerEvent: {}
+[34.121987] (-) TimerEvent: {}
+[34.229660] (-) TimerEvent: {}
+[34.332840] (-) TimerEvent: {}
+[34.435724] (-) TimerEvent: {}
+[34.536717] (-) TimerEvent: {}
+[34.638845] (-) TimerEvent: {}
+[34.741369] (-) TimerEvent: {}
+[34.844054] (-) TimerEvent: {}
+[34.949319] (-) TimerEvent: {}
+[35.052270] (-) TimerEvent: {}
+[35.154679] (-) TimerEvent: {}
+[35.257661] (-) TimerEvent: {}
+[35.361900] (-) TimerEvent: {}
+[35.464419] (-) TimerEvent: {}
+[35.566760] (-) TimerEvent: {}
+[35.670909] (-) TimerEvent: {}
+[35.774650] (-) TimerEvent: {}
+[35.880180] (-) TimerEvent: {}
+[35.981241] (-) TimerEvent: {}
+[36.082700] (-) TimerEvent: {}
+[36.186129] (-) TimerEvent: {}
+[36.287273] (-) TimerEvent: {}
+[36.396340] (-) TimerEvent: {}
+[36.501687] (-) TimerEvent: {}
+[36.602648] (-) TimerEvent: {}
+[36.711324] (-) TimerEvent: {}
+[36.816525] (-) TimerEvent: {}
+[36.923188] (-) TimerEvent: {}
+[37.023792] (-) TimerEvent: {}
+[37.124812] (-) TimerEvent: {}
+[37.230840] (-) TimerEvent: {}
+[37.333128] (-) TimerEvent: {}
+[37.433905] (-) TimerEvent: {}
+[37.538140] (-) TimerEvent: {}
+[37.639818] (-) TimerEvent: {}
+[37.741071] (-) TimerEvent: {}
+[37.844725] (-) TimerEvent: {}
+[37.947371] (-) TimerEvent: {}
+[38.050830] (-) TimerEvent: {}
+[38.153262] (-) TimerEvent: {}
+[38.259034] (-) TimerEvent: {}
+[38.362969] (-) TimerEvent: {}
+[38.465532] (-) TimerEvent: {}
+[38.567095] (-) TimerEvent: {}
+[38.669980] (-) TimerEvent: {}
+[38.773477] (-) TimerEvent: {}
+[38.874751] (-) TimerEvent: {}
+[38.976574] (-) TimerEvent: {}
+[39.079341] (-) TimerEvent: {}
+[39.181355] (-) TimerEvent: {}
+[39.286249] (-) TimerEvent: {}
+[39.387037] (-) TimerEvent: {}
+[39.489026] (-) TimerEvent: {}
+[39.592409] (-) TimerEvent: {}
+[39.695856] (-) TimerEvent: {}
+[39.797556] (-) TimerEvent: {}
+[39.900627] (-) TimerEvent: {}
+[40.003363] (-) TimerEvent: {}
+[40.104483] (-) TimerEvent: {}
+[40.210543] (-) TimerEvent: {}
+[40.311336] (-) TimerEvent: {}
+[40.413809] (-) TimerEvent: {}
+[40.515602] (-) TimerEvent: {}
+[40.617517] (-) TimerEvent: {}
+[40.724331] (-) TimerEvent: {}
+[40.828231] (-) TimerEvent: {}
+[40.934659] (-) TimerEvent: {}
+[41.038010] (-) TimerEvent: {}
+[41.143303] (-) TimerEvent: {}
+[41.248486] (-) TimerEvent: {}
+[41.351518] (-) TimerEvent: {}
+[41.453453] (-) TimerEvent: {}
+[41.556065] (-) TimerEvent: {}
+[41.662752] (-) TimerEvent: {}
+[41.764447] (-) TimerEvent: {}
+[41.866485] (-) TimerEvent: {}
+[41.972306] (-) TimerEvent: {}
+[42.076244] (-) TimerEvent: {}
+[42.183243] (-) TimerEvent: {}
+[42.289159] (-) TimerEvent: {}
+[42.392089] (-) TimerEvent: {}
+[42.494444] (-) TimerEvent: {}
+[42.596868] (-) TimerEvent: {}
+[42.704412] (-) TimerEvent: {}
+[42.805252] (-) TimerEvent: {}
+[42.908766] (-) TimerEvent: {}
+[43.012878] (-) TimerEvent: {}
+[43.117120] (-) TimerEvent: {}
+[43.221938] (-) TimerEvent: {}
+[43.328738] (-) TimerEvent: {}
+[43.430877] (-) TimerEvent: {}
+[43.535370] (-) TimerEvent: {}
+[43.641291] (-) TimerEvent: {}
+[43.743153] (-) TimerEvent: {}
+[43.847428] (-) TimerEvent: {}
+[43.948850] (-) TimerEvent: {}
+[44.051096] (-) TimerEvent: {}
+[44.154418] (-) TimerEvent: {}
+[44.255969] (-) TimerEvent: {}
+[44.362265] (-) TimerEvent: {}
+[44.465914] (-) TimerEvent: {}
+[44.569293] (-) TimerEvent: {}
+[44.671751] (-) TimerEvent: {}
+[44.775182] (-) TimerEvent: {}
+[44.877349] (-) TimerEvent: {}
+[44.981089] (-) TimerEvent: {}
+[45.086759] (-) TimerEvent: {}
+[45.190265] (-) TimerEvent: {}
+[45.291641] (-) TimerEvent: {}
+[45.400390] (-) TimerEvent: {}
+[45.501606] (-) TimerEvent: {}
+[45.603476] (-) TimerEvent: {}
+[45.704457] (-) TimerEvent: {}
+[45.807255] (-) TimerEvent: {}
+[45.916802] (-) TimerEvent: {}
+[46.024673] (-) TimerEvent: {}
+[46.130261] (-) TimerEvent: {}
+[46.232694] (-) TimerEvent: {}
+[46.335212] (-) TimerEvent: {}
+[46.436729] (-) TimerEvent: {}
+[46.538805] (-) TimerEvent: {}
+[46.641048] (-) TimerEvent: {}
+[46.746333] (-) TimerEvent: {}
+[46.848092] (-) TimerEvent: {}
+[46.950461] (-) TimerEvent: {}
+[47.056793] (-) TimerEvent: {}
+[47.159045] (-) TimerEvent: {}
+[47.261969] (-) TimerEvent: {}
+[47.366263] (-) TimerEvent: {}
+[47.468293] (-) TimerEvent: {}
+[47.571014] (-) TimerEvent: {}
+[47.672489] (-) TimerEvent: {}
+[47.779298] (-) TimerEvent: {}
+[47.883542] (-) TimerEvent: {}
+[47.990300] (-) TimerEvent: {}
+[48.097366] (-) TimerEvent: {}
+[48.202172] (-) TimerEvent: {}
+[48.304499] (-) TimerEvent: {}
+[48.407321] (-) TimerEvent: {}
+[48.518664] (-) TimerEvent: {}
+[48.622071] (-) TimerEvent: {}
+[48.727534] (-) TimerEvent: {}
+[48.830808] (-) TimerEvent: {}
+[48.935485] (-) TimerEvent: {}
+[49.037684] (-) TimerEvent: {}
+[49.140461] (-) TimerEvent: {}
+[49.244372] (-) TimerEvent: {}
+[49.350074] (-) TimerEvent: {}
+[49.453123] (-) TimerEvent: {}
+[49.556140] (-) TimerEvent: {}
+[49.661146] (-) TimerEvent: {}
+[49.765727] (-) TimerEvent: {}
+[49.868857] (-) TimerEvent: {}
+[49.975346] (-) TimerEvent: {}
+[50.077529] (-) TimerEvent: {}
+[50.180887] (-) TimerEvent: {}
+[50.288052] (-) TimerEvent: {}
+[50.388739] (-) TimerEvent: {}
+[50.490237] (-) TimerEvent: {}
+[50.594514] (-) TimerEvent: {}
+[50.696187] (-) TimerEvent: {}
+[50.797083] (-) TimerEvent: {}
+[50.899639] (-) TimerEvent: {}
+[51.001226] (-) TimerEvent: {}
+[51.105169] (-) TimerEvent: {}
+[51.215098] (-) TimerEvent: {}
+[51.323505] (-) TimerEvent: {}
+[51.427899] (-) TimerEvent: {}
+[51.532197] (-) TimerEvent: {}
+[51.634518] (-) TimerEvent: {}
+[51.735726] (-) TimerEvent: {}
+[51.839710] (-) TimerEvent: {}
+[51.942115] (-) TimerEvent: {}
+[52.046782] (-) TimerEvent: {}
+[52.150090] (-) TimerEvent: {}
+[52.252277] (-) TimerEvent: {}
+[52.359549] (-) TimerEvent: {}
+[52.462731] (-) TimerEvent: {}
+[52.566244] (-) TimerEvent: {}
+[52.668054] (-) TimerEvent: {}
+[52.771332] (-) TimerEvent: {}
+[52.875022] (-) TimerEvent: {}
+[52.978235] (-) TimerEvent: {}
+[53.084296] (-) TimerEvent: {}
+[53.185693] (-) TimerEvent: {}
+[53.288155] (-) TimerEvent: {}
+[53.391154] (-) TimerEvent: {}
+[53.492335] (-) TimerEvent: {}
+[53.596171] (-) TimerEvent: {}
+[53.705533] (-) TimerEvent: {}
+[53.810221] (-) TimerEvent: {}
+[53.913775] (-) TimerEvent: {}
+[54.017633] (-) TimerEvent: {}
+[54.120128] (-) TimerEvent: {}
+[54.227666] (-) TimerEvent: {}
+[54.331048] (-) TimerEvent: {}
+[54.435461] (-) TimerEvent: {}
+[54.540279] (-) TimerEvent: {}
+[54.646598] (-) TimerEvent: {}
+[54.750441] (-) TimerEvent: {}
+[54.851276] (-) TimerEvent: {}
+[54.956748] (-) TimerEvent: {}
+[55.058245] (-) TimerEvent: {}
+[55.160025] (-) TimerEvent: {}
+[55.261517] (-) TimerEvent: {}
+[55.364548] (-) TimerEvent: {}
+[55.467454] (-) TimerEvent: {}
+[55.569719] (-) TimerEvent: {}
+[55.671270] (-) TimerEvent: {}
+[55.774401] (-) TimerEvent: {}
+[55.876254] (-) TimerEvent: {}
+[55.980357] (-) TimerEvent: {}
+[56.082789] (-) TimerEvent: {}
+[56.186200] (-) TimerEvent: {}
+[56.289763] (-) TimerEvent: {}
+[56.394130] (-) TimerEvent: {}
+[56.498709] (-) TimerEvent: {}
+[56.601016] (-) TimerEvent: {}
+[56.704514] (-) TimerEvent: {}
+[56.808055] (-) TimerEvent: {}
+[56.909320] (-) TimerEvent: {}
+[57.013846] (-) TimerEvent: {}
+[57.118217] (-) TimerEvent: {}
+[57.222195] (-) TimerEvent: {}
+[57.328668] (-) TimerEvent: {}
+[57.432451] (-) TimerEvent: {}
+[57.535511] (-) TimerEvent: {}
+[57.639917] (-) TimerEvent: {}
+[57.747583] (-) TimerEvent: {}
+[57.849795] (-) TimerEvent: {}
+[57.951204] (-) TimerEvent: {}
+[58.055241] (-) TimerEvent: {}
+[58.156871] (-) TimerEvent: {}
+[58.261554] (-) TimerEvent: {}
+[58.365360] (-) TimerEvent: {}
+[58.469645] (-) TimerEvent: {}
+[58.575781] (-) TimerEvent: {}
+[58.678697] (-) TimerEvent: {}
+[58.782478] (-) TimerEvent: {}
+[58.889248] (-) TimerEvent: {}
+[58.991454] (-) TimerEvent: {}
+[59.097209] (-) TimerEvent: {}
+[59.198485] (-) TimerEvent: {}
+[59.299652] (-) TimerEvent: {}
+[59.410180] (-) TimerEvent: {}
+[59.516358] (-) TimerEvent: {}
+[59.617363] (-) TimerEvent: {}
+[59.719005] (-) TimerEvent: {}
+[59.821034] (-) TimerEvent: {}
+[59.923825] (-) TimerEvent: {}
+[60.025897] (-) TimerEvent: {}
+[60.127557] (-) TimerEvent: {}
+[60.236342] (-) TimerEvent: {}
+[60.338675] (-) TimerEvent: {}
+[60.441321] (-) TimerEvent: {}
+[60.545783] (-) TimerEvent: {}
+[60.647914] (-) TimerEvent: {}
+[60.749742] (-) TimerEvent: {}
+[60.858336] (-) TimerEvent: {}
+[60.962116] (-) TimerEvent: {}
+[61.067799] (-) TimerEvent: {}
+[61.169209] (-) TimerEvent: {}
+[61.274423] (-) TimerEvent: {}
+[61.376059] (-) TimerEvent: {}
+[61.477757] (-) TimerEvent: {}
+[61.579976] (-) TimerEvent: {}
+[61.685409] (-) TimerEvent: {}
+[61.789291] (-) TimerEvent: {}
+[61.893270] (-) TimerEvent: {}
+[61.996709] (-) TimerEvent: {}
+[62.097800] (-) TimerEvent: {}
+[62.203160] (-) TimerEvent: {}
+[62.308512] (-) TimerEvent: {}
+[62.410674] (-) TimerEvent: {}
+[62.512985] (-) TimerEvent: {}
+[62.616253] (-) TimerEvent: {}
+[62.721372] (-) TimerEvent: {}
+[62.824867] (-) TimerEvent: {}
+[62.926179] (-) TimerEvent: {}
+[63.028294] (-) TimerEvent: {}
+[63.129824] (-) TimerEvent: {}
+[63.231095] (-) TimerEvent: {}
+[63.332320] (-) TimerEvent: {}
+[63.435254] (-) TimerEvent: {}
+[63.538117] (-) TimerEvent: {}
+[63.639528] (-) TimerEvent: {}
+[63.743820] (-) TimerEvent: {}
+[63.849674] (-) TimerEvent: {}
+[63.955517] (-) TimerEvent: {}
+[64.061516] (-) TimerEvent: {}
+[64.164341] (-) TimerEvent: {}
+[64.270372] (-) TimerEvent: {}
+[64.371660] (-) TimerEvent: {}
+[64.476485] (-) TimerEvent: {}
+[64.580668] (-) TimerEvent: {}
+[64.683757] (-) TimerEvent: {}
+[64.787876] (-) TimerEvent: {}
+[64.890544] (-) TimerEvent: {}
+[64.992822] (-) TimerEvent: {}
+[65.100804] (-) TimerEvent: {}
+[65.214268] (-) TimerEvent: {}
+[65.317155] (-) TimerEvent: {}
+[65.423113] (-) TimerEvent: {}
+[65.537112] (-) TimerEvent: {}
+[65.641350] (-) TimerEvent: {}
+[65.745857] (-) TimerEvent: {}
+[65.851640] (-) TimerEvent: {}
+[65.961894] (-) TimerEvent: {}
+[66.066736] (-) TimerEvent: {}
+[66.171212] (-) TimerEvent: {}
+[66.272886] (-) TimerEvent: {}
+[66.374308] (-) TimerEvent: {}
+[66.475556] (-) TimerEvent: {}
+[66.578208] (-) TimerEvent: {}
+[66.682177] (-) TimerEvent: {}
+[66.783717] (-) TimerEvent: {}
+[66.885771] (-) TimerEvent: {}
+[66.987446] (-) TimerEvent: {}
+[67.091376] (-) TimerEvent: {}
+[67.194817] (-) TimerEvent: {}
+[67.296179] (-) TimerEvent: {}
+[67.399483] (-) TimerEvent: {}
+[67.501005] (-) TimerEvent: {}
+[67.603884] (-) TimerEvent: {}
+[67.705128] (-) TimerEvent: {}
+[67.806604] (-) TimerEvent: {}
+[67.908111] (-) TimerEvent: {}
+[68.012320] (-) TimerEvent: {}
+[68.113688] (-) TimerEvent: {}
+[68.215508] (-) TimerEvent: {}
+[68.318418] (-) TimerEvent: {}
+[68.421340] (-) TimerEvent: {}
+[68.526182] (-) TimerEvent: {}
+[68.629587] (-) TimerEvent: {}
+[68.733407] (-) TimerEvent: {}
+[68.835453] (-) TimerEvent: {}
+[68.940517] (-) TimerEvent: {}
+[69.052439] (-) TimerEvent: {}
+[69.153510] (-) TimerEvent: {}
+[69.254736] (-) TimerEvent: {}
+[69.355850] (-) TimerEvent: {}
+[69.457077] (-) TimerEvent: {}
+[69.560718] (-) TimerEvent: {}
+[69.662612] (-) TimerEvent: {}
+[69.764438] (-) TimerEvent: {}
+[69.865209] (-) TimerEvent: {}
+[69.965913] (-) TimerEvent: {}
+[70.067393] (-) TimerEvent: {}
+[70.168386] (-) TimerEvent: {}
+[70.272659] (-) TimerEvent: {}
+[70.376267] (-) TimerEvent: {}
+[70.477212] (-) TimerEvent: {}
+[70.579912] (-) TimerEvent: {}
+[70.683603] (-) TimerEvent: {}
+[70.784397] (-) TimerEvent: {}
+[70.885810] (-) TimerEvent: {}
+[70.987202] (-) TimerEvent: {}
+[71.088809] (-) TimerEvent: {}
+[71.189728] (-) TimerEvent: {}
+[71.291916] (-) TimerEvent: {}
+[71.394603] (-) TimerEvent: {}
+[71.495753] (-) TimerEvent: {}
+[71.596742] (-) TimerEvent: {}
+[71.700261] (-) TimerEvent: {}
+[71.801484] (-) TimerEvent: {}
+[71.905093] (-) TimerEvent: {}
+[72.007850] (-) TimerEvent: {}
+[72.112810] (-) TimerEvent: {}
+[72.214227] (-) TimerEvent: {}
+[72.316288] (-) TimerEvent: {}
+[72.420174] (-) TimerEvent: {}
+[72.520786] (-) TimerEvent: {}
+[72.621349] (-) TimerEvent: {}
+[72.722753] (-) TimerEvent: {}
+[72.823739] (-) TimerEvent: {}
+[72.927021] (-) TimerEvent: {}
+[73.029841] (-) TimerEvent: {}
+[73.133064] (-) TimerEvent: {}
+[73.236780] (-) TimerEvent: {}
+[73.338411] (-) TimerEvent: {}
+[73.441368] (-) TimerEvent: {}
+[73.544263] (-) TimerEvent: {}
+[73.645424] (-) TimerEvent: {}
+[73.747806] (-) TimerEvent: {}
+[73.849681] (-) TimerEvent: {}
+[73.954585] (-) TimerEvent: {}
+[74.058127] (-) TimerEvent: {}
+[74.160593] (-) TimerEvent: {}
+[74.263111] (-) TimerEvent: {}
+[74.363977] (-) TimerEvent: {}
+[74.467631] (-) TimerEvent: {}
+[74.569039] (-) TimerEvent: {}
+[74.670093] (-) TimerEvent: {}
+[74.771491] (-) TimerEvent: {}
+[74.872274] (-) TimerEvent: {}
+[74.973560] (-) TimerEvent: {}
+[75.074501] (-) TimerEvent: {}
+[75.175565] (-) TimerEvent: {}
+[75.277715] (-) TimerEvent: {}
+[75.380465] (-) TimerEvent: {}
+[75.482661] (-) TimerEvent: {}
+[75.584910] (-) TimerEvent: {}
+[75.688447] (-) TimerEvent: {}
+[75.794313] (-) TimerEvent: {}
+[75.899448] (-) TimerEvent: {}
+[76.000258] (-) TimerEvent: {}
+[76.103592] (-) TimerEvent: {}
+[76.210268] (-) TimerEvent: {}
+[76.312220] (-) TimerEvent: {}
+[76.412879] (-) TimerEvent: {}
+[76.514016] (-) TimerEvent: {}
+[76.617086] (-) TimerEvent: {}
+[76.719978] (-) TimerEvent: {}
+[76.822242] (-) TimerEvent: {}
+[76.923605] (-) TimerEvent: {}
+[77.025365] (-) TimerEvent: {}
+[77.127286] (-) TimerEvent: {}
+[77.229746] (-) TimerEvent: {}
+[77.332914] (-) TimerEvent: {}
+[77.434639] (-) TimerEvent: {}
+[77.535675] (-) TimerEvent: {}
+[77.637660] (-) TimerEvent: {}
+[77.739019] (-) TimerEvent: {}
+[77.841506] (-) TimerEvent: {}
+[77.943693] (-) TimerEvent: {}
+[78.044655] (-) TimerEvent: {}
+[78.145670] (-) TimerEvent: {}
+[78.248156] (-) TimerEvent: {}
+[78.350257] (-) TimerEvent: {}
+[78.450760] (-) TimerEvent: {}
+[78.554260] (-) TimerEvent: {}
+[78.655209] (-) TimerEvent: {}
+[78.757791] (-) TimerEvent: {}
+[78.858587] (-) TimerEvent: {}
+[78.961025] (-) TimerEvent: {}
+[79.063245] (-) TimerEvent: {}
+[79.166408] (-) TimerEvent: {}
+[79.267465] (-) TimerEvent: {}
+[79.371200] (-) TimerEvent: {}
+[79.473713] (-) TimerEvent: {}
+[79.577067] (-) TimerEvent: {}
+[79.680338] (-) TimerEvent: {}
+[79.783490] (-) TimerEvent: {}
+[79.890557] (-) TimerEvent: {}
+[79.992026] (-) TimerEvent: {}
+[80.096340] (-) TimerEvent: {}
+[80.201737] (-) TimerEvent: {}
+[80.303484] (-) TimerEvent: {}
+[80.405991] (-) TimerEvent: {}
+[80.508658] (-) TimerEvent: {}
+[80.612261] (-) TimerEvent: {}
+[80.716938] (-) TimerEvent: {}
+[80.821225] (-) TimerEvent: {}
+[80.927625] (-) TimerEvent: {}
+[81.029332] (-) TimerEvent: {}
+[81.133097] (-) TimerEvent: {}
+[81.238296] (-) TimerEvent: {}
+[81.342273] (-) TimerEvent: {}
+[81.443666] (-) TimerEvent: {}
+[81.546362] (-) TimerEvent: {}
+[81.649122] (-) TimerEvent: {}
+[81.757190] (-) TimerEvent: {}
+[81.858524] (-) TimerEvent: {}
+[81.965428] (-) TimerEvent: {}
+[82.070809] (-) TimerEvent: {}
+[82.174349] (-) TimerEvent: {}
+[82.277205] (-) TimerEvent: {}
+[82.379447] (-) TimerEvent: {}
+[82.482268] (-) TimerEvent: {}
+[82.584557] (-) TimerEvent: {}
+[82.687469] (-) TimerEvent: {}
+[82.790444] (-) TimerEvent: {}
+[82.892771] (-) TimerEvent: {}
+[82.997535] (-) TimerEvent: {}
+[83.100135] (-) TimerEvent: {}
+[83.202583] (-) TimerEvent: {}
+[83.305411] (-) TimerEvent: {}
+[83.407227] (-) TimerEvent: {}
+[83.511309] (-) TimerEvent: {}
+[83.614753] (-) TimerEvent: {}
+[83.720253] (-) TimerEvent: {}
+[83.824699] (-) TimerEvent: {}
+[83.930693] (-) TimerEvent: {}
+[84.031649] (-) TimerEvent: {}
+[84.137189] (-) TimerEvent: {}
+[84.238355] (-) TimerEvent: {}
+[84.339110] (-) TimerEvent: {}
+[84.441338] (-) TimerEvent: {}
+[84.543714] (-) TimerEvent: {}
+[84.648307] (-) TimerEvent: {}
+[84.750879] (-) TimerEvent: {}
+[84.856644] (-) TimerEvent: {}
+[84.958233] (-) TimerEvent: {}
+[85.060061] (-) TimerEvent: {}
+[85.163361] (-) TimerEvent: {}
+[85.267599] (-) TimerEvent: {}
+[85.369148] (-) TimerEvent: {}
+[85.405137] (workspace_gz) StdoutLine: {'line': b'[ 84%] \x1b[32m\x1b[1mLinking CXX shared library libWaveVisual.so\x1b[0m\n'}
+[85.470185] (-) TimerEvent: {}
+[85.572646] (-) TimerEvent: {}
+[85.676420] (-) TimerEvent: {}
+[85.779393] (-) TimerEvent: {}
+[85.881167] (-) TimerEvent: {}
+[85.984189] (-) TimerEvent: {}
+[86.087750] (-) TimerEvent: {}
+[86.190650] (-) TimerEvent: {}
+[86.297453] (-) TimerEvent: {}
+[86.403381] (-) TimerEvent: {}
+[86.506964] (-) TimerEvent: {}
+[86.608995] (-) TimerEvent: {}
+[86.711324] (-) TimerEvent: {}
+[86.814320] (-) TimerEvent: {}
+[86.919671] (-) TimerEvent: {}
+[87.020757] (-) TimerEvent: {}
+[87.123256] (-) TimerEvent: {}
+[87.230377] (-) TimerEvent: {}
+[87.332056] (-) TimerEvent: {}
+[87.435466] (-) TimerEvent: {}
+[87.536242] (-) TimerEvent: {}
+[87.639401] (-) TimerEvent: {}
+[87.748730] (-) TimerEvent: {}
+[87.834447] (workspace_gz) StdoutLine: {'line': b'[ 84%] Built target WaveVisual\n'}
+[87.852553] (-) TimerEvent: {}
+[87.954895] (-) TimerEvent: {}
+[88.066342] (-) TimerEvent: {}
+[88.086637] (workspace_gz) StdoutLine: {'line': b'[ 88%] Built target USVWind\n'}
+[88.170342] (-) TimerEvent: {}
+[88.236747] (workspace_gz) StdoutLine: {'line': b'[ 92%] Built target Surface\n'}
+[88.271009] (-) TimerEvent: {}
+[88.380572] (-) TimerEvent: {}
+[88.460525] (workspace_gz) StdoutLine: {'line': b'[100%] Built target PolyhedraBuoyancyDrag\n'}
+[88.481436] (-) TimerEvent: {}
+[88.542450] (workspace_gz) CommandEnded: {'returncode': 0}
+[88.548982] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'install'}
+[88.584469] (-) TimerEvent: {}
+[88.602431] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/aliomacc/sti_usv/build/workspace_gz'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/sti_usv/install/kiss_icp/lib:/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('ANTIGRAVITY_CLI_ALIAS', 'agy'), ('HOME', '/home/aliomacc'), ('CHROME_DESKTOP', 'antigravity.desktop'), ('OLDPWD', '/home/aliomacc/sti_usv'), ('TERM_PROGRAM_VERSION', '1.107.0'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/antigravity.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/antigravity/antigravity'), ('MANAGERPID', '1126'), ('SYSTEMD_EXEC_PID', '1544'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ANTIGRAVITY_AGENT', '1'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3849'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:15384'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1517,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1517'), ('INVOCATION_ID', 'cba7c210d1e84445b3ac91c2745e99da'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('PYTHONSTARTUP', '/home/aliomacc/.config/Antigravity/User/workspaceStorage/adcec5be029c3f352e9861eec07a976e/ms-python.python/pythonrc.py'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-c5327147f8.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('IGN_GAZEBO_RESOURCE_PATH', '/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models:/home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/sti_usv/build/workspace_ros:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:/home/aliomacc/sti_usv/build/workspace_nav:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/sti_usv/install/workspace_gz:/home/aliomacc/sti_usv/install/kiss_icp:/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/sti_usv/install/workspace_ros:/home/aliomacc/sti_usv/install/workspace_nav:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[88.646152] (workspace_gz) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[88.648845] (workspace_gz) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[88.649455] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaves.so\n'}
+[88.649891] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScoringPlugin.so\n'}
+[88.657286] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSimpleHydrodynamics.so\n'}
+[88.662739] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPolyhedraBuoyancyDrag.so\n'}
+[88.665892] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSurface.so\n'}
+[88.672348] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libUSVWind.so\n'}
+[88.673993] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaveVisual.so\n'}
+[88.675021] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libStationkeepingScoringPlugin.so\n'}
+[88.682859] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWayfindingScoringPlugin.so\n'}
+[88.684564] (-) TimerEvent: {}
+[88.689934] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPerceptionScoringPlugin.so\n'}
+[88.690921] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticTrackingScoringPlugin.so\n'}
+[88.697228] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPingerPlugin.so\n'}
+[88.697847] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libBallShooterPlugin.so\n'}
+[88.698134] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libLightBuoyPlugin.so\n'}
+[88.698460] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libNavigationScoringPlugin.so\n'}
+[88.698647] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libGymkhanaScoringPlugin.so\n'}
+[88.708531] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPerceptionScoringPlugin.so\n'}
+[88.709835] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPlacardPlugin.so\n'}
+[88.710756] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPublisherPlugin.so\n'}
+[88.711153] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScanDockScoringPlugin.so\n'}
+[88.711418] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWildlifeScoringPlugin.so\n'}
+[88.721325] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/launch/simulation.launch.py\n'}
+[88.723859] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[88.728091] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png\n'}
+[88.731971] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/meshes/marker_buoy.dae\n'}
+[88.737994] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.config\n'}
+[88.739699] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.sdf\n'}
+[88.740527] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[88.740812] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png\n'}
+[88.741045] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/meshes/marker_buoy.dae\n'}
+[88.744701] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.config\n'}
+[88.744828] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.sdf\n'}
+[88.744922] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[88.745028] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png\n'}
+[88.745119] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/meshes/marker_buoy.dae\n'}
+[88.745209] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.config\n'}
+[88.745297] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.sdf\n'}
+[88.745386] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[88.748655] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png\n'}
+[88.749141] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/meshes/marker_buoy.dae\n'}
+[88.750944] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.config\n'}
+[88.751490] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.sdf\n'}
+[88.751889] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png\n'}
+[88.752132] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png\n'}
+[88.752282] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae\n'}
+[88.752446] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.config\n'}
+[88.752589] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.sdf\n'}
+[88.752683] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png\n'}
+[88.760103] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png\n'}
+[88.760876] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/meshes/round_buoy.dae\n'}
+[88.761505] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.config\n'}
+[88.761655] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.sdf\n'}
+[88.761821] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_albedo.png\n'}
+[88.761955] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_metalness.png\n'}
+[88.762163] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_normal.png\n'}
+[88.765488] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_roughness.png\n'}
+[88.768587] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_albedo.png\n'}
+[88.770369] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_roughness.png\n'}
+[88.772938] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/housing.dae\n'}
+[88.775698] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/mount.dae\n'}
+[88.777386] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/prop.dae\n'}
+[88.778884] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/roboboat.dae\n'}
+[88.779234] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera.png\n'}
+[88.779427] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_albedo.png\n'}
+[88.779638] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_metalness.png\n'}
+[88.779803] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_normal.png\n'}
+[88.782802] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_roughness.png\n'}
+[88.783522] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera.dae\n'}
+[88.783689] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera_albedo.png\n'}
+[88.784050] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/materials/textures/post_albedo.png\n'}
+[88.784385] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post.dae\n'}
+[88.784512] (-) TimerEvent: {}
+[88.796486] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post_albedo.jpg\n'}
+[88.797237] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png\n'}
+[88.797354] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png\n'}
+[88.797445] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/meshes/drybox.dae\n'}
+[88.797538] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/materials/textures/gps_albedo.png\n'}
+[88.797637] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps.dae\n'}
+[88.797721] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps_albedo.png\n'}
+[88.797800] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar.png\n'}
+[88.797880] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png\n'}
+[88.797965] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png\n'}
+[88.798055] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_normal.png\n'}
+[88.798131] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png\n'}
+[88.798226] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar.dae\n'}
+[88.798307] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar_albedo.png\n'}
+[88.798388] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png\n'}
+[88.798702] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post.dae\n'}
+[88.799147] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg\n'}
+[88.799569] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_fs_330.glsl\n'}
+[88.799773] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_vs_330.glsl\n'}
+[88.801455] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/skybox_lowres.dds\n'}
+[88.802358] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/wave_normals.dds\n'}
+[88.802565] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/meshes/waterlow.dae\n'}
+[88.802654] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.config\n'}
+[88.802742] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.sdf\n'}
+[88.802821] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/worlds/world.sdf\n'}
+[88.802902] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/description/roboboat/roboboat.xacro\n'}
+[88.803056] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz\n'}
+[88.803152] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz\n'}
+[88.803235] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh\n'}
+[88.803323] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv\n'}
+[88.803412] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.sh\n'}
+[88.803498] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.dsv\n'}
+[88.803593] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.bash\n'}
+[88.803674] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.sh\n'}
+[88.803761] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.zsh\n'}
+[88.803845] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.dsv\n'}
+[88.803932] (workspace_gz) StdoutLine: {'line': b'-- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.dsv\n'}
+[88.815828] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz\n'}
+[88.816325] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake\n'}
+[88.816471] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake\n'}
+[88.816850] (workspace_gz) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.xml\n'}
+[88.836247] (workspace_gz) CommandEnded: {'returncode': 0}
+[88.889856] (-) TimerEvent: {}
+[88.961299] (workspace_gz) JobEnded: {'identifier': 'workspace_gz', 'rc': 0}
+[88.965729] (-) EventReactorShutdown: {}

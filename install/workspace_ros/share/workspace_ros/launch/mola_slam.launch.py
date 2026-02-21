@@ -1,0 +1,1 @@
+/home/aliomacc/sti_usv/build/workspace_ros/launch/mola_slam.launch.py

@@ -1,0 +1,5 @@
+[35m[1mConsolidate compiler generated dependencies of target Waves[0m
+[  4%] [32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o[0m
+gmake[2]: *** [CMakeFiles/Waves.dir/build.make:76: CMakeFiles/Waves.dir/plugins/Wavefield.cc.o] Sistem kesmesi
+gmake[1]: *** [CMakeFiles/Makefile2:153: CMakeFiles/Waves.dir/all] Sistem kesmesi
+gmake: *** [Makefile:146: all] Sistem kesmesi

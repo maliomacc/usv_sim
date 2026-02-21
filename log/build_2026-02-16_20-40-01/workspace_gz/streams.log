@@ -1,0 +1,358 @@
+[0.037s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[0.113s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.467s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.500s] -- Looking for ignition-gazebo6 -- found version 6.17.1
+[0.517s] -- Searching for dependencies of ignition-gazebo6
+[0.518s] -- Looking for sdformat12 -- found version 12.9.0
+[0.521s] -- Searching for dependencies of sdformat12
+[0.535s] -- Checking for module 'tinyxml2'
+[0.568s] --   Found tinyxml2, version 9.0.0
+[0.638s] -- Looking for ignition-math6 -- found version 6.15.1
+[0.640s] -- Searching for dependencies of ignition-math6
+[0.645s] -- Looking for ignition-utils1 -- found version 1.5.1
+[0.647s] -- Searching for dependencies of ignition-utils1
+[0.653s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[0.654s] -- Searching for dependencies of ignition-plugin1
+[0.654s] -- Searching for <ignition-plugin1> component [loader]
+[0.655s] -- Looking for ignition-plugin1-loader -- found version 1.4.0
+[0.657s] -- Searching for dependencies of ignition-plugin1-loader
+[0.659s] -- Searching for <ignition-plugin1> component [register]
+[0.662s] -- Looking for ignition-plugin1-register -- found version 1.4.0
+[0.664s] -- Searching for dependencies of ignition-plugin1-register
+[0.669s] -- Looking for ignition-transport11 -- found version 11.4.2
+[0.671s] -- Searching for dependencies of ignition-transport11
+[0.769s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[0.779s] -- Checking for module 'libzmq >= 4'
+[0.811s] --   Found libzmq , version 4.3.4
+[0.902s] -- Checking for module 'uuid'
+[0.931s] --   Found uuid, version 2.37.2
+[1.009s] -- Looking for ignition-utils1 -- found version 1.5.1
+[1.010s] -- Searching for dependencies of ignition-utils1
+[1.010s] -- Searching for <ignition-utils1> component [cli]
+[1.011s] -- Looking for ignition-utils1-cli -- found version 1.5.1
+[1.012s] -- Searching for dependencies of ignition-utils1-cli
+[1.014s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[1.016s] -- Searching for dependencies of ignition-msgs8
+[1.074s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") 
+[1.079s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.129s] -- Searching for <ignition-transport11> component [log]
+[1.132s] -- Looking for ignition-transport11-log -- found version 11.4.2
+[1.133s] -- Searching for dependencies of ignition-transport11-log
+[1.134s] -- Searching for <ignition-transport11> component [parameters]
+[1.134s] -- Looking for ignition-transport11-parameters -- found version 11.4.2
+[1.135s] -- Searching for dependencies of ignition-transport11-parameters
+[1.137s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[1.138s] -- Looking for ignition-common4 -- found version 4.8.0
+[1.139s] -- Searching for dependencies of ignition-common4
+[1.139s] -- Looking for dlfcn.h - found
+[1.139s] -- Looking for libdl - found
+[1.168s] -- Searching for <ignition-common4> component [profiler]
+[1.169s] -- Looking for ignition-common4-profiler -- found version 4.8.0
+[1.170s] -- Searching for dependencies of ignition-common4-profiler
+[1.172s] -- Searching for <ignition-common4> component [events]
+[1.173s] -- Looking for ignition-common4-events -- found version 4.8.0
+[1.174s] -- Searching for dependencies of ignition-common4-events
+[1.175s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.176s] -- Searching for <ignition-common4> component [av]
+[1.177s] -- Looking for ignition-common4-av -- found version 4.8.0
+[1.178s] -- Searching for dependencies of ignition-common4-av
+[1.191s] -- Checking for module 'libswscale'
+[1.225s] --   Found libswscale, version 5.9.100
+[1.327s] -- Checking for module 'libavdevice >= 56.4.100'
+[1.361s] --   Found libavdevice , version 58.13.100
+[1.472s] -- Checking for module 'libavformat'
+[1.510s] --   Found libavformat, version 58.76.100
+[1.635s] -- Checking for module 'libavcodec'
+[1.672s] --   Found libavcodec, version 58.134.100
+[1.798s] -- Checking for module 'libavutil'
+[1.845s] --   Found libavutil, version 56.70.100
+[1.937s] -- Looking for ignition-fuel_tools7 -- found version 7.3.1
+[1.938s] -- Searching for dependencies of ignition-fuel_tools7
+[2.044s] -- Checking for module 'jsoncpp'
+[2.074s] --   Found jsoncpp, version 1.9.5
+[2.173s] -- Checking for module 'libzip'
+[2.203s] --   Found libzip, version 1.7.3
+[2.288s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.289s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.291s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[2.296s] -- Looking for ignition-gui6 -- found version 6.9.0
+[2.297s] -- Searching for dependencies of ignition-gui6
+[2.342s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[2.364s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.365s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.367s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[2.370s] -- Looking for ignition-transport11 -- found version 11.4.2
+[2.372s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[2.373s] -- Searching for dependencies of ignition-rendering6
+[2.374s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.374s] -- Searching for dependencies of ignition-math6
+[2.374s] -- Searching for <ignition-math6> component [eigen3]
+[2.375s] -- Looking for ignition-math6-eigen3 -- found version 6.15.1
+[2.376s] -- Searching for dependencies of ignition-math6-eigen3
+[2.380s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.382s] -- Searching for dependencies of ignition-common4
+[2.383s] -- Looking for dlfcn.h - found
+[2.383s] -- Looking for libdl - found
+[2.407s] -- Searching for <ignition-common4> component [graphics]
+[2.408s] -- Looking for ignition-common4-graphics -- found version 4.8.0
+[2.409s] -- Searching for dependencies of ignition-common4-graphics
+[2.410s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.411s] -- Looking for ignition-utils1 -- found version 1.5.1
+[2.413s] -- Searching for <ignition-common4> component [events]
+[2.415s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[2.415s] -- Searching for dependencies of ignition-plugin1
+[2.415s] -- Searching for <ignition-plugin1> component [all]
+[2.417s] -- Looking for all libraries of ignition-plugin1 -- found version 1.4.0
+[2.418s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[2.428s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[2.488s] -- Looking for ignition-physics5 -- found version 5.4.0
+[2.490s] -- Searching for dependencies of ignition-physics5
+[2.491s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.491s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[2.492s] -- Looking for ignition-utils1 -- found version 1.5.1
+[2.495s] -- Searching for <ignition-physics5> component [heightmap]
+[2.497s] -- Looking for ignition-physics5-heightmap -- found version 5.4.0
+[2.498s] -- Searching for dependencies of ignition-physics5-heightmap
+[2.500s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.502s] -- Searching for <ignition-physics5> component [mesh]
+[2.504s] -- Looking for ignition-physics5-mesh -- found version 5.4.0
+[2.507s] -- Searching for dependencies of ignition-physics5-mesh
+[2.508s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.508s] -- Searching for <ignition-physics5> component [sdf]
+[2.509s] -- Looking for ignition-physics5-sdf -- found version 5.4.0
+[2.510s] -- Searching for dependencies of ignition-physics5-sdf
+[2.511s] -- Looking for sdformat12 -- found version 12.9.0
+[2.513s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.514s] -- Searching for dependencies of ignition-sensors6
+[2.559s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.559s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.560s] -- Looking for ignition-transport11 -- found version 11.4.2
+[2.561s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[2.563s] -- Looking for ignition-msgs8 -- found version 8.7.0
+[2.564s] -- Looking for sdformat12 -- found version 12.9.0
+[2.568s] -- Searching for <ignition-sensors6> component [air_pressure]
+[2.570s] -- Looking for ignition-sensors6-air_pressure -- found version 6.9.0
+[2.570s] -- Searching for dependencies of ignition-sensors6-air_pressure
+[2.571s] -- Searching for <ignition-sensors6> component [altimeter]
+[2.572s] -- Looking for ignition-sensors6-altimeter -- found version 6.9.0
+[2.573s] -- Searching for dependencies of ignition-sensors6-altimeter
+[2.574s] -- Searching for <ignition-sensors6> component [imu]
+[2.575s] -- Looking for ignition-sensors6-imu -- found version 6.9.0
+[2.576s] -- Searching for dependencies of ignition-sensors6-imu
+[2.577s] -- Searching for <ignition-sensors6> component [force_torque]
+[2.578s] -- Looking for ignition-sensors6-force_torque -- found version 6.9.0
+[2.580s] -- Searching for dependencies of ignition-sensors6-force_torque
+[2.582s] -- Searching for <ignition-sensors6> component [logical_camera]
+[2.585s] -- Looking for ignition-sensors6-logical_camera -- found version 6.9.0
+[2.587s] -- Searching for dependencies of ignition-sensors6-logical_camera
+[2.589s] -- Searching for <ignition-sensors6> component [magnetometer]
+[2.590s] -- Looking for ignition-sensors6-magnetometer -- found version 6.9.0
+[2.591s] -- Searching for dependencies of ignition-sensors6-magnetometer
+[2.593s] -- Searching for <ignition-sensors6> component [navsat]
+[2.594s] -- Looking for ignition-sensors6-navsat -- found version 6.9.0
+[2.595s] -- Searching for dependencies of ignition-sensors6-navsat
+[2.597s] -- Searching for <ignition-sensors6> component [rendering]
+[2.599s] -- Looking for ignition-sensors6-rendering -- found version 6.9.0
+[2.601s] -- Searching for dependencies of ignition-sensors6-rendering
+[2.604s] -- Searching for <ignition-sensors6> component [lidar]
+[2.605s] -- Looking for ignition-sensors6-lidar -- found version 6.9.0
+[2.606s] -- Searching for dependencies of ignition-sensors6-lidar
+[2.608s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.609s] -- Searching for <ignition-sensors6> component [gpu_lidar]
+[2.610s] -- Looking for ignition-sensors6-gpu_lidar -- found version 6.9.0
+[2.611s] -- Searching for dependencies of ignition-sensors6-gpu_lidar
+[2.612s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.613s] -- Searching for <ignition-sensors6> component [camera]
+[2.614s] -- Looking for ignition-sensors6-camera -- found version 6.9.0
+[2.615s] -- Searching for dependencies of ignition-sensors6-camera
+[2.616s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.619s] -- Searching for <ignition-sensors6> component [boundingbox_camera]
+[2.621s] -- Looking for ignition-sensors6-boundingbox_camera -- found version 6.9.0
+[2.623s] -- Searching for dependencies of ignition-sensors6-boundingbox_camera
+[2.627s] -- Searching for <ignition-sensors6> component [segmentation_camera]
+[2.628s] -- Looking for ignition-sensors6-segmentation_camera -- found version 6.9.0
+[2.630s] -- Searching for dependencies of ignition-sensors6-segmentation_camera
+[2.633s] -- Searching for <ignition-sensors6> component [depth_camera]
+[2.634s] -- Looking for ignition-sensors6-depth_camera -- found version 6.9.0
+[2.635s] -- Searching for dependencies of ignition-sensors6-depth_camera
+[2.635s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.637s] -- Searching for <ignition-sensors6> component [rgbd_camera]
+[2.637s] -- Looking for ignition-sensors6-rgbd_camera -- found version 6.9.0
+[2.639s] -- Searching for dependencies of ignition-sensors6-rgbd_camera
+[2.639s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.642s] -- Searching for <ignition-sensors6> component [thermal_camera]
+[2.644s] -- Looking for ignition-sensors6-thermal_camera -- found version 6.9.0
+[2.646s] -- Searching for dependencies of ignition-sensors6-thermal_camera
+[2.648s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.650s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[2.651s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.654s] -- Looking for ignition-utils1 -- found version 1.5.1
+[2.706s] -- Looking for ignition-common4 -- found version 4.8.0
+[2.708s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.712s] -- Looking for ignition-plugin1 -- found version 1.4.0
+[2.714s] -- Looking for ignition-rendering6 -- found version 6.6.4
+[2.715s] -- Looking for ignition-sensors6 -- found version 6.9.0
+[2.716s] -- Looking for ignition-transport11 -- found version 11.4.2
+[2.718s] -- Looking for ignition-utils1 -- found version 1.5.1
+[2.718s] -- Looking for sdformat12 -- found version 12.9.0
+[2.931s] -- Configuring done
+[3.154s] -- Generating done
+[3.218s] -- Build files have been written to: /home/aliomacc/sti_usv/build/workspace_gz
+[3.285s] [35m[1mConsolidate compiler generated dependencies of target Waves[0m
+[3.285s] [35m[1mConsolidate compiler generated dependencies of target ScoringPlugin[0m
+[3.328s] [  7%] Built target ScoringPlugin
+[3.328s] [  7%] Built target Waves
+[3.363s] [35m[1mConsolidate compiler generated dependencies of target Surface[0m
+[3.364s] [35m[1mConsolidate compiler generated dependencies of target USVWind[0m
+[3.368s] [35m[1mConsolidate compiler generated dependencies of target SimpleHydrodynamics[0m
+[3.371s] [35m[1mConsolidate compiler generated dependencies of target StationkeepingScoringPlugin[0m
+[3.375s] [35m[1mConsolidate compiler generated dependencies of target PolyhedraBuoyancyDrag[0m
+[3.386s] [35m[1mConsolidate compiler generated dependencies of target WaveVisual[0m
+[3.397s] [35m[1mConsolidate compiler generated dependencies of target WayfindingScoringPlugin[0m
+[3.402s] [35m[1mConsolidate compiler generated dependencies of target AcousticPerceptionScoringPlugin[0m
+[3.436s] [ 15%] Built target Surface
+[3.438s] [ 15%] Built target USVWind
+[3.440s] [ 18%] Built target SimpleHydrodynamics
+[3.444s] [ 24%] Built target StationkeepingScoringPlugin
+[3.452s] [ 32%] Built target PolyhedraBuoyancyDrag
+[3.480s] [ 35%] Built target WaveVisual
+[3.487s] [ 41%] Built target AcousticPerceptionScoringPlugin
+[3.488s] [ 47%] Built target WayfindingScoringPlugin
+[3.488s] [35m[1mConsolidate compiler generated dependencies of target BallShooterPlugin[0m
+[3.491s] [35m[1mConsolidate compiler generated dependencies of target LightBuoyPlugin[0m
+[3.497s] [35m[1mConsolidate compiler generated dependencies of target AcousticTrackingScoringPlugin[0m
+[3.503s] [35m[1mConsolidate compiler generated dependencies of target NavigationScoringPlugin[0m
+[3.508s] [35m[1mConsolidate compiler generated dependencies of target AcousticPingerPlugin[0m
+[3.533s] [35m[1mConsolidate compiler generated dependencies of target GymkhanaScoringPlugin[0m
+[3.539s] [35m[1mConsolidate compiler generated dependencies of target PlacardPlugin[0m
+[3.549s] [ 50%] Built target LightBuoyPlugin
+[3.550s] [ 54%] Built target BallShooterPlugin
+[3.554s] [35m[1mConsolidate compiler generated dependencies of target PerceptionScoringPlugin[0m
+[3.591s] [ 58%] Built target AcousticPingerPlugin
+[3.592s] [35m[1mConsolidate compiler generated dependencies of target PublisherPlugin[0m
+[3.592s] [35m[1mConsolidate compiler generated dependencies of target ScanDockScoringPlugin[0m
+[3.605s] [ 64%] Built target GymkhanaScoringPlugin
+[3.612s] [ 69%] Built target NavigationScoringPlugin
+[3.612s] [ 75%] Built target AcousticTrackingScoringPlugin
+[3.625s] [ 79%] Built target PlacardPlugin
+[3.627s] [ 84%] Built target PerceptionScoringPlugin
+[3.635s] [35m[1mConsolidate compiler generated dependencies of target WildlifeScoringPlugin[0m
+[3.660s] [ 90%] Built target PublisherPlugin
+[3.660s] [ 94%] Built target ScanDockScoringPlugin
+[3.685s] [100%] Built target WildlifeScoringPlugin
+[3.723s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[3.759s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz
+[3.778s] -- Install configuration: ""
+[3.779s] -- Execute custom install script
+[3.780s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaves.so
+[3.781s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScoringPlugin.so
+[3.781s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSimpleHydrodynamics.so
+[3.781s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPolyhedraBuoyancyDrag.so
+[3.781s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSurface.so
+[3.782s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libUSVWind.so
+[3.782s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaveVisual.so
+[3.782s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libStationkeepingScoringPlugin.so
+[3.782s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWayfindingScoringPlugin.so
+[3.783s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPerceptionScoringPlugin.so
+[3.783s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticTrackingScoringPlugin.so
+[3.784s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPingerPlugin.so
+[3.784s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libBallShooterPlugin.so
+[3.785s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libLightBuoyPlugin.so
+[3.785s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libNavigationScoringPlugin.so
+[3.785s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libGymkhanaScoringPlugin.so
+[3.786s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPerceptionScoringPlugin.so
+[3.786s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPlacardPlugin.so
+[3.787s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPublisherPlugin.so
+[3.787s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScanDockScoringPlugin.so
+[3.788s] -- Up-to-date symlink: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWildlifeScoringPlugin.so
+[3.788s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/launch/simulation.launch.py
+[3.815s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Base_Color.png
+[3.843s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/materials/textures/MarkerBuoy_Roughness.png
+[3.867s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/meshes/marker_buoy.dae
+[3.885s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.config
+[3.912s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_black/model.sdf
+[3.937s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Base_Color.png
+[3.963s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/materials/textures/MarkerBuoy_Roughness.png
+[3.984s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/meshes/marker_buoy.dae
+[4.009s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.config
+[4.034s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_green/model.sdf
+[4.061s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Base_Color.png
+[4.078s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/materials/textures/MarkerBuoy_Roughness.png
+[4.101s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/meshes/marker_buoy.dae
+[4.119s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.config
+[4.143s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_orange/model.sdf
+[4.166s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Base_Color.png
+[4.186s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/materials/textures/MarkerBuoy_Roughness.png
+[4.210s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/meshes/marker_buoy.dae
+[4.233s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.config
+[4.258s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_red/model.sdf
+[4.277s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Base_Color.png
+[4.300s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/materials/textures/MarkerBuoy_Roughness.png
+[4.321s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/meshes/marker_buoy.dae
+[4.346s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.config
+[4.369s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/marker_buoy_yellow/model.sdf
+[4.389s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Base_Color.png
+[4.414s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/materials/textures/RoundBarrierBuoy_Roughness.png
+[4.438s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/meshes/round_buoy.dae
+[4.462s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.config
+[4.482s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/buoys/round_buoy_orange/model.sdf
+[4.506s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_albedo.png
+[4.530s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_metalness.png
+[4.556s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_normal.png
+[4.577s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/roboboat_roughness.png
+[4.600s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_albedo.png
+[4.623s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/materials/textures/thruster_roughness.png
+[4.652s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/housing.dae
+[4.671s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/mount.dae
+[4.691s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/prop.dae
+[4.711s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/meshes/roboboat.dae
+[4.744s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera.png
+[4.770s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_albedo.png
+[4.793s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_metalness.png
+[4.816s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_normal.png
+[4.837s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/materials/textures/camera_roughness.png
+[4.857s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera.dae
+[4.877s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera/meshes/camera_albedo.png
+[4.896s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/materials/textures/post_albedo.png
+[4.920s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post.dae
+[4.945s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/camera_post/meshes/post_albedo.jpg
+[4.965s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_albedo.png
+[4.984s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/materials/textures/drybox_roughness.png
+[5.002s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/drybox/meshes/drybox.dae
+[5.029s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/materials/textures/gps_albedo.png
+[5.054s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps.dae
+[5.072s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/gps/meshes/gps_albedo.png
+[5.093s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar.png
+[5.117s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_albedo.png
+[5.145s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_metalness.png
+[5.170s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_normal.png
+[5.191s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/materials/textures/lidar_roughness.png
+[5.212s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar.dae
+[5.247s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar/meshes/lidar_albedo.png
+[5.271s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/materials/textures/post_albedo.png
+[5.292s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post.dae
+[5.318s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/roboboat/sensors/lidar_post/meshes/post_albedo.jpg
+[5.344s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_fs_330.glsl
+[5.364s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/programs/GerstnerWaves_vs_330.glsl
+[5.383s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/skybox_lowres.dds
+[5.403s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/materials/textures/wave_normals.dds
+[5.423s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/meshes/waterlow.dae
+[5.448s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.config
+[5.469s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/models/waves/model.sdf
+[5.487s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/worlds/world.sdf
+[5.504s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/package_run_dependencies/workspace_gz
+[5.523s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/parent_prefix_path/workspace_gz
+[5.548s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.sh
+[5.568s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/ament_prefix_path.dsv
+[5.593s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.sh
+[5.616s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/environment/path.dsv
+[5.640s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.bash
+[5.665s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.sh
+[5.683s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.zsh
+[5.705s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/local_setup.dsv
+[5.736s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.dsv
+[5.757s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/ament_index/resource_index/packages/workspace_gz
+[5.776s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig.cmake
+[5.802s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/cmake/workspace_gzConfig-version.cmake
+[5.821s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/share/workspace_gz/package.xml
+[5.845s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz

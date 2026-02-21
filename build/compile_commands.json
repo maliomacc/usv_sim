@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/aliomacc/sti_usv/build/kiss_icp/kiss_icp/core",
+  "command": "/usr/bin/c++ -DCERES_EXPORT_INTERNAL_SYMBOLS -DFMT_LOCALE -DFMT_SHARED -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL=\"\" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=\"\" -I/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core -I/home/aliomacc/sti_usv/src/kiss_icp/cpp -I/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-src/include -isystem /usr/include/eigen3 -isystem /opt/ros/humble/include -O3 -DNDEBUG -fPIC -fdiagnostics-color=always -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wconversion -Wdisabled-optimization -Woverloaded-virtual -o CMakeFiles/kiss_icp_core.dir/Registration.cpp.o -c /home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/Registration.cpp",
+  "file": "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/Registration.cpp"
+},
+{
+  "directory": "/home/aliomacc/sti_usv/build/kiss_icp/kiss_icp/core",
+  "command": "/usr/bin/c++ -DCERES_EXPORT_INTERNAL_SYMBOLS -DFMT_LOCALE -DFMT_SHARED -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL=\"\" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=\"\" -I/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core -I/home/aliomacc/sti_usv/src/kiss_icp/cpp -I/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-src/include -isystem /usr/include/eigen3 -isystem /opt/ros/humble/include -O3 -DNDEBUG -fPIC -fdiagnostics-color=always -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wconversion -Wdisabled-optimization -Woverloaded-virtual -o CMakeFiles/kiss_icp_core.dir/VoxelHashMap.cpp.o -c /home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/VoxelHashMap.cpp",
+  "file": "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/VoxelHashMap.cpp"
+},
+{
+  "directory": "/home/aliomacc/sti_usv/build/kiss_icp/kiss_icp/core",
+  "command": "/usr/bin/c++ -DCERES_EXPORT_INTERNAL_SYMBOLS -DFMT_LOCALE -DFMT_SHARED -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL=\"\" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=\"\" -I/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core -I/home/aliomacc/sti_usv/src/kiss_icp/cpp -I/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-src/include -isystem /usr/include/eigen3 -isystem /opt/ros/humble/include -O3 -DNDEBUG -fPIC -fdiagnostics-color=always -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wconversion -Wdisabled-optimization -Woverloaded-virtual -o CMakeFiles/kiss_icp_core.dir/VoxelUtils.cpp.o -c /home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/VoxelUtils.cpp",
+  "file": "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/VoxelUtils.cpp"
+},
+{
+  "directory": "/home/aliomacc/sti_usv/build/kiss_icp/kiss_icp/core",
+  "command": "/usr/bin/c++ -DCERES_EXPORT_INTERNAL_SYMBOLS -DFMT_LOCALE -DFMT_SHARED -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL=\"\" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=\"\" -I/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core -I/home/aliomacc/sti_usv/src/kiss_icp/cpp -I/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-src/include -isystem /usr/include/eigen3 -isystem /opt/ros/humble/include -O3 -DNDEBUG -fPIC -fdiagnostics-color=always -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wconversion -Wdisabled-optimization -Woverloaded-virtual -o CMakeFiles/kiss_icp_core.dir/Preprocessing.cpp.o -c /home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/Preprocessing.cpp",
+  "file": "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/Preprocessing.cpp"
+},
+{
+  "directory": "/home/aliomacc/sti_usv/build/kiss_icp/kiss_icp/core",
+  "command": "/usr/bin/c++ -DCERES_EXPORT_INTERNAL_SYMBOLS -DFMT_LOCALE -DFMT_SHARED -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL=\"\" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=\"\" -I/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core -I/home/aliomacc/sti_usv/src/kiss_icp/cpp -I/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-src/include -isystem /usr/include/eigen3 -isystem /opt/ros/humble/include -O3 -DNDEBUG -fPIC -fdiagnostics-color=always -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wconversion -Wdisabled-optimization -Woverloaded-virtual -o CMakeFiles/kiss_icp_core.dir/Threshold.cpp.o -c /home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/Threshold.cpp",
+  "file": "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/core/Threshold.cpp"
+},
+{
+  "directory": "/home/aliomacc/sti_usv/build/kiss_icp/kiss_icp/metrics",
+  "command": "/usr/bin/c++  -I/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/metrics -I/home/aliomacc/sti_usv/src/kiss_icp/cpp -isystem /usr/include/eigen3 -O3 -DNDEBUG -fPIC -fdiagnostics-color=always -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wconversion -Wdisabled-optimization -Woverloaded-virtual -o CMakeFiles/kiss_icp_metrics.dir/Metrics.cpp.o -c /home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/metrics/Metrics.cpp",
+  "file": "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/metrics/Metrics.cpp"
+},
+{
+  "directory": "/home/aliomacc/sti_usv/build/kiss_icp/kiss_icp/pipeline",
+  "command": "/usr/bin/c++ -DCERES_EXPORT_INTERNAL_SYMBOLS -DFMT_LOCALE -DFMT_SHARED -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL=\"\" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=\"\" -I/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/pipeline -I/home/aliomacc/sti_usv/src/kiss_icp/cpp -I/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-src/include -isystem /usr/include/eigen3 -isystem /opt/ros/humble/include -O3 -DNDEBUG -fPIC -fdiagnostics-color=always -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wconversion -Wdisabled-optimization -Woverloaded-virtual -o CMakeFiles/kiss_icp_pipeline.dir/KissICP.cpp.o -c /home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/pipeline/KissICP.cpp",
+  "file": "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/pipeline/KissICP.cpp"
+}
+]

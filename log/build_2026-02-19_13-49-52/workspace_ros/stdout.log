@@ -1,0 +1,20 @@
+running develop
+running egg_info
+writing workspace_ros.egg-info/PKG-INFO
+writing dependency_links to workspace_ros.egg-info/dependency_links.txt
+writing entry points to workspace_ros.egg-info/entry_points.txt
+writing requirements to workspace_ros.egg-info/requires.txt
+writing top-level names to workspace_ros.egg-info/top_level.txt
+reading manifest file 'workspace_ros.egg-info/SOURCES.txt'
+writing manifest file 'workspace_ros.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages/workspace-ros.egg-link (link to .)
+Installing converter script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+Installing gps_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+Installing imu_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+Installing lidar_processor script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+Installing static_transform_publisher script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+Installing wasd_teleop script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros
+
+Installed /home/aliomacc/sti_usv/build/workspace_ros
+running symlink_data

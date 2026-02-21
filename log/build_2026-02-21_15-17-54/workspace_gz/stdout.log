@@ -1,0 +1,22 @@
+[  7%] Built target Waves
+[  7%] Built target ScoringPlugin
+[35m[1mConsolidate compiler generated dependencies of target WaveVisual[0m
+[ 16%] Built target Surface
+[ 16%] Built target USVWind
+[ 22%] Built target StationkeepingScoringPlugin
+[ 26%] Built target SimpleHydrodynamics
+[ 32%] Built target PolyhedraBuoyancyDrag
+[ 37%] Built target AcousticPerceptionScoringPlugin
+[ 43%] Built target WayfindingScoringPlugin
+[ 45%] [32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o[0m
+[ 50%] Built target AcousticTrackingScoringPlugin
+[ 58%] Built target LightBuoyPlugin
+[ 58%] Built target AcousticPingerPlugin
+[ 62%] Built target BallShooterPlugin
+[ 73%] Built target GymkhanaScoringPlugin
+[ 73%] Built target NavigationScoringPlugin
+[ 79%] Built target PerceptionScoringPlugin
+[ 86%] Built target PublisherPlugin
+[ 86%] Built target PlacardPlugin
+[ 92%] Built target ScanDockScoringPlugin
+[ 98%] Built target WildlifeScoringPlugin

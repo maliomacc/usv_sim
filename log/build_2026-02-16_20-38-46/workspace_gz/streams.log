@@ -1,0 +1,83 @@
+[0.024s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[0.156s] [  3%] Built target Waves
+[0.158s] [  7%] Built target ScoringPlugin
+[0.256s] [ 11%] Built target SimpleHydrodynamics
+[0.275s] [ 15%] Built target Surface
+[0.280s] [ 22%] Built target PolyhedraBuoyancyDrag
+[0.281s] [ 26%] Built target WaveVisual
+[0.284s] [ 30%] Built target USVWind
+[0.302s] [35m[1mConsolidate compiler generated dependencies of target AcousticTrackingScoringPlugin[0m
+[0.308s] [ 35%] Built target StationkeepingScoringPlugin
+[0.315s] [ 41%] Built target WayfindingScoringPlugin
+[0.319s] [ 47%] Built target AcousticPerceptionScoringPlugin
+[0.323s] [35m[1mConsolidate compiler generated dependencies of target LightBuoyPlugin[0m
+[0.323s] [35m[1mConsolidate compiler generated dependencies of target AcousticPingerPlugin[0m
+[0.370s] [35m[1mConsolidate compiler generated dependencies of target PlacardPlugin[0m
+[0.415s] [ 52%] Built target AcousticTrackingScoringPlugin
+[0.423s] [ 56%] Built target AcousticPingerPlugin
+[0.423s] [ 62%] Built target NavigationScoringPlugin
+[0.424s] [ 69%] Built target BallShooterPlugin
+[0.427s] [ 69%] Built target LightBuoyPlugin
+[0.444s] [ 73%] Built target PlacardPlugin
+[0.448s] [ 79%] Built target GymkhanaScoringPlugin
+[0.451s] [35m[1mConsolidate compiler generated dependencies of target PublisherPlugin[0m
+[0.470s] [35m[1mConsolidate compiler generated dependencies of target ScanDockScoringPlugin[0m
+[0.470s] [35m[1mConsolidate compiler generated dependencies of target WildlifeScoringPlugin[0m
+[0.472s] [ 84%] Built target PerceptionScoringPlugin
+[0.497s] [ 88%] Built target PublisherPlugin
+[0.522s] [ 94%] [32mBuilding CXX object CMakeFiles/WildlifeScoringPlugin.dir/plugins/WildlifeScoringPlugin.cc.o[0m
+[0.523s] [ 96%] Built target ScanDockScoringPlugin
+[0.524s] [ 98%] [32mBuilding CXX object CMakeFiles/WildlifeScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[17.870s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:[m[K In constructor ‘[01m[KBuoy::Buoy(const string&, ignition::gazebo::v6::Entity, BuoyGoal, double, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[17.871s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:223:23:[m[K [01;35m[Kwarning: [m[K‘[01m[KBuoy::entityName[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[17.877s]   223 |   public: std::string [01;35m[KentityName[m[K;
+[17.878s]       |                       [01;35m[K^~~~~~~~~~[m[K
+[17.879s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:220:29:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst Entity Buoy::entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[17.879s]   220 |   public: const sim::Entity [01;35m[Kentity[m[K;
+[17.879s]       |                             [01;35m[K^~~~~~[m[K
+[17.880s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:249:1:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[17.880s]   249 | [01;35m[KBuoy[m[K::Buoy(const std::string &_entityName,
+[17.888s]       | [01;35m[K^~~~[m[K
+[17.889s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:265:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kconst unsigned int[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[17.889s]   265 |   for (int i = 0; [01;35m[Ki < this->kNumVirtualGates[m[K; ++i)
+[17.890s]       |                   [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[18.057s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::WildlifeScoringPlugin::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[18.058s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:569:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Buoy>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[18.061s]   569 |       for (auto i = 0; [01;35m[Ki < this->dataPtr->buoys.size()[m[K; ++i)
+[18.061s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[33.418s] [100%] [32m[1mLinking CXX shared library libWildlifeScoringPlugin.so[0m
+[35.590s] [100%] Built target WildlifeScoringPlugin
+[35.644s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[35.678s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz
+[35.704s] -- Install configuration: ""
+[35.705s] -- Execute custom install script
+[35.705s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaves.so
+[35.736s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScoringPlugin.so
+[35.771s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSimpleHydrodynamics.so
+[35.802s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPolyhedraBuoyancyDrag.so
+[35.829s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libSurface.so
+[35.849s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libUSVWind.so
+[35.873s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWaveVisual.so
+[35.898s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libStationkeepingScoringPlugin.so
+[35.930s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWayfindingScoringPlugin.so
+[35.961s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPerceptionScoringPlugin.so
+[35.985s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticTrackingScoringPlugin.so
+[36.010s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libAcousticPingerPlugin.so
+[36.036s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libBallShooterPlugin.so
+[36.070s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libLightBuoyPlugin.so
+[36.095s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libNavigationScoringPlugin.so
+[36.124s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libGymkhanaScoringPlugin.so
+[36.155s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPerceptionScoringPlugin.so
+[36.179s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPlacardPlugin.so
+[36.206s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libPublisherPlugin.so
+[36.231s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libScanDockScoringPlugin.so
+[36.255s] -- Symlinking: /home/aliomacc/sti_usv/install/workspace_gz/lib/workspace_gz/libWildlifeScoringPlugin.so
+[36.279s] [31mCMake Error at ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:100 (message):
+[36.280s]   ament_cmake_symlink_install_directory() can't find
+[36.280s]   '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/config'
+[36.280s] Call Stack (most recent call first):
+[36.280s]   ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:317 (ament_cmake_symlink_install_directory)
+[36.280s]   cmake_install.cmake:46 (include)
+[36.281s] 
+[36.281s] [0m
+[36.289s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --install /home/aliomacc/sti_usv/build/workspace_gz

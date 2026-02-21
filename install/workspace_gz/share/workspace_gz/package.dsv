@@ -1,0 +1,8 @@
+source;share/workspace_gz/hook/cmake_prefix_path.ps1
+source;share/workspace_gz/hook/cmake_prefix_path.dsv
+source;share/workspace_gz/hook/cmake_prefix_path.sh
+source;share/workspace_gz/local_setup.bash
+source;share/workspace_gz/local_setup.dsv
+source;share/workspace_gz/local_setup.ps1
+source;share/workspace_gz/local_setup.sh
+source;share/workspace_gz/local_setup.zsh

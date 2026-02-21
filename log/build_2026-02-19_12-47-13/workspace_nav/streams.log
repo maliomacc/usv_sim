@@ -1,0 +1,45 @@
+[2.590s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_nav': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_nav/build --no-deps symlink_data
+[3.229s] running develop
+[3.648s] running egg_info
+[3.648s] creating workspace_nav.egg-info
+[3.648s] writing workspace_nav.egg-info/PKG-INFO
+[3.648s] writing dependency_links to workspace_nav.egg-info/dependency_links.txt
+[3.648s] writing entry points to workspace_nav.egg-info/entry_points.txt
+[3.649s] writing requirements to workspace_nav.egg-info/requires.txt
+[3.649s] writing top-level names to workspace_nav.egg-info/top_level.txt
+[3.649s] writing manifest file 'workspace_nav.egg-info/SOURCES.txt'
+[3.653s] reading manifest file 'workspace_nav.egg-info/SOURCES.txt'
+[3.655s] writing manifest file 'workspace_nav.egg-info/SOURCES.txt'
+[3.658s] running build_ext
+[3.659s] Creating /home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages/workspace-nav.egg-link (link to .)
+[3.661s] Installing parkour_navigation script to /home/aliomacc/sti_usv/install/workspace_nav/lib/workspace_nav
+[3.661s] 
+[3.661s] Installed /home/aliomacc/sti_usv/build/workspace_nav
+[3.661s] running symlink_data
+[3.661s] creating /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index
+[3.662s] creating /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index/resource_index
+[3.662s] creating /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index/resource_index/packages
+[3.662s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/resource/workspace_nav -> /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index/resource_index/packages
+[3.662s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/package.xml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav
+[3.662s] creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config
+[3.662s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/config/map.yaml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config
+[3.662s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/config/nav2_params.yaml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config
+[3.662s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/config/parkour_nav.yaml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config
+[3.663s] creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/launch
+[3.663s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/launch/nav2.launch.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/launch
+[3.663s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/launch/parkour_nav.launch.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/launch
+[3.663s] creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.663s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/mola_parkur_aigasyon.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.663s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/parkour2_virtual_centerline.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.663s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/final_parkour_navigator.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.663s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/parkour_navigation.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.663s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/son_hal.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.664s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/ultimate_parkour_navigator.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.664s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/lidar_debug.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.664s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/parkour2_deneme.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.664s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/pid_En_iyi.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.664s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/__init__.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.664s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/test_emergency_detection.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts
+[3.664s] creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/map
+[3.664s] symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/map/map.pgm -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/map
+[3.808s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_nav' returned '0': PYTHONPATH=/home/aliomacc/sti_usv/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aliomacc/sti_usv/build/workspace_nav/build --no-deps symlink_data

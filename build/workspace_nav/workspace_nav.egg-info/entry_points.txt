@@ -1,0 +1,3 @@
+[console_scripts]
+parkour_navigation = scripts.parkour_navigation:main
+

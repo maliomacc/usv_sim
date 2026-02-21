@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "kiss_icp/pipeline",
+		"source" : "/home/aliomacc/sti_usv/src/kiss_icp/cpp/kiss_icp/pipeline"
+	}
+}

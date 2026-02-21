@@ -1,0 +1,409 @@
+[0.000000] (-) TimerEvent: {}
+[0.000591] (workspace_gz) JobQueued: {'identifier': 'workspace_gz', 'dependencies': OrderedDict()}
+[0.000626] (workspace_nav) JobQueued: {'identifier': 'workspace_nav', 'dependencies': OrderedDict()}
+[0.000646] (workspace_ros) JobQueued: {'identifier': 'workspace_ros', 'dependencies': OrderedDict()}
+[0.000663] (workspace_gz) JobStarted: {'identifier': 'workspace_gz'}
+[0.006815] (workspace_nav) JobStarted: {'identifier': 'workspace_nav'}
+[0.013388] (workspace_ros) JobStarted: {'identifier': 'workspace_ros'}
+[0.020708] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'cmake'}
+[0.021181] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/aliomacc/sti_usv/install/workspace_gz'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aliomacc'), ('OLDPWD', '/home/aliomacc/sti_usv'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1119'), ('SYSTEMD_EXEC_PID', '1535'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3448'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:12878'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1477,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1477'), ('INVOCATION_ID', '8bb2c71350dd440785a65a077b4f78af'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:32fde568-3ee8-49c9-8756-c8696b50bded'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[0.099868] (-) TimerEvent: {}
+[0.200106] (-) TimerEvent: {}
+[0.300381] (-) TimerEvent: {}
+[0.309541] (workspace_gz) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.309936] (workspace_gz) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.310042] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.310185] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.310269] (workspace_gz) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.310348] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.310425] (workspace_gz) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.310501] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.310577] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.310652] (workspace_gz) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.310728] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.310803] (workspace_gz) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.310879] (workspace_gz) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.400479] (-) TimerEvent: {}
+[0.421553] (workspace_gz) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.488147] (workspace_gz) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.500545] (-) TimerEvent: {}
+[0.536643] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-gazebo6 -- found version 6.17.1\n'}
+[0.547415] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-gazebo6\n'}
+[0.550492] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[0.550878] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of sdformat12\n'}
+[0.555936] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'tinyxml2'\n"}
+[0.566463] (workspace_gz) StdoutLine: {'line': b'--   Found tinyxml2, version 9.0.0\n'}
+[0.598426] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[0.598699] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6\n'}
+[0.600619] (-) TimerEvent: {}
+[0.602743] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[0.603229] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-utils1\n'}
+[0.608313] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[0.608723] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1\n'}
+[0.609352] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-plugin1> component [loader]\n'}
+[0.612482] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1-loader -- found version 1.4.0\n'}
+[0.612930] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1-loader\n'}
+[0.613566] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-plugin1> component [register]\n'}
+[0.616692] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1-register -- found version 1.4.0\n'}
+[0.617142] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1-register\n'}
+[0.621159] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[0.621564] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport11\n'}
+[0.700723] (-) TimerEvent: {}
+[0.787504] (workspace_gz) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") \n'}
+[0.798780] (workspace_gz) StdoutLine: {'line': b'-- Config-file not installed for ZeroMQ -- checking for pkg-config\n'}
+[0.800794] (-) TimerEvent: {}
+[0.802608] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libzmq >= 4'\n"}
+[0.816083] (workspace_gz) StdoutLine: {'line': b'--   Found libzmq , version 4.3.4\n'}
+[0.843990] (workspace_gz) StdoutLine: {'line': b'-- Found ZeroMQ: TRUE (Required is at least version "4") \n'}
+[0.849000] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'uuid'\n"}
+[0.858935] (workspace_gz) StdoutLine: {'line': b'--   Found uuid, version 2.37.2\n'}
+[0.884563] (workspace_gz) StdoutLine: {'line': b'-- Found UUID: TRUE  \n'}
+[0.884939] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[0.885381] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-utils1\n'}
+[0.885535] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-utils1> component [cli]\n'}
+[0.888804] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1-cli -- found version 1.5.1\n'}
+[0.889259] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-utils1-cli\n'}
+[0.893222] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[0.893620] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-msgs8\n'}
+[0.900892] (-) TimerEvent: {}
+[0.910414] (workspace_gz) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") \n'}
+[0.911120] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[0.922146] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-transport11> component [log]\n'}
+[0.925246] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11-log -- found version 11.4.2\n'}
+[0.925704] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport11-log\n'}
+[0.926294] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-transport11> component [parameters]\n'}
+[0.929390] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11-parameters -- found version 11.4.2\n'}
+[0.929917] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport11-parameters\n'}
+[0.931393] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[0.935576] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[0.935910] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4\n'}
+[0.936225] (workspace_gz) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[0.937353] (workspace_gz) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[0.938856] (workspace_gz) StdoutLine: {'line': b'-- Found DL: TRUE  \n'}
+[0.947629] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [profiler]\n'}
+[0.950811] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-profiler -- found version 4.8.0\n'}
+[0.951322] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-profiler\n'}
+[0.952076] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [events]\n'}
+[0.955610] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-events -- found version 4.8.0\n'}
+[0.956228] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-events\n'}
+[0.956558] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[0.957379] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [av]\n'}
+[0.960815] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-av -- found version 4.8.0\n'}
+[0.961323] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-av\n'}
+[0.967306] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libswscale'\n"}
+[0.985378] (workspace_gz) StdoutLine: {'line': b'--   Found libswscale, version 5.9.100\n'}
+[0.996991] (workspace_ros) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/aliomacc/sti_usv/build/workspace_ros/build', '--no-deps', 'symlink_data'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_ros', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aliomacc', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aliomacc', 'OLDPWD': '/home/aliomacc/sti_usv', 'DESKTOP_SESSION': 'ubuntu-xorg', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1119', 'SYSTEMD_EXEC_PID': '1535', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3448', 'COLCON_PREFIX_PATH': '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'aliomacc', 'JOURNAL_STREAM': '8:12878', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aliomacc', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1477,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1477', 'INVOCATION_ID': '8bb2c71350dd440785a65a077b4f78af', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'tr_TR.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu-xorg', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:32fde568-3ee8-49c9-8756-c8696b50bded', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu-xorg', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aliomacc/sti_usv/build/workspace_ros', 'TURTLEBOT3_MODEL': 'waffle', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aliomacc/sti_usv/build/workspace_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp'}, 'shell': False}
+[1.000756] (workspace_nav) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/aliomacc/sti_usv/build/workspace_nav/build', '--no-deps', 'symlink_data'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_nav', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aliomacc', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aliomacc', 'OLDPWD': '/home/aliomacc/sti_usv', 'DESKTOP_SESSION': 'ubuntu-xorg', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1119', 'SYSTEMD_EXEC_PID': '1535', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3448', 'COLCON_PREFIX_PATH': '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'aliomacc', 'JOURNAL_STREAM': '8:12878', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aliomacc', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1477,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1477', 'INVOCATION_ID': '8bb2c71350dd440785a65a077b4f78af', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'tr_TR.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu-xorg', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:32fde568-3ee8-49c9-8756-c8696b50bded', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu-xorg', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aliomacc/sti_usv/build/workspace_nav', 'TURTLEBOT3_MODEL': 'waffle', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aliomacc/sti_usv/build/workspace_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp'}, 'shell': False}
+[1.002587] (-) TimerEvent: {}
+[1.021088] (workspace_gz) StdoutLine: {'line': b'-- Found SWSCALE: TRUE  \n'}
+[1.026174] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavdevice >= 56.4.100'\n"}
+[1.040473] (workspace_gz) StdoutLine: {'line': b'--   Found libavdevice , version 58.13.100\n'}
+[1.073343] (workspace_gz) StdoutLine: {'line': b'-- Found AVDEVICE: TRUE (Required is at least version "56.4.100") \n'}
+[1.078593] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavformat'\n"}
+[1.090408] (workspace_gz) StdoutLine: {'line': b'--   Found libavformat, version 58.76.100\n'}
+[1.102685] (-) TimerEvent: {}
+[1.117341] (workspace_gz) StdoutLine: {'line': b'-- Found AVFORMAT: TRUE  \n'}
+[1.121622] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavcodec'\n"}
+[1.131877] (workspace_gz) StdoutLine: {'line': b'--   Found libavcodec, version 58.134.100\n'}
+[1.158416] (workspace_gz) StdoutLine: {'line': b'-- Found AVCODEC: TRUE  \n'}
+[1.162784] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libavutil'\n"}
+[1.172550] (workspace_gz) StdoutLine: {'line': b'--   Found libavutil, version 56.70.100\n'}
+[1.201501] (workspace_gz) StdoutLine: {'line': b'-- Found AVUTIL: TRUE  \n'}
+[1.202784] (-) TimerEvent: {}
+[1.207736] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-fuel_tools7 -- found version 7.3.1\n'}
+[1.208392] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-fuel_tools7\n'}
+[1.286773] (workspace_gz) StdoutLine: {'line': b'-- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  \n'}
+[1.290947] (workspace_ros) StdoutLine: {'line': b'running develop\n'}
+[1.296389] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'jsoncpp'\n"}
+[1.302877] (-) TimerEvent: {}
+[1.307582] (workspace_gz) StdoutLine: {'line': b'--   Found jsoncpp, version 1.9.5\n'}
+[1.309699] (workspace_nav) StdoutLine: {'line': b'running develop\n'}
+[1.331960] (workspace_gz) StdoutLine: {'line': b'-- Found JSONCPP: TRUE  \n'}
+[1.338731] (workspace_gz) StdoutLine: {'line': b"-- Checking for module 'libzip'\n"}
+[1.349935] (workspace_gz) StdoutLine: {'line': b'--   Found libzip, version 1.7.3\n'}
+[1.375867] (workspace_gz) StdoutLine: {'line': b'-- Found ZIP: TRUE  \n'}
+[1.376318] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.376687] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.377111] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.381146] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-gui6 -- found version 6.9.0\n'}
+[1.381584] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-gui6\n'}
+[1.398692] (workspace_gz) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") \n'}
+[1.402988] (-) TimerEvent: {}
+[1.405617] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.405976] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.406409] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.406780] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[1.410104] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.410549] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-rendering6\n'}
+[1.410867] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.411332] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6\n'}
+[1.411446] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-math6> component [eigen3]\n'}
+[1.414382] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6-eigen3 -- found version 6.15.1\n'}
+[1.414834] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6-eigen3\n'}
+[1.423704] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.424118] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4\n'}
+[1.424297] (workspace_gz) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[1.424366] (workspace_gz) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[1.433156] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [graphics]\n'}
+[1.436382] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4-graphics -- found version 4.8.0\n'}
+[1.436800] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common4-graphics\n'}
+[1.437225] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.437562] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.438287] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-common4> component [events]\n'}
+[1.439070] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.439494] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-plugin1\n'}
+[1.439599] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-plugin1> component [all]\n'}
+[1.442585] (workspace_gz) StdoutLine: {'line': b'-- Looking for all libraries of ignition-plugin1 -- found version 1.4.0\n'}
+[1.443081] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.445433] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.479571] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5 -- found version 5.4.0\n'}
+[1.479962] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5\n'}
+[1.480345] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.480724] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.481161] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.482338] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-physics5> component [heightmap]\n'}
+[1.485627] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5-heightmap -- found version 5.4.0\n'}
+[1.486101] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5-heightmap\n'}
+[1.486431] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.486990] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-physics5> component [mesh]\n'}
+[1.490100] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5-mesh -- found version 5.4.0\n'}
+[1.490544] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5-mesh\n'}
+[1.490827] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.491405] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-physics5> component [sdf]\n'}
+[1.494523] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-physics5-sdf -- found version 5.4.0\n'}
+[1.495010] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-physics5-sdf\n'}
+[1.495306] (workspace_ros) StdoutLine: {'line': b'running egg_info\n'}
+[1.495409] (workspace_ros) StdoutLine: {'line': b'creating workspace_ros.egg-info\n'}
+[1.495522] (workspace_ros) StdoutLine: {'line': b'writing workspace_ros.egg-info/PKG-INFO\n'}
+[1.495634] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[1.495737] (workspace_ros) StdoutLine: {'line': b'writing dependency_links to workspace_ros.egg-info/dependency_links.txt\n'}
+[1.495827] (workspace_ros) StdoutLine: {'line': b'writing entry points to workspace_ros.egg-info/entry_points.txt\n'}
+[1.495917] (workspace_ros) StdoutLine: {'line': b'writing requirements to workspace_ros.egg-info/requires.txt\n'}
+[1.496010] (workspace_ros) StdoutLine: {'line': b'writing top-level names to workspace_ros.egg-info/top_level.txt\n'}
+[1.496173] (workspace_ros) StdoutLine: {'line': b"writing manifest file 'workspace_ros.egg-info/SOURCES.txt'\n"}
+[1.497847] (workspace_ros) StdoutLine: {'line': b"reading manifest file 'workspace_ros.egg-info/SOURCES.txt'\n"}
+[1.498508] (workspace_ros) StdoutLine: {'line': b"writing manifest file 'workspace_ros.egg-info/SOURCES.txt'\n"}
+[1.499745] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.499870] (workspace_ros) StdoutLine: {'line': b'running build_ext\n'}
+[1.499971] (workspace_ros) StdoutLine: {'line': b'Creating /home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages/workspace-ros.egg-link (link to .)\n'}
+[1.500185] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6\n'}
+[1.500724] (workspace_ros) StdoutLine: {'line': b'Installing converter script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros\n'}
+[1.500861] (workspace_ros) StdoutLine: {'line': b'Installing gps_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros\n'}
+[1.500962] (workspace_ros) StdoutLine: {'line': b'Installing imu_covariance_repub script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros\n'}
+[1.501069] (workspace_ros) StdoutLine: {'line': b'Installing lidar_processor script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros\n'}
+[1.501162] (workspace_ros) StdoutLine: {'line': b'Installing static_transform_publisher script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros\n'}
+[1.501250] (workspace_ros) StdoutLine: {'line': b'Installing wasd_teleop script to /home/aliomacc/sti_usv/install/workspace_ros/lib/workspace_ros\n'}
+[1.501386] (workspace_ros) StdoutLine: {'line': b'\n'}
+[1.501446] (workspace_ros) StdoutLine: {'line': b'Installed /home/aliomacc/sti_usv/build/workspace_ros\n'}
+[1.501525] (workspace_ros) StdoutLine: {'line': b'running symlink_data\n'}
+[1.501605] (workspace_ros) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index\n'}
+[1.501700] (workspace_ros) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index/resource_index\n'}
+[1.501758] (workspace_ros) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index/resource_index/packages\n'}
+[1.501813] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/resource/workspace_ros -> /home/aliomacc/sti_usv/install/workspace_ros/share/ament_index/resource_index/packages\n'}
+[1.501891] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/package.xml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros\n'}
+[1.501984] (workspace_ros) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config\n'}
+[1.502051] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/ekf.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config\n'}
+[1.502112] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/static_transform.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config\n'}
+[1.502202] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/lidar_filter.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config\n'}
+[1.502260] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/kiss_icp.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config\n'}
+[1.502347] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/lidar_rviz.rviz -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config\n'}
+[1.502405] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/config/navsat.yaml -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/config\n'}
+[1.502459] (workspace_ros) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.502546] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/mola_slam.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.502603] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/localization.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.502709] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/lidar_filter.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.502784] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/launch/kiss_icp.launch.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/launch\n'}
+[1.502839] (workspace_ros) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.502894] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/imu_covariance_repub.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.502949] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/converter.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.503063] (-) TimerEvent: {}
+[1.503158] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/wasd_teleop.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.503224] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/gps_covariance_repub.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.503278] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/__init__.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.503330] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/lidar_processor.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.503381] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/scripts/static_transform_publisher.py -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/scripts\n'}
+[1.503434] (workspace_ros) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/YOLOv11\n'}
+[1.503486] (workspace_ros) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_ros/YOLOv11/YOLOv11.pt -> /home/aliomacc/sti_usv/install/workspace_ros/share/workspace_ros/YOLOv11\n'}
+[1.512261] (workspace_nav) StdoutLine: {'line': b'running egg_info\n'}
+[1.512425] (workspace_nav) StdoutLine: {'line': b'creating workspace_nav.egg-info\n'}
+[1.512583] (workspace_nav) StdoutLine: {'line': b'writing workspace_nav.egg-info/PKG-INFO\n'}
+[1.512731] (workspace_nav) StdoutLine: {'line': b'writing dependency_links to workspace_nav.egg-info/dependency_links.txt\n'}
+[1.512859] (workspace_nav) StdoutLine: {'line': b'writing entry points to workspace_nav.egg-info/entry_points.txt\n'}
+[1.512962] (workspace_nav) StdoutLine: {'line': b'writing requirements to workspace_nav.egg-info/requires.txt\n'}
+[1.513114] (workspace_nav) StdoutLine: {'line': b'writing top-level names to workspace_nav.egg-info/top_level.txt\n'}
+[1.513285] (workspace_nav) StdoutLine: {'line': b"writing manifest file 'workspace_nav.egg-info/SOURCES.txt'\n"}
+[1.515521] (workspace_nav) StdoutLine: {'line': b"reading manifest file 'workspace_nav.egg-info/SOURCES.txt'\n"}
+[1.516316] (workspace_nav) StdoutLine: {'line': b"writing manifest file 'workspace_nav.egg-info/SOURCES.txt'\n"}
+[1.517872] (workspace_nav) StdoutLine: {'line': b'running build_ext\n'}
+[1.518113] (workspace_nav) StdoutLine: {'line': b'Creating /home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages/workspace-nav.egg-link (link to .)\n'}
+[1.518953] (workspace_nav) StdoutLine: {'line': b'Installing parkour_navigation script to /home/aliomacc/sti_usv/install/workspace_nav/lib/workspace_nav\n'}
+[1.519260] (workspace_nav) StdoutLine: {'line': b'\n'}
+[1.519418] (workspace_nav) StdoutLine: {'line': b'Installed /home/aliomacc/sti_usv/build/workspace_nav\n'}
+[1.519531] (workspace_nav) StdoutLine: {'line': b'running symlink_data\n'}
+[1.519679] (workspace_nav) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index\n'}
+[1.519852] (workspace_nav) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index/resource_index\n'}
+[1.519965] (workspace_nav) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index/resource_index/packages\n'}
+[1.520088] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/resource/workspace_nav -> /home/aliomacc/sti_usv/install/workspace_nav/share/ament_index/resource_index/packages\n'}
+[1.520271] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/package.xml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav\n'}
+[1.520387] (workspace_nav) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config\n'}
+[1.520502] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/config/map.yaml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config\n'}
+[1.520614] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/config/nav2_params.yaml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config\n'}
+[1.520719] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/config/parkour_nav.yaml -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/config\n'}
+[1.520830] (workspace_nav) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/launch\n'}
+[1.520942] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/launch/nav2.launch.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/launch\n'}
+[1.521122] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/launch/parkour_nav.launch.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/launch\n'}
+[1.521318] (workspace_nav) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.521425] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/mola_parkur_aigasyon.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.521539] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/parkour2_virtual_centerline.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.521655] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/final_parkour_navigator.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.521766] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/parkour_navigation.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.521881] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/son_hal.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.522028] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/ultimate_parkour_navigator.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.522148] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/lidar_debug.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.522262] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/parkour2_deneme.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.522402] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/pid_En_iyi.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.522513] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/__init__.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.522632] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/scripts/test_emergency_detection.py -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/scripts\n'}
+[1.522731] (workspace_nav) StdoutLine: {'line': b'creating /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/map\n'}
+[1.522861] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.522992] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.523118] (workspace_nav) StdoutLine: {'line': b'symbolically linking /home/aliomacc/sti_usv/build/workspace_nav/map/map.pgm -> /home/aliomacc/sti_usv/install/workspace_nav/share/workspace_nav/map\n'}
+[1.523242] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[1.523348] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.523447] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.523607] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[1.524578] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [air_pressure]\n'}
+[1.528305] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-air_pressure -- found version 6.9.0\n'}
+[1.529041] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-air_pressure\n'}
+[1.529935] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [altimeter]\n'}
+[1.533543] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-altimeter -- found version 6.9.0\n'}
+[1.534728] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-altimeter\n'}
+[1.535442] (workspace_ros) CommandEnded: {'returncode': 0}
+[1.536257] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [imu]\n'}
+[1.539067] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-imu -- found version 6.9.0\n'}
+[1.539604] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-imu\n'}
+[1.540510] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [force_torque]\n'}
+[1.544238] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-force_torque -- found version 6.9.0\n'}
+[1.545540] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-force_torque\n'}
+[1.546641] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [logical_camera]\n'}
+[1.549613] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-logical_camera -- found version 6.9.0\n'}
+[1.549999] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-logical_camera\n'}
+[1.550495] (workspace_ros) JobEnded: {'identifier': 'workspace_ros', 'rc': 0}
+[1.550928] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [magnetometer]\n'}
+[1.554464] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-magnetometer -- found version 6.9.0\n'}
+[1.554989] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-magnetometer\n'}
+[1.555791] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [navsat]\n'}
+[1.557406] (workspace_nav) CommandEnded: {'returncode': 0}
+[1.559442] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-navsat -- found version 6.9.0\n'}
+[1.560354] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-navsat\n'}
+[1.560802] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [rendering]\n'}
+[1.564561] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-rendering -- found version 6.9.0\n'}
+[1.565092] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-rendering\n'}
+[1.565775] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [lidar]\n'}
+[1.567463] (workspace_nav) JobEnded: {'identifier': 'workspace_nav', 'rc': 0}
+[1.569166] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-lidar -- found version 6.9.0\n'}
+[1.569722] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-lidar\n'}
+[1.570201] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.571020] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [gpu_lidar]\n'}
+[1.574306] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-gpu_lidar -- found version 6.9.0\n'}
+[1.574840] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-gpu_lidar\n'}
+[1.575286] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.576121] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [camera]\n'}
+[1.579619] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-camera -- found version 6.9.0\n'}
+[1.580165] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-camera\n'}
+[1.580599] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.581411] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [boundingbox_camera]\n'}
+[1.584681] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-boundingbox_camera -- found version 6.9.0\n'}
+[1.585215] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-boundingbox_camera\n'}
+[1.585939] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [segmentation_camera]\n'}
+[1.589168] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-segmentation_camera -- found version 6.9.0\n'}
+[1.589720] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-segmentation_camera\n'}
+[1.590416] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [depth_camera]\n'}
+[1.593738] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-depth_camera -- found version 6.9.0\n'}
+[1.594312] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-depth_camera\n'}
+[1.594717] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.595541] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [rgbd_camera]\n'}
+[1.598891] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-rgbd_camera -- found version 6.9.0\n'}
+[1.599452] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-rgbd_camera\n'}
+[1.599822] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.600646] (workspace_gz) StdoutLine: {'line': b'-- Searching for <ignition-sensors6> component [thermal_camera]\n'}
+[1.603144] (-) TimerEvent: {}
+[1.603861] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6-thermal_camera -- found version 6.9.0\n'}
+[1.604480] (workspace_gz) StdoutLine: {'line': b'-- Searching for dependencies of ignition-sensors6-thermal_camera\n'}
+[1.604917] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.606158] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.606665] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.609961] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.631192] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-common4 -- found version 4.8.0\n'}
+[1.631820] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.632392] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-transport11 -- found version 11.4.2\n'}
+[1.632795] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-plugin1 -- found version 1.4.0\n'}
+[1.633288] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-rendering6 -- found version 6.6.4\n'}
+[1.633774] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-sensors6 -- found version 6.9.0\n'}
+[1.634253] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-utils1 -- found version 1.5.1\n'}
+[1.634727] (workspace_gz) StdoutLine: {'line': b'-- Looking for ignition-msgs8 -- found version 8.7.0\n'}
+[1.635212] (workspace_gz) StdoutLine: {'line': b'-- Looking for sdformat12 -- found version 12.9.0\n'}
+[1.703255] (-) TimerEvent: {}
+[1.706069] (workspace_gz) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.742541] (workspace_gz) StdoutLine: {'line': b'-- Generating done\n'}
+[1.751962] (workspace_gz) StdoutLine: {'line': b'-- Build files have been written to: /home/aliomacc/sti_usv/build/workspace_gz\n'}
+[1.762108] (workspace_gz) CommandEnded: {'returncode': 0}
+[1.762715] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'build'}
+[1.763566] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aliomacc/sti_usv/build/workspace_gz', '--', '-j8', '-l8'], 'cwd': '/home/aliomacc/sti_usv/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aliomacc'), ('OLDPWD', '/home/aliomacc/sti_usv'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1119'), ('SYSTEMD_EXEC_PID', '1535'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3448'), ('COLCON_PREFIX_PATH', '/home/aliomacc/sti_usv/install:/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:12878'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1477,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1477'), ('INVOCATION_ID', '8bb2c71350dd440785a65a077b4f78af'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:32fde568-3ee8-49c9-8756-c8696b50bded'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[1.803384] (-) TimerEvent: {}
+[1.806691] (workspace_gz) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o\x1b[0m\n'}
+[1.903508] (-) TimerEvent: {}
+[2.003772] (-) TimerEvent: {}
+[2.104048] (-) TimerEvent: {}
+[2.204325] (-) TimerEvent: {}
+[2.304606] (-) TimerEvent: {}
+[2.404893] (-) TimerEvent: {}
+[2.505185] (-) TimerEvent: {}
+[2.605456] (-) TimerEvent: {}
+[2.705733] (-) TimerEvent: {}
+[2.806009] (-) TimerEvent: {}
+[2.906296] (-) TimerEvent: {}
+[3.006572] (-) TimerEvent: {}
+[3.106846] (-) TimerEvent: {}
+[3.207126] (-) TimerEvent: {}
+[3.307421] (-) TimerEvent: {}
+[3.407679] (-) TimerEvent: {}
+[3.507942] (-) TimerEvent: {}
+[3.608223] (-) TimerEvent: {}
+[3.708482] (-) TimerEvent: {}
+[3.808784] (-) TimerEvent: {}
+[3.909078] (-) TimerEvent: {}
+[4.009319] (-) TimerEvent: {}
+[4.109565] (-) TimerEvent: {}
+[4.209855] (-) TimerEvent: {}
+[4.310109] (-) TimerEvent: {}
+[4.410358] (-) TimerEvent: {}
+[4.476280] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrx::WavefieldPrivate::Recalculate()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.476456] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:292:5:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kgzwarn\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kignwarn\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[4.476528] (workspace_gz) StderrLine: {'line': b'  292 |     \x1b[01;31m\x1b[Kgzwarn\x1b[m\x1b[K << "Wavefield model specified as <" << this->model\n'}
+[4.476593] (workspace_gz) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[4.476654] (workspace_gz) StderrLine: {'line': b'      |     \x1b[32m\x1b[Kignwarn\x1b[m\x1b[K\n'}
+[4.492155] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrx::Wavefield::DebugPrint() const\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.492310] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:719:3:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kgzmsg\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kignmsg\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[4.492381] (workspace_gz) StderrLine: {'line': b'  719 |   \x1b[01;31m\x1b[Kgzmsg\x1b[m\x1b[K << "Input Parameters:" << std::endl;\n'}
+[4.492451] (workspace_gz) StderrLine: {'line': b'      |   \x1b[01;31m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[4.492511] (workspace_gz) StderrLine: {'line': b'      |   \x1b[32m\x1b[Kignmsg\x1b[m\x1b[K\n'}
+[4.510486] (-) TimerEvent: {}
+[4.610764] (-) TimerEvent: {}
+[4.711042] (-) TimerEvent: {}
+[4.811320] (-) TimerEvent: {}
+[4.911597] (-) TimerEvent: {}
+[5.011879] (-) TimerEvent: {}
+[5.112168] (-) TimerEvent: {}
+[5.212446] (-) TimerEvent: {}
+[5.312755] (-) TimerEvent: {}
+[5.413080] (-) TimerEvent: {}
+[5.513405] (-) TimerEvent: {}
+[5.613718] (-) TimerEvent: {}
+[5.711823] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/Waves.dir/build.make:76: CMakeFiles/Waves.dir/plugins/Wavefield.cc.o] Error 1\n'}
+[5.712103] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:153: CMakeFiles/Waves.dir/all] Error 2\n'}
+[5.712295] (workspace_gz) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[5.713795] (-) TimerEvent: {}
+[5.714698] (workspace_gz) CommandEnded: {'returncode': 2}
+[5.719411] (workspace_gz) JobEnded: {'identifier': 'workspace_gz', 'rc': 2}
+[5.729911] (-) EventReactorShutdown: {}

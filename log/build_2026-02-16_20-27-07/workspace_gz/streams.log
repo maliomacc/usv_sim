@@ -1,0 +1,181 @@
+[0.034s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
+[0.153s] [35m[1mConsolidate compiler generated dependencies of target Waves[0m
+[0.155s] [35m[1mConsolidate compiler generated dependencies of target ScoringPlugin[0m
+[0.188s] [  3%] [32mBuilding CXX object CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o[0m
+[0.189s] [  3%] [32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o[0m
+[9.228s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:[m[K In constructor ‘[01m[Kvrx::WavefieldPrivate::WavefieldPrivate()[m[K’:
+[9.228s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:137:18:[m[K [01;35m[Kwarning: [m[K‘[01m[Kvrx::WavefieldPrivate::wavenumber[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[9.228s]   137 | ble [01;35m[Kwavenumber[m[K;
+[9.229s]       |     [01;35m[K^~~~~~~~~~[m[K
+[9.229s] 
+[9.229s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:125:18:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kdouble vrx::WavefieldPrivate::tau[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[9.229s]   125 | ic: double [01;35m[Ktau[m[K;
+[9.229s]       |            [01;35m[K^~~[m[K
+[9.230s] 
+[9.230s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:50:11:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[9.230s]    50 | ic: [01;35m[KWavefieldPrivate[m[K():
+[9.230s]       |     [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[9.230s] 
+[9.371s] /home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc: In instantiation of ‘[01m[Kvrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:24, auto:25, auto:26, auto:27&, auto:28&, auto:29&)> [with auto:24 = Eigen::Matrix<double, 2, 1>; auto:25 = Eigen::Matrix<double, 2, 1>; auto:26 = double; auto:27 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::WaveParams; auto:28 = Eigen::Matrix<double, 2, 1>; auto:29 = Eigen::Matrix<double, 2, 2>][m[K’:
+[9.371s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:853:18:[m[K   required from ‘[01m[Kvrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:30&, auto:31, auto:32, auto:33, auto:34&, auto:35, auto:36)> [with auto:30 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:24, auto:25, auto:26, auto:27&, auto:28&, auto:29&)>; auto:31 = Eigen::Matrix<double, 2, 1>; auto:32 = Eigen::Matrix<double, 2, 1>; auto:33 = double; auto:34 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::WaveParams; auto:35 = double; auto:36 = double][m[K’
+[9.372s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:878:27:[m[K   required from here
+[9.373s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:810:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kconst size_t[m[K’ {aka ‘[01m[Kconst long unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[9.373s]   810 | ; [01;35m[Ki < n[m[K; ++i) // NOLINT
+[9.373s]       |   [01;35m[K~~^~~[m[K
+[9.374s] 
+[15.077s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::ScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[15.078s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:374:50:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[15.079s]   374 | void ScoringPlugin::Configure([01;35m[Kconst sim::Entity &_entity[m[K,
+[15.079s]       |                               [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[15.079s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:376:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[15.079s]   376 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+[15.080s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[15.091s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:[m[K In member function ‘[01m[Kvoid vrx::ScoringPlugin::OnContacts(const ignition::msgs::Contacts&)[m[K’:
+[15.091s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:614:30:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kunsigned int[m[K’ and ‘[01m[Kint[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[15.091s]   614 |   for (unsigned int i = 0; [01;35m[Ki < _contacts.contact_size()[m[K; ++i)
+[15.091s]       |                            [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[18.063s] [  5%] [32m[1mLinking CXX shared library libWaves.so[0m
+[18.955s] [  5%] Built target Waves
+[25.002s] [  7%] [32m[1mLinking CXX shared library libScoringPlugin.so[0m
+[26.167s] [  7%] Built target ScoringPlugin
+[26.239s] [  9%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o[0m
+[26.254s] [ 13%] [32mBuilding CXX object CMakeFiles/Surface.dir/plugins/Surface.cc.o[0m
+[26.255s] [ 13%] [32mBuilding CXX object CMakeFiles/USVWind.dir/plugins/USVWind.cc.o[0m
+[26.255s] [ 15%] [32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o[0m
+[26.255s] [ 16%] [32mBuilding CXX object CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o[0m
+[26.272s] [ 18%] [32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o[0m
+[26.278s] [ 20%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/AcousticPerceptionScoringPlugin.cc.o[0m
+[26.288s] [ 22%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o[0m
+[69.660s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::WayfindingScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[69.660s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:205:21:[m[K [01;35m[Kwarning: [m[Kloop variable ‘[01m[Kwaypoint[m[K’ creates a copy from type ‘[01m[Kconst ignition::math::v6::Vector3<double>[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wrange-loop-construct-Wrange-loop-construct]8;;[m[K]
+[69.661s]   205 |     for (const auto [01;35m[Kwaypoint[m[K : this->dataPtr->localWaypoints)
+[69.661s]       |                     [01;35m[K^~~~~~~~[m[K
+[69.662s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:205:21:[m[K [01;36m[Knote: [m[Kuse reference type to prevent copying
+[69.667s]   205 |     for (const auto [01;36m[Kwaypoint[m[K : this->dataPtr->localWaypoints)
+[69.669s]       |                     [01;36m[K^~~~~~~~[m[K
+[69.669s]       |                     [32m[K&[m[K
+[71.950s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/StationkeepingScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::StationkeepingScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[71.951s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/StationkeepingScoringPlugin.cc:172:13:[m[K [01;31m[Kerror: [m[K‘[01m[KGZ_RTOD[m[K’ was not declared in this scope; did you mean ‘[01m[KIGN_RTOD[m[K’?
+[71.951s]   172 |     scVec.X([01;31m[KGZ_RTOD[m[K(scVec.X()));
+[71.951s]       |             [01;31m[K^~~~~~~[m[K
+[71.951s]       |             [32m[KIGN_RTOD[m[K
+[71.971s] In file included from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:16[m[K:
+[71.972s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.hh:92:44:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[71.973s]    92 |          IGN_UTILS_UNIQUE_IMPL_PTR(dataPtr)[01;35m[K;[m[K
+[71.977s]       |                                            [01;35m[K^[m[K
+[71.983s]       |                                            [31m[K-[m[K
+[72.206s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:[m[K In member function ‘[01m[Kvirtual void vrx::USVWind::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[72.207s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:116:44:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[72.207s]   116 | void USVWind::Configure([01;35m[Kconst sim::Entity &_entity[m[K,
+[72.207s]       |                         [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[72.207s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:118:54:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[72.208s]   118 |                         [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+[72.208s]       |                         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[73.225s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:[m[K In member function ‘[01m[Kvirtual void vrx::WaveVisual::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[73.226s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:236:38:[m[K [01;31m[Kerror: [m[K‘[01m[KRenderTeardown[m[K’ is not a member of ‘[01m[Kignition::gazebo::v6::events[m[K’
+[73.226s]   236 |       _eventMgr.Connect<sim::events::[01;31m[KRenderTeardown[m[K>(
+[73.226s]       |                                      [01;31m[K^~~~~~~~~~~~~~[m[K
+[73.226s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:236:53:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kignition::gazebo::v6::EventManager::Connect<<expression error> >(std::_Bind_helper<false, void (vrx::WaveVisualPrivate::*)(), vrx::WaveVisualPrivate*>::type)[m[K’
+[73.227s]   236 |       [01;31m[K_eventMgr.Connect<sim::events::RenderTeardown>([m[K
+[73.227s]       |       [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+[73.227s]   237 | [01;31m[K      std::bind(&WaveVisualPrivate::OnRenderTeardown, this->dataPtr.get()))[m[K;
+[73.228s]       |       [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[73.233s] In file included from [01m[K/usr/include/ignition/gazebo6/gz/sim/System.hh:24[m[K,
+[73.234s]                  from [01m[K/usr/include/ignition/gazebo6/gz/sim/rendering/RenderUtil.hh:29[m[K,
+[73.235s]                  from [01m[K/usr/include/ignition/gazebo6/ignition/gazebo/rendering/RenderUtil.hh:18[m[K,
+[73.236s]                  from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:39[m[K:
+[73.243s] [01m[K/usr/include/ignition/gazebo6/gz/sim/EventManager.hh:69:15:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class E> ignition::common::ConnectionPtr ignition::gazebo::v6::EventManager::Connect(const typename E::CallbackT&)[m[K’
+[73.244s]    69 |               [01;36m[KConnect[m[K(const typename E::CallbackT &_subscriber)
+[73.244s]       |               [01;36m[K^~~~~~~[m[K
+[73.244s] [01m[K/usr/include/ignition/gazebo6/gz/sim/EventManager.hh:69:15:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[73.244s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:236:53:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[73.244s]   236 |       [01;31m[K_eventMgr.Connect<sim::events::RenderTeardown>([m[K
+[73.245s]       |       [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+[73.245s]   237 | [01;31m[K      std::bind(&WaveVisualPrivate::OnRenderTeardown, this->dataPtr.get()))[m[K;
+[73.245s]       |       [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[73.284s] In file included from [01m[K/usr/include/ignition/rendering6/gz/rendering/Node.hh:22[m[K,
+[73.285s]                  from [01m[K/usr/include/ignition/rendering6/gz/rendering/Storage.hh:24[m[K,
+[73.286s]                  from [01m[K/usr/include/ignition/rendering6/gz/rendering/Scene.hh:34[m[K,
+[73.287s]                  from [01m[K/usr/include/ignition/rendering6/ignition/rendering/Scene.hh:18[m[K,
+[73.290s]                  from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:29[m[K:
+[73.292s] /usr/include/c++/11/variant: In instantiation of ‘[01m[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*][m[K’:
+[73.292s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:[m[K   required from here
+[73.293s] [01m[K/usr/include/c++/11/variant:1185:42:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: T must occur exactly once in alternatives
+[73.293s]  1185 |       static_assert([01;31m[K__detail::__variant::__exactly_once<_Tp, _Types...>[m[K,
+[73.293s]       |                     [01;31m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[73.293s] [01m[K/usr/include/c++/11/variant:1185:42:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::__detail::__variant::__exactly_once<long unsigned int, std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int>[m[K’ evaluates to false
+[73.293s] /usr/include/c++/11/variant: In instantiation of ‘[01m[Kstruct std::variant_alternative<1, std::variant<unsigned int> >[m[K’:
+[73.293s] [01m[K/usr/include/c++/11/variant:103:12:[m[K   recursively required from ‘[01m[Kstruct std::variant_alternative<6, std::variant<int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >[m[K’
+[73.294s] [01m[K/usr/include/c++/11/variant:103:12:[m[K   required from ‘[01m[Kstruct std::variant_alternative<7, std::variant<std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >[m[K’
+[73.294s] [01m[K/usr/include/c++/11/variant:1170:5:[m[K   required by substitution of ‘[01m[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<const typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(const std::variant<_Types ...>*) [with long unsigned int _Np = 7; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}][m[K’
+[73.294s] [01m[K/usr/include/c++/11/variant:1188:76:[m[K   required from ‘[01m[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*][m[K’
+[73.294s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:[m[K   required from here
+[73.294s] [01m[K/usr/include/c++/11/variant:103:12:[m[K [01;31m[Kerror: [m[Kinvalid use of incomplete type ‘[01m[Kstruct std::variant_alternative<0, std::variant<> >[m[K’
+[73.294s]   103 |     struct [01;31m[Kvariant_alternative<_Np, variant<_First, _Rest...>>[m[K
+[73.295s]       |            [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[73.295s] [01m[K/usr/include/c++/11/variant:100:12:[m[K [01;36m[Knote: [m[Kdeclaration of ‘[01m[Kstruct std::variant_alternative<0, std::variant<> >[m[K’
+[73.295s]   100 |     struct [01;36m[Kvariant_alternative[m[K;
+[73.295s]       |            [01;36m[K^~~~~~~~~~~~~~~~~~~[m[K
+[73.300s] /usr/include/c++/11/variant: In instantiation of ‘[01m[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*][m[K’:
+[73.301s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:[m[K   required from here
+[73.305s] [01m[K/usr/include/c++/11/variant:1188:76:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kget_if<std::__detail::__variant::__index_of_v<long unsigned int, std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >(std::variant<std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int>*&)[m[K’
+[73.305s]  1188 |       return [01;31m[Kstd::get_if<__detail::__variant::__index_of_v<_Tp, _Types...>>([m[K
+[73.305s]       |              [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+[73.306s]  1189 | [01;31m[K          __ptr)[m[K;
+[73.306s]       |           [01;31m[K~~~~~~[m[K                                                            
+[73.306s] [01m[K/usr/include/c++/11/variant:1156:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(std::variant<_Types ...>*)[m[K’
+[73.306s]  1156 |     [01;36m[Kget_if[m[K(variant<_Types...>* __ptr) noexcept
+[73.306s]       |     [01;36m[K^~~~~~[m[K
+[73.306s] [01m[K/usr/include/c++/11/variant:1156:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[73.307s] /usr/include/c++/11/variant: In substitution of ‘[01m[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(std::variant<_Types ...>*) [with long unsigned int _Np = 7; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}][m[K’:
+[73.308s] [01m[K/usr/include/c++/11/variant:1188:76:[m[K   required from ‘[01m[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*][m[K’
+[73.308s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:[m[K   required from here
+[73.308s] [01m[K/usr/include/c++/11/variant:1156:5:[m[K [01;31m[Kerror: [m[Kno type named ‘[01m[Ktype[m[K’ in ‘[01m[Kstruct std::variant_alternative<7, std::variant<std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >[m[K’
+[73.308s] /usr/include/c++/11/variant: In instantiation of ‘[01m[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*][m[K’:
+[73.309s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:[m[K   required from here
+[73.309s] [01m[K/usr/include/c++/11/variant:1170:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<const typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(const std::variant<_Types ...>*)[m[K’
+[73.309s]  1170 |     [01;36m[Kget_if[m[K(const variant<_Types...>* __ptr) noexcept
+[73.309s]       |     [01;36m[K^~~~~~[m[K
+[73.309s] [01m[K/usr/include/c++/11/variant:1170:5:[m[K [01;36m[Knote: [m[K  substitution of deduced template arguments resulted in errors seen above
+[73.309s] [01m[K/usr/include/c++/11/variant:1183:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Tp, class ... _Types> constexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*)[m[K’
+[73.310s]  1183 |     [01;36m[Kget_if[m[K(variant<_Types...>* __ptr) noexcept
+[73.314s]       |     [01;36m[K^~~~~~[m[K
+[73.315s] [01m[K/usr/include/c++/11/variant:1183:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[73.315s] [01m[K/usr/include/c++/11/variant:1188:76:[m[K [01;31m[Kerror: [m[Ktype/value mismatch at argument 1 in template parameter list for ‘[01m[Ktemplate<class _Tp, class ... _Types> constexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*)[m[K’
+[73.316s]  1188 |       return [01;31m[Kstd::get_if<__detail::__variant::__index_of_v<_Tp, _Types...>>([m[K
+[73.316s]       |              [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+[73.316s]  1189 | [01;31m[K          __ptr)[m[K;
+[73.316s]       |           [01;31m[K~~~~~~[m[K                                                            
+[73.317s] [01m[K/usr/include/c++/11/variant:1188:76:[m[K [01;36m[Knote: [m[K  expected a type, got ‘[01m[Kstd::__detail::__variant::__index_of_v<long unsigned int, std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int>[m[K’
+[77.867s] [ 24%] [32m[1mLinking CXX shared library libSimpleHydrodynamics.so[0m
+[80.387s] [ 24%] Built target SimpleHydrodynamics
+[80.768s] gmake[2]: *** [CMakeFiles/StationkeepingScoringPlugin.dir/build.make:76: CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o] Error 1
+[80.768s] gmake[1]: *** [CMakeFiles/Makefile2:365: CMakeFiles/StationkeepingScoringPlugin.dir/all] Error 2
+[80.768s] gmake[1]: *** Bitmemiş işler için bekliyor....
+[83.726s] gmake[2]: *** [CMakeFiles/WaveVisual.dir/build.make:76: CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o] Error 1
+[83.732s] gmake[1]: *** [CMakeFiles/Makefile2:338: CMakeFiles/WaveVisual.dir/all] Error 2
+[87.793s] [ 26%] [32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[88.059s] [ 28%] [32m[1mLinking CXX shared library libSurface.so[0m
+[88.600s] [ 30%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/ShapeVolume.cc.o[0m
+[88.903s] [ 32%] [32m[1mLinking CXX shared library libUSVWind.so[0m
+[89.868s] [ 33%] [32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WaypointMarkers.cc.o[0m
+[90.441s] [ 33%] Built target Surface
+[91.191s] [ 33%] Built target USVWind
+[106.058s] [ 35%] [32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedronVolume.cc.o[0m
+[109.285s] In file included from [01m[K/usr/include/c++/11/cassert:44[m[K,
+[109.285s]                  from [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:18[m[K:
+[109.285s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:[m[K In static member function ‘[01m[Kstatic vrx::Polyhedron vrx::Polyhedron::makeCylinder(double, double, int)[m[K’:
+[109.285s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:126:35:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<ignition::math::v6::Vector3<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[109.285s]   126 |   assert([01;35m[Kcylinder.vertices.size() == 2 * _n + 2[m[K);
+[109.285s]       |          [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~[m[K
+[109.286s] [01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:127:32:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<vrx::Polyhedron::Face>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[109.286s]   127 |   assert([01;35m[Kcylinder.faces.size() == 4 * _n[m[K);
+[109.286s]       |          [01;35m[K~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~[m[K
+[115.989s] [ 37%] [32m[1mLinking CXX shared library libPolyhedraBuoyancyDrag.so[0m
+[118.537s] [ 37%] Built target PolyhedraBuoyancyDrag
+[119.264s] [ 39%] [32m[1mLinking CXX shared library libAcousticPerceptionScoringPlugin.so[0m
+[121.584s] [ 39%] Built target AcousticPerceptionScoringPlugin
+[121.926s] [ 41%] [32m[1mLinking CXX shared library libWayfindingScoringPlugin.so[0m
+[124.061s] [ 41%] Built target WayfindingScoringPlugin
+[124.066s] gmake: *** [Makefile:146: all] Error 2
+[124.076s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
