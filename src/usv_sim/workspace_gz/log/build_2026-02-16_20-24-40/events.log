@@ -1,0 +1,1333 @@
+[0.000000] (-) TimerEvent: {}
+[0.000235] (workspace_gz) JobQueued: {'identifier': 'workspace_gz', 'dependencies': OrderedDict()}
+[0.000734] (workspace_gz) JobStarted: {'identifier': 'workspace_gz'}
+[0.022842] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'cmake'}
+[0.025454] (workspace_gz) JobProgress: {'identifier': 'workspace_gz', 'progress': 'build'}
+[0.028733] (workspace_gz) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/build/workspace_gz', '--', '-j8', '-l8'], 'cwd': '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/build/workspace_gz', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aliomacc'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/aliomacc/ros2_ws/install/my_robot_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('ANTIGRAVITY_CLI_ALIAS', 'agy'), ('HOME', '/home/aliomacc'), ('CHROME_DESKTOP', 'antigravity.desktop'), ('OLDPWD', '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins'), ('TERM_PROGRAM_VERSION', '1.107.0'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/antigravity/antigravity'), ('MANAGERPID', '1119'), ('SYSTEMD_EXEC_PID', '1535'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('ANTIGRAVITY_AGENT', '1'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '21184'), ('COLCON_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install:/home/aliomacc/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aliomacc'), ('JOURNAL_STREAM', '8:12878'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aliomacc'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/aliomacc/.local/bin:/home/aliomacc/.local/bin:/opt/ros/humble/bin:/home/aliomacc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aliomacc-Nitro-AN515-55:@/tmp/.ICE-unix/1477,unix/aliomacc-Nitro-AN515-55:/tmp/.ICE-unix/1477'), ('INVOCATION_ID', '8bb2c71350dd440785a65a077b4f78af'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'tr_TR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-0cbf93e25a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_py:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:000422ba-25d5-4262-9e2f-dc4b83371a6a'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/build/workspace_gz'), ('TURTLEBOT3_MODEL', 'waffle'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/home/aliomacc/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages:/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aliomacc/turtlebot3_ws/install/turtlebot3_simulations:/home/aliomacc/turtlebot3_ws/install/turtlebot3_manipulation_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_gazebo:/home/aliomacc/turtlebot3_ws/install/turtlebot3_fake_node:/home/aliomacc/ros2_ws/install/my_robot_interfaces:/home/aliomacc/ros2_ws/install/my_robot_description:/home/aliomacc/ros2_ws/install/my_robot_bringup:/home/aliomacc/ros2_ws/install/lifecycle_cpp:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble')]), 'shell': False}
+[0.099801] (-) TimerEvent: {}
+[0.156599] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target Waves\x1b[0m\n'}
+[0.157621] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target ScoringPlugin\x1b[0m\n'}
+[0.200010] (-) TimerEvent: {}
+[0.203512] (workspace_gz) StdoutLine: {'line': b'[  1%] \x1b[32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o\x1b[0m\n'}
+[0.215258] (workspace_gz) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding CXX object CMakeFiles/ScoringPlugin.dir/plugins/ScoringPlugin.cc.o\x1b[0m\n'}
+[0.300136] (-) TimerEvent: {}
+[0.400970] (-) TimerEvent: {}
+[0.502202] (-) TimerEvent: {}
+[0.603925] (-) TimerEvent: {}
+[0.710915] (-) TimerEvent: {}
+[0.811634] (-) TimerEvent: {}
+[0.914917] (-) TimerEvent: {}
+[1.017956] (-) TimerEvent: {}
+[1.118802] (-) TimerEvent: {}
+[1.221935] (-) TimerEvent: {}
+[1.322716] (-) TimerEvent: {}
+[1.423950] (-) TimerEvent: {}
+[1.526419] (-) TimerEvent: {}
+[1.628018] (-) TimerEvent: {}
+[1.729729] (-) TimerEvent: {}
+[1.835434] (-) TimerEvent: {}
+[1.936227] (-) TimerEvent: {}
+[2.036943] (-) TimerEvent: {}
+[2.137760] (-) TimerEvent: {}
+[2.239010] (-) TimerEvent: {}
+[2.339890] (-) TimerEvent: {}
+[2.440360] (-) TimerEvent: {}
+[2.541654] (-) TimerEvent: {}
+[2.642926] (-) TimerEvent: {}
+[2.744273] (-) TimerEvent: {}
+[2.845600] (-) TimerEvent: {}
+[2.948941] (-) TimerEvent: {}
+[3.049674] (-) TimerEvent: {}
+[3.151506] (-) TimerEvent: {}
+[3.253049] (-) TimerEvent: {}
+[3.354389] (-) TimerEvent: {}
+[3.454876] (-) TimerEvent: {}
+[3.555363] (-) TimerEvent: {}
+[3.656195] (-) TimerEvent: {}
+[3.757551] (-) TimerEvent: {}
+[3.858631] (-) TimerEvent: {}
+[3.959079] (-) TimerEvent: {}
+[4.059744] (-) TimerEvent: {}
+[4.160622] (-) TimerEvent: {}
+[4.262046] (-) TimerEvent: {}
+[4.363309] (-) TimerEvent: {}
+[4.463846] (-) TimerEvent: {}
+[4.564666] (-) TimerEvent: {}
+[4.665796] (-) TimerEvent: {}
+[4.767030] (-) TimerEvent: {}
+[4.869100] (-) TimerEvent: {}
+[4.970311] (-) TimerEvent: {}
+[5.070854] (-) TimerEvent: {}
+[5.171743] (-) TimerEvent: {}
+[5.273154] (-) TimerEvent: {}
+[5.374098] (-) TimerEvent: {}
+[5.474722] (-) TimerEvent: {}
+[5.575561] (-) TimerEvent: {}
+[5.676519] (-) TimerEvent: {}
+[5.778060] (-) TimerEvent: {}
+[5.879086] (-) TimerEvent: {}
+[5.979729] (-) TimerEvent: {}
+[6.080232] (-) TimerEvent: {}
+[6.181062] (-) TimerEvent: {}
+[6.282160] (-) TimerEvent: {}
+[6.383511] (-) TimerEvent: {}
+[6.484419] (-) TimerEvent: {}
+[6.585447] (-) TimerEvent: {}
+[6.686100] (-) TimerEvent: {}
+[6.786874] (-) TimerEvent: {}
+[6.888456] (-) TimerEvent: {}
+[6.989477] (-) TimerEvent: {}
+[7.090339] (-) TimerEvent: {}
+[7.191542] (-) TimerEvent: {}
+[7.292829] (-) TimerEvent: {}
+[7.393723] (-) TimerEvent: {}
+[7.494921] (-) TimerEvent: {}
+[7.595797] (-) TimerEvent: {}
+[7.696845] (-) TimerEvent: {}
+[7.797473] (-) TimerEvent: {}
+[7.898367] (-) TimerEvent: {}
+[7.999058] (-) TimerEvent: {}
+[8.099738] (-) TimerEvent: {}
+[8.200555] (-) TimerEvent: {}
+[8.301454] (-) TimerEvent: {}
+[8.402912] (-) TimerEvent: {}
+[8.504752] (-) TimerEvent: {}
+[8.607030] (-) TimerEvent: {}
+[8.707488] (-) TimerEvent: {}
+[8.807942] (-) TimerEvent: {}
+[8.908411] (-) TimerEvent: {}
+[9.009139] (-) TimerEvent: {}
+[9.110432] (-) TimerEvent: {}
+[9.198000] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kvrx::WavefieldPrivate::WavefieldPrivate()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.198829] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:137:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kvrx::WavefieldPrivate::wavenumber\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder\x07-Wreorder\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[9.199432] (workspace_gz) StderrLine: {'line': b'  137 | ble \x1b[01;35m\x1b[Kwavenumber\x1b[m\x1b[K;\n'}
+[9.199871] (workspace_gz) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.200097] (workspace_gz) StderrLine: {'line': b'\n'}
+[9.200267] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:125:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kdouble vrx::WavefieldPrivate::tau\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder\x07-Wreorder\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[9.200451] (workspace_gz) StderrLine: {'line': b'  125 | ic: double \x1b[01;35m\x1b[Ktau\x1b[m\x1b[K;\n'}
+[9.200639] (workspace_gz) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[9.200825] (workspace_gz) StderrLine: {'line': b'\n'}
+[9.201015] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:50:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder\x07-Wreorder\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[9.201203] (workspace_gz) StderrLine: {'line': b'   50 | ic: \x1b[01;35m\x1b[KWavefieldPrivate\x1b[m\x1b[K():\n'}
+[9.201363] (workspace_gz) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.201522] (workspace_gz) StderrLine: {'line': b'\n'}
+[9.210771] (-) TimerEvent: {}
+[9.312104] (-) TimerEvent: {}
+[9.371679] (workspace_gz) StderrLine: {'line': b'/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kvrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:24, auto:25, auto:26, auto:27&, auto:28&, auto:29&)> [with auto:24 = Eigen::Matrix<double, 2, 1>; auto:25 = Eigen::Matrix<double, 2, 1>; auto:26 = double; auto:27 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::WaveParams; auto:28 = Eigen::Matrix<double, 2, 1>; auto:29 = Eigen::Matrix<double, 2, 2>]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.372787] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:853:18:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:30&, auto:31, auto:32, auto:33, auto:34&, auto:35, auto:36)> [with auto:30 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::<lambda(auto:24, auto:25, auto:26, auto:27&, auto:28&, auto:29&)>; auto:31 = Eigen::Matrix<double, 2, 1>; auto:32 = Eigen::Matrix<double, 2, 1>; auto:33 = double; auto:34 = vrx::Wavefield::ComputeDepthDirectly(const Vector3d&, double, double)::WaveParams; auto:35 = double; auto:36 = double]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[9.374092] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:878:27:\x1b[m\x1b[K   required from here\n'}
+[9.376610] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/Wavefield.cc:810:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kconst size_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kconst long unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare\x07-Wsign-compare\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[9.377289] (workspace_gz) StderrLine: {'line': b'  810 | ; \x1b[01;35m\x1b[Ki < n\x1b[m\x1b[K; ++i) // NOLINT\n'}
+[9.377946] (workspace_gz) StderrLine: {'line': b'      |   \x1b[01;35m\x1b[K~~^~~\x1b[m\x1b[K\n'}
+[9.378343] (workspace_gz) StderrLine: {'line': b'\n'}
+[9.412366] (-) TimerEvent: {}
+[9.514387] (-) TimerEvent: {}
+[9.615963] (-) TimerEvent: {}
+[9.716530] (-) TimerEvent: {}
+[9.817114] (-) TimerEvent: {}
+[9.917569] (-) TimerEvent: {}
+[10.018035] (-) TimerEvent: {}
+[10.118666] (-) TimerEvent: {}
+[10.219665] (-) TimerEvent: {}
+[10.320407] (-) TimerEvent: {}
+[10.421375] (-) TimerEvent: {}
+[10.521992] (-) TimerEvent: {}
+[10.622869] (-) TimerEvent: {}
+[10.724395] (-) TimerEvent: {}
+[10.825211] (-) TimerEvent: {}
+[10.926711] (-) TimerEvent: {}
+[11.027418] (-) TimerEvent: {}
+[11.128516] (-) TimerEvent: {}
+[11.229287] (-) TimerEvent: {}
+[11.330710] (-) TimerEvent: {}
+[11.432322] (-) TimerEvent: {}
+[11.533412] (-) TimerEvent: {}
+[11.633981] (-) TimerEvent: {}
+[11.734718] (-) TimerEvent: {}
+[11.835227] (-) TimerEvent: {}
+[11.935887] (-) TimerEvent: {}
+[12.037171] (-) TimerEvent: {}
+[12.140790] (-) TimerEvent: {}
+[12.241949] (-) TimerEvent: {}
+[12.343558] (-) TimerEvent: {}
+[12.445032] (-) TimerEvent: {}
+[12.545725] (-) TimerEvent: {}
+[12.646475] (-) TimerEvent: {}
+[12.747855] (-) TimerEvent: {}
+[12.849158] (-) TimerEvent: {}
+[12.949940] (-) TimerEvent: {}
+[13.050514] (-) TimerEvent: {}
+[13.151189] (-) TimerEvent: {}
+[13.251962] (-) TimerEvent: {}
+[13.352723] (-) TimerEvent: {}
+[13.453609] (-) TimerEvent: {}
+[13.554654] (-) TimerEvent: {}
+[13.657502] (-) TimerEvent: {}
+[13.758523] (-) TimerEvent: {}
+[13.859754] (-) TimerEvent: {}
+[13.960471] (-) TimerEvent: {}
+[14.062313] (-) TimerEvent: {}
+[14.163564] (-) TimerEvent: {}
+[14.264385] (-) TimerEvent: {}
+[14.365088] (-) TimerEvent: {}
+[14.465800] (-) TimerEvent: {}
+[14.566917] (-) TimerEvent: {}
+[14.668633] (-) TimerEvent: {}
+[14.769183] (-) TimerEvent: {}
+[14.869784] (-) TimerEvent: {}
+[14.972757] (-) TimerEvent: {}
+[15.075542] (-) TimerEvent: {}
+[15.176525] (-) TimerEvent: {}
+[15.277734] (-) TimerEvent: {}
+[15.378697] (-) TimerEvent: {}
+[15.479796] (-) TimerEvent: {}
+[15.581258] (-) TimerEvent: {}
+[15.682446] (-) TimerEvent: {}
+[15.740701] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void vrx::ScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[15.741448] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:374:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[K_entity\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter\x07-Wunused-parameter\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.741835] (workspace_gz) StderrLine: {'line': b'  374 | void ScoringPlugin::Configure(\x1b[01;35m\x1b[Kconst sim::Entity &_entity\x1b[m\x1b[K,\n'}
+[15.742157] (workspace_gz) StderrLine: {'line': b'      |                               \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[15.742400] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:376:34:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[K_ecm\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter\x07-Wunused-parameter\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.754749] (workspace_gz) StderrLine: {'line': b'  376 |     \x1b[01;35m\x1b[Ksim::EntityComponentManager &_ecm\x1b[m\x1b[K,\n'}
+[15.755080] (workspace_gz) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[15.756711] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrx::ScoringPlugin::OnContacts(const ignition::msgs::Contacts&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[15.757403] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScoringPlugin.cc:614:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kunsigned int\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare\x07-Wsign-compare\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.760120] (workspace_gz) StderrLine: {'line': b'  614 |   for (unsigned int i = 0; \x1b[01;35m\x1b[Ki < _contacts.contact_size()\x1b[m\x1b[K; ++i)\n'}
+[15.761254] (workspace_gz) StderrLine: {'line': b'      |                            \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[15.782953] (-) TimerEvent: {}
+[15.884344] (-) TimerEvent: {}
+[15.984925] (-) TimerEvent: {}
+[16.086133] (-) TimerEvent: {}
+[16.187341] (-) TimerEvent: {}
+[16.288480] (-) TimerEvent: {}
+[16.389923] (-) TimerEvent: {}
+[16.491727] (-) TimerEvent: {}
+[16.592959] (-) TimerEvent: {}
+[16.694234] (-) TimerEvent: {}
+[16.795102] (-) TimerEvent: {}
+[16.897032] (-) TimerEvent: {}
+[16.998256] (-) TimerEvent: {}
+[17.099513] (-) TimerEvent: {}
+[17.200282] (-) TimerEvent: {}
+[17.301217] (-) TimerEvent: {}
+[17.401896] (-) TimerEvent: {}
+[17.504924] (-) TimerEvent: {}
+[17.606202] (-) TimerEvent: {}
+[17.707414] (-) TimerEvent: {}
+[17.808335] (-) TimerEvent: {}
+[17.908931] (-) TimerEvent: {}
+[18.009588] (-) TimerEvent: {}
+[18.110957] (-) TimerEvent: {}
+[18.212272] (-) TimerEvent: {}
+[18.314069] (-) TimerEvent: {}
+[18.414808] (-) TimerEvent: {}
+[18.515906] (-) TimerEvent: {}
+[18.617291] (-) TimerEvent: {}
+[18.629732] (workspace_gz) StdoutLine: {'line': b'[  5%] \x1b[32m\x1b[1mLinking CXX shared library libWaves.so\x1b[0m\n'}
+[18.717466] (-) TimerEvent: {}
+[18.818233] (-) TimerEvent: {}
+[18.919675] (-) TimerEvent: {}
+[19.020444] (-) TimerEvent: {}
+[19.122720] (-) TimerEvent: {}
+[19.224035] (-) TimerEvent: {}
+[19.324617] (-) TimerEvent: {}
+[19.425160] (-) TimerEvent: {}
+[19.525499] (-) TimerEvent: {}
+[19.626847] (-) TimerEvent: {}
+[19.728208] (-) TimerEvent: {}
+[19.758656] (workspace_gz) StdoutLine: {'line': b'[  5%] Built target Waves\n'}
+[19.828826] (-) TimerEvent: {}
+[19.929745] (-) TimerEvent: {}
+[20.030681] (-) TimerEvent: {}
+[20.131426] (-) TimerEvent: {}
+[20.232659] (-) TimerEvent: {}
+[20.334178] (-) TimerEvent: {}
+[20.438293] (-) TimerEvent: {}
+[20.538859] (-) TimerEvent: {}
+[20.642788] (-) TimerEvent: {}
+[20.743837] (-) TimerEvent: {}
+[20.844873] (-) TimerEvent: {}
+[20.945589] (-) TimerEvent: {}
+[21.046249] (-) TimerEvent: {}
+[21.147070] (-) TimerEvent: {}
+[21.248153] (-) TimerEvent: {}
+[21.349922] (-) TimerEvent: {}
+[21.450528] (-) TimerEvent: {}
+[21.551372] (-) TimerEvent: {}
+[21.652230] (-) TimerEvent: {}
+[21.752979] (-) TimerEvent: {}
+[21.853771] (-) TimerEvent: {}
+[21.954453] (-) TimerEvent: {}
+[22.055071] (-) TimerEvent: {}
+[22.156085] (-) TimerEvent: {}
+[22.256736] (-) TimerEvent: {}
+[22.357457] (-) TimerEvent: {}
+[22.458718] (-) TimerEvent: {}
+[22.559994] (-) TimerEvent: {}
+[22.660959] (-) TimerEvent: {}
+[22.762124] (-) TimerEvent: {}
+[22.862688] (-) TimerEvent: {}
+[22.963498] (-) TimerEvent: {}
+[23.064223] (-) TimerEvent: {}
+[23.165640] (-) TimerEvent: {}
+[23.267164] (-) TimerEvent: {}
+[23.368071] (-) TimerEvent: {}
+[23.468868] (-) TimerEvent: {}
+[23.569718] (-) TimerEvent: {}
+[23.670935] (-) TimerEvent: {}
+[23.771392] (-) TimerEvent: {}
+[23.872056] (-) TimerEvent: {}
+[23.973148] (-) TimerEvent: {}
+[24.073724] (-) TimerEvent: {}
+[24.174355] (-) TimerEvent: {}
+[24.274996] (-) TimerEvent: {}
+[24.375550] (-) TimerEvent: {}
+[24.477549] (-) TimerEvent: {}
+[24.578851] (-) TimerEvent: {}
+[24.679728] (-) TimerEvent: {}
+[24.780395] (-) TimerEvent: {}
+[24.881388] (-) TimerEvent: {}
+[24.982655] (-) TimerEvent: {}
+[25.083274] (-) TimerEvent: {}
+[25.183819] (-) TimerEvent: {}
+[25.284987] (-) TimerEvent: {}
+[25.385750] (-) TimerEvent: {}
+[25.486650] (-) TimerEvent: {}
+[25.587341] (-) TimerEvent: {}
+[25.688178] (-) TimerEvent: {}
+[25.789010] (-) TimerEvent: {}
+[25.889815] (-) TimerEvent: {}
+[25.990357] (-) TimerEvent: {}
+[26.091226] (-) TimerEvent: {}
+[26.191906] (-) TimerEvent: {}
+[26.292924] (-) TimerEvent: {}
+[26.393706] (-) TimerEvent: {}
+[26.463301] (workspace_gz) StdoutLine: {'line': b'[  7%] \x1b[32m\x1b[1mLinking CXX shared library libScoringPlugin.so\x1b[0m\n'}
+[26.494113] (-) TimerEvent: {}
+[26.595699] (-) TimerEvent: {}
+[26.696360] (-) TimerEvent: {}
+[26.796881] (-) TimerEvent: {}
+[26.898249] (-) TimerEvent: {}
+[26.999718] (-) TimerEvent: {}
+[27.100480] (-) TimerEvent: {}
+[27.202217] (-) TimerEvent: {}
+[27.303193] (-) TimerEvent: {}
+[27.403657] (-) TimerEvent: {}
+[27.504239] (-) TimerEvent: {}
+[27.605366] (-) TimerEvent: {}
+[27.637229] (workspace_gz) StdoutLine: {'line': b'[  7%] Built target ScoringPlugin\n'}
+[27.672891] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target USVWind\x1b[0m\n'}
+[27.676249] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target PolyhedraBuoyancyDrag\x1b[0m\n'}
+[27.686824] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target SimpleHydrodynamics\x1b[0m\n'}
+[27.687148] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target WaveVisual\x1b[0m\n'}
+[27.689456] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target Surface\x1b[0m\n'}
+[27.691480] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target WayfindingScoringPlugin\x1b[0m\n'}
+[27.706698] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target StationkeepingScoringPlugin\x1b[0m\n'}
+[27.707045] (-) TimerEvent: {}
+[27.707794] (workspace_gz) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target AcousticPerceptionScoringPlugin\x1b[0m\n'}
+[27.754329] (workspace_gz) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedraBuoyancyDrag.cc.o\x1b[0m\n'}
+[27.760234] (workspace_gz) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WayfindingScoringPlugin.cc.o\x1b[0m\n'}
+[27.765555] (workspace_gz) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding CXX object CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o\x1b[0m\n'}
+[27.773368] (workspace_gz) StdoutLine: {'line': b'[ 15%] \x1b[32mBuilding CXX object CMakeFiles/Surface.dir/plugins/Surface.cc.o\x1b[0m\n'}
+[27.774460] (workspace_gz) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o\x1b[0m\n'}
+[27.784751] (workspace_gz) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object CMakeFiles/SimpleHydrodynamics.dir/plugins/SimpleHydrodynamics.cc.o\x1b[0m\n'}
+[27.796657] (workspace_gz) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/AcousticPerceptionScoringPlugin.cc.o\x1b[0m\n'}
+[27.797038] (workspace_gz) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/USVWind.dir/plugins/USVWind.cc.o\x1b[0m\n'}
+[27.809809] (-) TimerEvent: {}
+[27.910332] (-) TimerEvent: {}
+[28.013131] (-) TimerEvent: {}
+[28.114402] (-) TimerEvent: {}
+[28.217894] (-) TimerEvent: {}
+[28.322760] (-) TimerEvent: {}
+[28.423349] (-) TimerEvent: {}
+[28.524266] (-) TimerEvent: {}
+[28.624751] (-) TimerEvent: {}
+[28.726754] (-) TimerEvent: {}
+[28.832845] (-) TimerEvent: {}
+[28.939837] (-) TimerEvent: {}
+[29.045509] (-) TimerEvent: {}
+[29.148248] (-) TimerEvent: {}
+[29.254893] (-) TimerEvent: {}
+[29.358798] (-) TimerEvent: {}
+[29.459827] (-) TimerEvent: {}
+[29.562707] (-) TimerEvent: {}
+[29.672212] (-) TimerEvent: {}
+[29.777880] (-) TimerEvent: {}
+[29.885440] (-) TimerEvent: {}
+[29.985973] (-) TimerEvent: {}
+[30.087763] (-) TimerEvent: {}
+[30.188506] (-) TimerEvent: {}
+[30.293010] (-) TimerEvent: {}
+[30.429789] (-) TimerEvent: {}
+[30.545693] (-) TimerEvent: {}
+[30.649831] (-) TimerEvent: {}
+[30.751071] (-) TimerEvent: {}
+[30.854749] (-) TimerEvent: {}
+[30.959371] (-) TimerEvent: {}
+[31.061559] (-) TimerEvent: {}
+[31.164362] (-) TimerEvent: {}
+[31.268219] (-) TimerEvent: {}
+[31.373199] (-) TimerEvent: {}
+[31.476350] (-) TimerEvent: {}
+[31.581689] (-) TimerEvent: {}
+[31.686350] (-) TimerEvent: {}
+[31.790329] (-) TimerEvent: {}
+[31.891489] (-) TimerEvent: {}
+[31.994193] (-) TimerEvent: {}
+[32.094935] (-) TimerEvent: {}
+[32.195626] (-) TimerEvent: {}
+[32.298486] (-) TimerEvent: {}
+[32.399110] (-) TimerEvent: {}
+[32.500140] (-) TimerEvent: {}
+[32.602882] (-) TimerEvent: {}
+[32.707052] (-) TimerEvent: {}
+[32.812557] (-) TimerEvent: {}
+[32.915110] (-) TimerEvent: {}
+[33.021673] (-) TimerEvent: {}
+[33.122627] (-) TimerEvent: {}
+[33.227133] (-) TimerEvent: {}
+[33.327903] (-) TimerEvent: {}
+[33.431895] (-) TimerEvent: {}
+[33.533466] (-) TimerEvent: {}
+[33.633969] (-) TimerEvent: {}
+[33.734880] (-) TimerEvent: {}
+[33.836064] (-) TimerEvent: {}
+[33.941151] (-) TimerEvent: {}
+[34.042399] (-) TimerEvent: {}
+[34.147544] (-) TimerEvent: {}
+[34.248086] (-) TimerEvent: {}
+[34.353507] (-) TimerEvent: {}
+[34.457714] (-) TimerEvent: {}
+[34.559269] (-) TimerEvent: {}
+[34.660176] (-) TimerEvent: {}
+[34.768828] (-) TimerEvent: {}
+[34.870126] (-) TimerEvent: {}
+[34.974933] (-) TimerEvent: {}
+[35.077747] (-) TimerEvent: {}
+[35.179086] (-) TimerEvent: {}
+[35.281463] (-) TimerEvent: {}
+[35.383525] (-) TimerEvent: {}
+[35.484703] (-) TimerEvent: {}
+[35.588146] (-) TimerEvent: {}
+[35.691722] (-) TimerEvent: {}
+[35.793930] (-) TimerEvent: {}
+[35.899332] (-) TimerEvent: {}
+[36.005686] (-) TimerEvent: {}
+[36.108701] (-) TimerEvent: {}
+[36.209368] (-) TimerEvent: {}
+[36.313280] (-) TimerEvent: {}
+[36.415688] (-) TimerEvent: {}
+[36.516250] (-) TimerEvent: {}
+[36.617434] (-) TimerEvent: {}
+[36.719707] (-) TimerEvent: {}
+[36.820660] (-) TimerEvent: {}
+[36.925011] (-) TimerEvent: {}
+[37.025870] (-) TimerEvent: {}
+[37.128868] (-) TimerEvent: {}
+[37.231923] (-) TimerEvent: {}
+[37.337006] (-) TimerEvent: {}
+[37.440677] (-) TimerEvent: {}
+[37.542827] (-) TimerEvent: {}
+[37.644358] (-) TimerEvent: {}
+[37.748263] (-) TimerEvent: {}
+[37.851951] (-) TimerEvent: {}
+[37.954413] (-) TimerEvent: {}
+[38.055034] (-) TimerEvent: {}
+[38.159131] (-) TimerEvent: {}
+[38.259755] (-) TimerEvent: {}
+[38.362912] (-) TimerEvent: {}
+[38.464901] (-) TimerEvent: {}
+[38.578780] (-) TimerEvent: {}
+[38.683797] (-) TimerEvent: {}
+[38.785039] (-) TimerEvent: {}
+[38.893780] (-) TimerEvent: {}
+[38.995996] (-) TimerEvent: {}
+[39.100293] (-) TimerEvent: {}
+[39.201860] (-) TimerEvent: {}
+[39.305320] (-) TimerEvent: {}
+[39.407905] (-) TimerEvent: {}
+[39.509009] (-) TimerEvent: {}
+[39.613799] (-) TimerEvent: {}
+[39.714442] (-) TimerEvent: {}
+[39.815087] (-) TimerEvent: {}
+[39.919438] (-) TimerEvent: {}
+[40.020654] (-) TimerEvent: {}
+[40.122334] (-) TimerEvent: {}
+[40.225686] (-) TimerEvent: {}
+[40.326771] (-) TimerEvent: {}
+[40.442334] (-) TimerEvent: {}
+[40.544708] (-) TimerEvent: {}
+[40.647983] (-) TimerEvent: {}
+[40.748869] (-) TimerEvent: {}
+[40.851476] (-) TimerEvent: {}
+[40.959878] (-) TimerEvent: {}
+[41.060905] (-) TimerEvent: {}
+[41.162694] (-) TimerEvent: {}
+[41.263646] (-) TimerEvent: {}
+[41.366998] (-) TimerEvent: {}
+[41.469964] (-) TimerEvent: {}
+[41.572114] (-) TimerEvent: {}
+[41.678788] (-) TimerEvent: {}
+[41.781207] (-) TimerEvent: {}
+[41.886886] (-) TimerEvent: {}
+[41.988102] (-) TimerEvent: {}
+[42.092915] (-) TimerEvent: {}
+[42.202953] (-) TimerEvent: {}
+[42.305770] (-) TimerEvent: {}
+[42.409744] (-) TimerEvent: {}
+[42.510287] (-) TimerEvent: {}
+[42.611946] (-) TimerEvent: {}
+[42.712549] (-) TimerEvent: {}
+[42.815712] (-) TimerEvent: {}
+[42.918999] (-) TimerEvent: {}
+[43.024213] (-) TimerEvent: {}
+[43.131161] (-) TimerEvent: {}
+[43.232389] (-) TimerEvent: {}
+[43.334882] (-) TimerEvent: {}
+[43.440448] (-) TimerEvent: {}
+[43.545050] (-) TimerEvent: {}
+[43.651390] (-) TimerEvent: {}
+[43.757688] (-) TimerEvent: {}
+[43.860714] (-) TimerEvent: {}
+[43.961969] (-) TimerEvent: {}
+[44.066060] (-) TimerEvent: {}
+[44.168768] (-) TimerEvent: {}
+[44.269744] (-) TimerEvent: {}
+[44.371695] (-) TimerEvent: {}
+[44.475874] (-) TimerEvent: {}
+[44.580242] (-) TimerEvent: {}
+[44.683674] (-) TimerEvent: {}
+[44.788733] (-) TimerEvent: {}
+[44.889242] (-) TimerEvent: {}
+[44.990160] (-) TimerEvent: {}
+[45.096271] (-) TimerEvent: {}
+[45.197674] (-) TimerEvent: {}
+[45.302061] (-) TimerEvent: {}
+[45.406843] (-) TimerEvent: {}
+[45.507395] (-) TimerEvent: {}
+[45.613253] (-) TimerEvent: {}
+[45.713996] (-) TimerEvent: {}
+[45.819590] (-) TimerEvent: {}
+[45.920647] (-) TimerEvent: {}
+[46.021745] (-) TimerEvent: {}
+[46.126350] (-) TimerEvent: {}
+[46.229807] (-) TimerEvent: {}
+[46.334082] (-) TimerEvent: {}
+[46.435839] (-) TimerEvent: {}
+[46.539011] (-) TimerEvent: {}
+[46.642733] (-) TimerEvent: {}
+[46.747190] (-) TimerEvent: {}
+[46.849667] (-) TimerEvent: {}
+[46.952000] (-) TimerEvent: {}
+[47.057803] (-) TimerEvent: {}
+[47.159002] (-) TimerEvent: {}
+[47.260312] (-) TimerEvent: {}
+[47.366388] (-) TimerEvent: {}
+[47.467632] (-) TimerEvent: {}
+[47.571782] (-) TimerEvent: {}
+[47.672524] (-) TimerEvent: {}
+[47.776219] (-) TimerEvent: {}
+[47.883303] (-) TimerEvent: {}
+[47.988051] (-) TimerEvent: {}
+[48.092196] (-) TimerEvent: {}
+[48.201298] (-) TimerEvent: {}
+[48.306955] (-) TimerEvent: {}
+[48.407689] (-) TimerEvent: {}
+[48.510440] (-) TimerEvent: {}
+[48.621730] (-) TimerEvent: {}
+[48.722360] (-) TimerEvent: {}
+[48.826261] (-) TimerEvent: {}
+[48.930784] (-) TimerEvent: {}
+[49.034856] (-) TimerEvent: {}
+[49.143025] (-) TimerEvent: {}
+[49.244332] (-) TimerEvent: {}
+[49.350836] (-) TimerEvent: {}
+[49.452044] (-) TimerEvent: {}
+[49.553790] (-) TimerEvent: {}
+[49.654821] (-) TimerEvent: {}
+[49.758513] (-) TimerEvent: {}
+[49.862486] (-) TimerEvent: {}
+[49.967765] (-) TimerEvent: {}
+[50.071849] (-) TimerEvent: {}
+[50.172732] (-) TimerEvent: {}
+[50.274864] (-) TimerEvent: {}
+[50.379160] (-) TimerEvent: {}
+[50.482912] (-) TimerEvent: {}
+[50.583647] (-) TimerEvent: {}
+[50.687741] (-) TimerEvent: {}
+[50.791928] (-) TimerEvent: {}
+[50.892543] (-) TimerEvent: {}
+[50.994016] (-) TimerEvent: {}
+[51.096079] (-) TimerEvent: {}
+[51.199648] (-) TimerEvent: {}
+[51.304264] (-) TimerEvent: {}
+[51.408141] (-) TimerEvent: {}
+[51.508965] (-) TimerEvent: {}
+[51.611235] (-) TimerEvent: {}
+[51.715681] (-) TimerEvent: {}
+[51.817385] (-) TimerEvent: {}
+[51.920848] (-) TimerEvent: {}
+[52.029535] (-) TimerEvent: {}
+[52.130235] (-) TimerEvent: {}
+[52.231186] (-) TimerEvent: {}
+[52.341942] (-) TimerEvent: {}
+[52.446697] (-) TimerEvent: {}
+[52.547266] (-) TimerEvent: {}
+[52.648440] (-) TimerEvent: {}
+[52.750891] (-) TimerEvent: {}
+[52.852844] (-) TimerEvent: {}
+[52.956876] (-) TimerEvent: {}
+[53.059034] (-) TimerEvent: {}
+[53.163032] (-) TimerEvent: {}
+[53.268217] (-) TimerEvent: {}
+[53.368921] (-) TimerEvent: {}
+[53.472961] (-) TimerEvent: {}
+[53.573706] (-) TimerEvent: {}
+[53.674750] (-) TimerEvent: {}
+[53.779906] (-) TimerEvent: {}
+[53.881128] (-) TimerEvent: {}
+[53.986104] (-) TimerEvent: {}
+[54.087183] (-) TimerEvent: {}
+[54.191984] (-) TimerEvent: {}
+[54.296785] (-) TimerEvent: {}
+[54.397479] (-) TimerEvent: {}
+[54.500873] (-) TimerEvent: {}
+[54.605846] (-) TimerEvent: {}
+[54.710432] (-) TimerEvent: {}
+[54.811232] (-) TimerEvent: {}
+[54.916800] (-) TimerEvent: {}
+[55.022208] (-) TimerEvent: {}
+[55.124683] (-) TimerEvent: {}
+[55.225356] (-) TimerEvent: {}
+[55.328324] (-) TimerEvent: {}
+[55.380299] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void vrx::WayfindingScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[55.380757] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:205:21:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kloop variable \xe2\x80\x98\x1b[01m\x1b[Kwaypoint\x1b[m\x1b[K\xe2\x80\x99 creates a copy from type \xe2\x80\x98\x1b[01m\x1b[Kconst ignition::math::v6::Vector3<double>\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wrange-loop-construct\x07-Wrange-loop-construct\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[55.380967] (workspace_gz) StderrLine: {'line': b'  205 |     for (const auto \x1b[01;35m\x1b[Kwaypoint\x1b[m\x1b[K : this->dataPtr->localWaypoints)\n'}
+[55.381156] (workspace_gz) StderrLine: {'line': b'      |                     \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[55.381330] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WayfindingScoringPlugin.cc:205:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kuse reference type to prevent copying\n'}
+[55.381505] (workspace_gz) StderrLine: {'line': b'  205 |     for (const auto \x1b[01;36m\x1b[Kwaypoint\x1b[m\x1b[K : this->dataPtr->localWaypoints)\n'}
+[55.381691] (workspace_gz) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[55.381862] (workspace_gz) StderrLine: {'line': b'      |                     \x1b[32m\x1b[K&\x1b[m\x1b[K\n'}
+[55.430929] (-) TimerEvent: {}
+[55.532718] (-) TimerEvent: {}
+[55.634530] (-) TimerEvent: {}
+[55.737026] (-) TimerEvent: {}
+[55.842729] (-) TimerEvent: {}
+[55.943807] (-) TimerEvent: {}
+[56.046102] (-) TimerEvent: {}
+[56.151225] (-) TimerEvent: {}
+[56.252088] (-) TimerEvent: {}
+[56.354693] (-) TimerEvent: {}
+[56.455216] (-) TimerEvent: {}
+[56.556000] (-) TimerEvent: {}
+[56.657969] (-) TimerEvent: {}
+[56.762656] (-) TimerEvent: {}
+[56.864309] (-) TimerEvent: {}
+[56.969232] (-) TimerEvent: {}
+[57.074710] (-) TimerEvent: {}
+[57.176836] (-) TimerEvent: {}
+[57.278762] (-) TimerEvent: {}
+[57.382003] (-) TimerEvent: {}
+[57.484484] (-) TimerEvent: {}
+[57.585772] (-) TimerEvent: {}
+[57.690388] (-) TimerEvent: {}
+[57.793254] (-) TimerEvent: {}
+[57.896754] (-) TimerEvent: {}
+[57.997574] (-) TimerEvent: {}
+[58.100124] (-) TimerEvent: {}
+[58.200901] (-) TimerEvent: {}
+[58.308104] (-) TimerEvent: {}
+[58.410529] (-) TimerEvent: {}
+[58.515818] (-) TimerEvent: {}
+[58.617472] (-) TimerEvent: {}
+[58.722545] (-) TimerEvent: {}
+[58.825660] (-) TimerEvent: {}
+[58.926351] (-) TimerEvent: {}
+[59.032006] (-) TimerEvent: {}
+[59.136775] (-) TimerEvent: {}
+[59.238844] (-) TimerEvent: {}
+[59.341017] (-) TimerEvent: {}
+[59.445948] (-) TimerEvent: {}
+[59.546769] (-) TimerEvent: {}
+[59.651756] (-) TimerEvent: {}
+[59.752737] (-) TimerEvent: {}
+[59.855032] (-) TimerEvent: {}
+[59.959785] (-) TimerEvent: {}
+[60.061427] (-) TimerEvent: {}
+[60.164714] (-) TimerEvent: {}
+[60.265426] (-) TimerEvent: {}
+[60.371906] (-) TimerEvent: {}
+[60.472519] (-) TimerEvent: {}
+[60.573091] (-) TimerEvent: {}
+[60.677802] (-) TimerEvent: {}
+[60.778741] (-) TimerEvent: {}
+[60.879483] (-) TimerEvent: {}
+[60.983829] (-) TimerEvent: {}
+[61.085251] (-) TimerEvent: {}
+[61.191768] (-) TimerEvent: {}
+[61.270979] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/StationkeepingScoringPlugin.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void vrx::StationkeepingScoringPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[61.272396] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/StationkeepingScoringPlugin.cc:172:13:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KGZ_RTOD\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[KIGN_RTOD\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[61.272809] (workspace_gz) StderrLine: {'line': b'  172 |     scVec.X(\x1b[01;31m\x1b[KGZ_RTOD\x1b[m\x1b[K(scVec.X()));\n'}
+[61.273060] (workspace_gz) StderrLine: {'line': b'      |             \x1b[01;31m\x1b[K^~~~~~~\x1b[m\x1b[K\n'}
+[61.273251] (workspace_gz) StderrLine: {'line': b'      |             \x1b[32m\x1b[KIGN_RTOD\x1b[m\x1b[K\n'}
+[61.296849] (-) TimerEvent: {}
+[61.397815] (-) TimerEvent: {}
+[61.499795] (-) TimerEvent: {}
+[61.600440] (-) TimerEvent: {}
+[61.703906] (-) TimerEvent: {}
+[61.806853] (-) TimerEvent: {}
+[61.820374] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void vrx::WaveVisual::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[61.824777] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:236:38:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KRenderTeardown\x1b[m\x1b[K\xe2\x80\x99 is not a member of \xe2\x80\x98\x1b[01m\x1b[Kignition::gazebo::v6::events\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.825302] (workspace_gz) StderrLine: {'line': b'  236 |       _eventMgr.Connect<sim::events::\x1b[01;31m\x1b[KRenderTeardown\x1b[m\x1b[K>(\n'}
+[61.826019] (workspace_gz) StderrLine: {'line': b'      |                                      \x1b[01;31m\x1b[K^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[61.836028] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:236:53:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kignition::gazebo::v6::EventManager::Connect<<expression error> >(std::_Bind_helper<false, void (vrx::WaveVisualPrivate::*)(), vrx::WaveVisualPrivate*>::type)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.841826] (workspace_gz) StderrLine: {'line': b'  236 |       \x1b[01;31m\x1b[K_eventMgr.Connect<sim::events::RenderTeardown>(\x1b[m\x1b[K\n'}
+[61.842878] (workspace_gz) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[61.847301] (workspace_gz) StderrLine: {'line': b'  237 | \x1b[01;31m\x1b[K      std::bind(&WaveVisualPrivate::OnRenderTeardown, this->dataPtr.get()))\x1b[m\x1b[K;\n'}
+[61.847716] (workspace_gz) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[61.847946] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/gazebo6/gz/sim/System.hh:24\x1b[m\x1b[K,\n'}
+[61.848131] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/ignition/gazebo6/gz/sim/rendering/RenderUtil.hh:29\x1b[m\x1b[K,\n'}
+[61.848312] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/ignition/gazebo6/ignition/gazebo/rendering/RenderUtil.hh:18\x1b[m\x1b[K,\n'}
+[61.848489] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:39\x1b[m\x1b[K:\n'}
+[61.848689] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/ignition/gazebo6/gz/sim/EventManager.hh:69:15:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class E> ignition::common::ConnectionPtr ignition::gazebo::v6::EventManager::Connect(const typename E::CallbackT&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.848886] (workspace_gz) StderrLine: {'line': b'   69 |               \x1b[01;36m\x1b[KConnect\x1b[m\x1b[K(const typename E::CallbackT &_subscriber)\n'}
+[61.849066] (workspace_gz) StderrLine: {'line': b'      |               \x1b[01;36m\x1b[K^~~~~~~\x1b[m\x1b[K\n'}
+[61.849241] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/ignition/gazebo6/gz/sim/EventManager.hh:69:15:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[61.849431] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:236:53:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 1 is invalid\n'}
+[61.849617] (workspace_gz) StderrLine: {'line': b'  236 |       \x1b[01;31m\x1b[K_eventMgr.Connect<sim::events::RenderTeardown>(\x1b[m\x1b[K\n'}
+[61.849799] (workspace_gz) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[61.849960] (workspace_gz) StderrLine: {'line': b'  237 | \x1b[01;31m\x1b[K      std::bind(&WaveVisualPrivate::OnRenderTeardown, this->dataPtr.get()))\x1b[m\x1b[K;\n'}
+[61.850121] (workspace_gz) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[61.884768] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/ignition/rendering6/gz/rendering/Node.hh:22\x1b[m\x1b[K,\n'}
+[61.889199] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/ignition/rendering6/gz/rendering/Storage.hh:24\x1b[m\x1b[K,\n'}
+[61.889418] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/ignition/rendering6/gz/rendering/Scene.hh:34\x1b[m\x1b[K,\n'}
+[61.889600] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/ignition/rendering6/ignition/rendering/Scene.hh:18\x1b[m\x1b[K,\n'}
+[61.889795] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:29\x1b[m\x1b[K:\n'}
+[61.889960] (workspace_gz) StderrLine: {'line': b'/usr/include/c++/11/variant: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[61.890154] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:\x1b[m\x1b[K   required from here\n'}
+[61.890331] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1185:42:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: T must occur exactly once in alternatives\n'}
+[61.890516] (workspace_gz) StderrLine: {'line': b' 1185 |       static_assert(\x1b[01;31m\x1b[K__detail::__variant::__exactly_once<_Tp, _Types...>\x1b[m\x1b[K,\n'}
+[61.890733] (workspace_gz) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[61.890912] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1185:42:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstd::__detail::__variant::__exactly_once<long unsigned int, std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int>\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[61.891094] (workspace_gz) StderrLine: {'line': b'/usr/include/c++/11/variant: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kstruct std::variant_alternative<1, std::variant<unsigned int> >\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[61.891268] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:103:12:\x1b[m\x1b[K   recursively required from \xe2\x80\x98\x1b[01m\x1b[Kstruct std::variant_alternative<6, std::variant<int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.891452] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:103:12:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstruct std::variant_alternative<7, std::variant<std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.899073] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1170:5:\x1b[m\x1b[K   required by substitution of \xe2\x80\x98\x1b[01m\x1b[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<const typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(const std::variant<_Types ...>*) [with long unsigned int _Np = 7; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.899681] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1188:76:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.900106] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:\x1b[m\x1b[K   required from here\n'}
+[61.900696] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:103:12:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kinvalid use of incomplete type \xe2\x80\x98\x1b[01m\x1b[Kstruct std::variant_alternative<0, std::variant<> >\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.901227] (workspace_gz) StderrLine: {'line': b'  103 |     struct \x1b[01;31m\x1b[Kvariant_alternative<_Np, variant<_First, _Rest...>>\x1b[m\x1b[K\n'}
+[61.912099] (workspace_gz) StderrLine: {'line': b'      |            \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[61.913272] (-) TimerEvent: {}
+[61.917826] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:100:12:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclaration of \xe2\x80\x98\x1b[01m\x1b[Kstruct std::variant_alternative<0, std::variant<> >\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.918534] (workspace_gz) StderrLine: {'line': b'  100 |     struct \x1b[01;36m\x1b[Kvariant_alternative\x1b[m\x1b[K;\n'}
+[61.919081] (workspace_gz) StderrLine: {'line': b'      |            \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[61.919500] (workspace_gz) StderrLine: {'line': b'/usr/include/c++/11/variant: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[61.925041] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:\x1b[m\x1b[K   required from here\n'}
+[61.925261] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1188:76:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kget_if<std::__detail::__variant::__index_of_v<long unsigned int, std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >(std::variant<std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int>*&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.925466] (workspace_gz) StderrLine: {'line': b' 1188 |       return \x1b[01;31m\x1b[Kstd::get_if<__detail::__variant::__index_of_v<_Tp, _Types...>>(\x1b[m\x1b[K\n'}
+[61.929876] (workspace_gz) StderrLine: {'line': b'      |              \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[61.930410] (workspace_gz) StderrLine: {'line': b' 1189 | \x1b[01;31m\x1b[K          __ptr)\x1b[m\x1b[K;\n'}
+[61.930890] (workspace_gz) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K~~~~~~\x1b[m\x1b[K                                                            \n'}
+[61.931222] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1156:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(std::variant<_Types ...>*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.931539] (workspace_gz) StderrLine: {'line': b' 1156 |     \x1b[01;36m\x1b[Kget_if\x1b[m\x1b[K(variant<_Types...>* __ptr) noexcept\n'}
+[61.931806] (workspace_gz) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[61.932047] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1156:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[61.932287] (workspace_gz) StderrLine: {'line': b'/usr/include/c++/11/variant: In substitution of \xe2\x80\x98\x1b[01m\x1b[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(std::variant<_Types ...>*) [with long unsigned int _Np = 7; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[61.933203] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1188:76:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.939228] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:\x1b[m\x1b[K   required from here\n'}
+[61.939666] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1156:5:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno type named \xe2\x80\x98\x1b[01m\x1b[Ktype\x1b[m\x1b[K\xe2\x80\x99 in \xe2\x80\x98\x1b[01m\x1b[Kstruct std::variant_alternative<7, std::variant<std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int> >\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.940505] (workspace_gz) StderrLine: {'line': b'/usr/include/c++/11/variant: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kconstexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*) [with _Tp = long unsigned int; _Types = {std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int}; std::add_pointer_t<_Tp> = long unsigned int*]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[61.943017] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WaveVisual.cc:283:54:\x1b[m\x1b[K   required from here\n'}
+[61.943246] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1170:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<long unsigned int _Np, class ... _Types> constexpr std::add_pointer_t<const typename std::variant_alternative<_Np, std::variant<_Types ...> >::type> std::get_if(const std::variant<_Types ...>*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.943429] (workspace_gz) StderrLine: {'line': b' 1170 |     \x1b[01;36m\x1b[Kget_if\x1b[m\x1b[K(const variant<_Types...>* __ptr) noexcept\n'}
+[61.943606] (workspace_gz) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[61.943810] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1170:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  substitution of deduced template arguments resulted in errors seen above\n'}
+[61.944305] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1183:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Tp, class ... _Types> constexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.945065] (workspace_gz) StderrLine: {'line': b' 1183 |     \x1b[01;36m\x1b[Kget_if\x1b[m\x1b[K(variant<_Types...>* __ptr) noexcept\n'}
+[61.945388] (workspace_gz) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[61.945695] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1183:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[61.945994] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1188:76:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktype/value mismatch at argument 1 in template parameter list for \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Tp, class ... _Types> constexpr std::add_pointer_t<_Tp> std::get_if(std::variant<_Types ...>*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[61.946320] (workspace_gz) StderrLine: {'line': b' 1188 |       return \x1b[01;31m\x1b[Kstd::get_if<__detail::__variant::__index_of_v<_Tp, _Types...>>(\x1b[m\x1b[K\n'}
+[61.946505] (workspace_gz) StderrLine: {'line': b'      |              \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[61.960377] (workspace_gz) StderrLine: {'line': b' 1189 | \x1b[01;31m\x1b[K          __ptr)\x1b[m\x1b[K;\n'}
+[61.961984] (workspace_gz) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K~~~~~~\x1b[m\x1b[K                                                            \n'}
+[61.962485] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/variant:1188:76:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  expected a type, got \xe2\x80\x98\x1b[01m\x1b[Kstd::__detail::__variant::__index_of_v<long unsigned int, std::monostate, int, float, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned int>\x1b[m\x1b[K\xe2\x80\x99\n'}
+[62.013736] (-) TimerEvent: {}
+[62.116736] (-) TimerEvent: {}
+[62.208982] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:16\x1b[m\x1b[K:\n'}
+[62.209565] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.hh:92:44:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kextra \xe2\x80\x98\x1b[01m\x1b[K;\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic\x07-Wpedantic\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[62.209931] (workspace_gz) StderrLine: {'line': b'   92 |          IGN_UTILS_UNIQUE_IMPL_PTR(dataPtr)\x1b[01;35m\x1b[K;\x1b[m\x1b[K\n'}
+[62.210133] (workspace_gz) StderrLine: {'line': b'      |                                            \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[62.210302] (workspace_gz) StderrLine: {'line': b'      |                                            \x1b[31m\x1b[K-\x1b[m\x1b[K\n'}
+[62.217140] (-) TimerEvent: {}
+[62.323771] (-) TimerEvent: {}
+[62.325025] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void vrx::USVWind::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[62.325379] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:116:44:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[K_entity\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter\x07-Wunused-parameter\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[62.325624] (workspace_gz) StderrLine: {'line': b'  116 | void USVWind::Configure(\x1b[01;35m\x1b[Kconst sim::Entity &_entity\x1b[m\x1b[K,\n'}
+[62.325836] (workspace_gz) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[62.326157] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/USVWind.cc:118:54:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[K_ecm\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter\x07-Wunused-parameter\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[62.326383] (workspace_gz) StderrLine: {'line': b'  118 |                         \x1b[01;35m\x1b[Ksim::EntityComponentManager &_ecm\x1b[m\x1b[K,\n'}
+[62.326587] (workspace_gz) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[62.425786] (-) TimerEvent: {}
+[62.526955] (-) TimerEvent: {}
+[62.628996] (-) TimerEvent: {}
+[62.733971] (-) TimerEvent: {}
+[62.835965] (-) TimerEvent: {}
+[62.939075] (-) TimerEvent: {}
+[63.044686] (-) TimerEvent: {}
+[63.147677] (-) TimerEvent: {}
+[63.253669] (-) TimerEvent: {}
+[63.359003] (-) TimerEvent: {}
+[63.461843] (-) TimerEvent: {}
+[63.566843] (-) TimerEvent: {}
+[63.674574] (-) TimerEvent: {}
+[63.781904] (-) TimerEvent: {}
+[63.882675] (-) TimerEvent: {}
+[63.984761] (-) TimerEvent: {}
+[64.088077] (-) TimerEvent: {}
+[64.189792] (-) TimerEvent: {}
+[64.295374] (-) TimerEvent: {}
+[64.399948] (-) TimerEvent: {}
+[64.502984] (-) TimerEvent: {}
+[64.607733] (-) TimerEvent: {}
+[64.710796] (-) TimerEvent: {}
+[64.814905] (-) TimerEvent: {}
+[64.918964] (-) TimerEvent: {}
+[65.019555] (-) TimerEvent: {}
+[65.122818] (-) TimerEvent: {}
+[65.223771] (-) TimerEvent: {}
+[65.326831] (-) TimerEvent: {}
+[65.433751] (-) TimerEvent: {}
+[65.534758] (-) TimerEvent: {}
+[65.637857] (-) TimerEvent: {}
+[65.742042] (-) TimerEvent: {}
+[65.847826] (-) TimerEvent: {}
+[65.950599] (-) TimerEvent: {}
+[66.054278] (-) TimerEvent: {}
+[66.158784] (-) TimerEvent: {}
+[66.259498] (-) TimerEvent: {}
+[66.362653] (-) TimerEvent: {}
+[66.463404] (-) TimerEvent: {}
+[66.567772] (-) TimerEvent: {}
+[66.668786] (-) TimerEvent: {}
+[66.773693] (-) TimerEvent: {}
+[66.876195] (-) TimerEvent: {}
+[66.981705] (-) TimerEvent: {}
+[67.084763] (-) TimerEvent: {}
+[67.186389] (-) TimerEvent: {}
+[67.289862] (-) TimerEvent: {}
+[67.392863] (-) TimerEvent: {}
+[67.493794] (-) TimerEvent: {}
+[67.596671] (-) TimerEvent: {}
+[67.697161] (-) TimerEvent: {}
+[67.798326] (-) TimerEvent: {}
+[67.902321] (-) TimerEvent: {}
+[68.005878] (-) TimerEvent: {}
+[68.109531] (-) TimerEvent: {}
+[68.215776] (-) TimerEvent: {}
+[68.316541] (-) TimerEvent: {}
+[68.420367] (-) TimerEvent: {}
+[68.525324] (-) TimerEvent: {}
+[68.631022] (-) TimerEvent: {}
+[68.735754] (-) TimerEvent: {}
+[68.836540] (-) TimerEvent: {}
+[68.940774] (-) TimerEvent: {}
+[69.041769] (-) TimerEvent: {}
+[69.148004] (-) TimerEvent: {}
+[69.252380] (-) TimerEvent: {}
+[69.354792] (-) TimerEvent: {}
+[69.459143] (-) TimerEvent: {}
+[69.560144] (-) TimerEvent: {}
+[69.665740] (-) TimerEvent: {}
+[69.766669] (-) TimerEvent: {}
+[69.871455] (-) TimerEvent: {}
+[69.973257] (-) TimerEvent: {}
+[70.076747] (-) TimerEvent: {}
+[70.180531] (-) TimerEvent: {}
+[70.281305] (-) TimerEvent: {}
+[70.384932] (-) TimerEvent: {}
+[70.487739] (-) TimerEvent: {}
+[70.593571] (-) TimerEvent: {}
+[70.699508] (-) TimerEvent: {}
+[70.825497] (-) TimerEvent: {}
+[70.934014] (-) TimerEvent: {}
+[71.034830] (-) TimerEvent: {}
+[71.135443] (-) TimerEvent: {}
+[71.238279] (-) TimerEvent: {}
+[71.340837] (-) TimerEvent: {}
+[71.444967] (-) TimerEvent: {}
+[71.477184] (workspace_gz) StdoutLine: {'line': b'[ 24%] \x1b[32m\x1b[1mLinking CXX shared library libSimpleHydrodynamics.so\x1b[0m\n'}
+[71.547790] (-) TimerEvent: {}
+[71.656271] (-) TimerEvent: {}
+[71.756866] (-) TimerEvent: {}
+[71.811275] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/StationkeepingScoringPlugin.dir/build.make:76: CMakeFiles/StationkeepingScoringPlugin.dir/plugins/StationkeepingScoringPlugin.cc.o] Error 1\n'}
+[71.818152] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:365: CMakeFiles/StationkeepingScoringPlugin.dir/all] Error 2\n'}
+[71.818835] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** Bitmemi\xc5\x9f i\xc5\x9fler i\xc3\xa7in bekliyor....\n'}
+[71.858660] (-) TimerEvent: {}
+[71.964188] (-) TimerEvent: {}
+[72.071175] (-) TimerEvent: {}
+[72.176546] (-) TimerEvent: {}
+[72.277759] (-) TimerEvent: {}
+[72.389025] (-) TimerEvent: {}
+[72.493083] (-) TimerEvent: {}
+[72.540923] (workspace_gz) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/WaveVisual.dir/build.make:76: CMakeFiles/WaveVisual.dir/plugins/WaveVisual.cc.o] Error 1\n'}
+[72.543302] (workspace_gz) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:338: CMakeFiles/WaveVisual.dir/all] Error 2\n'}
+[72.593242] (-) TimerEvent: {}
+[72.696766] (-) TimerEvent: {}
+[72.803742] (-) TimerEvent: {}
+[72.908536] (-) TimerEvent: {}
+[73.010763] (-) TimerEvent: {}
+[73.115549] (-) TimerEvent: {}
+[73.216516] (-) TimerEvent: {}
+[73.328569] (-) TimerEvent: {}
+[73.431869] (-) TimerEvent: {}
+[73.464076] (workspace_gz) StdoutLine: {'line': b'[ 24%] Built target SimpleHydrodynamics\n'}
+[73.534468] (-) TimerEvent: {}
+[73.637211] (-) TimerEvent: {}
+[73.737789] (-) TimerEvent: {}
+[73.846713] (-) TimerEvent: {}
+[73.947491] (-) TimerEvent: {}
+[74.055827] (-) TimerEvent: {}
+[74.156868] (-) TimerEvent: {}
+[74.259208] (-) TimerEvent: {}
+[74.363800] (-) TimerEvent: {}
+[74.466031] (-) TimerEvent: {}
+[74.567483] (-) TimerEvent: {}
+[74.669898] (-) TimerEvent: {}
+[74.772894] (-) TimerEvent: {}
+[74.877109] (-) TimerEvent: {}
+[74.981036] (-) TimerEvent: {}
+[75.082617] (-) TimerEvent: {}
+[75.186092] (-) TimerEvent: {}
+[75.289451] (-) TimerEvent: {}
+[75.395270] (-) TimerEvent: {}
+[75.496891] (-) TimerEvent: {}
+[75.602442] (-) TimerEvent: {}
+[75.704564] (-) TimerEvent: {}
+[75.806182] (-) TimerEvent: {}
+[75.812856] (workspace_gz) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/WayfindingScoringPlugin.dir/plugins/WaypointMarkers.cc.o\x1b[0m\n'}
+[75.906290] (-) TimerEvent: {}
+[76.006817] (-) TimerEvent: {}
+[76.107939] (-) TimerEvent: {}
+[76.213178] (-) TimerEvent: {}
+[76.314952] (-) TimerEvent: {}
+[76.416905] (-) TimerEvent: {}
+[76.517788] (-) TimerEvent: {}
+[76.624749] (-) TimerEvent: {}
+[76.725613] (-) TimerEvent: {}
+[76.829330] (-) TimerEvent: {}
+[76.925434] (workspace_gz) StdoutLine: {'line': b'[ 28%] \x1b[32m\x1b[1mLinking CXX shared library libSurface.so\x1b[0m\n'}
+[76.930111] (-) TimerEvent: {}
+[77.031772] (-) TimerEvent: {}
+[77.045340] (workspace_gz) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/ShapeVolume.cc.o\x1b[0m\n'}
+[77.131948] (-) TimerEvent: {}
+[77.235672] (-) TimerEvent: {}
+[77.339282] (-) TimerEvent: {}
+[77.441524] (-) TimerEvent: {}
+[77.544844] (-) TimerEvent: {}
+[77.648525] (-) TimerEvent: {}
+[77.758346] (-) TimerEvent: {}
+[77.859092] (-) TimerEvent: {}
+[77.961805] (-) TimerEvent: {}
+[78.062797] (-) TimerEvent: {}
+[78.166765] (-) TimerEvent: {}
+[78.274692] (-) TimerEvent: {}
+[78.375955] (-) TimerEvent: {}
+[78.488784] (-) TimerEvent: {}
+[78.593078] (-) TimerEvent: {}
+[78.700106] (-) TimerEvent: {}
+[78.807214] (-) TimerEvent: {}
+[78.908128] (-) TimerEvent: {}
+[79.015696] (-) TimerEvent: {}
+[79.116424] (-) TimerEvent: {}
+[79.223030] (-) TimerEvent: {}
+[79.331409] (-) TimerEvent: {}
+[79.412698] (workspace_gz) StdoutLine: {'line': b'[ 30%] Built target Surface\n'}
+[79.433557] (-) TimerEvent: {}
+[79.537904] (-) TimerEvent: {}
+[79.641016] (-) TimerEvent: {}
+[79.748368] (-) TimerEvent: {}
+[79.853680] (-) TimerEvent: {}
+[79.954793] (-) TimerEvent: {}
+[80.057339] (-) TimerEvent: {}
+[80.159722] (-) TimerEvent: {}
+[80.241675] (workspace_gz) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/AcousticPerceptionScoringPlugin.dir/plugins/WaypointMarkers.cc.o\x1b[0m\n'}
+[80.260734] (-) TimerEvent: {}
+[80.363916] (-) TimerEvent: {}
+[80.467954] (-) TimerEvent: {}
+[80.572488] (-) TimerEvent: {}
+[80.676011] (-) TimerEvent: {}
+[80.777308] (-) TimerEvent: {}
+[80.878268] (-) TimerEvent: {}
+[80.963298] (workspace_gz) StdoutLine: {'line': b'[ 33%] \x1b[32m\x1b[1mLinking CXX shared library libUSVWind.so\x1b[0m\n'}
+[80.981200] (-) TimerEvent: {}
+[81.081783] (-) TimerEvent: {}
+[81.183458] (-) TimerEvent: {}
+[81.285929] (-) TimerEvent: {}
+[81.389153] (-) TimerEvent: {}
+[81.490434] (-) TimerEvent: {}
+[81.594790] (-) TimerEvent: {}
+[81.697574] (-) TimerEvent: {}
+[81.801760] (-) TimerEvent: {}
+[81.902479] (-) TimerEvent: {}
+[82.004320] (-) TimerEvent: {}
+[82.111114] (-) TimerEvent: {}
+[82.212074] (-) TimerEvent: {}
+[82.313469] (-) TimerEvent: {}
+[82.417537] (-) TimerEvent: {}
+[82.521281] (-) TimerEvent: {}
+[82.623753] (-) TimerEvent: {}
+[82.726465] (-) TimerEvent: {}
+[82.828550] (-) TimerEvent: {}
+[82.931019] (-) TimerEvent: {}
+[83.035869] (-) TimerEvent: {}
+[83.138082] (-) TimerEvent: {}
+[83.239043] (-) TimerEvent: {}
+[83.341006] (-) TimerEvent: {}
+[83.446998] (-) TimerEvent: {}
+[83.550347] (-) TimerEvent: {}
+[83.559777] (workspace_gz) StdoutLine: {'line': b'[ 33%] Built target USVWind\n'}
+[83.652532] (-) TimerEvent: {}
+[83.756945] (-) TimerEvent: {}
+[83.859402] (-) TimerEvent: {}
+[83.963829] (-) TimerEvent: {}
+[84.073180] (-) TimerEvent: {}
+[84.178200] (-) TimerEvent: {}
+[84.280930] (-) TimerEvent: {}
+[84.381684] (-) TimerEvent: {}
+[84.483472] (-) TimerEvent: {}
+[84.585468] (-) TimerEvent: {}
+[84.686439] (-) TimerEvent: {}
+[84.791562] (-) TimerEvent: {}
+[84.894684] (-) TimerEvent: {}
+[84.997881] (-) TimerEvent: {}
+[85.102552] (-) TimerEvent: {}
+[85.203853] (-) TimerEvent: {}
+[85.305160] (-) TimerEvent: {}
+[85.407312] (-) TimerEvent: {}
+[85.509084] (-) TimerEvent: {}
+[85.612973] (-) TimerEvent: {}
+[85.714528] (-) TimerEvent: {}
+[85.815700] (-) TimerEvent: {}
+[85.916535] (-) TimerEvent: {}
+[86.020180] (-) TimerEvent: {}
+[86.123239] (-) TimerEvent: {}
+[86.225967] (-) TimerEvent: {}
+[86.329727] (-) TimerEvent: {}
+[86.432480] (-) TimerEvent: {}
+[86.534235] (-) TimerEvent: {}
+[86.637555] (-) TimerEvent: {}
+[86.739772] (-) TimerEvent: {}
+[86.841529] (-) TimerEvent: {}
+[86.943319] (-) TimerEvent: {}
+[87.044547] (-) TimerEvent: {}
+[87.146814] (-) TimerEvent: {}
+[87.248855] (-) TimerEvent: {}
+[87.355996] (-) TimerEvent: {}
+[87.456849] (-) TimerEvent: {}
+[87.558142] (-) TimerEvent: {}
+[87.659990] (-) TimerEvent: {}
+[87.761558] (-) TimerEvent: {}
+[87.866357] (-) TimerEvent: {}
+[87.969514] (-) TimerEvent: {}
+[88.071879] (-) TimerEvent: {}
+[88.175975] (-) TimerEvent: {}
+[88.277229] (-) TimerEvent: {}
+[88.378291] (-) TimerEvent: {}
+[88.481146] (-) TimerEvent: {}
+[88.582506] (-) TimerEvent: {}
+[88.685217] (-) TimerEvent: {}
+[88.787371] (-) TimerEvent: {}
+[88.888813] (-) TimerEvent: {}
+[88.990178] (-) TimerEvent: {}
+[89.091512] (-) TimerEvent: {}
+[89.192559] (-) TimerEvent: {}
+[89.294274] (-) TimerEvent: {}
+[89.395533] (-) TimerEvent: {}
+[89.498483] (-) TimerEvent: {}
+[89.599162] (-) TimerEvent: {}
+[89.702688] (-) TimerEvent: {}
+[89.806091] (-) TimerEvent: {}
+[89.911870] (-) TimerEvent: {}
+[90.012795] (-) TimerEvent: {}
+[90.114298] (-) TimerEvent: {}
+[90.215561] (-) TimerEvent: {}
+[90.318933] (-) TimerEvent: {}
+[90.420376] (-) TimerEvent: {}
+[90.521192] (-) TimerEvent: {}
+[90.623561] (-) TimerEvent: {}
+[90.724709] (-) TimerEvent: {}
+[90.825936] (-) TimerEvent: {}
+[90.927270] (-) TimerEvent: {}
+[91.028863] (-) TimerEvent: {}
+[91.129869] (-) TimerEvent: {}
+[91.231838] (-) TimerEvent: {}
+[91.333359] (-) TimerEvent: {}
+[91.434595] (-) TimerEvent: {}
+[91.536731] (-) TimerEvent: {}
+[91.638120] (-) TimerEvent: {}
+[91.739433] (-) TimerEvent: {}
+[91.842991] (-) TimerEvent: {}
+[91.944061] (-) TimerEvent: {}
+[92.047467] (-) TimerEvent: {}
+[92.148989] (-) TimerEvent: {}
+[92.251692] (-) TimerEvent: {}
+[92.352849] (-) TimerEvent: {}
+[92.454363] (-) TimerEvent: {}
+[92.555328] (-) TimerEvent: {}
+[92.656045] (-) TimerEvent: {}
+[92.757160] (-) TimerEvent: {}
+[92.857896] (-) TimerEvent: {}
+[92.959238] (-) TimerEvent: {}
+[93.060299] (-) TimerEvent: {}
+[93.166159] (-) TimerEvent: {}
+[93.268442] (-) TimerEvent: {}
+[93.370815] (-) TimerEvent: {}
+[93.471926] (-) TimerEvent: {}
+[93.575906] (-) TimerEvent: {}
+[93.679844] (-) TimerEvent: {}
+[93.782131] (-) TimerEvent: {}
+[93.885268] (-) TimerEvent: {}
+[93.987703] (-) TimerEvent: {}
+[94.088343] (-) TimerEvent: {}
+[94.189329] (-) TimerEvent: {}
+[94.290042] (-) TimerEvent: {}
+[94.390856] (-) TimerEvent: {}
+[94.493873] (-) TimerEvent: {}
+[94.594867] (-) TimerEvent: {}
+[94.696424] (-) TimerEvent: {}
+[94.797824] (-) TimerEvent: {}
+[94.899870] (-) TimerEvent: {}
+[95.007563] (-) TimerEvent: {}
+[95.108328] (-) TimerEvent: {}
+[95.210834] (-) TimerEvent: {}
+[95.312919] (-) TimerEvent: {}
+[95.414699] (-) TimerEvent: {}
+[95.515982] (-) TimerEvent: {}
+[95.617529] (-) TimerEvent: {}
+[95.727002] (-) TimerEvent: {}
+[95.831656] (-) TimerEvent: {}
+[95.932983] (-) TimerEvent: {}
+[96.035791] (-) TimerEvent: {}
+[96.138396] (-) TimerEvent: {}
+[96.240319] (-) TimerEvent: {}
+[96.342060] (-) TimerEvent: {}
+[96.445404] (-) TimerEvent: {}
+[96.553209] (-) TimerEvent: {}
+[96.654316] (-) TimerEvent: {}
+[96.686183] (workspace_gz) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/PolyhedraBuoyancyDrag.dir/plugins/PolyhedronVolume.cc.o\x1b[0m\n'}
+[96.754757] (-) TimerEvent: {}
+[96.858883] (-) TimerEvent: {}
+[96.960181] (-) TimerEvent: {}
+[97.063094] (-) TimerEvent: {}
+[97.164124] (-) TimerEvent: {}
+[97.264947] (-) TimerEvent: {}
+[97.369931] (-) TimerEvent: {}
+[97.472878] (-) TimerEvent: {}
+[97.575846] (-) TimerEvent: {}
+[97.685065] (-) TimerEvent: {}
+[97.796972] (-) TimerEvent: {}
+[97.898051] (-) TimerEvent: {}
+[97.998905] (-) TimerEvent: {}
+[98.101082] (-) TimerEvent: {}
+[98.204879] (-) TimerEvent: {}
+[98.308330] (-) TimerEvent: {}
+[98.413480] (-) TimerEvent: {}
+[98.514936] (-) TimerEvent: {}
+[98.616699] (-) TimerEvent: {}
+[98.718325] (-) TimerEvent: {}
+[98.825459] (-) TimerEvent: {}
+[98.926713] (-) TimerEvent: {}
+[99.031379] (-) TimerEvent: {}
+[99.133024] (-) TimerEvent: {}
+[99.234147] (-) TimerEvent: {}
+[99.335565] (-) TimerEvent: {}
+[99.436484] (-) TimerEvent: {}
+[99.538145] (-) TimerEvent: {}
+[99.638989] (-) TimerEvent: {}
+[99.740844] (-) TimerEvent: {}
+[99.843062] (-) TimerEvent: {}
+[99.947293] (-) TimerEvent: {}
+[100.049352] (-) TimerEvent: {}
+[100.152781] (-) TimerEvent: {}
+[100.253459] (-) TimerEvent: {}
+[100.355261] (-) TimerEvent: {}
+[100.404205] (workspace_gz) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/cassert:44\x1b[m\x1b[K,\n'}
+[100.405090] (workspace_gz) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:18\x1b[m\x1b[K:\n'}
+[100.405505] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:\x1b[m\x1b[K In static member function \xe2\x80\x98\x1b[01m\x1b[Kstatic vrx::Polyhedron vrx::Polyhedron::makeCylinder(double, double, int)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[100.405762] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:126:35:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<ignition::math::v6::Vector3<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare\x07-Wsign-compare\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[100.405930] (workspace_gz) StderrLine: {'line': b'  126 |   assert(\x1b[01;35m\x1b[Kcylinder.vertices.size() == 2 * _n + 2\x1b[m\x1b[K);\n'}
+[100.406080] (workspace_gz) StderrLine: {'line': b'      |          \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[100.406231] (workspace_gz) StderrLine: {'line': b'\x1b[01m\x1b[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PolyhedronVolume.cc:127:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<vrx::Polyhedron::Face>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare\x07-Wsign-compare\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[100.406395] (workspace_gz) StderrLine: {'line': b'  127 |   assert(\x1b[01;35m\x1b[Kcylinder.faces.size() == 4 * _n\x1b[m\x1b[K);\n'}
+[100.406542] (workspace_gz) StderrLine: {'line': b'      |          \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~\x1b[m\x1b[K\n'}
+[100.456775] (-) TimerEvent: {}
+[100.558365] (-) TimerEvent: {}
+[100.660183] (-) TimerEvent: {}
+[100.768366] (-) TimerEvent: {}
+[100.871889] (-) TimerEvent: {}
+[100.978104] (-) TimerEvent: {}
+[101.082532] (-) TimerEvent: {}
+[101.190180] (-) TimerEvent: {}
+[101.293150] (-) TimerEvent: {}
+[101.398911] (-) TimerEvent: {}
+[101.506912] (-) TimerEvent: {}
+[101.613634] (-) TimerEvent: {}
+[101.714377] (-) TimerEvent: {}
+[101.816968] (-) TimerEvent: {}
+[101.920223] (-) TimerEvent: {}
+[102.022381] (-) TimerEvent: {}
+[102.128352] (-) TimerEvent: {}
+[102.231573] (-) TimerEvent: {}
+[102.342071] (-) TimerEvent: {}
+[102.444136] (-) TimerEvent: {}
+[102.547268] (-) TimerEvent: {}
+[102.648316] (-) TimerEvent: {}
+[102.753891] (-) TimerEvent: {}
+[102.856452] (-) TimerEvent: {}
+[102.959844] (-) TimerEvent: {}
+[103.061897] (-) TimerEvent: {}
+[103.163779] (-) TimerEvent: {}
+[103.269816] (-) TimerEvent: {}
+[103.371314] (-) TimerEvent: {}
+[103.477225] (-) TimerEvent: {}
+[103.578300] (-) TimerEvent: {}
+[103.679512] (-) TimerEvent: {}
+[103.780887] (-) TimerEvent: {}
+[103.882197] (-) TimerEvent: {}
+[103.983492] (-) TimerEvent: {}
+[104.084571] (-) TimerEvent: {}
+[104.187003] (-) TimerEvent: {}
+[104.288251] (-) TimerEvent: {}
+[104.389504] (-) TimerEvent: {}
+[104.490817] (-) TimerEvent: {}
+[104.592989] (-) TimerEvent: {}
+[104.698429] (-) TimerEvent: {}
+[104.802471] (-) TimerEvent: {}
+[104.907737] (-) TimerEvent: {}
+[105.009383] (-) TimerEvent: {}
+[105.112622] (-) TimerEvent: {}
+[105.213725] (-) TimerEvent: {}
+[105.316174] (-) TimerEvent: {}
+[105.418804] (-) TimerEvent: {}
+[105.520692] (-) TimerEvent: {}
+[105.621831] (-) TimerEvent: {}
+[105.722686] (-) TimerEvent: {}
+[105.824702] (-) TimerEvent: {}
+[105.926280] (-) TimerEvent: {}
+[106.030349] (-) TimerEvent: {}
+[106.131760] (-) TimerEvent: {}
+[106.232965] (-) TimerEvent: {}
+[106.334688] (-) TimerEvent: {}
+[106.435373] (-) TimerEvent: {}
+[106.536530] (-) TimerEvent: {}
+[106.645010] (-) TimerEvent: {}
+[106.745892] (-) TimerEvent: {}
+[106.847849] (-) TimerEvent: {}
+[106.949882] (-) TimerEvent: {}
+[107.050996] (-) TimerEvent: {}
+[107.152048] (-) TimerEvent: {}
+[107.257222] (-) TimerEvent: {}
+[107.358428] (-) TimerEvent: {}
+[107.460950] (-) TimerEvent: {}
+[107.562239] (-) TimerEvent: {}
+[107.664813] (-) TimerEvent: {}
+[107.766748] (-) TimerEvent: {}
+[107.870470] (-) TimerEvent: {}
+[107.972154] (-) TimerEvent: {}
+[108.073971] (-) TimerEvent: {}
+[108.174841] (-) TimerEvent: {}
+[108.276939] (-) TimerEvent: {}
+[108.360595] (workspace_gz) StdoutLine: {'line': b'[ 37%] \x1b[32m\x1b[1mLinking CXX shared library libPolyhedraBuoyancyDrag.so\x1b[0m\n'}
+[108.377433] (-) TimerEvent: {}
+[108.479383] (-) TimerEvent: {}
+[108.580649] (-) TimerEvent: {}
+[108.682146] (-) TimerEvent: {}
+[108.783434] (-) TimerEvent: {}
+[108.884301] (-) TimerEvent: {}
+[108.985004] (-) TimerEvent: {}
+[109.087745] (-) TimerEvent: {}
+[109.189043] (-) TimerEvent: {}
+[109.290749] (-) TimerEvent: {}
+[109.391737] (-) TimerEvent: {}
+[109.492806] (-) TimerEvent: {}
+[109.594246] (-) TimerEvent: {}
+[109.695662] (-) TimerEvent: {}
+[109.798986] (-) TimerEvent: {}
+[109.900212] (-) TimerEvent: {}
+[110.002452] (-) TimerEvent: {}
+[110.104249] (-) TimerEvent: {}
+[110.206161] (-) TimerEvent: {}
+[110.313375] (-) TimerEvent: {}
+[110.415132] (-) TimerEvent: {}
+[110.517182] (-) TimerEvent: {}
+[110.618940] (-) TimerEvent: {}
+[110.720558] (-) TimerEvent: {}
+[110.824486] (-) TimerEvent: {}
+[110.925745] (-) TimerEvent: {}
+[111.026325] (-) TimerEvent: {}
+[111.126724] (-) TimerEvent: {}
+[111.134312] (workspace_gz) StdoutLine: {'line': b'[ 37%] Built target PolyhedraBuoyancyDrag\n'}
+[111.226942] (-) TimerEvent: {}
+[111.327809] (-) TimerEvent: {}
+[111.428612] (-) TimerEvent: {}
+[111.529288] (-) TimerEvent: {}
+[111.575986] (workspace_gz) StdoutLine: {'line': b'[ 39%] \x1b[32m\x1b[1mLinking CXX shared library libWayfindingScoringPlugin.so\x1b[0m\n'}
+[111.630152] (-) TimerEvent: {}
+[111.731354] (-) TimerEvent: {}
+[111.832452] (-) TimerEvent: {}
+[111.933467] (-) TimerEvent: {}
+[112.034687] (-) TimerEvent: {}
+[112.135738] (-) TimerEvent: {}
+[112.236688] (-) TimerEvent: {}
+[112.337856] (-) TimerEvent: {}
+[112.438566] (-) TimerEvent: {}
+[112.540396] (-) TimerEvent: {}
+[112.642357] (-) TimerEvent: {}
+[112.743928] (-) TimerEvent: {}
+[112.844858] (-) TimerEvent: {}
+[112.945516] (-) TimerEvent: {}
+[113.046755] (-) TimerEvent: {}
+[113.147614] (-) TimerEvent: {}
+[113.253017] (-) TimerEvent: {}
+[113.353889] (-) TimerEvent: {}
+[113.457046] (-) TimerEvent: {}
+[113.559737] (-) TimerEvent: {}
+[113.578092] (workspace_gz) StdoutLine: {'line': b'[ 39%] Built target WayfindingScoringPlugin\n'}
+[113.660021] (-) TimerEvent: {}
+[113.760735] (-) TimerEvent: {}
+[113.861760] (-) TimerEvent: {}
+[113.962928] (-) TimerEvent: {}
+[114.064356] (-) TimerEvent: {}
+[114.165362] (-) TimerEvent: {}
+[114.265919] (-) TimerEvent: {}
+[114.366380] (-) TimerEvent: {}
+[114.467109] (-) TimerEvent: {}
+[114.568114] (-) TimerEvent: {}
+[114.669183] (-) TimerEvent: {}
+[114.761824] (workspace_gz) StdoutLine: {'line': b'[ 41%] \x1b[32m\x1b[1mLinking CXX shared library libAcousticPerceptionScoringPlugin.so\x1b[0m\n'}
+[114.769359] (-) TimerEvent: {}
+[114.870442] (-) TimerEvent: {}
+[114.971824] (-) TimerEvent: {}
+[115.073196] (-) TimerEvent: {}
+[115.174096] (-) TimerEvent: {}
+[115.274976] (-) TimerEvent: {}
+[115.377996] (-) TimerEvent: {}
+[115.478972] (-) TimerEvent: {}
+[115.579984] (-) TimerEvent: {}
+[115.680651] (-) TimerEvent: {}
+[115.781429] (-) TimerEvent: {}
+[115.882681] (-) TimerEvent: {}
+[115.984023] (-) TimerEvent: {}
+[116.084654] (-) TimerEvent: {}
+[116.185400] (-) TimerEvent: {}
+[116.286853] (-) TimerEvent: {}
+[116.387926] (-) TimerEvent: {}
+[116.491972] (-) TimerEvent: {}
+[116.593056] (-) TimerEvent: {}
+[116.594263] (workspace_gz) StdoutLine: {'line': b'[ 41%] Built target AcousticPerceptionScoringPlugin\n'}
+[116.599163] (workspace_gz) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[116.604760] (workspace_gz) CommandEnded: {'returncode': 2}
+[116.627434] (workspace_gz) JobEnded: {'identifier': 'workspace_gz', 'rc': 2}
+[116.639535] (-) EventReactorShutdown: {}
