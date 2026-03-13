@@ -1,0 +1,41 @@
+# KISS-ICP Configuration for YILDIZ USV
+# Su yüzeyi filtreleme için optimize edilmiş
+
+kiss_icp_node:
+  ros__parameters:
+    # TF Frame ayarları
+    base_frame: "base_link"
+    lidar_odom_frame: "odom_lidar"
+    publish_odom_tf: true
+    invert_odom_tf: true
+    
+    # Covariance ayarları
+    position_covariance: 0.1
+    orientation_covariance: 0.1
+
+    ####    Core KISS-ICP parameters    ####
+
+    data:
+      # Motion deskewing - DISABLED (Gazebo gpu_lidar has no timestamp field)
+      deskew: false
+      
+      # Range filtreleme - SU YÜZEYİ FİLTRELEME
+      # min_range: Robot yakınındaki su yansımalarını filtrele
+      # max_range: Uzak mesafedeki gürültüyü filtrele
+      max_range: 30.0
+      min_range: 1.0  # 1m altındaki noktalar atılır (su yüzeyi)
+
+    mapping:
+      # Voxel boyutu - hareket halinde stabilite için daha büyük
+      voxel_size: 0.5  # 50cm voxel - daha stabil ICP
+      max_points_per_voxel: 30
+
+    adaptive_threshold:
+      # ICP threshold adaptasyonu
+      initial_threshold: 2.0
+      min_motion_th: 0.1
+
+    registration:
+      max_num_iterations: 500
+      convergence_criterion: 0.0001
+      max_num_threads: 0  # Otomatik

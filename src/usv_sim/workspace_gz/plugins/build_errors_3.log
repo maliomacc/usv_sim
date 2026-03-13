@@ -1,0 +1,68 @@
+--- stderr: workspace_gz
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::LightBuoyPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:310:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  310 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+      |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::LightBuoyPlugin::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/LightBuoyPlugin.cc:332:32:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  332 |   [01;35m[Ksim::EntityComponentManager &_ecm[m[K)
+      |   [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:[m[K In constructor ‘[01m[KBuoy::Buoy(const string&, ignition::gazebo::v6::Entity, BuoyGoal, double, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:223:23:[m[K [01;35m[Kwarning: [m[K‘[01m[KBuoy::entityName[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+  223 |   public: std::string [01;35m[KentityName[m[K;
+      |                       [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:220:29:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst Entity Buoy::entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+  220 |   public: const sim::Entity [01;35m[Kentity[m[K;
+      |                             [01;35m[K^~~~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:249:1:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+  249 | [01;35m[KBuoy[m[K::Buoy(const std::string &_entityName,
+      | [01;35m[K^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:264:39:[m[K [01;31m[Kerror: [m[K‘[01m[KGZ_PI[m[K’ was not declared in this scope
+  264 |   const double kAangleIncrement = 2 * [01;31m[KGZ_PI[m[K / this->kNumVirtualGates;
+      |                                       [01;31m[K^~~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:265:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kconst unsigned int[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  265 |   for (int i = 0; [01;35m[Ki < this->kNumVirtualGates[m[K; ++i)
+      |                   [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::WildlifeScoringPlugin::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/WildlifeScoringPlugin.cc:569:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Buoy>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  569 |       for (auto i = 0; [01;35m[Ki < this->dataPtr->buoys.size()[m[K; ++i)
+      |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::PublisherPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:72:52:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_entity[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   72 | void PublisherPlugin::Configure([01;35m[Kconst sim::Entity &_entity[m[K,
+      |                                 [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:74:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   74 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+      |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::PublisherPlugin::PreUpdate(const ignition::gazebo::v6::UpdateInfo&, ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PublisherPlugin.cc:154:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  154 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K)
+      |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::PlacardPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:157:34:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  157 |     [01;35m[Ksim::EntityComponentManager &_ecm[m[K,
+      |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:[m[K In member function ‘[01m[Kvoid vrx::PlacardPlugin::Implementation::ChangeSymbol(const ignition::msgs::Empty&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/PlacardPlugin.cc:436:69:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_msg[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  436 | void PlacardPlugin::Implementation::ChangeSymbol([01;35m[Kconst msgs::Empty &_msg[m[K)
+      |                                                  [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScanDockScoringPlugin.cc:[m[K In lambda function:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/ScanDockScoringPlugin.cc:837:33:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_res[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  837 |         []([01;35m[Kconst msgs::Boolean &_res[m[K, const bool)
+      |            [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:[m[K In member function ‘[01m[Kbool vrx::AcousticPingerPlugin::Implementation::ParseSDFParameters(ignition::gazebo::v6::EntityComponentManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:100:32:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_ecm[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  100 | [01;35m[Kanager &_ecm[m[K)
+      | [01;35m[K~~~~~~~~^~~~[m[K
+
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:[m[K In member function ‘[01m[Kvirtual void vrx::AcousticPingerPlugin::Configure(const Entity&, const std::shared_ptr<const sdf::v12::Element>&, ignition::gazebo::v6::EntityComponentManager&, ignition::gazebo::v6::EventManager&)[m[K’:
+[01m[K/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/plugins/AcousticPingerPlugin.cc:197:57:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[K_eventMgr[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  197 | [01;35m[Kr &_eventMgr[m[K)
+      | [01;35m[K~~~^~~~~~~~~[m[K
+
+gmake[2]: *** [CMakeFiles/WildlifeScoringPlugin.dir/build.make:76: CMakeFiles/WildlifeScoringPlugin.dir/plugins/WildlifeScoringPlugin.cc.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:716: CMakeFiles/WildlifeScoringPlugin.dir/all] Error 2
+gmake[1]: *** Bitmemiş işler için bekliyor....
+gmake: *** [Makefile:146: all] Error 2
+---
+Failed   <<< workspace_gz [1min 31s, exited with code 2]

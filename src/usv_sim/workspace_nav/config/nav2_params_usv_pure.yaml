@@ -1,0 +1,484 @@
+# =============================================================================
+# nav2_params_usv_pure.yaml — YILDIZ USV — TEKNOFEST 2025
+# =============================================================================
+# Araç:  Çift motorlu katamaran, 0.70 m × 0.50 m, DiffDrive kinematik
+# Kontrolcü: MPPI  (nav2_mppi_controller)
+# Planlayıcı: NavfnPlanner / A*
+#
+# 3 Aşama Karakteri:
+#   Stage 1 (Sprint)   — yüksek vx_max, geniş lookahead, hızlı hedef kovalama
+#   Stage 2 (Slalom)   — ObstaclesCritic sert, collision_margin geniş, dar geçit
+#   Stage 3 (Kamikaze) — GoalAngleCritic baskın, kırmızı dubaya kilitlenme
+#
+# ⚠ MPPI'da "aşamaya göre parametre değişimi" runtime'da mümkün değildir.
+#   Bu dosya tüm aşamaları dengeleyen bir ORTA YOL ayarıdır.
+#   Dar geçit kriterleri, sprint hızını %15–20 azaltır; bu kabul edilebilir.
+# =============================================================================
+
+bt_navigator:
+  ros__parameters:
+    use_sim_time: true
+    global_frame: map
+    robot_base_frame: base_link
+    odom_topic: "/odometry/filtered"
+    bt_loop_duration: 20           # 20 ms → BT tick uyarısı engelleir
+    default_server_timeout: 20
+    wait_for_service_timeout: 1000
+    action_server_result_timeout: 900.0
+    navigators: ["navigate_to_pose", "navigate_through_poses"]
+    navigate_to_pose:
+      plugin: "nav2_bt_navigator::NavigateToPoseNavigator"
+    navigate_through_poses:
+      plugin: "nav2_bt_navigator::NavigateThroughPosesNavigator"
+    error_code_names:
+      - compute_path_error_code
+      - follow_path_error_code
+
+bt_navigator_navigate_through_poses_rclcpp_node:
+  ros__parameters:
+    use_sim_time: true
+
+bt_navigator_navigate_to_pose_rclcpp_node:
+  ros__parameters:
+    use_sim_time: true
+
+# =============================================================================
+# CONTROLLER SERVER — MPPI
+# =============================================================================
+controller_server:
+  ros__parameters:
+    use_sim_time: true
+    # 20 Hz → MPPI için yeterli güncelleme sıklığı, simülasyonda CPU dostu
+    controller_frequency: 20.0
+    min_x_velocity_threshold: 0.001
+    min_y_velocity_threshold: 0.001
+    min_theta_velocity_threshold: 0.001
+    failure_tolerance: 1.0        # 0.5→1.0: geçici costmap hatalarını tolere et
+    
+
+    progress_checker_plugin: "progress_checker"
+    goal_checker_plugins: ["goal_checker"]
+    controller_plugins: ["FollowPath"]
+    allow_undeclared_parameters: true
+
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.3
+      # Slalom'da tekne yavaş ilerliyorsa erken abort'u engelle
+      movement_time_allowance: 45.0
+
+    goal_checker:
+      plugin: "nav2_controller::SimpleGoalChecker"
+      # =================================================================
+      # WAYPOINT ORBITING FIX (Sprint Mode):
+      #   2.5 m/s → durdurma mes. ≈ v²/(2×ax_max) = 6.25/1.6 ≈ 3.9 m
+      #   0.8 m tolerans → kontrol çevrimi başyna kadar (0.1 s) 0.25 m
+      #   kayma → çemberden taşma garantili.
+      # TEKNOFEST kuralı: kapıdan geçiş = başarı; WP'ye tam temas gerekmez.
+      # 2.5 m tolerans → ortalama kapı genişliğinin yarısı ≈ güvenli geçiş.
+      # =================================================================
+      xy_goal_tolerance: 2.5
+      yaw_goal_tolerance: 3.15
+      # stateful: false → overshoot + geri dönüş senaryolarında GoalChecker
+      # robot tekrar tolerans çemberine girdiğinde sükse sayar.
+      # (true olsaydı ilk girildiğinde sayıp çıkışta tekrar saymaz.)
+      stateful: false
+
+    FollowPath:
+      plugin: "nav2_mppi_controller::MPPIController"
+
+      # ── Trajectory Sampling ──────────────────────────────────────────────
+      # time_steps × model_dt = öngörü ufku: 56 × 0.1 = 5.6 saniye
+      # Dar slalom koridorunda 5.6 s yeterince uzak görür; sprint'te de iyi.
+      time_steps: 40
+      model_dt: 0.1
+
+      # batch_size: ne kadar çok örnek → o kadar iyi optimum, o kadar yüksek CPU
+      # 2000 → i5/i7 seviyesi CPU'da simülasyonda güvenli (missed loop yok)
+      batch_size: 2000
+      iteration_count: 4           # 2→4: dar geçit optimizasyonu için
+
+      # ── Gürültü Standart Sapmaları ───────────────────────────────────────
+      # vx_std: lineer hız keşif genişliği — büyük = cesur manevralar
+      vx_std: 0.4                  # sprint için biraz geniş
+      vy_std: 0.0                  # DiffDrive: yanal haraket yok
+      # wz_std: dönüş açısal hız gürültüsü — büyük = keskin viraj örnekleri
+      wz_std: 1.0                  # slalom virajları için artırıldı
+
+      # ── Velocity Limits ──────────────────────────────────────────────────
+      vx_max: 2.0                  # Sprint: açık suda max hız
+      vx_min: -0.5                 # geri vites kurtarma için -0.4 m/s izni
+      vy_max: 0.0
+      vy_min: 0.0
+      wz_max: 2.0                  # Viraj keskinliği artırıldı (1.5→2.0)
+      wz_min: -2.0
+
+      # ── Acceleration Limits ──────────────────────────────────────────────
+      ax_max: 0.8
+      # ax_min -2.0: 2.5 m/s → 0.8 m/s frenleme = (2.5²-0.8²)/(2×2.0) ≈ 1.4 m mesafede.
+      # Eski -0.8 → 3.4 m mesafe gerekiyordu → slalom girişinden çok önceden başlamak zorunda.
+      ax_min: -2.0               # -0.8→-2.0: agresif frenleme — drift mesafesini %60 azaltır
+      ay_max: 0.0
+      az_max: 3.0                  # 2.2→3.0: daha keskin yaw ivmelenmesi
+
+      # ── Path / Transform ────────────────────────────────────────────────
+      prune_distance: 2.0
+      transform_tolerance: 0.5
+
+      # ── Softmax Temperature / Regularization ─────────────────────────────
+      # temperature: düşük = kazananlar daha baskın (az noise keşfi)
+      # 0.3 → dengeli, slalom'da aşırı sapma yapmaz
+      temperature: 0.3
+      gamma: 0.015
+
+      motion_model: "DiffDrive"
+      visualize: true              # RViz'de MPPI trajektorileri görünür
+
+      # ────────────────────────────────────────────────────────────────────
+      # CRITIC LİSTESİ
+      # Sıralama önemli değil, ağırlıklar belirler.
+      # ────────────────────────────────────────────────────────────────────
+      critics:
+        - "ConstraintCritic"         # hız limitlerini zorla
+        - "GoalCritic"               # hedefe yakınsama
+        - "GoalAngleCritic"          # hedefe yakınken burnunu hizala (kamikaze)
+        - "PathAlignCritic"          # planlanan patha hizalanma
+        - "PathFollowCritic"         # path üzerinde ilerle
+        - "PathAngleCritic"          # path yönüne hizalanma (dönüş kalitesi)
+        - "ObstaclesCritic"          # engel kaçınma (slalom kalbi)
+
+      # ── ConstraintCritic ────────────────────────────────────────────────
+      # Hız sınırlarını ihlal eden trajektorilere ceza verir.
+      # cost_weight yüksek → kinematik ihlaller şiddetle cezalandırılır.
+      ConstraintCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 4.0
+
+      # ── GoalCritic ──────────────────────────────────────────────────────
+      # Hedefe uzaklığı minimize et. threshold_to_consider: bu mesafeden
+      # yakın olunca aktifleşir. Sprint + Kamikaze için kritik.
+      GoalCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 5.0
+        threshold_to_consider: 4.0  # 1.5→4.0: 2.5 m/s için erken hedef kovalama
+
+      # ── GoalAngleCritic ─────────────────────────────────────────────────
+      # Hedefe yakınken burnunu hedefe hizala.
+      # Kamikaze aşaması: tekne son anlarda tam karşıya bakarak çarpar.
+      # cost_weight 12.0 → baskın ama PathAngleCritic'i ezmez.
+      GoalAngleCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 12.0          # 8.0→12.0: kamikaze heading lock için
+        threshold_to_consider: 2.0  # 0.6→2.0: erken yön hizalama (sprint)
+
+      # ── PathAlignCritic ─────────────────────────────────────────────────
+      # Planlanan patha (NavfnPlanner çıktısı) geometrik hizalanma.
+      # max_path_occupancy_ratio: pah üzerinde bu oranda engel varsa critic'i
+      # devre dışı bırak — slalom'da engelli path'i yine de takip etmesini sağlar.
+      PathAlignCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 8.0           # 10.0→8.0: ObstaclesCritic'e öncelik tanı
+        max_path_occupancy_ratio: 0.07  # 0.50→0.07: engelli path → critic uyur
+        trajectory_point_step: 3
+        threshold_to_consider: 0.5
+        offset_from_furthest: 10
+        use_path_orientations: false
+
+      # ── PathFollowCritic ────────────────────────────────────────────────
+      # Path'in önündeki carrot (havuç) noktasına yönelme.
+      # offset_from_furthest: trajektuar içinde kaç adım ilerideki noktayı hedef al.
+      PathFollowCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 3.0
+        offset_from_furthest: 8    # 5→8: carrot daha ileride → yüksek hız korunur
+
+      # ── PathAngleCritic ─────────────────────────────────────────────────
+      # Aracın başının path yönüyle açısını minimize et.
+      # Sprint → tekne daima path yönüne bakarak ilerler (bodoslama düzeltme).
+      # Slalom → keskin dönüşlerde erken yön alır.
+      # cost_weight 22.0 → en baskın critic; "bodoslama" problemini çözer.
+      PathAngleCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 12.0          # 18.0→22.0: yön hizalama güçlendirildi
+        threshold_to_consider: 0.5
+        # offset_from_furthest: path'in kaç adım ilerisi referans alınsın
+        # Küçük değer → erken dönüş tepkisi (slalom için iyi)
+        offset_from_furthest: 4
+
+      # ── ObstaclesCritic ─────────────────────────────────────────────────
+      # En kritik ayar: slalom'da reject etmeden geçmesini sağlar.
+      #
+      # consider_footprint: true → robot gerçek ayak izini kullanır (daha güvenli
+      # ama hesaplamalı). false → robot_radius çemberi kullanır (daha hızlı).
+      # USV 0.70×0.50 m, slalom kapısı ~1.5 m genişlik → footprint kritik!
+      # true yaparak teknenin yan tarafının dubaya çarpmadığından emin oluruz.
+      #
+      # collision_margin_distance: engelden bu kadar uzakta costmap maliyeti
+      # kritik kabul edilir. 0.2 m → güvenli tampon slalom için.
+      #
+      # critical_weight yüksek → engele yakın gitmekten kaçın.
+      # repulsion_weight: engelden uzaklaşmak için aktif itme kuvveti.
+      # Çok yüksek repulsion → titreme (twitching). 0.4 dengeli.
+      ObstaclesCritic:
+        enabled: true
+        cost_power: 1
+        repulsion_weight: 0.8      # 0.5→0.4: titreşimi azalt
+        critical_weight: 20.0      # 5.0→12.0: dar geçitte engele çarpma
+        consider_footprint: true   # false→true: gerçek ayak izi ile hesapla
+        collision_cost: 10000.0    # 2000→10000: çarpışmayı kesinlikle cezalandır
+        collision_margin_distance: 0.10  # 0.0→0.20: 20 cm güvenlik tamponu
+        near_goal_distance: 0.5
+
+# =============================================================================
+# =============================================================================
+# LOCAL COSTMAP — Sprint + Slalom Uyumlu Konfigürasyon
+# =============================================================================
+# ⚠ BOYUT HESABI:
+#   Sprint Mode: vx_max=2.5 × time_steps=30 × dt=0.1 = 7.5 m horizon
+#   Güvenli yarıçap = width/2 = 22/2 = 11.0 m  →  +3.5 m tampon  ✓
+#   15 m (eski) yarıçap=7.5 m == horizon → sıfır marjin → LETHAL costmap çakışması!
+# =============================================================================
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      use_sim_time: true
+      update_frequency: 10.0
+      publish_frequency: 5.0
+      global_frame: odom
+      robot_base_frame: base_link
+      rolling_window: true
+      # 22×22 m → Sprint horizon (7.5m) için 3.5m güvenlik tamponu
+      # 200×200 cells @ 0.1m → CPU artışı kabul edilebilir (bench: ~2 ms)
+      width: 22
+      height: 22
+      resolution: 0.1              # 10 cm çözünürlük: duba 0.3 m çapını yakalar
+      footprint: "[[0.35, 0.25], [0.35, -0.25], [-0.35, -0.25], [-0.35, 0.25]]"
+      transform_tolerance: 2.0   # lidar_link TF timestamp toleransi
+      plugins: ["obstacle_layer", "inflation_layer"]
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          topic: /roboboat/sensors/lidar/scan
+          max_obstacle_height: 1.5    # duba maks yüksekliği ~1 m; 1.5 yeterli, görültü düşer
+          clearing: true
+          marking: true
+          data_type: "LaserScan"
+          # ─── COSTMAP KÖR NOKTA DÜZELTMESİ ─────────────────────────────────
+          # 30m lidar @ 0.8 m/s slalom: 15m uyarı = 18 saniye öngörü.
+          # Eski 8m → 0.8 m/s'de sadece 10 sn; giriş 2.5 m/s'de ise 3.2 sn!
+          obstacle_max_range: 15.0   # 8.0→15.0: dubaları çok önceden işle
+          obstacle_min_range: 0.15   # robot gövdesini engel sayma
+          raytrace_max_range: 20.0   # 10.0→20.0: serbest alan temizliği genişledi
+          raytrace_min_range: 0.1
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        # ─── MPPI AKILLl HIZ KESME MEKANİZMASI ────────────────────────────────
+        # cost_scaling_factor 3.0 + radius 0.6 m → geniş ve KADEMELI maliyet gradyanı:
+        #   0.6 m uzakta: maliyet ~83 (orta)
+        #   0.3 m uzakta: maliyet ~253 (LETHAL)
+        #   0.0 m uzakta: LETHAL
+        # MPPI yüksek hızda uçan örnekler bu gradyanın içine dalar → yüksek maliyet.
+        # Düşük hızlı örnekler virajı takip eder → düşük maliyet.
+        # Sonuç: MPPI virajlarda KENDALİĞİNDEN yavaşlar (hiz kesme critic gerekmez).
+        # Eski: radius=0.30 scaling=10.0 → çok dar/dik → MPPI son 30 cm'e kadar kör.
+        cost_scaling_factor: 3.0   # 10.0→3.0: geniş kademeli gradyan
+        inflation_radius: 0.6      # 0.30→0.6: 60 cm güvenlik tamponu
+      always_send_full_costmap: true
+
+# =============================================================================
+# GLOBAL COSTMAP — A* + Obstacle-Aware (Parkur 2 Desteği)
+# =============================================================================
+# ★ obstacle_layer EKLENDİ:
+#   A* artık dubaları görür → PathAlignCritic ve ObstaclesCritic arasındaki
+#   critic çelişkisi ortadan kalkar. Parkur 1'de lidar boş olduğundan
+#   bu layer performansa sıfır etkisi vardır.
+# =============================================================================
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: true
+      update_frequency: 2.0        # 1→2 Hz — slalom geçişinde hızlı plan güncellemesi
+      publish_frequency: 1.0
+      global_frame: map
+      robot_base_frame: base_link
+      rolling_window: false        # NavfnPlanner uzak WP'lere plan yapabilir
+      width: 150
+      height: 150
+      resolution: 0.3              # 30 cm çözünürlük: hız/kalite dengesi
+      origin_x: -75.0
+      origin_y: -75.0
+      allow_unknown: true
+      track_unknown_space: false
+      footprint: "[[0.35, 0.25], [0.35, -0.25], [-0.35, -0.25], [-0.35, 0.25]]"
+      transform_tolerance: 2.0   # lidar_link TF timestamp toleransi
+      plugins: ["obstacle_layer", "inflation_layer"]
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          topic: /roboboat/sensors/lidar/scan
+          max_obstacle_height: 1.5    # global'de de aynı yaw filtresi
+          clearing: true
+          marking: true
+          data_type: "LaserScan"
+          # ─── GLOBAL COSTMAP KÖR NOKTA DÜZELTMESİ ───────────────────────────
+          # A* dubayı çok önceden görürse dubadan değil dubaların ARASINDA plan yapar.
+          # 30m lidar → 20m menzil: slalom bölgesine 20m kala plan güncellenir.
+          obstacle_max_range: 20.0   # 7.0→20.0: A*'a erken uyarı
+          obstacle_min_range: 0.20
+          raytrace_max_range: 25.0   # 8.0→25.0: geniş serbest alan temizliği
+          raytrace_min_range: 0.1
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        # ═══ DAR KAPI GEOMETRİSİ KISITI (world.sdf analizi) ══════════════
+        # Kapı genişliği: 2.25 m | USV genişliği: 0.70 m
+        # Her tarafa boşluk: (2.25 - 0.70) / 2 = 0.775 m
+        # Güvenli maks inflation: 0.775 - 0.10 (emniyet) = 0.675 m
+        #
+        # Eski inflation_radius=1.5m: 1.5+1.5=3.0m > 2.25m → TAM TIKANMA!
+        # Yeni  inflation_radius=0.6m: 0.6+0.6=1.2m < 2.25m → AÇIK GEÇIT
+        #
+        # Kapı merkezinde (her dubaya 1.125m uzak) maliyet hesabı:
+        #   cost = 253 × exp(-4.0 × 1.125) ≈ 253 × 0.011 ≈ 3  → geçilebilir
+        # ══════════════════════════════════════════════════════════════════
+        cost_scaling_factor: 4.0   # 2.5→4.0: dubaya yakın hızlı yükselen, uzakta sıfır
+        inflation_radius: 0.6      # 1.5→0.6: 1.2m toplam < 2.25m kapı → geçiş açık
+      always_send_full_costmap: true
+
+# =============================================================================
+# PLANNER SERVER — A* (NavfnPlanner)
+# =============================================================================
+planner_server:
+  ros__parameters:
+    use_sim_time: true
+    expected_planner_frequency: 2.0   # Büyük global map'te 2 Hz dengeli
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner/NavfnPlanner"
+      # tolerance: hedef civarında plan bulunamazsa bu yarıçap içinde alternatif ara
+      tolerance: 2.0               # 3.0→2.0: çok geniş tolerans yanlış plan verir
+      use_astar: true              # Dijkstra'dan hızlı ve hedefe yönelimli
+      allow_unknown: true
+
+# =============================================================================
+# BEHAVIOR SERVER — USV Uyumlu (Spin kaldırılamaz: BT XML referans ediyor)
+# =============================================================================
+behavior_server:
+  ros__parameters:
+    use_sim_time: true
+    costmap_topic: local_costmap/costmap_raw
+    footprint_topic: local_costmap/published_footprint
+    cycle_frequency: 2.0
+    behavior_plugins: ["backup", "wait", "spin"]
+    backup:
+      plugin: "nav2_behaviors/BackUp"
+    wait:
+      plugin: "nav2_behaviors/Wait"
+    spin:
+      plugin: "nav2_behaviors/Spin"
+    global_frame: map
+    local_frame: odom
+    robot_base_frame: base_link
+    transform_tolerance: 0.5
+    simulate_ahead_time: 4.0
+    max_rotational_vel: 1.0        # 0.6→1.0: recovery dönüşleri daha hızlı
+    min_rotational_vel: 0.1
+    rotational_acc_lim: 0.5       # 0.3→0.5: recovery ivmelenmesi
+
+# =============================================================================
+# VELOCITY SMOOTHER
+# =============================================================================
+# =============================================================================
+# VELOCITY SMOOTHER — Sprint Mode ile Eşleştirildi
+# =============================================================================
+# ★ max_velocity 2.0→2.5: Sprint Mode MPPI vx_max=2.5 ile uyumlu.
+#   Eski 2.0 cap → MPPI model öngörüsü ile gerçek hız arası kayma →
+#   PathFollowCritic bias + trajectory quality düşüşü.
+# ★ Slalom Mode'da MPPI zaten vx_max=0.8 çıkarır; smoother 2.5 cap'i
+#   devreye girmez → Slalom performansına sıfır etkisi.
+# =============================================================================
+velocity_smoother:
+  ros__parameters:
+    use_sim_time: true
+    smoothing_frequency: 20.0     # controller_frequency ile eşleştirildi
+    scale_velocities: true
+    feedback: "CLOSED_LOOP"
+    max_velocity: [2.5, 0.0, 2.5]  # 2.0→2.5: Sprint vx_max ile eşleştirildi
+    min_velocity: [-0.5, 0.0, -2.5] # -0.3→-0.5: geri manevra kapasitesi
+    max_accel: [1.5, 0.0, 3.0]    # MPPI ax/az max ile uyumlu
+    max_decel: [-1.5, 0.0, -2.0]  # -1.0→-1.5: daha hızlı frenleme
+    odom_topic: "odometry/filtered"
+    odom_duration: 0.1
+    deadband_velocity: [0.01, 0.0, 0.01]
+    velocity_timeout: 1.0
+
+# =============================================================================
+# COLLISION MONITOR — Son Savunma Hattı
+# =============================================================================
+collision_monitor:
+  ros__parameters:
+    use_sim_time: true
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    cmd_vel_in_topic: "cmd_vel_smoothed"
+    cmd_vel_out_topic: "cmd_vel_cm_out"  # /cmd_vel çatışmasını önle
+    state_topic: "collision_monitor_state"
+    transform_tolerance: 0.5
+    source_timeout: 1.0
+    base_shift_correction: true
+    stop_pub_timeout: 2.0
+    polygons: ["PolygonStop"]
+    PolygonStop:
+      type: "polygon"
+      # Flat double array (Humble formatı): robot ayak izinden 5 cm dışarı
+      points: [0.40, 0.30, 0.40, -0.30, -0.40, -0.30, -0.40, 0.30]
+      action_type: "stop"
+      min_points: 3
+      visualize: true
+      polygon_pub_topic: "polygon_stop"
+    observation_sources: ["scan"]
+    scan:
+      type: "scan"
+      topic: "/roboboat/sensors/lidar/scan"
+      min_height: 0.05
+      max_height: 1.5
+      enabled: true
+
+# =============================================================================
+# WAYPOINT FOLLOWER
+# =============================================================================
+waypoint_follower:
+  ros__parameters:
+    use_sim_time: true
+    loop_rate: 10
+    stop_on_failure: false
+    waypoint_task_executor_plugin: "wait_at_waypoint"
+    wait_at_waypoint:
+      plugin: "nav2_waypoint_follower::WaitAtWaypoint"
+      enabled: true
+      waypoint_pause_duration: 0
+
+# =============================================================================
+# MAP SERVER / SAVER (kullanılmıyor — MOLA map→odom TF sağlıyor)
+# =============================================================================
+map_server:
+  ros__parameters:
+    use_sim_time: true
+    yaml_filename: ""
+
+map_saver:
+  ros__parameters:
+    use_sim_time: true
+    save_map_timeout: 5.0
+    free_thresh_default: 0.25
+    occupied_thresh_default: 0.65
+    map_subscribe_transient_local: true

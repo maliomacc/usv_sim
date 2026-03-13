@@ -1,0 +1,99 @@
+# =============================================================================
+# ekf_fusion.yaml
+# robot_localization EKF node — real hardware sensor fusion 
+#
+# Input 1 — ZED 1.0 (/zed/odom):
+#   Trust ONLY X, Y, Z translation + linear velocities.
+#   Orientation bits are ALL FALSE → ZED's drift-prone quaternion is ignored.
+#
+# Input 2 — Pixhawk IMU (/mavros/imu/data):
+#   Trust ONLY Roll, Pitch, Yaw + angular velocities.
+#   Linear acceleration bits are ALL FALSE (noisy on a boat).
+#
+# Output: /odometry/filtered + odom→base_link TF
+#
+# Mask meaning (15 bools):
+#   [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
+# =============================================================================
+
+ekf_node:
+  ros__parameters:
+    use_sim_time: false
+
+    # ------------------------------------------------------------------
+    # Frames
+    # ------------------------------------------------------------------
+    map_frame:        map
+    odom_frame:       odom
+    base_link_frame:  base_link
+    world_frame:      odom       # EKF lives in odom frame
+
+    # ------------------------------------------------------------------
+    # Output
+    # ------------------------------------------------------------------
+    frequency: 30.0                 # Hz — publish rate
+    sensor_timeout: 0.1             # seconds before sensor considered stale
+    two_d_mode: false               # false = full 3-D (waves cause roll/pitch)
+    transform_time_offset: 0.0
+    transform_timeout: 0.0
+    print_diagnostics: true
+    publish_tf: true                # broadcast odom→base_link TF
+    publish_acceleration: false
+
+    # ------------------------------------------------------------------
+    # Sensor 0: ZED 1.0 Odometry
+    # Trusts: x, y, z position  +  vx, vy, vz linear velocity
+    # Ignores: roll, pitch, yaw + all angular velocities + accelerations
+    # ------------------------------------------------------------------
+    odom0: /zed/odom
+    odom0_config: [true,  true,  true,    # x,  y,  z
+                   false, false, false,   # roll, pitch, yaw  ← IGNORED
+                   true,  true,  true,    # vx, vy, vz
+                   false, false, false,   # vroll, vpitch, vyaw ← IGNORED
+                   false, false, false]   # ax, ay, az ← IGNORED
+    odom0_queue_size: 10
+    odom0_nodelay: false
+    odom0_differential: false        # use absolute pose from ZED
+    odom0_relative: false
+    odom0_pose_rejection_threshold: 5.0
+    odom0_twist_rejection_threshold: 1.0
+
+    # ------------------------------------------------------------------
+    # Sensor 1: Pixhawk IMU  (/mavros/imu/data)
+    # Trusts: roll, pitch, yaw orientation + angular velocities
+    # Ignores: x, y, z + linear velocities + linear accelerations
+    # ------------------------------------------------------------------
+    imu0: /mavros/imu/data
+    imu0_config: [false, false, false,   # x, y, z ← IGNORED
+                  true,  true,  true,    # roll, pitch, yaw  ← TRUSTED
+                  false, false, false,   # vx, vy, vz ← IGNORED
+                  true,  true,  true,    # vroll, vpitch, vyaw ← TRUSTED
+                  false, false, false]   # ax, ay, az ← IGNORED
+    imu0_queue_size: 10
+    imu0_nodelay: false
+    imu0_differential: false
+    imu0_relative: false
+    imu0_remove_gravitational_acceleration: true
+    imu0_pose_rejection_threshold: 3.0
+    imu0_twist_rejection_threshold: 3.0
+    imu0_linear_acceleration_rejection_threshold: 1.0
+
+    # ------------------------------------------------------------------
+    # Process noise covariance Q — how much we trust the motion model
+    # Larger diagonal = less trust → sensor readings win
+    # ------------------------------------------------------------------
+    process_noise_covariance: [0.05, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                               0,    0.05, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                               0,    0,    0.06, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                               0,    0,    0,    0.03, 0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                               0,    0,    0,    0,    0.03, 0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                               0,    0,    0,    0,    0,    0.06, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                               0,    0,    0,    0,    0,    0,    0.025, 0,     0,    0,    0,    0,    0,    0,    0,
+                               0,    0,    0,    0,    0,    0,    0,     0.025, 0,    0,    0,    0,    0,    0,    0,
+                               0,    0,    0,    0,    0,    0,    0,     0,     0.04, 0,    0,    0,    0,    0,    0,
+                               0,    0,    0,    0,    0,    0,    0,     0,     0,    0.01, 0,    0,    0,    0,    0,
+                               0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.01, 0,    0,    0,    0,
+                               0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.02, 0,    0,    0,
+                               0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.01, 0,    0,
+                               0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.01, 0,
+                               0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.015]
