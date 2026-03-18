@@ -8,7 +8,7 @@
 [![ROS2](https://img.shields.io/badge/ROS_2-Humble_Hawksbill-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/humble/)
 [![Gazebo](https://img.shields.io/badge/Gazebo-Fortress_(Ignition)-F58113?logo=gazebo&logoColor=white)](https://gazebosim.org/docs/fortress/)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![YOLOv11](https://img.shields.io/badge/Vision-YOLOv11-00FFFF?logo=opencv&logoColor=black)](https://github.com/ultralytics/ultralytics)
+[![Algılama](https://img.shields.io/badge/Alg%C4%B1lama-Saf_HSV_%2B_TensorRT_YOLOv8-00FFFF?logo=opencv&logoColor=black)](https://opencv.org/)
 [![Nav2](https://img.shields.io/badge/Navigasyon-Nav2_MPPI-22314E)](https://navigation.ros.org/)
 [![License](https://img.shields.io/badge/Lisans-Apache_2.0-blue)](./LICENSE.txt)
 
@@ -43,9 +43,10 @@
 | Hedef | Yaklaşım |
 |-------|----------|
 | GPS Bazlı Açık Su Navigasyonu | Özel PID Yaw Kontrolcüsü |
-| Duba Kapısı Geçişi (Slalom) | Nav2 MPPI + Güven Kilidi (Sniper Lock) Algoritması |
-| Kırmızı Dubaya Kamikaze Saldırısı | Görsel Servo (Visual Servoing) |
-| Sağlam Nesne Algılama | YOLOv11 + HSV Renk Maske Füzyonu |
+| Duba Kapısı Geçişi (Slalom) | Nav2 MPPI + Güven Kilidi Algoritması |
+| Kamikaze Saldırısı (Sim) | Saf HSV Renk Filtreleme (YOLO-FREE) |
+| Kamikaze Saldırısı (Gerçek Dünya) | TensorRT YOLOv8 + HSV Doğrulama Füzyonu |
+| Sağlam Nesne Algılama | OpenCV HSV Bant Filtreleme |
 | Kesin Konum Belirleme | MOLA SLAM + EKF Sensör Füzyonu |
 
 > **Akademik Not:** Bu depo, Bitirme Projesi danışmanlarının ve teknik jürilerin teknik derinliği doğrulayabilmesi amacıyla **mühendislik kararları ve tasarım gerekçeleriyle** birlikte dokümante edilmiştir.
@@ -70,34 +71,48 @@ Bu proje, yukarıdaki simülasyon katmanını **üretim düzeyinde bir otonom na
 
 > Bu bölüm, temel kaynak repoya kıyasla projenin **özgün mühendislik değerini** ortaya koymaktadır.
 
-### 1 · Gelişmiş Algılama ve Sensör Füzyonu (`kamikaze_control.py`)
+### 1 · Algılama Mimarisi (`kamikaze_control.py` ve `kamikaze_control_real.py`)
 
-**Problem:** Simülasyon ortamında YOLO modeli tek başına kullanıldığında, özellikle sarı dubaları uzak mesafede ya da düşük ışıkta kaçırabilmekte; bu durum navigasyon boşluklarına yol açmaktadır.
+> **Kritik Tasarım Kararı:** YOLOv11 simülasyonda tamamen kaldırıldı. Jetson Orin'in GPU/termal bütçesi gereksiz yere tüketilmemelidir. Gerçek dünya modülünde YOLO, yalnızca bounding box önermek için kullanılır; renk kararını HSV verir.
 
-**Çözüm:** İki katmanlı bir algılama mimarisi tasarlandı:
+#### Simülasyon Modülü (`kamikaze_control.py`) — Saf HSV
 
 ```
-Her Kameradan Gelen Kare ───►  [YOLOv11 İnferansı] ──► Sınırlayıcı Kutular
-                         └───►  [HSV Renk Maskesi]  ──► Kontur Maske Çıktısı
-                                         ↓
-                          Birleştirilmiş Algılama Listesi
-                                         ↓
-                         [Semantik Filtreleme Katmanı]
-                         • Sarı  → Geçilebilir Kapı
-                         • Turuncu → Sınır Dubası (Görmezden gelinir)
-                         • Kırmızı  → Kamikaze Hedefi
+Kamera Karesi
+    ├── HSV Sarı Filtresi  → /gate_center    (Parkur 2 — kapı orta noktası)
+    └── HSV Dinamik Hedef → /kamikaze_target  (Parkur 3 — kamikaze saldırısı)
+                             0=KIRMIZI | 1=YEŞİL | 2=SİYAH
 ```
 
-**Semantik Filtreleme Gerekçesi:**  
-Turuncu ve sarı renk değerleri HSV uzayında birbirine yakın olduğundan, yanlış pozitiflerin engel olarak yorumlanmasını önlemek için açık bir sınıflandırma katmanı şarttır. Turuncu sınır dubaları görme sisteminden çıkarılarak tamamen LiDAR tabanlı costmap engellemesine bırakılmıştır; bu sayede rakip görme gürültüsü tamamen ortadan kalkar.
+**Kapı Geometri Düzeltmesi:** İki sarı dubanın piksel merkezlerinden geometrik orta nokta hesaplanır. Tek bir LiDAR açısından mesafe okunur — eski "iki mesafenin ortalaması" yöntemi asimetrik mesafelerde sapıyordu.
 
-**LiDAR-Kamera Füzyon Motoru (`GateDetector`):**
+```
+    Eski: gate_x = (d_sol + d_sağ)/2 × orta_açı   ← HATALI (d_sol=7m, d_sağ=4m → 5.5m)
+    Yeni: gate_px = (cx1+cx2)/2 → tek açı → LiDAR(o açı) → doğru 3D konum
+```
 
-| Algılama Durumu | Algoritma | Çıktı |
-|-----------------|-----------|-------|
-| **2+ Sarı Duba** | MaxGap: Maksimum piksel boşluğundaki duba çiftini seçer, her birine LiDAR mesafesi atar, orta noktayı (dx, dy) olarak hesaplar | Doğru `gate_center` PoseStamped |
-| **1 Sarı Duba** | Sanal Ofset: Dubaya ±1.125 m ofset uygulayarak sanal bir kapı merkezi türetir | Yaklaşık `gate_center` PoseStamped |
-| **Duba Yok** | Graceful Degradation: Navigasyonu GPS + LiDAR'a devreder | Hiç yayın yapılmaz |
+#### Gerçek Dünya Modülü (`kamikaze_control_real.py`) — YOLOv8 TensorRT + HSV Füzyon
+
+```
+ZED Kamera (ROS2)
+         │
+   ┌─────▼──────────────────────────────┐
+   │     BuoyPerception (GPU+CPU)        │
+   │  1) TensorRT YOLOv8 (.engine)       │ ← GPU, 640×384px infer
+   │  2) HSV ColorVerifier (ROI only)    │ ← CPU, yalnızca kutucuk içi
+   │     ratio = renk_px / toplam_px     │
+   │     ratio < 12% → REDDET            │
+   └─────┬──────────────────────────────┘
+         │ (cx_norm, area)
+         ▼
+   /kamikaze_target  +  /kamikaze_locked
+```
+
+**Jetson Orin Optimizasyonları:**
+- Çıkarım girişi `640×384` — tam kare (1280×720) yerine
+- HSV yalnızca YOLO ROI bölgesinde hesaplanır — tam kare maskeleme yok
+- QoS depth=1 — eski kare birikimi yok
+- Timer frekansı yapılandırılabilir (`INFER_HZ`, varsayılan 15 Hz)
 
 ---
 
@@ -154,17 +169,25 @@ MPPI kontrolcüsü iki farklı parametre kümesi arasında dinamik olarak deği�
 | **Sprint** | 2.5 m/s | 15 adım | 5 | Açık suda WP1→WP4 |
 | **Slalom** | 0.8 m/s | 56 adım | 20 | Kapı geçişi WP5 |
 
-#### Parkur 3 — Kamikaze Görsel Servo
+#### Parkur 3 — Dinamik HSV Kamikaze Servo
 
-Nav2 tamamen iptal edilir. Yetki, kırmızı dubayı kilitledikten sonra doğrudan `/cmd_vel`'e komut veren P-kontrolcüsüne aktarılır:
+Nav2 tamamen iptal edilir. Yetki, seçili renkteki dubayı kilitledikten sonra doğrudan `/cmd_vel`'e komut veren tam hız saldırı kontrolcüsüne aktarılır:
 
 ```
-Yatay Hata: e = cx_norm − 0.5     [-1.0 … +1.0]
-ω (rad/s) = −Kp_yaw · e           [±2.0 ile sınırlı]
-Vx (m/s)  = base_speed × (1 − |e|) [min 0.3 ile sınırlı]
+Hatay Hesabı: error_x = 0.5 − cx_norm     [-0.5 … +0.5]
+ω  (rad/s)  = −Kp_yaw × error_x           [±0.6 ile sınırlı]
+Vx (m/s)   = ATTACK_MAX_SPEED (1.0 m/s)  ← TAM HIZ (kilit sonrası)
 ```
 
-**Kilitleme Mantığı:** Kırmızı duba ≥15.000 px² ve kesintisiz 3 saniye görülmeden `kamikaze_locked=True` gönderilmez; bu sayede sahte pozitiflerden kaynaklanan erken geçiş önlenir.
+**Dinamik Hedef Seçimi:**
+```bash
+# Runtime'da hedef renk değiştirme:
+ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 0}"  # KIRMIZI
+ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 1}"  # YEŞİL
+ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 2}"  # SİYAH
+```
+
+**Kilitleme Mantığı:** Hedef renk `N=6` ardışık frame onaylandıktan sonra `kamikaze_locked=True` gönderilir. İletişim kesilirse `init_target_color` parametresine geri dönülür.
 
 ---
 
@@ -193,7 +216,7 @@ flowchart TD
     LOC["EKF Lokalizasyon\nGPS + IMU + Odom Füzyonu\n→ /odometry/filtered"]
     NAV2["Nav2 MPPI Navigasyon\nYol Planlama + Engel Kaçınma"]
     MM["Mission Manager\nParkur 1 PID → Parkur 2 Nav2 → Parkur 3 Kamikaze"]
-    KMZ["Kamikaze Control\nYOLOv11 + HSV + LiDAR Füzyonu"]
+    KMZ["Kamikaze Control\nSaf HSV Filtresi (YOLO-FREE)\n/kamikaze_color_cmd → Dinamik Renk"]
     CONV["Thruster Converter\nδ-Sürüş Dönüşümü"]
 
     SIM -->|"/lidar/points PointCloud2"| LF
@@ -263,7 +286,8 @@ sti_usv/src/usv_sim/
     │   └── waypoints.json           # TEKNOFEST waypoint koordinatları
     └── scripts/
         ├── mission_manager.py       # ★ 3 Aşamalı Görev Durum Makinesi
-        └── kamikaze_control.py      # ★ YOLO + HSV + LiDAR Algılama
+            ├── kamikaze_control.py      # ★ Simülasyon: Saf HSV Algılama (YOLO-FREE)
+            └── kamikaze_control_real.py # ★ Gerçek Dünya: TensorRT YOLOv8 + HSV Füzyon
 ```
 
 > `★` işareti bu projenin özgün katkılarını göstermektedir.
@@ -500,9 +524,11 @@ ros2 run workspace_ros wasd_teleop
 
 | Topic | Tip | Açıklama |
 |-------|-----|----------|
-| `/kamikaze_target` | `Point` | Kırmızı duba merkezi (cx_norm, cy_norm, alan) |
-| `/kamikaze_locked` | `Bool` | Kilitleme onayı (3 s sonra True) |
+| `/kamikaze_target` | `Point` | Hedef merkezi (error_x, cy_norm, alan) |
+| `/kamikaze_locked` | `Bool` | Kilitleme onayı (N frame sonra True) |
+| `/kamikaze_color_cmd` | `Int32` | Runtime hedef renk: 0=KIRMIZI, 1=YEŞİL, 2=SİYAH |
 | `/gate_center` | `PoseStamped` | Kapı merkezi (base_link frame) |
+| `/yellow_visible` | `Bool` | Sarı duba görünürlük durumu |
 
 ### Kontrol Topic'leri
 

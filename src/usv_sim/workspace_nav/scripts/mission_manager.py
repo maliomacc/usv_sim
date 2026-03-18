@@ -57,6 +57,21 @@ PID_DT         = 0.05
 PID_ANG_CLAMP  = 1.0
 PID_VX_LPF     = 0.10
 
+# ─── Parkur 2: Kapı Geçişi Görsel Servo Parametreleri ────────────────────────
+# Nav2 MPPI bu aşamada yalnızca costmap/obstacle için pasif çalışır.
+# Direksiyon doğrudan /gate_center açısından hesaplanan PID ile yapılır.
+GATE_KP_YAW    = 1.0
+GATE_BASE_SPD  = 0.7   # m/s
+GATE_ANG_CLAMP = 1.5   # rad/s max
+GATE_PASS_DIST = 1.5   # m — bu mesafede sayımı başlat
+GATE_TIMEOUT   = 8.0   # s
+
+# Erken geçiş korunması:
+# GATE_PASS_DIST altına ardı ardına bu kadar frame gelirse geçildi say.
+GATE_PASS_CONFIRM_N = 3
+# Bu GPS mesafesi aşılırsa (hala WP5'ten uzak) Parkur 3 geçişi engelleniyor.
+GATE_WP5_CLOSE_M    = 20.0
+
 def _yaw_from_quaternion(q) -> float:
     siny_cosp = 2.0 * (q.w * q.z + q.x * q.y)
     cosy_cosp = 1.0 - 2.0 * (q.y * q.y + q.z * q.z)
@@ -612,6 +627,11 @@ class MissionManager(Node):
         self._wz:  float = 0.0
         self._img_width: int = 640
 
+        # Parkur 2 — sarı duba görünürlüğü takibi
+        import time as _t
+        self._yellow_visible:       bool  = True
+        self._yellow_invisible_since: float = _t.monotonic()  # sarı kaybolduğunda güncellenecek
+
         self._pid_prev_error:   float = 0.0
         self._pid_integral:     float = 0.0
         self._pid_drift_active: bool  = False
@@ -657,7 +677,10 @@ class MissionManager(Node):
 
         self.create_subscription(Bool, '/kamikaze_locked', self._kamikaze_locked_cb, 10)
 
-        self.create_subscription(PoseStamped, '/gate_center', self._gate_center_cb, 10)
+        self.create_subscription(PoseStamped, '/gate_center',    self._gate_center_cb,    10)
+
+        # Parkur 2: sarı duba görünürlüğü (kamikaze_control'dan)
+        self.create_subscription(Bool,        '/yellow_visible', self._yellow_visible_cb, 10)
 
         self._cmd_pub   = self.create_publisher(Twist,  '/cmd_vel',       10)
         self._state_pub = self.create_publisher(String, '/mission_state', 10)
@@ -729,6 +752,17 @@ class MissionManager(Node):
         self._vx  = msg.twist.twist.linear.x
         self._wz  = msg.twist.twist.angular.z
 
+    def _yellow_visible_cb(self, msg) -> None:
+        """kamikaze_control'dan gelen /yellow_visible Bool mesajı.
+        Sarı görünüyorsa zamanlayıcıyı sorgula, kaybolunca saat başlat.
+        """
+        import time as _t
+        visible = bool(msg.data)
+        if visible:
+            # Sarı görülüyor — geçitten önceki kaybolşma zamanını sıfırla
+            self._yellow_invisible_since = _t.monotonic()
+        self._yellow_visible = visible
+
     def _kamikaze_locked_cb(self, msg):
 
         if msg.data:
@@ -736,29 +770,78 @@ class MissionManager(Node):
             self.get_logger().info('[PILOT] Gözcüden KİLİT ONAYI alındı!', throttle_duration_sec=2.0)
 
     def _gate_center_cb(self, msg):
+        """Kapı merkezi geldiğinde görsel servo ile yönlen.
 
-        if self._stage != MissionStage.PARKUR_2_MPPI or self._gate_fusion is None:
+        KURAL 3 GEREĞİ: Bu callback ARTIK Kamikaze geçişini tetiklemez.
+        Parkur 2 → Parkur 3 geçişi YALNIZCA _run_parkur2_mppi içinde
+        dist_to_wp5 <= 2.0 koşuluna ulaşılınca yapılır.
+
+        Bu metodun tek görevi:
+          1. /cmd_vel üzerinden kapıya doğru görsel servo vermek (P-controller).
+          2. GateFusion yardımcısı aracılığıyla WP5 tahminini güncellemek.
+        """
+        if self._stage != MissionStage.PARKUR_2_MPPI:
             return
 
+        # ── Son görülme zamanını güncelle ───────────────────────────────────
         import time as _time
-        should_send = self._gate_fusion.on_gate_center(
-            msg, self._x, self._y, self._yaw, _time.monotonic()
+        self._gate_last_seen = _time.monotonic()
+
+        # ── Kapı açısını base_link çerçevesinden hesapla ─────────────────
+        dx = msg.pose.position.x   # ileri (pozitif = önde)
+        dy = msg.pose.position.y   # yanal (pozitif = solda)
+        dist  = math.hypot(dx, dy)
+        angle = math.atan2(dy, dx) # [-π, +π] — negatif = sağa dön
+
+        # ── Oransal kontrol (P-controller) ───────────────────────────────
+        # Açı hatası [-π, +π]; negatif = hedef sağda → sağa dön (angular.z < 0)
+        angular_z = float(max(-GATE_ANG_CLAMP,
+                              min(GATE_ANG_CLAMP, -GATE_KP_YAW * angle)))
+        # Açı büyüdükçe hız azalır (hedef hizalanınca tam gaz)
+        linear_x  = float(max(0.2,
+                              GATE_BASE_SPD * (1.0 - abs(angle) / math.pi * 1.5)))
+
+        cmd = Twist()
+        cmd.linear.x  = linear_x
+        cmd.angular.z = angular_z
+        self._cmd_pub.publish(cmd)
+
+        self.get_logger().info(
+            f'[PARKUR 2] 🎯 Kapı servo | dist={dist:.1f}m '
+            f'açı={math.degrees(angle):.1f}° '
+            f'v={linear_x:.2f}m/s ω={angular_z:+.2f}rad/s',
+            throttle_duration_sec=1.0,
         )
 
-        if should_send:
-
-            new_x = self._gate_fusion.active_wp['x']
-            new_y = self._gate_fusion.active_wp['y']
-            self._s2._kmz_wp['x'] = new_x
-            self._s2._kmz_wp['y'] = new_y
-
-            self._cancel_nav2_goal()
-            self._send_stage2_goal()
-            self.get_logger().warn(
-                f'[PILOT] CONFIDENCE LOCK AKTIF! '
-                f'Kapi=({new_x:.1f},{new_y:.1f}) -> Nav2 TEK SEFERLIK hedef gonderildi. '
-                'MPPI kesintisiz calisacak.'
+        # ── GateFusion ikincil yedek: WP5 tahminini güncelle ─────────────
+        if self._gate_fusion is not None:
+            should_send = self._gate_fusion.on_gate_center(
+                msg, self._x, self._y, self._yaw, _time.monotonic()
             )
+            if should_send:
+                new_x = self._gate_fusion.active_wp['x']
+                new_y = self._gate_fusion.active_wp['y']
+
+                # KORUMA: Yeni WP5 tahmini robota çok yakınsa (< 3.0m) reddet.
+                # GateFusion yanlış bir frame'i kilitlemiş olabilir; bu koordinat
+                # dist_to_wp5 <= 2.0 geçişini anında tetikler.
+                dist_to_new_wp5 = math.hypot(new_x - self._x, new_y - self._y)
+                if dist_to_new_wp5 < 3.0:
+                    self.get_logger().warn(
+                        f'[GateFusion] WP5 güncelleme REDDEDİLDİ — '
+                        f'yeni WP5 robota çok yakın: {dist_to_new_wp5:.1f}m < 3.0m '
+                        f'({new_x:.1f},{new_y:.1f}) '
+                        '(false-positive kilitlemesi önlendi)',
+                        throttle_duration_sec=2.0,
+                    )
+                else:
+                    self._s2._kmz_wp['x'] = new_x
+                    self._s2._kmz_wp['y'] = new_y
+                    self.get_logger().info(
+                        f'[GateFusion] WP5 güncellendi → ({new_x:.1f},{new_y:.1f}) '
+                        f'dist={dist_to_new_wp5:.1f}m '
+                        '(dist_to_wp5 ölçümü için referans)'
+                    )
 
     def _kamikaze_target_cb(self, msg):
 
@@ -1026,9 +1109,13 @@ class MissionManager(Node):
 
         self._kamikaze_locked_flag = False
         self._nav2_goal_succeeded  = False
+        self._gate_pass_confirm    = 0    # geçiş onay sayacı sıfırla
 
         self._parkur2_entry_time   = self.get_clock().now().nanoseconds / 1e9
         self._parkur2_settle_sec   = 5.0
+
+        import time as _t
+        self._gate_last_seen       = _t.monotonic()  # servo timeout sayacı
         self.get_logger().warn(
             '[PARKUR 2] ⚠ kamikaze_locked + nav2_goal_succeeded sıfırlandı '
             '(Parkur 1 backlog temizlendi). '
@@ -1055,60 +1142,108 @@ class MissionManager(Node):
         self.create_timer(0.8, _delayed_goal)
 
     def _run_parkur2_mppi(self):
+        """
+        KURAL 3 — TEK VE YEGÂNEKİŞ KOŞULU:
+          Stage 2 → Stage 3 (Kamikaze) geçişi YALNIZCA teknenin WP5'e mesafesi
+          2.0 m veya altına düştüğünde tetiklenir.
 
-        now_sec = self.get_clock().now().nanoseconds / 1e9
-        entry_t = getattr(self, '_parkur2_entry_time', now_sec)
-        settle  = getattr(self, '_parkur2_settle_sec', 5.0)
-        elapsed_in_p2 = now_sec - entry_t
-        in_settle = elapsed_in_p2 < settle
+          Aşağıdaki erken geçiş mekanizmalarının TAMAMI KALDIRILDI:
+            ✗  _kamikaze_locked_flag  (gözcü sinyal erken geçiş)
+            ✗  Yellow-Gone + timer    (sarı kayboldu → 2s bekle)
+            ✗  GATE_PASS_CONFIRM_N   (3 ardı ardına yakın frame)
+          Bu kurallar gerçek su testinde dalga/parlaklık/küçüklük kaynaklı
+          yanlış "kapı geçildi" kararlarına yol açıyordu. Artık geçiş sinyali
+          yalnızca GPS mesafe ölçümünden gelir.
+        """
 
-        if in_settle:
+        # ── Settle koruması: stage girilince ilk N saniye tetikleyici pasif ──
+        now_sec   = self.get_clock().now().nanoseconds / 1e9
+        entry_t   = getattr(self, '_parkur2_entry_time', now_sec)
+        settle    = getattr(self, '_parkur2_settle_sec', 5.0)
+        elapsed   = now_sec - entry_t
+
+        if elapsed < settle:
             self.get_logger().info(
-                f'[PARKUR 2] ⏳ Koruma süresi: {elapsed_in_p2:.1f}s / {settle:.0f}s '
-                f'(tetikleyiciler pasif)',
+                f'[PARKUR 2] ⏳ Yerleşme süresi: {elapsed:.1f}s / {settle:.0f}s',
                 throttle_duration_sec=1.5,
             )
-
             return
 
-        if self._gate_fusion is not None:
-            import time as _time
-            self._gate_fusion.check_release(self._x, self._y, _time.monotonic())
-
-        if self._kamikaze_locked_flag:
-
-            KAMIKAZE_LOCK_MIN_DIST = 5.0
-
+        # ── WP5 mesafesi al ──────────────────────────────────────────────────
+        if self._s2 is not None:
             dist_to_wp5 = math.hypot(
                 self._s2.kmz_wp['x'] - self._x,
                 self._s2.kmz_wp['y'] - self._y,
             )
-            if dist_to_wp5 > KAMIKAZE_LOCK_MIN_DIST:
-                self.get_logger().warn(
-                    f'[PARKUR 2] ⚠ kamikaze_locked alındı ANCAK WP5 uzakta '
-                    f'({dist_to_wp5:.1f}m > {KAMIKAZE_LOCK_MIN_DIST:.0f}m) — '
-                    f'false-positive yoksayıldı (sarı duba arkasında kırmızı?)'
-                )
-                self._kamikaze_locked_flag = False
-            else:
-                self.get_logger().warn(
-                    '[PARKUR 2] ⚔️  OTORİTE DEVRİ → Gözcü kilitledi, KAMIKAZE başlatılıyor!'
-                )
-                self._kamikaze_locked_flag = False
-                self._enter_parkur3_kamikaze()
-                return
+        else:
+            dist_to_wp5 = 999.0
 
-        fusion_wp = self._gate_fusion.active_wp if self._gate_fusion is not None else None
-        if self._s2.check_proximity(self._x, self._y, fusion_wp=fusion_wp):
+        self.get_logger().info(
+            f'[PARKUR 2] 📍 WP5: {dist_to_wp5:.2f}m | Geçiş eşiği: ≤ 2.0m',
+            throttle_duration_sec=2.0,
+        )
+
+        # ╔══════════════════════════════════════════════════════════════════╗
+        # ║  KURAL 3 — TEK GEÇİŞ KOŞULU                                    ║
+        # ║  dist_to_wp5 <= 2.0 m olmadan Kamikaze modu KESİNLİKLE girmez. ║
+        # ╚══════════════════════════════════════════════════════════════════╝
+        if dist_to_wp5 <= 2.0:
+            self.get_logger().warn(
+                f'[PARKUR 2] ✅ KAPI GEÇİLDİ — WP5 mesafesi {dist_to_wp5:.2f}m ≤ 2.0m '
+                '→ PARKUR 3 KAMİKAZE'
+            )
             self._enter_parkur3_kamikaze()
             return
 
+        # ── GateFusion kilit serbest bırakma kontrolü ───────────────────────
+        if self._gate_fusion is not None:
+            import time as _time
+            self._gate_fusion.check_release(self._x, self._y, _time.monotonic())
+
+        # ── Sarı buba yoksa WP5'e GPS Fallback Servo ─────────────────────────
+        # _gate_center_cb yalnızca /gate_center geldiğinde cmd_vel yayınlar.
+        # Sarı duba görülemediği durumlarda (dalga, uzaklık, sis) tekne
+        # hareketsiz kalabilir. Burada _gate_last_seen zaman damgasına bakarak
+        # kapı görülmüyorsa doğrudan WP5 GPS başlığına yönlendiriyoruz.
+        import time as _tnow
+        _gate_timeout_sec = 2.5   # bu kadar süre gate görülmemişse fallback aç
+        _gate_last         = getattr(self, '_gate_last_seen', 0.0)
+        _gate_silent       = (_tnow.monotonic() - _gate_last) > _gate_timeout_sec
+
+        if _gate_silent and self._s2 is not None:
+            # WP5'e olan başlık açısı (base_link): yaw-dan fark al
+            wp5_dx  = self._s2.kmz_wp['x'] - self._x
+            wp5_dy  = self._s2.kmz_wp['y'] - self._y
+            wp5_head = math.atan2(wp5_dy, wp5_dx)      # global yön (rad)
+            err_yaw  = wp5_head - self._yaw             # teknenin mevcut yaw'ından fark
+            # [-π, +π] normalleştirme
+            while err_yaw >  math.pi: err_yaw -= 2 * math.pi
+            while err_yaw < -math.pi: err_yaw += 2 * math.pi
+
+            angular_z = float(max(-0.4, min(0.4, 0.6 * err_yaw)))
+            linear_x  = float(max(0.15, 0.4 * (1.0 - abs(err_yaw) / math.pi)))
+
+            from geometry_msgs.msg import Twist as _Twist
+            _cmd = _Twist()
+            _cmd.linear.x  = linear_x
+            _cmd.angular.z = angular_z
+            self._cmd_pub.publish(_cmd)
+
+            self.get_logger().info(
+                f'[PARKUR 2] 🧭 GPS FALLBACK — Sarı duba yok ({_tnow.monotonic()-_gate_last:.1f}s) '
+                f'→ WP5 yönü err={math.degrees(err_yaw):.1f}° '
+                f'v={linear_x:.2f} ω={angular_z:+.2f}',
+                throttle_duration_sec=1.5,
+            )
+
+        # ── MPPI adaptif ufuk — kapıya yaklaştıkça daha dar bak ─────────────
         dist_to_gate = math.hypot(
             self._s2.kmz_wp['x'] - self._x,
             self._s2.kmz_wp['y'] - self._y,
-        )
+        ) if self._s2 is not None else 999.0
         self._mppi.apply_adaptive_horizon(dist_to_gate)
 
+        # ── Nav2 hedef durumunu takip et ─────────────────────────────────────
         if self._nav2_goal_pending:
             return
 
@@ -1117,17 +1252,13 @@ class MissionManager(Node):
             if status == GoalStatus.STATUS_SUCCEEDED:
                 self._nav2_goal_handle = None
                 self._s2.on_goal_succeeded()
-                self._enter_parkur3_kamikaze()
+                # Nav2 hedefe ulaştı ama GPS koşulu henüz sağlanmadı —
+                # tekne duraksatılmadan _gate_center_cb servo yapmayı sürdürür.
             elif status == GoalStatus.STATUS_ABORTED:
                 self.get_logger().error(
                     '\n' +
                     '╔══════════════════════════════════════════════════════════════╗\n'
                     '║  [NAV2 CRITICAL] MPPI FAILED — PLAN ABORTED!                ║\n'
-                    '║  Costmap might be BLOCKED by inflated obstacles              ║\n'
-                    '║  (orange/yellow buoys in local_costmap inflation radius).    ║\n'
-                    '║  ► Check: ros2 topic echo /local_costmap/costmap            ║\n'
-                    '║  ► Orange buoys should ONLY be LiDAR obstacles, NOT visual  ║\n'
-                    '║  ► Clearing local costmap and retrying Nav2 goal …           ║\n'
                     '╚══════════════════════════════════════════════════════════════╝'
                 )
                 self._nav2_goal_handle = None
@@ -1135,9 +1266,7 @@ class MissionManager(Node):
                     self._clear_local_cli.call_async(Empty.Request())
                 self._send_stage2_goal()
             elif status == GoalStatus.STATUS_CANCELED:
-                self.get_logger().warn(
-                    '[STAGE 2] ⚠ Nav2 goal cancelled — resending …'
-                )
+                self.get_logger().warn('[STAGE 2] ⚠ Nav2 goal cancelled — resending …')
                 self._nav2_goal_handle = None
                 self._send_stage2_goal()
 

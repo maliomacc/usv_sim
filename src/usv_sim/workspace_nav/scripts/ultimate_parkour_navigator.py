@@ -398,27 +398,27 @@ class VisualTargeting:
         except Exception:
             return
 
+        # ─── KURAL 1: YOLO SADECE KIRMIZI BUBA ───────────────────────────────
+        # Sarı buba tespiti YALNIZCA HSV filtresi ile yapılır (ayrı callback).
+        # YOLO döngüsünde sarı/sari/yellow sınıfları işlenmez.
         results = self.model(img, verbose=False, conf=0.5)
         h, w = img.shape[:2]
         hw = w / 2
 
         best_red, max_red_area = None, 0
-        yellows = []
 
         for result in results:
             for box in result.boxes:
                 cls = self.model.names[int(box.cls[0])].lower()
-                x1, y1, x2, y2 = map(int, box.xyxy[0])
-                area = (x2 - x1) * (y2 - y1)
-                cx = (x1 + x2) / 2
-                norm_cx = (cx - hw) / hw
-
+                # Sarı renk kontrolü kasıtlı olarak KALDIRILDI — HSV'ye devredildi
                 if 'red' in cls or 'kirmizi' in cls:
+                    x1, y1, x2, y2 = map(int, box.xyxy[0])
+                    area = (x2 - x1) * (y2 - y1)
                     if area > max_red_area:
                         max_red_area = area
+                        cx = (x1 + x2) / 2
+                        norm_cx = (cx - hw) / hw
                         best_red = (norm_cx, area, (x1, y1, x2, y2))
-                elif 'yellow' in cls or 'sari' in cls or 'sarı' in cls:
-                    yellows.append((norm_cx, (y1 + y2) // 2, area, (x1, y1, x2, y2)))
 
         now = time.time()
         if best_red:
@@ -429,18 +429,14 @@ class VisualTargeting:
             self.detected = False
             self.bbox = None
 
-        if yellows:
-            self.yellow_buoys = yellows
-            self.yellow_last_seen = now
-
+        # ─── HUD ÇIZIMI ────────────────────────────────────────────────────────
         center = (w // 2, h // 2)
-
         cv2.line(img, (center[0]-20, center[1]), (center[0]+20, center[1]), self.GREEN, 2)
         cv2.line(img, (center[0], center[1]-20), (center[0], center[1]+20), self.GREEN, 2)
 
         mode_labels = {
             STATE_PARKUR_1_GPS: "P1:GPS",
-            STATE_PARKUR_2_GAP: "P2:NAV",
+            STATE_PARKUR_2_GAP: "P2:HSV+NAV",
             STATE_CHECKPOINT_STOP: "CHK:STOP",
             STATE_CHECKPOINT_ALIGN: "CHK:ALIGN",
             STATE_PARKUR_3_ATTACK: "ATTACK"
@@ -458,12 +454,14 @@ class VisualTargeting:
             if locked and state == STATE_PARKUR_3_ATTACK:
                 cv2.putText(img, "LOCK - ENGAGING", (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, self.RED, 2)
 
+        # HSV'den gelen sarı bubalar HUD'a çizilir (kaynak bilgisi ile)
         if self.yellow_buoys and (now - self.yellow_last_seen < 1.0):
             for i, (_, _, _, bbox) in enumerate(self.yellow_buoys):
                 x1, y1, x2, y2 = bbox
                 cv2.rectangle(img, (x1, y1), (x2, y2), self.YELLOW, 2)
-                cv2.putText(img, f"Y{i+1}", (x1, y1-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.YELLOW, 2)
-            cv2.putText(img, f"YELLOW: {len(self.yellow_buoys)}", (20, 70),
+                cv2.putText(img, f"Y{i+1}[HSV]", (x1, y1-5),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.YELLOW, 2)
+            cv2.putText(img, f"YELLOW(HSV): {len(self.yellow_buoys)}", (20, 70),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, self.YELLOW, 2)
 
         cv2.imshow("TACTICAL HUD", img)
@@ -720,7 +718,18 @@ class MissionController(Node):
             return
 
     def _parkour2_loop(self, cmd, now):
+        """
+        KURAL 2: Parkur 2 navigasyonu.
+          - Birincil hedef WP5'e doğru düz seyir (GPS PID).
+          - İki sarı buba görünüyorsa (HSV) LiDAR boşluk yönlendirmesi buna katkı sağlar.
 
+        KURAL 3: TEK GEÇİŞ KOŞULU.
+          - Stage 2 → Stage 3 geçişi YALNIZCA goal_dist <= 2.0 m olduğunda tetiklenir.
+          - Kamera, LiDAR, alan büyüklüğü veya yol açıklığına dayalı HİÇBİR erken
+            geçiş koşulu kalmamıştır. Bu kural mutlaktır ve değiştirilemez.
+        """
+
+        # ── Acil durum aktif ise öncelik ───────────────────────────────────────
         if self.emergency.active:
             def _gap_fn(pts):
                 return self.lidar_nav.find_largest_gap(
@@ -731,47 +740,46 @@ class MissionController(Node):
                 self.pub_cmd.publish(cmd)
             return
 
+        # ── WP5 mesafesi ve yönü ───────────────────────────────────────────────
         heading, goal_dist = self.gps_nav.wp5_heading(
             self.current_x, self.current_y, self.current_yaw
         )
 
         if self._log_counter % 10 == 0:
-            self.get_logger().info(f"📍 WP5:{goal_dist:.1f}m | Hybrid:{'✅' if self.hybrid_complete else '⏳'}")
+            self.get_logger().info(
+                f"📍 WP5: {goal_dist:.2f}m | "
+                f"Geçiş eşiği: 2.0m | "
+                f"Sarı(HSV): {len(self.vision.yellow_buoys)} duba"
+            )
 
-        points = self.lidar_nav.scan_to_cartesian(self.latest_scan) if self.latest_scan else np.array([])
-        is_clear, obs_count = self.lidar_nav.check_clear_path(points)
-
-        kamikaze_ready, reason = False, ""
-        v = self.vision
-
-        if (now - v.last_seen < 0.5) and v.area > MIN_TARGET_AREA and is_clear:
-            kamikaze_ready, reason = True, f"VISUAL+CLEAR (Area:{v.area:.0f}px)"
-
-        elif self.hybrid_complete and goal_dist < KAMIKAZE_ACTIVATION_DIST and is_clear:
-            kamikaze_ready, reason = True, f"ZONE+CLEAR ({goal_dist:.1f}m)"
-
-        elif goal_dist < KAMIKAZE_FORCE_DIST:
-            kamikaze_ready, reason = True, f"FORCE ({goal_dist:.1f}m)"
-
-        if kamikaze_ready:
+        # ╔══════════════════════════════════════════════════════════════════════╗
+        # ║  KURAL 3 — TEK VE YEGÂNEKİŞ KOŞULU                                ║
+        # ║  goal_dist <= 2.0 m olmadan Kamikaze modu KESİNLİKLE girmez.        ║
+        # ╚══════════════════════════════════════════════════════════════════════╝
+        if goal_dist <= 2.0:
             self.state = STATE_PARKUR_3_ATTACK
             self.attack_latch = True
             self.attack_phase = 'ALIGN'
-            self.get_logger().error(f"⚔️ KAMIKAZE AKTİF! {reason} → LATCH ON")
+            self.get_logger().error(
+                f"⚔️  PARKUR 2 TAMAMLANDI → KAMİKAZE AKTİF "
+                f"(goal_dist={goal_dist:.2f}m ≤ 2.0m)"
+            )
             return
 
-        if goal_dist < GOAL_THRESHOLD:
-            self.state = STATE_PARKUR_3_ATTACK
-            self.attack_latch = True
-            self.get_logger().warn("✅ PARKUR 2 TAMAMLANDI → KAMIKAZE")
-            return
+        # ── LiDAR tarama verisi ────────────────────────────────────────────────
+        points = (
+            self.lidar_nav.scan_to_cartesian(self.latest_scan)
+            if self.latest_scan else np.array([])
+        )
 
         if self.latest_scan is None:
+            # LiDAR henüz gelmedi — GPS yönüne yavaşça devam et
             cmd.linear.x = min(MIN_SPEED * 1.5, 0.5)
             cmd.angular.z = np.clip(heading * 0.3, -0.5, 0.5)
             self.pub_cmd.publish(cmd)
             return
 
+        # ── Duba geçiş tespiti (checkpoint mekanizması) ────────────────────────
         passage, side, new_y = self.lidar_nav.detect_buoy_passage(points, self.buoy_last_y)
         self.buoy_last_y = new_y
         if passage:
@@ -781,6 +789,7 @@ class MissionController(Node):
             self.get_logger().warn(f"🎯 DUBA GEÇİŞİ ({side}) → CHECKPOINT")
             return
 
+        # ── Sıkışma ve güvenlik kontrolü ──────────────────────────────────────
         stuck, s_reason = self.emergency.check_stuck(self.current_x, self.current_y, time.time())
         if stuck:
             self.emergency.trigger(0, points, time.time())
@@ -791,6 +800,7 @@ class MissionController(Node):
             self.emergency.trigger(side, points, time.time())
             return
 
+        # ── LiDAR tabanlı yönlendirme (HSV sarı bubalar katkı sağlar) ─────────
         result = self.lidar_nav.compute_steering(points, self.current_speed)
         if result is not None:
             curv, speed, la, near_obs = result
@@ -805,6 +815,7 @@ class MissionController(Node):
                     f"Obs:{near_obs:.1f}m | WP5:{goal_dist:.1f}m{'| 🛡️' if bubble else ''}"
                 )
         else:
+            # Yönlendirme sonucu yoksa GPS yönüne düz git
             cmd.linear.x = min(MIN_SPEED * 1.5, 0.5)
             cmd.angular.z = np.clip(heading * 0.3, -0.5, 0.5)
             self.pub_cmd.publish(cmd)
