@@ -31,7 +31,7 @@ def generate_launch_description():
         ),
         SetEnvironmentVariable(
             name='IGN_GAZEBO_SYSTEM_PLUGIN_PATH',
-            value=plugin_path
+            value=[plugin_path, ':', '/usr/local/lib/ardupilot_gazebo']
         ),
         SetEnvironmentVariable(
             name='IGN_GAZEBO_GUI_PLUGIN_PATH',
@@ -50,8 +50,13 @@ def generate_launch_description():
 
             additional_env={
                 '__NV_PRIME_RENDER_OFFLOAD': '1',
-                'LD_LIBRARY_PATH': [plugin_path, ':', EnvironmentVariable('LD_LIBRARY_PATH', default_value='')],
-                'IGN_GAZEBO_SYSTEM_PLUGIN_PATH': plugin_path,
+                'LD_LIBRARY_PATH': [
+                    plugin_path, ':', '/usr/local/lib/ardupilot_gazebo', ':',
+                    EnvironmentVariable('LD_LIBRARY_PATH', default_value='')
+                ],
+                'IGN_GAZEBO_SYSTEM_PLUGIN_PATH': [
+                    plugin_path, ':', '/usr/local/lib/ardupilot_gazebo'
+                ],
                 'IGN_GAZEBO_GUI_PLUGIN_PATH':    plugin_path,
                 'IGN_GAZEBO_RESOURCE_PATH': [model_path, ':', buoys_path],
             },
@@ -79,18 +84,20 @@ def generate_launch_description():
             output='screen'
         ),
 
-        Node(
-            package='ros_gz_sim',
-            executable='create',
-            name='spawn_roboboat',
-            arguments=[
-                '-topic', 'robot_description',
-                '-name', 'roboboat',
-                '-x', '0', '-y', '0', '-z', '0'
+        ExecuteProcess(
+            cmd=[
+                'bash', '-c',
+                'sleep 10 && '
+                'XACRO=$(ros2 pkg prefix workspace_gz --share)/description/roboboat/roboboat.xacro && '
+                'source /opt/ros/humble/setup.bash && '
+                'ros2 run xacro xacro "$XACRO" > /tmp/roboboat.urdf 2>/dev/null && '
+                'ign sdf -p /tmp/roboboat.urdf > /tmp/roboboat.sdf 2>/dev/null && '
+                'echo "[spawn] SDF generated, ArduPilot plugin count: $(grep -c ardupilot /tmp/roboboat.sdf)" && '
+                'ros2 run ros_gz_sim create -file /tmp/roboboat.sdf -name roboboat -x 0 -y 0 -z 0'
             ],
-            parameters=[{'use_sim_time': True}],
             output='screen'
         ),
+
 
         Node(
             package='ros_gz_bridge',

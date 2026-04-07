@@ -27,10 +27,12 @@
 5. [Paket Yapısı](#-paket-yapısı)
 6. [Kurulum ve Bağımlılıklar](#-kurulum-ve-bağımlılıklar)
 7. [Kullanım](#-kullanım)
-8. [Görev Senaryosu: TEKNOFEST Parkurları](#-görev-senaryosu-teknofest-parkurları)
-9. [ROS Topic Referansı](#-ros-topic-referansı)
-10. [Sorun Giderme](#-sorun-giderme)
-11. [Katkıda Bulunanlar](#-katkıda-bulunanlar)
+8. [**Uçtan Uca Sistem Akışı**](#-uçtan-uca-sistem-akışı)
+9. [**Algoritma Tasarımları**](#-algoritma-tasarımları)
+10. [Görev Senaryosu: TEKNOFEST Parkurları](#-görev-senaryosu-teknofest-parkurları)
+11. [ROS Topic Referansı](#-ros-topic-referansı)
+12. [Sorun Giderme](#-sorun-giderme)
+13. [Katkıda Bulunanlar](#-katkıda-bulunanlar)
 
 ---
 
@@ -234,12 +236,12 @@ flowchart TD
 
 ### Görev Aşamasına Göre `/cmd_vel` Otoritesi
 
-| Aşama | `/cmd_vel` Üreticisi | Nav2 Durumu |
-|-------|----------------------|-------------|
-| INIT | — | Bekliyor |
-| PARKUR 1 (WP1→WP4) | Mission Manager (PID) | Pasif |
-| PARKUR 2 (Slalom WP5) | Nav2 MPPI Kontrolcüsü | Aktif |
-| PARKUR 3 (Kamikaze) | Mission Manager (Görsel Servo) | İptal Edildi |
+| Aşama | `/cmd_vel` Üreticisi | Nav2 Durumu | Pixhawk Modu |
+|-------|----------------------|-------------|-------------|
+| INIT | — | Bekliyor | HOLD |
+| PARKUR 1 (WP1→WP4) | **Pixhawk dahili navigasyon** | Pasif | **AUTO** |
+| PARKUR 2 (Slalom WP5) | Nav2 MPPI Kontrolcüsü → MAVROS | Aktif | GUIDED |
+| PARKUR 3 (Kamikaze) | Mission Manager (Görsel Servo) → MAVROS | İptal Edildi | GUIDED |
 
 ---
 
@@ -461,17 +463,238 @@ ros2 run workspace_ros wasd_teleop
 
 ---
 
+## 🔄 Uçtan Uca Sistem Akışı
+
+> Bu bölüm, İDA'ya güç verilmesinden görevin sonuçlandırılmasına kadar gerçek donanım üzerindeki fonksiyonel süreci anlatmaktadır.
+
+### Gerçek Donanım Platformu
+
+| Bileşen | Donanım | Görev |
+|---------|---------|-------|
+| Hesaplama | Jetson Orin NX 8 GB | Algılama, görev yönetimi, ROS 2 |
+| Otopilot | Pixhawk Cube Orange (ArduRover) | Motor karması, IMU, GPS köprüsü |
+| Kamera | ZED 1.0 Stereo | Duba tespiti, kapı algılama |
+| LiDAR | Unitree L2 (3D) | Engel tespiti, kapı mesafesi |
+| GPS | M8N + Compass | Waypoint navigasyonu |
+| Haberleşme | 868 MHz Telemetri | Komut/izleme, kill-switch |
+| Güç | 2 × 4S 14.8V 12Ah LiPo | PDB → BEC → Tüm sistemler |
+
+### Adım 1 — Güç Verme ve Donanım Başlatma
+
+```
+1. 2× 4S LiPo bağlanır → Ana güç şalteri açılır
+2. Kill-switch pasif konuma alınır (motorlar kapalı)
+3. PDB üzerinden güç dağıtımı:
+   • Thruster ESC'ler → 14.8V direkt
+   • Jetson Orin NX  → 12V BEC
+   • Pixhawk          → 5.3V Power Module
+   • Unitree L2       → 12V BEC
+4. Pixhawk boot (~8s) → ArduRover firmware → M8N GPS fix bekler
+5. Jetson boot (~30s) → Ubuntu 22.04
+6. ZED 1.0 → USB 3.0 üzerinden Jetson'a otomatik bağlanır
+```
+
+### Adım 2 — `./start_all.sh auto` ile ROS 2 Node'larının Başlatılması
+
+| Sıra | Node / Servis | Çıktı Topic | Süre |
+|------|--------------|-------------|------|
+| 1 | `unitree_lidar_ros2` | `/roboboat/lidar/filtered` | ~5s |
+| 2 | `zed_wrapper` | `/zed/zed_node/left/image_rect_color` | ~8s |
+| 3 | `mavros_node` | `/mavros/global_position/local`, `/mavros/imu/data` | ~5s |
+| 4 | `pointcloud_to_laserscan` | `/roboboat/sensors/lidar/scan` | ~2s |
+| 5 | `mola_slam` | `map → odom TF` | +10s |
+| 6 | `robot_localization` EKF | `/odometry/filtered` | +3s |
+| 7 | `nav2_bringup` | `NavigateToPose action` | +10s |
+| 8 | `mission_manager` | `/cmd_vel`, `/mission_state` | +8s |
+| 9 | `kamikaze_control_real` | `/gate_center`, `/kamikaze_target`, `/kamikaze_locked` | +1s |
+| 10 | `converter` | `/mavros/rc/override` | +2s |
+
+### Adım 3 — INIT: GPS Waypoint Dönüşümü
+
+Sistem hazır olduktan sonra `mission_manager` INIT aşamasına girer:
+
+```
+waypoints.json okunur → WP1, WP2, WP3, WP4, WP5
+    ↓
+/fromLL servisi çağrılır (robot_localization)
+    → GPS (lat/lon) koordinatları → Harita çerçevesi (x, y) metre
+    ↓
+Tüm dönüşümler tamamlanınca → PARKUR 1 başlar
+```
+
+> M8N GPS, 3D fix ve HDOP < 2.0 gelmeden sistem bekler.
+
+### Adım 4 — Parkur Geçişleri ve Görev Sonlandırma
+
+```mermaid
+flowchart LR
+    A([BOOT\nPixhawk + Jetson\nGPS fix]) -->|GPS fix + node hazır| B
+    B([INIT\nWaypoint\nDönüşümü]) -->|WP1-5 haritaya\nçevrildi| C
+    C([PARKUR 1\nWP1 → WP4\nPID Kontrolü]) -->|WP4 dist < 4.0m| D
+    D([PARKUR 2\nKapı Geçişi\nNav2 + Görsel Servo]) -->|WP5 dist <= 2.0m| E
+    E([PARKUR 3\nKamikaze\nYOLOv8 + HSV]) -->|Temas / timeout| F
+    F([TAMAMLANDI\ncmd_vel = 0\nKill-switch])
+```
+
+| Geçiş | Tetikleyici Koşul |
+|-------|------------------|
+| Boot → INIT | Tüm ROS 2 node'ları başladı |
+| INIT → Parkur 1 | `waypoints.json` dönüşümü tamamlandı |
+| Parkur 1 → Parkur 2 | WP4'e mesafe < 4.0 m |
+| Parkur 2 → Parkur 3 | WP5'e mesafe ≤ 2.0 m (tek geçiş koşulu) |
+| Parkur 3 → Tamamlandı | Kamikaze temas veya timeout |
+
+---
+
+## 🧠 Algoritma Tasarımları
+
+> Her parkur için hangi sensör verilerinin nasıl kullanıldığı ve temel algoritma akışı aşağıda tanımlanmıştır.
+
+### Parkur 1 — Pixhawk AUTO Modu ile GPS Waypoint Navigasyonu
+
+**Kullanılan Sensörler:**
+- **M8N GPS** (5 Hz) → Pixhawk dahili navigasyon için konum kaynağı
+- **Pixhawk IMU** (200 Hz) → Dahili EKF3 yaw ve hız tahmini
+- **Pixhawk EKF3** → Konum, yön ve hız füzyonu
+
+**Algoritma Akışı:**
+
+Waypoint koordinatları Jetson üzerinden MAVROS `/mavros/mission/push` servisi ile Pixhawk'a yüklenir. Pixhawk **AUTO moda** alınır. Pixhawk'ın dahili **L1 navigasyon kontrolcüsü**, GPS ve IMU verilerini EKF3 ile birleştirerek WP1→WP4 rotasını takip eder. Thruster PWM karması Pixhawk tarafından doğrudan üretilir. Jetson bu aşamada `/mavros/mission/reached` topic'ini dinler; WP4 mesajı alındığında Pixhawk GUIDED moda geçirilir ve Parkur 2 başlar.
+
+```mermaid
+flowchart TD
+    GPS["M8N GPS\n5 Hz"]
+    IMU["Pixhawk Dahili IMU\n200 Hz"]
+
+    subgraph PX["Pixhawk Cube Orange — AUTO Mod"]
+        EKF3["Dahili EKF3\nKonum + Yön + Hız"]
+        L1["L1 Navigasyon Kontrolcüsü\nWP1 → WP2 → WP3 → WP4"]
+        MIX["Motor Mikser\nDiferansiyel PWM Üretimi"]
+        EKF3 --> L1 --> MIX
+    end
+
+    GPS --> EKF3
+    IMU --> EKF3
+    MIX --> THR["Sol Thruster + Sağ Thruster"]
+
+    PX -->|"/mavros/mission/reached"| JET["Jetson\nmission_manager\n(yalnızca izler)"]
+    JET -->|"WP4 reached\n→ GUIDED mod\n→ Parkur 2"| P2(["PARKUR 2"])
+```
+
+**WP Toleransı:** ArduRover parametresi `WPNAV_RADIUS` ile ayarlanır (varsayılan ~2 m).
+
+**P1 → P2 Geçiş:** `/mavros/mission/reached` topic'inde WP4 indeksi görüldüğünde `mission_manager` P2'yi tetikler.
+
+---
+
+### Parkur 2 — HPV Kapı Tespiti + Nav2 MPPI Engel Kaçınma
+
+**Kullanılan Sensörler:**
+- **ZED 1.0 Kamera** → HSV sarı duba tespiti
+- **Unitree L2 LiDAR → `/roboboat/sensors/lidar/scan`** → Kapı mesafesi ve engel costmap
+- **M8N GPS + EKF** → WP5 mesafesi takibi ve fallback yönlendirme
+- **Nav2 MPPI** → Arka planda engel kaçınma costmap yönetimi
+
+**Algoritma Akışı:**
+
+`kamikaze_control_real` node'u kameradan sarı dubaları HSV ile tespit edip LiDAR mesafesiyle birleştirerek `/gate_center` yayınlar. `mission_manager` bu bilgiyi görsel servo (P-kontrolcü) olarak kullanır. Sarı duba kaybolursa GPS yönünde kör ilerleme (fallback) devreye girer.
+
+```mermaid
+flowchart TD
+    CAM["ZED 1.0 Kamera\n/zed/zed_node/left/image_rect_color"]
+    LID["Unitree L2 LiDAR\n/roboboat/lidar/filtered"]
+    PC2LS["pointcloud_to_laserscan\n/roboboat/sensors/lidar/scan"]
+    NAV2["Nav2 MPPI\nEngel Kaçınma Costmap"]
+
+    subgraph KMZ["kamikaze_control_real"]
+        HSV["HSV Sarı Filtresi\nH:26-38 S:100+ V:40+\nEn büyük 2 kontur"]
+        GD["GateDetector\nLiDAR mesafe füzyonu\ngate_x gate_y hesapla"]
+        HSV --> GD
+    end
+
+    subgraph MM2["mission_manager"]
+        GS["Görsel Servo\n/gate_center → P-kontrolcü\n→ /cmd_vel"]
+        FB["GPS Fallback\nSarı duba yok 2.5s\n→ WP5 yönü"]
+        CHK2{"dist_to_WP5\n<= 2.0 m?"}
+    end
+
+    CAM --> HSV
+    LID --> PC2LS
+    PC2LS --> GD
+    PC2LS --> NAV2
+    GD -->|"/gate_center"| GS
+    GS --> CHK2
+    FB --> CHK2
+    GS -->|"2.5s timeout"| FB
+    CHK2 -->|"Hayır"| GS
+    CHK2 -->|"Evet"| P3(["PARKUR 3"])
+    GS --> CMD2["/cmd_vel → converter\n→ MAVROS → Thrusters"]
+    FB --> CMD2
+```
+
+**GateDetector Mantığı:**
+- 2 sarı duba: Piksel midpoint → LiDAR açısından mesafe → `gate_x, gate_y (base_link)`
+- 1 sarı duba: ±1.125 m sanal ofset ile kapı tahmini
+- 0 sarı duba: `/yellow_visible = False`, GPS fallback başlar
+
+---
+
+### Parkur 3 — TensorRT YOLOv8 + HSV Renk Doğrulama ile Kamikaze Saldırısı
+
+**Kullanılan Sensörler:**
+- **ZED 1.0 Kamera** (15 FPS) → YOLOv8 + HSV pipeline girişi
+- **Jetson Orin NX GPU** (Ampere 32 Tensor Core) → TensorRT `best.engine` çıkarımı
+- **Jetson CPU** → HSV ColorVerifier (BB içi ROI)
+
+**Algoritma Akışı:**
+
+Özel duba veri setiyle eğitilmiş YOLOv8 modeli TensorRT `.engine` formatına dönüştürülmüş ve Jetson GPU'sunda çalıştırılmaktadır. Her bounding box için CPU'da HSV renk doğrulaması yapılır. 6 ardışık frame onayı sonrası tam hız saldırı başlar.
+
+```mermaid
+flowchart TD
+    CAM2["ZED 1.0 Kamera\n/zed/zed_node/left/image_rect_color\n15 FPS"]
+
+    subgraph JET["kamikaze_control_real — Jetson Orin NX"]
+        YOLO["YOLOv8 TensorRT GPU\nbest.engine 640x384px\nSinif 0:Kirmizi 1:Yesil 2:Siyah 3:Sari"]
+        HSV2["HSV ColorVerifier CPU\nYalnizca BB ici ROI\nRenk orani >= yüzde 12?"]
+        CNT["Kilit Sayaci\nconfirm_count++"]
+        LOCK["confirm_count >= 6?\n/kamikaze_locked = True\n/kamikaze_target yayinla"]
+        YOLO -->|"BB bulundu"| HSV2
+        YOLO -->|"BB yok lost_frames++"| YOLO
+        HSV2 -->|"Gecti"| CNT
+        HSV2 -->|"False positive"| YOLO
+        CNT --> LOCK
+    end
+
+    subgraph ATK["mission_manager — Saldiri"]
+        EXEC["Nav2 IPTAL\nTAM HIZ /cmd_vel\nlinear_x = max\nangular_z = hedef hizalama"]
+    end
+
+    CAM2 --> YOLO
+    LOCK -->|"Kilit onaylandi"| EXEC
+    LOCK -->|"Henuz 6 frame yok\ndusuk hiz devam"| CAM2
+    EXEC --> CMD3["/cmd_vel → converter\n→ MAVROS RC_Override\n→ Sol+Sag Thruster\nTAM HIZ"]
+    CMD3 --> END(["Hedef Temas\nGorev Tamamlandi"])
+```
+
+**Hedef Renk Seçimi:**
+- `init_target_color` ROS 2 parametresi ile başlangıçta ayarlanır (`0`=Kırmızı, `1`=Yeşil, `2`=Siyah)
+- 868 MHz telemetri üzerinden `/kamikaze_color_cmd` (Int32) ile runtime değiştirilebilir
+- İletişim kesilirse parametre değeri geçerliliğini korur (failsafe)
+
+---
+
 ## 🏁 Görev Senaryosu: TEKNOFEST Parkurları
 
-### Parkur 1 — GPS Bazlı Waypoint Navigasyonu
+### Parkur 1 — Pixhawk AUTO Modu ile GPS Waypoint Navigasyonu
+
+**Mimari:** Parkur 1'de navigasyon hesaplaması **tamamen Pixhawk Cube Orange** üzerinde gerçekleşir. Waypoint koordinatları Jetson üzerinden MAVROS aracılığıyla Pixhawk'a mission olarak yüklenir. Pixhawk **AUTO moduna** alınır ve dahili **EKF3 + L1 navigasyon algoritması** ile WP1'den WP4'e kadar olan rotayı takip eder. Diferansiyel thruster karması (sol/sağ PWM) doğrudan Pixhawk tarafından üretilir. Jetson bu aşamada yalnızca `/mavros/mission/reached` topic'ini izler; WP4'e ulaşıldığında durum makinesi tetiklenir ve Pixhawk GUIDED moda alınarak Parkur 2 başlar.
 
 ```
-[Başlangıç] ──PID──► [WP1] ──PID──► [WP2] ──PID──► [WP3] ──PID──► [WP4]
+    [Başlangıç] ──AUTO──► [WP1] ──► [WP2] ──► [WP3] ──► [WP4]
+                   Pixhawk iç navigasyon (EKF3 + L1)
+                   Jetson yalnızca /mavros/mission/reached izler
 ```
-
-- **Kontrol:** Özel PID Yaw Kontrolcüsü doğrudan `/cmd_vel` üretir
-- **Geçiş:** Her WP için 1.5 m toleransla veya 4.0 m yakınlık yedekleme ile tamamlanır
-- **MPPI:** Bu aşamada devre dışı — Nav2 yalnızca izler
 
 ### Parkur 2 — MPPI Slalom Kapı Geçişi
 

@@ -587,6 +587,70 @@
       <nRR>32.0</nRR>
     </plugin>
 
+    <!-- ════════════════════════════════════════════════════════════
+         ArduPilot SITL <-> Gazebo Fortress Köprüsü
+         ════════════════════════════════════════════════════════════
+         FRAME_CLASS=2 (Boat)  |  FRAME_TYPE=1 (Skid-Steering)
+
+         SERVO Eşleme (0-indexed channel):
+           ch=0  → SERVO1_FUNCTION=73 (ThrottleLeft)  → Sol Pervane
+           ch=2  → SERVO3_FUNCTION=74 (ThrottleRight) → Sağ Pervane
+
+         SITL UDP:
+           fdm_port_in=9002   (Gazebo → SITL fizik verisi)
+           fdm_port_out=9003  (SITL → Gazebo motor komutu)
+
+         multiplier: 150 N — 10 kg tekne+thrust_coefficient=0.1 için
+         başlangıç değeri. Titreme olursa 100'e düşür, yavaşlık
+         olursa 250'ye çıkar ve test et.
+         ════════════════════════════════════════════════════════════ -->
+    <plugin
+      filename="libArduPilotPlugin.so"
+      name="ArduPilotPlugin">
+
+      <!-- IMU: xacro'daki sensor adıyla eşleşmeli (satır 437) -->
+      <imuName>sensor_imu</imuName>
+      <imuTopicName>/roboboat/imu/imu</imuTopicName>
+
+      <!-- SITL UDP -->
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <fdm_port_out>9003</fdm_port_out>
+
+      <!-- Bağlantı zaman aşımı -->
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+
+      <!-- Kontrol döngüsü frekansı -->
+      <control_hz>400</control_hz>
+
+      <!-- Araç çerçevesi → NED dönüşümü -->
+      <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+      <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
+
+      <!-- ── Sol Motor (SERVO1 = channel 0) ── -->
+      <control channel="0">
+        <jointName>left_housing_link_to_left_prop_link</jointName>
+        <useForce>1</useForce>
+        <multiplier>150</multiplier>
+        <offset>0</offset>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>EFFORT</type>
+      </control>
+
+      <!-- ── Sağ Motor (SERVO3 = channel 2) ── -->
+      <control channel="2">
+        <jointName>right_housing_link_to_right_prop_link</jointName>
+        <useForce>1</useForce>
+        <multiplier>150</multiplier>
+        <offset>0</offset>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>EFFORT</type>
+      </control>
+
+    </plugin>
+
   </gazebo>
 
   <joint name="base_link_to_gps_link" type="fixed">

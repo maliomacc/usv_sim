@@ -101,14 +101,15 @@ sleep 3
 
 # Ignition Gazebo (Fortress) için environment değişkenleri
 export IGN_GAZEBO_RESOURCE_PATH="${COLCON_WS}/install/workspace_gz/share/workspace_gz/models:${IGN_GAZEBO_RESOURCE_PATH}"
-export IGN_GAZEBO_SYSTEM_PLUGIN_PATH="${COLCON_WS}/install/workspace_gz/lib/workspace_gz:${IGN_GAZEBO_SYSTEM_PLUGIN_PATH}"
+export IGN_GAZEBO_SYSTEM_PLUGIN_PATH="${COLCON_WS}/install/workspace_gz/lib/workspace_gz:/usr/local/lib/ardupilot_gazebo:${IGN_GAZEBO_SYSTEM_PLUGIN_PATH}"
 export IGN_GAZEBO_GUI_PLUGIN_PATH="${COLCON_WS}/install/workspace_gz/lib/workspace_gz:${IGN_GAZEBO_GUI_PLUGIN_PATH}"
 
 # LD_LIBRARY_PATH: libWaves.so ve diger paylasilan plugin bagimlilik kutuphane dosyalarinin
 # runtime linker tarafindan bulunabilmesi icin zorunludur.
 # (IGN_GAZEBO_SYSTEM_PLUGIN_PATH yalnizca Ignition'un plugin arama listesidir,
 #  runtime SO bagimliliklari icin LD_LIBRARY_PATH ayrica ayarlanmalidir.)
-export LD_LIBRARY_PATH="${COLCON_WS}/install/workspace_gz/lib/workspace_gz:${LD_LIBRARY_PATH}"
+# /usr/local/lib/ardupilot_gazebo: ArduPilot SITL <-> Gazebo köprü plugin'i
+export LD_LIBRARY_PATH="${COLCON_WS}/install/workspace_gz/lib/workspace_gz:/usr/local/lib/ardupilot_gazebo:${LD_LIBRARY_PATH}"
 
 echo -e "${GREEN}[3/4] Gazebo simülasyonu başlatılıyor (GUI mod)...${NC}"
 echo -e "${YELLOW}  Gazebo penceresi açılacak, lütfen bekleyin...${NC}"
