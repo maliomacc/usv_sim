@@ -9,14 +9,14 @@ class WasdTeleop(Node):
     def __init__(self):
         super().__init__('wasd_teleop')
 
-        self.left_pub = self.create_publisher(Float64, '/roboboat/thrusters/left/thrust', 10)
-        self.right_pub = self.create_publisher(Float64, '/roboboat/thrusters/right/thrust', 10)
+        self.left_pub = self.create_publisher(Float64, '/roboboat/thrusters/left/thrust', 5)
+        self.right_pub = self.create_publisher(Float64, '/roboboat/thrusters/right/thrust', 5)
 
         # İleri/Geri ve Dönüş hızları için limit parametreleri tanımlanıyor
-        self.declare_parameter('max_linear', 20.0)
-        self.declare_parameter('min_linear', 12.0)
-        self.declare_parameter('max_turn', 10.0)
-        self.declare_parameter('min_turn', 5.0)
+        self.declare_parameter('max_linear', 10.0)
+        self.declare_parameter('min_linear', 5.0)
+        self.declare_parameter('max_turn', 5.0)
+        self.declare_parameter('min_turn', 2.0)
         self.declare_parameter('speed_step', 1.0) # Hız artırma/azaltma adımı
 
         self.max_linear = self.get_parameter('max_linear').value

@@ -1,0 +1,36 @@
+# =============================================================================
+# rplidar_filters.yaml — Maritime Laser Filter Chain
+# TEKNOFEST USV | workspace_ros/config/
+# =============================================================================
+
+laser_filter_chain:
+  ros__parameters:
+    scan_filter_chain:
+      
+      # ── Filter 1: Range Gate ───────────────────────────────────────────────
+      filter1:
+        name: range_filter
+        type: laser_filters/LaserScanRangeFilter
+        params:
+          use_message_range_limits: false
+          lower_threshold: 0.2
+          upper_threshold: 8.0
+          lower_replacement_value: .inf
+          upper_replacement_value: .inf
+
+      # ── Filter 2: Angular Bounds (Hull Footprint Mask) ─────────────────────
+      filter2:
+        name: footprint_angle_filter
+        type: laser_filters/LaserScanAngularBoundsFilterInPlace
+        params:
+          lower_angle: -2.879  # -165° in radians
+          upper_angle:  2.879  # +165° in radians
+
+      # ── Filter 3: Speckle / Median Filter (Water Splash Noise) ─────────────
+      filter3:
+        name: speckle_filter
+        type: laser_filters/LaserScanSpeckleFilter
+        params:
+          filter_type: 1           # 1 = Distance-based speckle detection
+          max_range_difference: 0.5
+          filter_window: 2

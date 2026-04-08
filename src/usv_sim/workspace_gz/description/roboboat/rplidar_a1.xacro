@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!-- ============================================================ -->
+<!-- RPLidar A1M8 — 2D LiDAR Xacro (Ignition Gazebo Fortress)    -->
+<!-- ============================================================ -->
+<!-- Hardware Spec (Real Sensor):                                  -->
+<!--   Horizontal FOV  : 360°, 360 samples (1°/beam)             -->
+<!--   Vertical Channels: 1  ← Pure 2D laser plane               -->
+<!--   Min Range       : 0.15 m                                   -->
+<!--   Max Range       : 8.0 m                                    -->
+<!--   Update Rate     : 5.5 Hz                                   -->
+<!--   Noise           : Gaussian σ = 0.01 m                      -->
+<!--                                                              -->
+<!-- ROS 2 Bridge (add to simulation.launch.py):                  -->
+<!--   /roboboat/sensors/lidar/scan                               -->
+<!--   @sensor_msgs/msg/LaserScan                                 -->
+<!--   [ignition.msgs.LaserScan                                   -->
+<!--                                                              -->
+<!-- Published Topic: /scan  (after remapping in bridge)          -->
+<!-- ============================================================ -->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  Physical link — RPLidar A1M8 body (cylindrical housing)  -->
+  <!--  Dimensions: ∅77mm × 41mm, mass: 170g                    -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <link name="rplidar_a1_link">
+
+    <!-- Visual: cylindrical base body -->
+    <visual name="visual_rplidar_body">
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.041" radius="0.0385"/>
+      </geometry>
+      <material name="rplidar_black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+
+    <!-- Visual: rotating scan head (top disc) -->
+    <visual name="visual_rplidar_head">
+      <origin xyz="0.0 0.0 0.025" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.010" radius="0.022"/>
+      </geometry>
+      <material name="rplidar_dark_grey">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+    </visual>
+
+    <!-- Collision geometry -->
+    <collision name="collision_rplidar">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.045" radius="0.040"/>
+      </geometry>
+    </collision>
+
+    <!-- Inertia: m=0.17kg, r=0.0385m, h=0.041m -->
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <mass value="0.17"/>
+      <inertia
+        ixx="0.0001063" ixy="0.0" ixz="0.0"
+        iyy="0.0001063" iyz="0.0"
+        izz="0.0001261"/>
+    </inertial>
+
+  </link>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  Ignition Gazebo gpu_lidar sensor definition             -->
+  <!--                                                          -->
+  <!--  CRITICAL: <vertical><samples>1</samples>                -->
+  <!--  This single vertical sample creates a PURE 2D laser     -->
+  <!--  plane. The plugin outputs sensor_msgs/LaserScan         -->
+  <!--  (not PointCloud2) when vertical samples == 1.           -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <gazebo reference="rplidar_a1_link">
+
+    <sensor name="sensor_rplidar_a1" type="gpu_lidar">
+
+      <!-- Ignition topic. ros_gz_bridge maps this to /scan -->
+      <topic>/roboboat/sensors/lidar/scan</topic>
+
+      <!-- TF frame for the scan header -->
+      <gz_frame_id>rplidar_a1_link</gz_frame_id>
+
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+
+      <!-- RPLidar A1M8 nominal scan rate: 5.5 Hz -->
+      <update_rate>5.5</update_rate>
+
+      <ray>
+        <scan>
+
+          <!-- ── Horizontal: 360° full sweep, 360 beams ── -->
+          <!-- Resolution: 1°/beam  →  samples=360         -->
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159265358979</min_angle>
+            <max_angle>3.14159265358979</max_angle>
+          </horizontal>
+
+          <!-- ── Vertical: EXACTLY 1 sample ─────────────── -->
+          <!-- This collapses the 3D ray-cast into a single  -->
+          <!-- horizontal plane → pure 2D LaserScan output.  -->
+          <!-- min_angle == max_angle == 0 ensures the plane -->
+          <!-- is perfectly horizontal (no tilt).            -->
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>0.0</max_angle>
+          </vertical>
+
+        </scan>
+
+        <range>
+          <!-- RPLidar A1M8 blind zone: 0.15 m -->
+          <min>0.15</min>
+          <!-- RPLidar A1M8 max range: 8.0 m (indoor/low-reflectivity) -->
+          <max>8.0</max>
+          <!-- 1 cm range resolution -->
+          <resolution>0.01</resolution>
+        </range>
+
+        <!-- Gaussian noise: A1M8 typical ±1 cm accuracy -->
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+
+      </ray>
+
+    </sensor>
+
+  </gazebo>
+
+</robot>

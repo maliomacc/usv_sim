@@ -22,7 +22,8 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 
 from sensor_msgs.msg import Image, LaserScan
 from std_msgs.msg import Bool, Int32
-from geometry_msgs.msg import Point, PoseStamped, Twist
+from geometry_msgs.msg import Point, PointStamped, PoseStamped, Twist
+from geometry_msgs.msg import PointStamped as FusionTarget
 
 
 # =============================================================================
@@ -313,6 +314,12 @@ class KamikazeControl(Node):
 
         self.bridge       = CvBridge()
         self.latest_image = None
+        self.latest_scan  = None
+
+        # Sensör füzyon verisi (mesafe + kaynak)
+        self._fusion_dist:   float = -1.0   # -1 = bilinmiyor
+        self._fusion_source: float = -1.0   # 0=LiDAR, 1=ZED, -1=yok
+        self._fusion_yaw:    float = 0.0
 
         sensor_qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
@@ -322,20 +329,23 @@ class KamikazeControl(Node):
 
         # ── Abonelikler ──────────────────────────────────────────────────────
         self.create_subscription(
-            Image, '/roboboat/sensors/camera/image',
+            Image, '/camera/image',
             self._image_cb, sensor_qos,
         )
         self.create_subscription(
-            LaserScan, '/roboboat/sensors/lidar/scan',
+            LaserScan, '/scan',
             self._scan_cb, sensor_qos,
         )
         self.create_subscription(
             Int32, '/kamikaze_color_cmd',
             self._color_cmd_cb, 10,
         )
-
+        self.create_subscription(
+            PointStamped, '/fusion/target',
+            self._fusion_cb, 10,
+        )
         # ── Yayıncılar ───────────────────────────────────────────────────────
-        self._target_pub         = self.create_publisher(Point,       '/kamikaze_target', 10)
+        self._target_pub         = self.create_publisher(Point,        '/kamikaze_target', 10)
         self._locked_pub         = self.create_publisher(Bool,        '/kamikaze_locked', 10)
         self._cmd_pub            = self.create_publisher(Twist,       '/cmd_vel',         10)
         self._gate_pub           = self.create_publisher(PoseStamped, '/gate_center',     10)
@@ -372,7 +382,13 @@ class KamikazeControl(Node):
             )
 
     def _scan_cb(self, msg: LaserScan) -> None:
+        self.latest_scan = msg
         self._gate_detector.update_scan(msg)
+
+    def _fusion_cb(self, msg: PointStamped) -> None:
+        self._fusion_dist   = msg.point.x   # metre, -1.0 = açı-only
+        self._fusion_yaw    = msg.point.y   # rad
+        self._fusion_source = msg.point.z   # 0=LiDAR, 1=ZED, -1=yok
 
     def _color_cmd_cb(self, msg: Int32) -> None:
         """
@@ -404,14 +420,60 @@ class KamikazeControl(Node):
 
     def _display_loop(self) -> None:
         if self.latest_image is None:
+            self.get_logger().warn(
+                '[Gözcü] Görüntü yok — /roboboat/sensors/camera/image bekleniyor...',
+                throttle_duration_sec=3.0,
+            )
             return
 
         frame         = self.latest_image.copy()
         height, width = frame.shape[:2]
-        cx_f, cy_f    = width // 2, height // 2   # frame merkezi
+        cx_f, cy_f    = width // 2, height // 2
+
+        color      = self._target_color
+        color_bgr  = TARGET_COLORS_BGR[color]
+        color_name = TARGET_NAMES[color]
+
+        # ── HSV maskelerini küçük önizleme için üret ──────────────────────
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+        # Sarı maske
+        ymask = cv2.inRange(hsv, HSV_YELLOW_LOW, HSV_YELLOW_HIGH)
+        omask = cv2.inRange(hsv, HSV_ORANGE_EXCL_LOW, HSV_ORANGE_EXCL_HIGH)
+        ymask = cv2.bitwise_and(ymask, cv2.bitwise_not(omask))
+
+        # Hedef renk maskesi
+        if color == TARGET_RED:
+            m1 = cv2.inRange(hsv, HSV_RED1_LOW,   HSV_RED1_HIGH)
+            m2 = cv2.inRange(hsv, HSV_RED2_LOW,   HSV_RED2_HIGH)
+            tmask = cv2.bitwise_or(m1, m2)
+        elif color == TARGET_GREEN:
+            tmask = cv2.inRange(hsv, HSV_GREEN_LOW, HSV_GREEN_HIGH)
+        else:
+            tmask = cv2.inRange(hsv, HSV_BLACK_LOW, HSV_BLACK_HIGH)
+
+        # Maskeleri renkli göster (sarı=sarı, hedef=hedef rengi)
+        thumb_h, thumb_w = height // 4, width // 4
+        ymask_bgr  = cv2.cvtColor(ymask,  cv2.COLOR_GRAY2BGR)
+        tmask_bgr  = cv2.cvtColor(tmask,  cv2.COLOR_GRAY2BGR)
+        # Sarı maskeye sarı tint
+        ymask_col  = ymask_bgr.copy()
+        ymask_col[:, :, 0] = 0   # B=0
+        ymask_col[:, :, 2] = 0   # R=0 → sadece G kanalı → yeşil-sarı filtre için
+        ymask_col  = cv2.addWeighted(ymask_bgr, 0.6,
+                         np.full_like(ymask_bgr, (0, 200, 200)), 0.4, 0)
+        ymask_col  = cv2.bitwise_and(ymask_col,
+                         cv2.cvtColor(ymask, cv2.COLOR_GRAY2BGR))
+        # Hedef maskeye hedef rengi tint
+        tmask_col  = cv2.bitwise_and(
+                         np.full_like(tmask_bgr, color_bgr),
+                         cv2.cvtColor(tmask, cv2.COLOR_GRAY2BGR))
+
+        ymask_sm   = cv2.resize(ymask_col,  (thumb_w, thumb_h))
+        tmask_sm   = cv2.resize(tmask_col,  (thumb_w, thumb_h))
 
         # ═══════════════════════════════════════════════════════════════════
-        # PARKUR 2 — HSV SARI DUBA (Kapı Geçişi)
+        # PARKUR 2 — HSV SARI DUBA TESPİTİ
         # ═══════════════════════════════════════════════════════════════════
         yellow_buoys = _hsv_detect_yellow(frame)
         self._gate_detector.detect_and_publish(frame, yellow_buoys, width)
@@ -424,12 +486,8 @@ class KamikazeControl(Node):
             )
 
         # ═══════════════════════════════════════════════════════════════════
-        # PARKUR 3 — DİNAMİK HSV HEDEF TESPİTİ (Kamikaze)
+        # PARKUR 3 — HEDEF RENK TESPİTİ (Kamikaze)
         # ═══════════════════════════════════════════════════════════════════
-        color     = self._target_color
-        color_bgr = TARGET_COLORS_BGR[color]
-        color_name = TARGET_NAMES[color]
-
         targets = _detect_color(frame, color)
 
         if targets:
@@ -439,18 +497,75 @@ class KamikazeControl(Node):
         else:
             self._handle_lost(frame, color_name)
 
-        # ── HUD — merkez artı + özet ────────────────────────────────────────
-        cv2.line(frame, (cx_f - 20, cy_f), (cx_f + 20, cy_f), (0, 255, 0), 2)
-        cv2.line(frame, (cx_f, cy_f - 20), (cx_f, cy_f + 20), (0, 255, 0), 2)
+        # ── Merkez nişangâh ──────────────────────────────────────────────
+        cv2.line(frame, (cx_f - 25, cy_f), (cx_f + 25, cy_f), (0, 255, 0), 2)
+        cv2.line(frame, (cx_f, cy_f - 25), (cx_f, cy_f + 25), (0, 255, 0), 2)
+        cv2.circle(frame, (cx_f, cy_f), 5, (0, 255, 0), -1)
 
-        status_txt = (f'HEDEF: {color_name} '
-                      f'| S:{len(yellow_buoys)} '
-                      f'| HSV-ONLY')
+        # ── Sarı maske önizlemesi — sol alt köşe ─────────────────────────
+        py, px = height - thumb_h - 5, 5
+        cv2.rectangle(frame, (px - 2, py - 18), (px + thumb_w + 2, py + thumb_h + 2),
+                      (0, 200, 200), 1)
+        frame[py:py + thumb_h, px:px + thumb_w] = ymask_sm
+        cv2.putText(frame, f'SARI MASKE ({len(yellow_buoys)} duba)',
+                    (px, py - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 200, 200), 1)
+
+        # ── Hedef maske önizlemesi — sağ alt köşe ────────────────────────
+        px2 = width - thumb_w - 5
+        cv2.rectangle(frame, (px2 - 2, py - 18), (px2 + thumb_w + 2, py + thumb_h + 2),
+                      color_bgr, 1)
+        frame[py:py + thumb_h, px2:px2 + thumb_w] = tmask_sm
+        cv2.putText(frame, f'{color_name} MASKE',
+                    (px2, py - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.42, color_bgr, 1)
+
+        # ── Sensör Füzyon bilgisi — sağ üst köşe ─────────────────────────
+        src_names = {0.0: 'LiDAR', 1.0: 'ZED', -1.0: 'YOK'}
+        src_name  = src_names.get(self._fusion_source, '?')
+        src_col   = {0.0: (0, 200, 255), 1.0: (255, 200, 0), -1.0: (80, 80, 80)}
+        src_c     = src_col.get(self._fusion_source, (80, 80, 80))
+        dist_txt  = (f'{self._fusion_dist:.2f} m' if self._fusion_dist >= 0
+                     else 'BILINMIYOR')
+        yaw_deg   = math.degrees(self._fusion_yaw)
+
+        fusion_lines = [
+            ('SENSOR FUZYON', (200, 200, 200)),
+            (f'Mesafe : {dist_txt}',    src_c),
+            (f'Kaynak : {src_name}',    src_c),
+            (f'Aci    : {yaw_deg:+.1f}°', (200, 200, 200)),
+        ]
+        fx, fy = width - 240, 12
+        for i, (txt, col) in enumerate(fusion_lines):
+            cv2.putText(frame, txt, (fx, fy + i * 20),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.52, col, 1)
+
+        # ── Scan bağlantı durumu — sol üst ───────────────────────────────
+        scan_ok  = self.latest_scan is not None
+        cam_ok   = True   # buraya geldiyse görüntü var
+        scan_col = (0, 220, 0) if scan_ok else (0, 0, 220)
+        cv2.putText(frame, f'CAM: OK',
+                    (8, 18), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 220, 0), 1)
+        cv2.putText(frame, f'LiDAR: {"OK" if scan_ok else "YOK"}',
+                    (8, 36), cv2.FONT_HERSHEY_SIMPLEX, 0.5, scan_col, 1)
+        fusion_conn = self._fusion_dist != -1.0 or self._fusion_source != -1.0
+        fus_col = (0, 220, 0) if fusion_conn else (80, 80, 80)
+        cv2.putText(frame, f'FUZYON: {"OK" if fusion_conn else "YOK"}',
+                    (8, 54), cv2.FONT_HERSHEY_SIMPLEX, 0.5, fus_col, 1)
+
+        # ── Alt durum çubuğu ─────────────────────────────────────────────
+        overlay = frame.copy()
+        cv2.rectangle(overlay, (0, height - 28), (width, height), (0, 0, 0), -1)
+        cv2.addWeighted(overlay, 0.6, frame, 0.4, 0, frame)
+        lock_sym  = '🔒 KİLİTLİ' if self.target_locked else 'ARAMA'
+        status_txt = (f'P2-SARI:{len(yellow_buoys)}  |  '
+                      f'P3-HEDEF:{color_name}  |  '
+                      f'{lock_sym}  |  '
+                      f'MESAFE:{dist_txt}  |  '
+                      f'HSV-ONLY')
         cv2.putText(frame, status_txt,
-                    (10, height - 12),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 255), 1)
+                    (8, height - 8),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.44, (0, 255, 255), 1)
 
-        cv2.imshow('YILDIZ USV | Kamikaze Vision', frame)
+        cv2.imshow('YILDIZ USV | Nesne Tanima Paneli', frame)
         cv2.waitKey(1)
 
     # ── Yardımcı metodlar ────────────────────────────────────────────────────
@@ -499,7 +614,8 @@ class KamikazeControl(Node):
             )
 
         # ── /kamikaze_target yayınla ──────────────────────────────────────
-        target_msg   = Point()
+        # mission_manager Point tipini bekliyor (geometry_msgs/Point)
+        target_msg = Point()
         target_msg.x = cx_norm
         target_msg.y = cy_norm
         target_msg.z = float(area)
@@ -519,21 +635,8 @@ class KamikazeControl(Node):
                 f'{color_name} HEDEFE TAM HIZ SALDIRI! Alan={area:.0f}px²'
             )
 
-        if self._lock_signal_sent:
-            # ══════════════════════════════════════════════════════════════
-            # TAM HIZ KAMİKAZE SERVO
-            # Açı hatası: frame merkezi ≡ 0.5; cx_norm > 0.5 → sağda
-            # angular.z < 0 → sağa dön (ROS sağ el kuralı)
-            # ══════════════════════════════════════════════════════════════
-            err_x     = 0.5 - cx_norm           # pozitif = hedef solda
-            angular_z = float(
-                max(-ATTACK_YAW_CLAMP,
-                    min( ATTACK_YAW_CLAMP, ATTACK_YAW_GAIN * err_x))
-            )
-            cmd          = Twist()
-            cmd.linear.x = ATTACK_MAX_SPEED     # TAM HIZ
-            cmd.angular.z = angular_z
-            self._cmd_pub.publish(cmd)
+        # cmd_vel bu node tarafından yayınlanmaz.
+        # mission_manager /kamikaze_target'i okur ve kendi cmd_vel'ini üretir.
 
         # ── HUD ──────────────────────────────────────────────────────────
         cx_px = int(tgt['cx'])

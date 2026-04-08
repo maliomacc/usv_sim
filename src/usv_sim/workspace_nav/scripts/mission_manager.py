@@ -599,7 +599,7 @@ class MissionManager(Node):
         self.declare_parameter('kamikaze_lost_timeout', 3.0)
         self.declare_parameter('nav2_action_server',    'navigate_to_pose')
         self.declare_parameter('fromll_service',        '/fromLL')
-        self.declare_parameter('control_hz',            10.0)
+        self.declare_parameter('control_hz',            20.0)
 
         p = self.get_parameter
         self._wp_file         = p('waypoints_file').value
@@ -822,14 +822,13 @@ class MissionManager(Node):
                 new_x = self._gate_fusion.active_wp['x']
                 new_y = self._gate_fusion.active_wp['y']
 
-                # KORUMA: Yeni WP5 tahmini robota çok yakınsa (< 3.0m) reddet.
-                # GateFusion yanlış bir frame'i kilitlemiş olabilir; bu koordinat
-                # dist_to_wp5 <= 2.0 geçişini anında tetikler.
+                # KORUMA 1: Yeni WP5 tahmini robota çok yakınsa (< 8.0m) reddet.
+                # (3.0m eşiği, 3.7m tespitinin geçmesine ve erken kamikaze'ye yol açmıştı.)
                 dist_to_new_wp5 = math.hypot(new_x - self._x, new_y - self._y)
-                if dist_to_new_wp5 < 3.0:
+                if dist_to_new_wp5 < 8.0:
                     self.get_logger().warn(
                         f'[GateFusion] WP5 güncelleme REDDEDİLDİ — '
-                        f'yeni WP5 robota çok yakın: {dist_to_new_wp5:.1f}m < 3.0m '
+                        f'yeni WP5 robota çok yakın: {dist_to_new_wp5:.1f}m < 8.0m '
                         f'({new_x:.1f},{new_y:.1f}) '
                         '(false-positive kilitlemesi önlendi)',
                         throttle_duration_sec=2.0,
@@ -948,6 +947,26 @@ class MissionManager(Node):
             f'[INIT] ✓ GPS conversion done — {len(valid)}/{len(self._raw_wps)} WPs valid'
         )
 
+        # ── Sanity: fromLL (0,0) döndürüyorsa GPS henüz hazır değil → yeniden dene ──
+        all_at_origin = (
+            len(valid) > 0
+            and all(abs(w['x']) < 0.5 and abs(w['y']) < 0.5 for w in valid)
+        )
+        if all_at_origin:
+            retry_no = getattr(self, '_gps_retry_count', 0) + 1
+            self._gps_retry_count = retry_no
+            self.get_logger().error(
+                f'[INIT] ✗ Tüm WP\'ler (0,0) yakınında — fromLL GPS başlatmadı. '
+                f'Yeniden deneme #{retry_no} (5s sonra) …'
+            )
+            # Retry state'i sıfırla
+            self._fromll_started  = False
+            self._fromll_pending  = 0
+            self._converted       = []
+            # 5 saniye sonra tekrar başlat
+            self.create_timer(5.0, self._retry_gps_once)
+            return
+
         stage1_wps = [w for w in valid if w['id'] != self._kmz_wp_id]
         kmz_wps    = [w for w in valid if w['id'] == self._kmz_wp_id]
 
@@ -984,6 +1003,13 @@ class MissionManager(Node):
 
         self._gps_done = True
         self._enter_parkur1_pid()
+
+    def _retry_gps_once(self):
+        """GPS dönüşümü (0,0) verdi; bir kere yeniden dene."""
+        if self._gps_done:
+            return  # Zaten başarılı olduysa tekrarlama
+        self.get_logger().warn('[INIT] 🔄 GPS dönüşümü yeniden deneniyor …')
+        self._start_gps_conversion()
 
     def _enter_parkur1_pid(self):
 
@@ -1114,6 +1140,17 @@ class MissionManager(Node):
         self._parkur2_entry_time   = self.get_clock().now().nanoseconds / 1e9
         self._parkur2_settle_sec   = 5.0
 
+        if self._s2 is not None:
+            init_dist = math.hypot(
+                self._s2.kmz_wp['x'] - self._x,
+                self._s2.kmz_wp['y'] - self._y,
+            )
+        else:
+            init_dist = 0.0
+        self.get_logger().info(
+            f'[PARKUR 2] 📐 Başlangıç WP5 mesafesi: {init_dist:.1f}m'
+        )
+
         import time as _t
         self._gate_last_seen       = _t.monotonic()  # servo timeout sayacı
         self.get_logger().warn(
@@ -1179,17 +1216,17 @@ class MissionManager(Node):
             dist_to_wp5 = 999.0
 
         self.get_logger().info(
-            f'[PARKUR 2] 📍 WP5: {dist_to_wp5:.2f}m | Geçiş eşiği: ≤ 2.0m',
+            f'[PARKUR 2] 📍 WP5: {dist_to_wp5:.2f}m | Geçiş eşiği: ≤ 3.0m',
             throttle_duration_sec=2.0,
         )
 
         # ╔══════════════════════════════════════════════════════════════════╗
-        # ║  KURAL 3 — TEK GEÇİŞ KOŞULU                                    ║
-        # ║  dist_to_wp5 <= 2.0 m olmadan Kamikaze modu KESİNLİKLE girmez. ║
+        # ║  TEK GEÇİŞ KOŞULU                                              ║
+        # ║  dist_to_wp5 <= 3.0 m olmadan Kamikaze modu KESİNLİKLE girmez. ║
         # ╚══════════════════════════════════════════════════════════════════╝
-        if dist_to_wp5 <= 2.0:
+        if dist_to_wp5 <= 3.0:
             self.get_logger().warn(
-                f'[PARKUR 2] ✅ KAPI GEÇİLDİ — WP5 mesafesi {dist_to_wp5:.2f}m ≤ 2.0m '
+                f'[PARKUR 2] ✅ KAPI GEÇİLDİ — WP5 mesafesi {dist_to_wp5:.2f}m ≤ 3.0m '
                 '→ PARKUR 3 KAMİKAZE'
             )
             self._enter_parkur3_kamikaze()
@@ -1252,8 +1289,11 @@ class MissionManager(Node):
             if status == GoalStatus.STATUS_SUCCEEDED:
                 self._nav2_goal_handle = None
                 self._s2.on_goal_succeeded()
-                # Nav2 hedefe ulaştı ama GPS koşulu henüz sağlanmadı —
-                # tekne duraksatılmadan _gate_center_cb servo yapmayı sürdürür.
+                self.get_logger().warn(
+                    f'[PARKUR 2] ✅ Nav2 WP5\'e ulaştı! '
+                    f'dist_to_wp5={dist_to_wp5:.2f}m — '
+                    'Proximity tetikleyici (≤2m) bekliyor.'
+                )
             elif status == GoalStatus.STATUS_ABORTED:
                 self.get_logger().error(
                     '\n' +
@@ -1290,40 +1330,80 @@ class MissionManager(Node):
         self._cancel_nav2_goal()
         self._transition_log(MissionStage.PARKUR_3_KAMIKAZE)
         self._stage = MissionStage.PARKUR_3_KAMIKAZE
+
+        # _kamikaze_last_seen=0.0 ile başlarsa lost_time=now(~35s) >> 1.0s →
+        # ilk andan "HEDEF KAYIP" tetikler. Şimdiki sim zamanını set ediyoruz.
+        self._kamikaze_last_seen = self.get_clock().now().nanoseconds / 1e9
+        self._kamikaze_target    = None   # eski veriyi temizle
+
+        # Nav2 goal iptal edilse bile MPPI controller 20Hz cmd_vel yayınlamaya
+        # devam eder (log'da görüldü: 4 Nav2 komutu / 1 kamikaze komutuna karşı).
+        # MPPI hız parametrelerini 0'a çekerek controller çıktısını sustur.
+        self._mppi._apply(
+            [('FollowPath.vx_max', 0.0), ('FollowPath.wz_max', 0.0)],
+            mode_name='KamikazeSustur',
+        )
+
+        # Tüm faz durumlarını sıfırla
+        self._kmz_aligned          = False
+        self._kamikaze_locked_flag = False
+
         self.get_logger().warn(
             '[PARKUR 3] 🚀 KAMIKAZE MODU AKTİF!\n'
             '           • Nav2 İPTAL EDİLDİ\n'
-            '           • Direksiyon tamamen Gözcü Node (YOLO) verisine bırakıldı.\n'
-            '           • Hedef: Kırmızı Duba'
+            '           • MPPI vx_max=0 wz_max=0 → Nav2 cmd_vel SUSTURULDU\n'
+            '           • FAZ 1: Hedef görülür görülmez hemen ileri + agresif yönlendirme\n'
+            '           • FAZ 2 (KİLİT): Maksimum itki, ekstrem yönlendirme — YIKIM'
         )
 
-        self._cmd_pub.publish(Twist())
-
     def _run_parkur3_kamikaze(self):
-        cmd = Twist()
+        # ── Sabitler ──────────────────────────────────────────────────────────
+        _SEARCH_ANG_Z   = 1.5                      # Faz-0: hedef kayıpsa dönüş hızı
+        _P1_LINEAR      = self._base_speed * 3.0   # Faz-1: ileri hız (kilit öncesi)
+        _P1_ANG_MULT    = 8.0                       # Faz-1: yaw çarpanı
+        _P1_ANG_CLAMP   = 4.0                       # Faz-1: max angular.z
+        _P2_LINEAR      = self._base_speed * 5.0   # Faz-2: tam saldırı hızı
+        _P2_ANG_MULT    = 15.0                      # Faz-2: yaw çarpanı
+        _P2_ANG_CLAMP   = 5.0                       # Faz-2: max angular.z
 
-        now = self.get_clock().now().nanoseconds / 1e9
+        cmd = Twist()
+        now       = self.get_clock().now().nanoseconds / 1e9
         lost_time = now - self._kamikaze_last_seen
 
-        if self._kamikaze_target is not None and lost_time < 1.0:
-
-            err = 0.5 - self._kamikaze_target.x 
-
-            cmd.angular.z = float(max(-2.0, min(2.0, self._kp_yaw * err)))
-
-            cmd.linear.x = float(self._base_speed * 1.5) 
-
-            self.get_logger().info(
-                f'[KAMIKAZE] 🎯 KİLİTLENDİ! Sapma={err:+.2f} | Hız={cmd.linear.x:.1f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s',
-                throttle_duration_sec=0.5
-            )
-        else:
-
-            cmd.linear.x = 0.0
-            cmd.angular.z = 0.6  
+        # ── FAZ 0: Hedef kayıp — arama dönüşü ────────────────────────────────
+        if self._kamikaze_target is None or lost_time >= 1.0:
+            cmd.linear.x  = 0.0
+            cmd.angular.z = _SEARCH_ANG_Z
             self.get_logger().warn(
                 f'[KAMIKAZE] ⚠ HEDEF KAYIP! ({lost_time:.1f}s) Etraf aranıyor...',
-                throttle_duration_sec=1.5
+                throttle_duration_sec=1.5,
+            )
+            self._cmd_pub.publish(cmd)
+            return
+
+        err = 0.5 - self._kamikaze_target.x   # pozitif = hedef sağda, sola dön
+
+        if self._kamikaze_locked_flag:
+            # ── FAZ 2: 3 saniye kilit onaylandı — maksimum güç, tam saldırı ──
+            cmd.linear.x  = float(_P2_LINEAR)
+            cmd.angular.z = float(max(-_P2_ANG_CLAMP,
+                                      min(_P2_ANG_CLAMP,
+                                          self._kp_yaw * err * _P2_ANG_MULT)))
+            self.get_logger().warn(
+                f'[KAMIKAZE] 💥 KILL PHASE! Sapma={err:+.3f} | '
+                f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s',
+                throttle_duration_sec=0.3,
+            )
+        else:
+            # ── FAZ 1: Hedef görüldü, kilit bekleniyor — dur-ma, hemen saldır ─
+            cmd.linear.x  = float(_P1_LINEAR)
+            cmd.angular.z = float(max(-_P1_ANG_CLAMP,
+                                      min(_P1_ANG_CLAMP,
+                                          self._kp_yaw * err * _P1_ANG_MULT)))
+            self.get_logger().info(
+                f'[KAMIKAZE] 🚀 CHARGE! Sapma={err:+.3f} | '
+                f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s',
+                throttle_duration_sec=0.3,
             )
 
         self._cmd_pub.publish(cmd)

@@ -56,6 +56,7 @@ setup(
             'mission_manager       = workspace_nav_entry.mission_manager:main',
             # Detector node (Strategy Pattern: sim HSV / real YOLO)
             'yolo_detector         = workspace_nav_entry.yolo_detector:main',
+            'kamikaze_control      = scripts.kamikaze_control:main',
         ],
     },
 )

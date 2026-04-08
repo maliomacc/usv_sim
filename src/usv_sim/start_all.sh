@@ -38,6 +38,18 @@
 #    • Parkour Navigation Script (Anlık engel kaçınma ve kapı geçiş algoritması)
 #    • Thruster Converter
 #
+# 5. ./start_all.sh slam2d   ◄─ YENİ: 2D LiDAR + ZED Kamera ile Tam Parkur
+#    ► Amaç: RPLidar A1M8 + ZED 1.0 kamera ile TEKNOFEST tüm parkurunu tamamla.
+#    -----------------------------------------------------------
+#    • Gazebo Simülasyonu + 2D LaserScan Filtreleme (laser_filters)
+#    • slam_toolbox (2D SLAM — MOLA yerine, map→odom TF)
+#    • Localization: GPS + IMU → EKF → odom→base_link TF
+#    • Nav2 MPPI (engel aşma, A* planlama)
+#    • Kamikaze Gözcü: HSV Sarı kapı (Parkur 2) + HSV Duba (Parkur 3)
+#    • Mission Manager: PID→MPPI→Kamikaze görev makinesi
+#    • Thruster Converter
+#    NOT: PointCloud→LaserScan veya MOLA ÇALIŞMAZ, sadece 2D LiDAR.
+#
 # ========================================================================
 
 set -e
@@ -54,7 +66,7 @@ MODE="${1:-sim}"
 
 echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║           YILDIZ USV - Sistem Başlatılıyor                 ║${NC}"
-echo -e "${BLUE}║              Mod: ${MODE}                                       ${NC}"
+echo -e "${BLUE}║       Mod: ${MODE}$([ ${#MODE} -lt 7 ] && printf '%*s' $((7-${#MODE})) '')                                   ${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 
 # Workspace yolu (colcon workspace kökü = start_all.sh'nin 2 üst klasörü)
@@ -150,28 +162,38 @@ fi
 # Simülasyonu unpause yap (yukarıdaki döngüde zaten yapıldı, bu sadece güvence)
 ign service -s /world/default/control --reqtype ignition.msgs.WorldControl --reptype ignition.msgs.Boolean --timeout 3000 --req 'pause: false' 2>/dev/null || true
 
-# LiDAR Filtresi başlat (TÜM MODLAR için gerekli!)
-echo -e "${CYAN}LiDAR Filtresi başlatılıyor...${NC}"
-ros2 launch workspace_ros lidar_filter.launch.py rviz:=false &
-FILTER_PID=$!
-echo -e "  └─ Filter PID: ${FILTER_PID}"
+# LiDAR Filtresi başlat (mod'a göre farklı filtre)
+if [ "$MODE" == "slam2d" ]; then
+    # 2D RPLidar A1M8: doğrudan LaserScan → filtrele
+    echo -e "${CYAN}[2D] RPLidar LaserScan filtresi başlatılıyor...${NC}"
+    echo -e "  └─ /scan → /scan/filtered (range + hull mask + speckle)"
+    ros2 launch workspace_ros laser_filters.launch.py &
+    FILTER_PID=$!
+    echo -e "  └─ Filter PID: ${FILTER_PID}"
+else
+    # 3D LiDAR (Unitree L2 / MOLA): nokta bulutu işleme
+    echo -e "${CYAN}[3D] LiDAR Filtresi başlatılıyor...${NC}"
+    ros2 launch workspace_ros lidar_filter.launch.py rviz:=false &
+    FILTER_PID=$!
+    echo -e "  └─ Filter PID: ${FILTER_PID}"
 
-# PointCloud2 -> LaserScan dönüştürücü (engel algılama için - TÜM MODLAR)
-sleep 2
-echo -e "${CYAN}PointCloud to LaserScan başlatılıyor...${NC}"
-ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node \
-    --ros-args \
-    -r cloud_in:=/roboboat/lidar/filtered \
-    -r scan:=/roboboat/sensors/lidar/scan \
-    -p target_frame:=lidar_link \
-    -p min_height:=-0.5 \
-    -p max_height:=2.0 \
-    -p range_min:=0.3 \
-    -p range_max:=50.0 \
-    -p use_inf:=true \
-    -p use_sim_time:=true &
-PC2LS_PID=$!
-echo -e "  └─ PC2LS PID: ${PC2LS_PID}"
+    # PointCloud2 -> LaserScan dönüştürücü (3D LiDAR modları için)
+    sleep 2
+    echo -e "${CYAN}PointCloud to LaserScan başlatılıyor...${NC}"
+    ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node \
+        --ros-args \
+        -r cloud_in:=/roboboat/lidar/filtered \
+        -r scan:=/roboboat/sensors/lidar/scan \
+        -p target_frame:=lidar_link \
+        -p min_height:=-0.5 \
+        -p max_height:=2.0 \
+        -p range_min:=0.3 \
+        -p range_max:=50.0 \
+        -p use_inf:=true \
+        -p use_sim_time:=true &
+    PC2LS_PID=$!
+    echo -e "  └─ PC2LS PID: ${PC2LS_PID}"
+fi
 
 # SLAM/Odometry başlat (mod'a göre)
 sleep 3
@@ -186,6 +208,23 @@ if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ]; then
     ${NV_ENV} ros2 launch workspace_ros mola_slam.launch.py use_mola_gui:=true use_rviz:=true &
     SLAM_PID=$!
     echo -e "  └─ MOLA SLAM PID: ${SLAM_PID}"
+elif [ "$MODE" == "slam2d" ]; then
+    echo -e "${CYAN}[2D] Localization (GPS+IMU EKF) başlatılıyor...${NC}"
+    echo -e "  └─ IMU: /roboboat/sensors/imu/imu → /imu/fixed_cov"
+    echo -e "  └─ GPS: /roboboat/sensors/gps/navsat → navsat_transform → /odometry/gps"
+    echo -e "  └─ EKF: GPS+IMU → odom→base_link TF"
+    ros2 launch workspace_ros localization.launch.py &
+    LOC_PID=$!
+    echo -e "  └─ Localization PID: ${LOC_PID}"
+
+    echo -e "${CYAN}  EKF oturması için 7 saniye bekleniyor...${NC}"
+    sleep 7
+
+    echo -e "${CYAN}[2D] slam_toolbox başlatılıyor...${NC}"
+    echo -e "  └─ /scan/filtered → map→odom TF (async mapping)"
+    ros2 launch workspace_ros slam_toolbox.launch.py &
+    SLAM_PID=$!
+    echo -e "  └─ slam_toolbox PID: ${SLAM_PID}"
 elif [ "$MODE" == "parkour" ]; then
     echo -e "${YELLOW}Parkour modu: SLAM devre dışı (reaktif navigasyon)${NC}"
 else
@@ -199,17 +238,32 @@ fi
 if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ]; then
     echo -e "${CYAN}  MOLA SLAM TF yayınlamasını bekleniyor (10 saniye)...${NC}"
     sleep 10  # MOLA'nın map→odom TF yayınlamaya başlaması için öncekinden daha uzun bekleme
-    
+
     echo -e "${CYAN}Localization (EKF + NavSat) başlatılıyor...${NC}"
     ros2 launch workspace_ros localization.launch.py &
     LOC_PID=$!
     echo -e "  └─ Localization PID: ${LOC_PID}"
-    
+
     sleep 3  # Localization'ın hazır olmasını bekle
-    
+
     echo -e "${CYAN}Nav2 Navigation Stack başlatılıyor...${NC}"
 
     # Guard: Nav2'nin zaten çalışmadığından emin ol (duplicate launch koruması)
+    if pgrep -f "lifecycle_manager_navigation" > /dev/null 2>&1; then
+        echo -e "${RED}HATA: lifecycle_manager_navigation zaten çalışıyor!${NC}"
+        echo -e "${YELLOW}Önce './stop_all.sh' veya 'pkill -f lifecycle_manager' çalıştırın.${NC}"
+        exit 1
+    fi
+
+    ros2 launch workspace_nav nav2.launch.py &
+    NAV_PID=$!
+    echo -e "  └─ Nav2 PID: ${NAV_PID}"
+elif [ "$MODE" == "slam2d" ]; then
+    echo -e "${CYAN}  slam_toolbox'ın harita üretmesi için 11 saniye bekleniyor...${NC}"
+    sleep 11
+
+    echo -e "${CYAN}[2D] Nav2 Navigation Stack başlatılıyor...${NC}"
+
     if pgrep -f "lifecycle_manager_navigation" > /dev/null 2>&1; then
         echo -e "${RED}HATA: lifecycle_manager_navigation zaten çalışıyor!${NC}"
         echo -e "${YELLOW}Önce './stop_all.sh' veya 'pkill -f lifecycle_manager' çalıştırın.${NC}"
@@ -228,9 +282,9 @@ elif [ "$MODE" == "parkour" ]; then
     echo -e "  └─ Parkour Navigation PID: ${NAV_PID}"
 fi
 
-# ─── Auto modu: Mission State Machine ───────────────────────────────────────
-if [ "$MODE" == "auto" ]; then
-    echo -e "${CYAN}[AUTO] Nav2'nin tam olarak hazır olması için 8 s bekleniyor...${NC}"
+# ─── Auto / slam2d modu: Mission State Machine ──────────────────────────────
+if [ "$MODE" == "auto" ] || [ "$MODE" == "slam2d" ]; then
+    echo -e "${CYAN}[${MODE^^}] Nav2'nin tam olarak hazır olması için 8 s bekleniyor...${NC}"
     sleep 8
 
     # ── Konfigürasyonlar (ortam değişkenleriyle override edilebilir) ──────
@@ -246,13 +300,17 @@ if [ "$MODE" == "auto" ]; then
     echo -e "${CYAN}╔══════════════════════════════════════════════════════╗${NC}"
     echo -e "${CYAN}║          YILDIZ USV — Mission Manager Başlatılıyor   ║${NC}"
     echo -e "${CYAN}╠══════════════════════════════════════════════════════╣${NC}"
-    echo -e "${CYAN}║  Aşama 1 : WP1 → WP2 → WP3 → WP4 (Nav2)           ║${NC}"
+    echo -e "${CYAN}║  Aşama 1 : WP1 → WP4  (PID navigasyon)              ║${NC}"
     echo -e "${CYAN}║  Aşama 2 : WP5'e Engeli Aşarak Navigasyon           ║${NC}"
-    echo -e "${CYAN}║  Aşama 3 : Kırmızı Dubaya Kamikaze (Visual Servo)   ║${NC}"
+    echo -e "${CYAN}║  Aşama 3 : HSV Duba Tespiti → Kamikaze Visual Servo  ║${NC}"
     echo -e "${CYAN}╠══════════════════════════════════════════════════════╣${NC}"
     echo -e "${CYAN}║  WP Dosyası     : ${WP_FILE}${NC}"
     echo -e "${CYAN}║  Kamikaze WP    : ${KAMIKAZE_WP}  (trigger < ${KMZ_DIST} m)${NC}"
-    echo -e "${CYAN}║  Red buoy YOLO  : class ${RED_ID}${NC}"
+    if [ "$MODE" == "slam2d" ]; then
+    echo -e "${CYAN}║  Tespit         : HSV (RPLidar A1M8 + ZED 1.0)       ║${NC}"
+    else
+    echo -e "${CYAN}║  Tespit         : YOLO (Red class ${RED_ID})                ║${NC}"
+    fi
     echo -e "${CYAN}║  Hız            : ${V0} m/s  Kp_yaw: ${KP}${NC}"
     echo -e "${CYAN}╚══════════════════════════════════════════════════════╝${NC}"
 
@@ -283,7 +341,7 @@ if [ "$MODE" == "auto" ]; then
 fi
 
 # cmd_vel -> thruster dönüştürücü başlat (tüm navigasyon modları için)
-if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ] || [ "$MODE" == "parkour" ]; then
+if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ] || [ "$MODE" == "parkour" ] || [ "$MODE" == "slam2d" ]; then
     sleep 2
     echo -e "${CYAN}Thruster Converter başlatılıyor...${NC}"
     ros2 run workspace_ros converter &
@@ -296,13 +354,26 @@ echo -e "${BLUE}╔════════════════════�
 echo -e "${BLUE}║              YILDIZ USV - Sistem Hazır!                    ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
-echo -e "${GREEN}LiDAR Topic Kontrolü:${NC}"
-echo -e "  ros2 topic list | grep lidar"
-echo -e "  ros2 topic echo /roboboat/lidar/points --once"
-echo ""
-echo -e "${GREEN}Gazebo Topic Kontrolü:${NC}"
-echo -e "  ign topic -l | grep lidar"
-echo -e "  ign topic -e -t /roboboat/lidar/points"
+if [ "$MODE" == "slam2d" ]; then
+    echo -e "${GREEN}2D LiDAR + ZED — Topic Kontrol Komutları:${NC}"
+    echo -e "  ros2 topic hz /scan                            # ham LiDAR (5.5 Hz)"
+    echo -e "  ros2 topic hz /scan/filtered                   # filtreli LiDAR"
+    echo -e "  ros2 topic hz /roboboat/sensors/camera/image   # ZED RGB (30 Hz)"
+    echo -e "  ros2 topic hz /zed/depth                       # ZED derinlik"
+    echo -e "  ros2 topic echo /fusion/target                 # SensorFusion çıktısı"
+    echo -e "  ros2 topic echo /gate_center                   # HSV kapı tespiti"
+    echo -e "  ros2 topic echo /kamikaze_target               # HSV duba tespiti"
+    echo -e "  ros2 topic echo /odometry/filtered             # EKF konum tahmini"
+    echo -e "  ros2 topic echo /mission_state                 # görev aşaması"
+else
+    echo -e "${GREEN}LiDAR Topic Kontrolü:${NC}"
+    echo -e "  ros2 topic list | grep lidar"
+    echo -e "  ros2 topic echo /roboboat/lidar/points --once"
+    echo ""
+    echo -e "${GREEN}Gazebo Topic Kontrolü:${NC}"
+    echo -e "  ign topic -l | grep lidar"
+    echo -e "  ign topic -e -t /roboboat/lidar/points"
+fi
 echo ""
 echo -e "${RED}Durdurmak için: Ctrl+C veya ./stop_all.sh${NC}"
 echo ""
@@ -314,10 +385,17 @@ cleanup() {
     pkill -f "ign gazebo" 2>/dev/null || true
     pkill -f "ruby.*gz" 2>/dev/null || true
     pkill -f "mola" 2>/dev/null || true
+    pkill -f "slam_toolbox" 2>/dev/null || true
+    pkill -f "async_slam_toolbox" 2>/dev/null || true
     pkill -f "rviz2" 2>/dev/null || true
     pkill -f "parameter_bridge" 2>/dev/null || true
     pkill -f "lidar_processor" 2>/dev/null || true
+    pkill -f "scan_to_scan_filter_chain" 2>/dev/null || true
     pkill -f "robot_state_publisher" 2>/dev/null || true
+    pkill -f "kamikaze_control" 2>/dev/null || true
+    pkill -f "mission_manager" 2>/dev/null || true
+    pkill -f "nav2_container" 2>/dev/null || true
+    pkill -f "lifecycle_manager" 2>/dev/null || true
     echo -e "${GREEN}Tüm servisler durduruldu.${NC}"
     exit 0
 }

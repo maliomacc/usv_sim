@@ -5,16 +5,26 @@ from launch_ros.actions import Node
 from launch.substitutions import PathJoinSubstitution, Command, EnvironmentVariable
 from launch_ros.substitutions import FindPackageShare, FindPackagePrefix
 
+# =============================================================================
+# simulation.launch.py — TEKNOFEST USV (RPLidar A1M8 Architecture)
+# =============================================================================
+# CHANGES vs. previous version:
+#   - REMOVED: /roboboat/lidar/points/points (PointCloud2 bridge entry)
+#   - ADDED:   /roboboat/sensors/lidar/scan  (LaserScan bridge entry)
+#   - REMOVED: pointcloud_to_laserscan node  (no longer needed)
+#   - The bridge now directly publishes sensor_msgs/LaserScan on /scan
+# =============================================================================
+
 def generate_launch_description():
     package_name = 'workspace_gz'
 
     package_prefix = FindPackagePrefix(package_name)
-    package_share = FindPackageShare(package_name)
+    package_share  = FindPackageShare(package_name)
 
     plugin_path = PathJoinSubstitution([package_prefix, 'lib', 'workspace_gz'])
-    world_path = PathJoinSubstitution([package_share, 'worlds', 'world.sdf'])
-    model_path = PathJoinSubstitution([package_share, 'models'])
-    xacro_path = PathJoinSubstitution([package_share, 'description', 'roboboat', 'roboboat.xacro'])
+    world_path  = PathJoinSubstitution([package_share, 'worlds', 'world.sdf'])
+    model_path  = PathJoinSubstitution([package_share, 'models'])
+    xacro_path  = PathJoinSubstitution([package_share, 'description', 'roboboat', 'roboboat.xacro'])
 
     robot_description = ParameterValue(
         Command(['xacro ', xacro_path]),
@@ -40,14 +50,13 @@ def generate_launch_description():
 
         SetEnvironmentVariable(name='__NV_PRIME_RENDER_OFFLOAD', value='1'),
         SetEnvironmentVariable(name='__GLX_VENDOR_LIBRARY_NAME', value='nvidia'),
-        SetEnvironmentVariable(name='__VK_LAYER_NV_optimus', value='NVIDIA_only'),
+        SetEnvironmentVariable(name='__VK_LAYER_NV_optimus',     value='NVIDIA_only'),
 
         ExecuteProcess(
             cmd=[
                 'ign', 'gazebo', '-v', '4', '-r',
                 world_path,
             ],
-
             additional_env={
                 '__NV_PRIME_RENDER_OFFLOAD': '1',
                 'LD_LIBRARY_PATH': [
@@ -98,30 +107,67 @@ def generate_launch_description():
             output='screen'
         ),
 
-
+        # ─────────────────────────────────────────────────────────────
+        # ROS <-> Ignition Bridge
+        #
+        # RPLidar A1M8 publishes a LaserScan message natively.
+        # We bridge it with the LaserScan message type — NO PointCloud2,
+        # NO pointcloud_to_laserscan. Direct and zero-overhead.
+        #
+        # Ignition LaserScan topic format:
+        #   <topic_name> defined in xacro → gpu_lidar with vertical=1
+        #   outputs ignition.msgs.LaserScan
+        # ─────────────────────────────────────────────────────────────
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
             arguments=[
+                # Clock
                 "/world/default/clock@rosgraph_msgs/msg/Clock@ignition.msgs.Clock",
-                "/model/roboboat/joint/left_housing_link_to_left_prop_link/cmd_thrust@std_msgs/msg/Float64@ignition.msgs.Double",
-                "/model/roboboat/joint/right_housing_link_to_right_prop_link/cmd_thrust@std_msgs/msg/Float64@ignition.msgs.Double",
+                # Thrusters
+                "/model/roboboat/joint/left_housing_link_to_left_prop_link/cmd_thrust"
+                    "@std_msgs/msg/Float64@ignition.msgs.Double",
+                "/model/roboboat/joint/right_housing_link_to_right_prop_link/cmd_thrust"
+                    "@std_msgs/msg/Float64@ignition.msgs.Double",
+                # GPS + IMU
                 "/roboboat/gps/navsat@sensor_msgs/msg/NavSatFix@ignition.msgs.NavSat",
                 "/roboboat/imu/imu@sensor_msgs/msg/Imu@ignition.msgs.IMU",
-
-                "/roboboat/lidar/points/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked",
-                "/world/default/model/roboboat/link/base_link/sensor/sensor_camera/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo",
-                "/world/default/model/roboboat/link/base_link/sensor/sensor_camera/image@sensor_msgs/msg/Image@ignition.msgs.Image",
+                # ── 2D LiDAR: LaserScan (replaces PointCloud2 entry) ──────────
+                "/roboboat/sensors/lidar/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+                # ── Legacy simple camera (RGB only) ───────────────────────────
+                "/world/default/model/roboboat/link/base_link/sensor/sensor_camera/camera_info"
+                    "@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo",
+                "/world/default/model/roboboat/link/base_link/sensor/sensor_camera/image"
+                    "@sensor_msgs/msg/Image@ignition.msgs.Image",
+                # ── ZED 1.0 rgbd_camera: RGB + Depth + PointCloud ─────────────
+                # These topics are published by the rgbd_camera sensor in zed_camera.xacro
+                # on zed_camera_link. The Ignition topic base is the sensor <topic> value.
+                "/roboboat/sensors/camera/image@sensor_msgs/msg/Image[ignition.msgs.Image",
+                "/roboboat/sensors/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
+                "/roboboat/sensors/camera/depth@sensor_msgs/msg/Image[ignition.msgs.Image",
+                "/roboboat/sensors/camera/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked",
             ],
             remappings=[
                 ("/world/default/clock", "/clock"),
-                ("/model/roboboat/joint/left_housing_link_to_left_prop_link/cmd_thrust", "/roboboat/thrusters/left/thrust"),
-                ("/model/roboboat/joint/right_housing_link_to_right_prop_link/cmd_thrust", "/roboboat/thrusters/right/thrust"),
-                ("/roboboat/gps/navsat", "/roboboat/sensors/gps/navsat"),
-                ("/roboboat/imu/imu", "/roboboat/sensors/imu/imu"),
-                ("/roboboat/lidar/points/points", "/roboboat/lidar/points"),
-                ("/world/default/model/roboboat/link/base_link/sensor/sensor_camera/camera_info", "/roboboat/sensors/camera/camera_info"),
-                ("/world/default/model/roboboat/link/base_link/sensor/sensor_camera/image", "/roboboat/sensors/camera/image"),
+                ("/model/roboboat/joint/left_housing_link_to_left_prop_link/cmd_thrust",
+                    "/roboboat/thrusters/left/thrust"),
+                ("/model/roboboat/joint/right_housing_link_to_right_prop_link/cmd_thrust",
+                    "/roboboat/thrusters/right/thrust"),
+                ("/roboboat/gps/navsat",           "/roboboat/sensors/gps/navsat"),
+                ("/roboboat/imu/imu",               "/roboboat/sensors/imu/imu"),
+                # LaserScan remapped to the standard /scan topic consumed by
+                # slam_toolbox, laser_filters, and SensorFusionNode
+                ("/roboboat/sensors/lidar/scan",    "/scan"),
+                ("/world/default/model/roboboat/link/base_link/sensor/sensor_camera/camera_info",
+                    "/camera/camera_info"),
+                ("/world/default/model/roboboat/link/base_link/sensor/sensor_camera/image",
+                    "/camera/image"),
+                # ZED rgbd_camera remappings
+                ("/roboboat/sensors/camera/image",       "/roboboat/sensors/camera/image"),
+                ("/roboboat/sensors/camera/camera_info", "/roboboat/sensors/camera/camera_info"),
+                # Depth remapped to /zed/depth for SensorFusionNode
+                ("/roboboat/sensors/camera/depth",       "/zed/depth"),
+                ("/roboboat/sensors/camera/points",      "/roboboat/sensors/camera/pointcloud"),
             ],
             parameters=[{'use_sim_time': True}],
             output='screen'

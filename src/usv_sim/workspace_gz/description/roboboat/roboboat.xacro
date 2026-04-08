@@ -24,30 +24,26 @@
   <xacro:include filename="$(find workspace_gz)/description/roboboat/zed_camera.xacro"/>
 
   <!--
-    ????????????????????????????????????????????????????
-    Unitree L2 3D LiDAR Xacro Include
-    ????????????????????????????????????????????????????
-    unitree_l2_lidar.xacro dosyasi su bilesenleri saglar:
-      - unitree_l2_link : fiziksel govde linki (silindir g?vde)
-      - <gazebo reference="unitree_l2_link"> : gpu_lidar sensoru
-          * Yatay FOV: 360? = -pi..+pi (720 ?rnek)
-          * Dikey FOV: 96? = -0.837..+0.837 rad (96 kanal)
-          * Menzil: 0.05 m - 30.0 m
-          * Hiz: 5.55 Hz
-          * Gurultu: Gaussian stddev=0.02 m
+    ════════════════════════════════════════════════════════
+    RPLidar A1M8 — 2D LiDAR Xacro Include
+    ════════════════════════════════════════════════════════
+    rplidar_a1.xacro provides:
+      - rplidar_a1_link : physical body link (cylinder)
+      - <gazebo reference="rplidar_a1_link"> : gpu_lidar sensor
+          * Horizontal FOV : 360° = -pi..+pi (360 samples)
+          * Vertical Channels: 1  ← PURE 2D LASER PLANE
+          * Range      : 0.15 m — 8.0 m
+          * Update Rate: 5.5 Hz
+          * Noise      : Gaussian stddev=0.01 m
 
-    ROS 2 Koprusu (ros_gz_bridge) - simulation.launch.py bridge argumanliarina ekleyin:
-      "/roboboat/sensors/lidar/pointcloud@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked"
+    ROS 2 Bridge (simulation.launch.py) — LaserScan (NOT PointCloud2):
+      "/roboboat/sensors/lidar/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan"
 
-    GateDetector /scan uyumlulugu icin pointcloud_to_laserscan ornek komut:
-      ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node
-
-          -r cloud_in:=/roboboat/sensors/lidar/pointcloud
-          -r scan:=/scan
-          -p target_frame:=unitree_l2_link
-          -p use_sim_time:=true
+    No pointcloud_to_laserscan is needed. The /scan topic is
+    published directly by the bridge from the LaserScan message.
+    ════════════════════════════════════════════════════════
   -->
-  <xacro:include filename="$(find workspace_gz)/description/roboboat/unitree_l2_lidar.xacro"/>
+  <xacro:include filename="$(find workspace_gz)/description/roboboat/rplidar_a1.xacro"/>
 
   <link name="base_link">
 
@@ -443,53 +439,10 @@
 
   </gazebo>
 
+  <!-- lidar_link is kept as a visual-only placeholder for the physical post mesh.
+       The actual sensor is now defined in rplidar_a1.xacro → rplidar_a1_link. -->
   <gazebo reference="lidar_link">
-
-    <!--
-        Unitree L2 4D LiDAR Simulation (Custom High-Res) - Parkour Optimized
-        
-        Kullan?c? Spesifikasyonu:
-        - Yatay: 2200 sample (180? FOV i?in optimize edildi)
-        - Dikey: 70 kanal
-        - Toplam: ~154,000 pts/frame (parkour i?in daha verimli)
-        - FOV: 180? ? 90? (SADECE ?N - geri d?n??? ?nler!)
-    -->
-    <sensor name="sensor_lidar" type="gpu_lidar">
-      <topic>roboboat/lidar/points</topic>
-      <gz_frame_id>lidar_link</gz_frame_id>
-      <visualize>true</visualize>
-      <update_rate>10</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-          <!-- 2200?1400: MOLA i?in yeterli nokta, RTF iyile?mesi korunuyor -->
-            <samples>1400</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.5707963267948966</min_angle>
-            <max_angle>1.5707963267948966</max_angle>
-          </horizontal>
-          <vertical>
-          <!-- 70?48: MOLA scan matching i?in yeterli dikey ??z?n?rl?k -->
-            <samples>48</samples>
-            <resolution>1</resolution>
-            <min_angle>-0.785398</min_angle>
-            <max_angle>0.785398</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>0.05</min>
-          <max>30.0</max>
-          <resolution>0.002</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>
-          <mean>0.0</mean>
-          <stddev>0.015</stddev>
-        </noise>
-      </ray>
-      <always_on>true</always_on>
-    </sensor>
-
+    <!-- No sensor here — sensor is on rplidar_a1_link -->
   </gazebo>
 
   <gazebo reference="camera_link">
@@ -746,10 +699,21 @@
     herhangi bir yonde engellenmemesi icin
     montaj noktasinin tekne ust yuzeyinin uzerinde olmasi onerilir.
   -->
-  <joint name="base_link_to_unitree_l2_link" type="fixed">
+  <!--
+    ════════════════════════════════════════════════════════
+    RPLidar A1M8 → base_link Joint
+    ════════════════════════════════════════════════════════
+    Mounted on the existing lidar_post at the same height
+    as the old Unitree L2 (0.48m above base_link).
+    A1M8 scans at its own plane, so z-height determines
+    what horizontal plane the laser sweeps through.
+    Keep it above the hull deck to avoid self-shadowing.
+    ════════════════════════════════════════════════════════
+  -->
+  <joint name="base_link_to_rplidar_a1_link" type="fixed">
     <origin xyz="0.2 0.0 0.48" rpy="0 0 0"/>
     <parent link="base_link"/>
-    <child  link="unitree_l2_link"/>
+    <child  link="rplidar_a1_link"/>
   </joint>
 
 </robot>
