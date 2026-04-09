@@ -278,11 +278,12 @@ wait
 
 **Confidence map critical check:**
 ```bash
-# Verify confidence map is 8-bit unsigned (NOT float)
+# Verify confidence map encoding
 ros2 topic echo /zed/zed_node/confidence/confidence_map --once | grep encoding
-# Expected: encoding: mono8
+# Expected: encoding: 32FC1   (ZED wrapper publishes float32, range 0.0–100.0)
+# NOTE: mono8 is NOT expected — 32FC1 is the correct ZED output format.
 
-# If this returns float32 or missing, the ZED wrapper needs confidence_mode enabled:
+# If topic is at 0 Hz (not publishing at all), enable it in ZED wrapper config:
 # In ZED wrapper config yaml, set: confidence_mode: 1
 ```
 

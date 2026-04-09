@@ -1,4 +1,4 @@
-# YILDIZ USV — Autonomy Architecture Reference
+# STI USV — Autonomy Architecture Reference
 ### TEKNOFEST 2026 | Unmanned Surface Vehicle Competition
 **Author:** Senior Autonomous Systems Architect  
 **Maintained by:** Muhammedali Omaç (Lead Engineer)  

@@ -122,7 +122,7 @@ class KamikazeControl(Node):
         self._img_queue    = queue.Queue(maxsize=2)   # Thread A → Thread C
         self._latest_scan  = None
         self._latest_depth = None                     # np.ndarray 32FC1
-        self._latest_conf  = None                     # np.ndarray 8UC1 (0-100)
+        self._latest_conf  = None                     # np.ndarray 32FC1 (0.0-100.0)
         self._rgb_w: int   = 0
         self._rgb_h: int   = 0
         self._last_frame   = None                     # debug overlay icin
@@ -243,9 +243,9 @@ class KamikazeControl(Node):
             self.get_logger().error(f'[Depth] Donusum hatasi: {exc}', throttle_duration_sec=5.0)
 
     def _conf_cb(self, msg: Image) -> None:
-        """ZED guven haritas: 8UC1, 0=dusuk guven, 100=yuksek guven."""
+        """ZED guven haritas: 32FC1, 0.0=dusuk guven, 100.0=yuksek guven."""
         try:
-            self._latest_conf = self._bridge.imgmsg_to_cv2(msg, desired_encoding='mono8')
+            self._latest_conf = self._bridge.imgmsg_to_cv2(msg, desired_encoding='32FC1')
         except Exception as exc:
             self.get_logger().error(f'[Conf] Donusum hatasi: {exc}', throttle_duration_sec=5.0)
 
@@ -420,7 +420,10 @@ class KamikazeControl(Node):
             conf_patch = conf_img[cy0:cy1, cx0:cx1]
             ph = min(mask.shape[0], conf_patch.shape[0])
             pw = min(mask.shape[1], conf_patch.shape[1])
-            mask[:ph, :pw] &= (conf_patch[:ph, :pw] >= self._conf_min_depth)
+            mask[:ph, :pw] &= (
+                np.isfinite(conf_patch[:ph, :pw]) &
+                (conf_patch[:ph, :pw] >= self._conf_min_depth)
+            )
 
         valid = depth_patch[mask]
         return float(np.median(valid)) if valid.size > 0 else None
