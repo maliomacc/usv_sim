@@ -113,7 +113,7 @@ local_costmap:
           raytrace_min_range: 0.1
         zed_points:
           # ZED 1.0 derinlik noktası bulutu — yüzey seviyesinin üst/alt engelleri yakalar
-          topic: /zed/depth/points
+          topic: /zed/zed_node/point_cloud/cloud_registered
           data_type: "PointCloud2"
           # Yalnızca LiDAR'ın ıskaladığı yükseklik dilimini işle (su yüzeyi üstü engeller)
           max_obstacle_height: 2.5

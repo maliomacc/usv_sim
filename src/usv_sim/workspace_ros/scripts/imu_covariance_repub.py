@@ -12,7 +12,7 @@ class ImuCovarianceRepub(Node):
 
         self.subscription = self.create_subscription(
             Imu,
-            '/roboboat/sensors/imu/imu',
+            '/mavros/imu/data',
             self.imu_callback,
             10
         )

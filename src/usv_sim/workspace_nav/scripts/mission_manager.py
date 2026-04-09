@@ -671,7 +671,7 @@ class MissionManager(Node):
 
         self.create_subscription(Odometry,        '/odometry/filtered',   self._odom_cb,    _rel)
         self.create_subscription(Detection2DArray,'/yolo/detections',     self._det_cb,     _be)
-        self.create_subscription(CameraInfo,      '/camera/camera_info',  self._caminfo_cb, _rel)
+        self.create_subscription(CameraInfo,      '/zed/zed_node/rgb/camera_info',  self._caminfo_cb, _rel)
 
         self.create_subscription(Point, '/kamikaze_target', self._kamikaze_target_cb, 10)
 

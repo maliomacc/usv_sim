@@ -13,36 +13,40 @@ def generate_launch_description():
 
     return LaunchDescription([
 
+        # IMU: /mavros/imu/data → /imu/fixed_cov (covariance inject)
         Node(
             package=package_name,
             executable='imu_covariance_repub',
             name='imu_covariance_repub',
-            parameters=[{'use_sim_time': True}],
+            parameters=[{'use_sim_time': False}],
         ),
 
+        # GPS: /mavros/global_position/global → /gps/fixed_cov (covariance inject)
         Node(
             package=package_name,
             executable='gps_covariance_repub',
             name='gps_covariance_repub',
-            parameters=[{'use_sim_time': True}],
+            parameters=[{'use_sim_time': False}],
         ),
 
+        # navsat_transform: GPS (UTM) → /odometry/gps (EKF girişi)
         Node(
             package='robot_localization',
             executable='navsat_transform_node',
             name='navsat_transform_node',
-            parameters=[navsat_path, {'use_sim_time': True}],
+            parameters=[navsat_path, {'use_sim_time': False}],
             remappings=[
                 ('imu', '/imu/fixed_cov'),
                 ('gps/fix', '/gps/fixed_cov')
             ]
         ),
 
+        # EKF: GPS odom + IMU → /odometry/filtered + odom→base_link TF
         Node(
             package='robot_localization',
             executable='ekf_node',
             name='ekf_node',
-            parameters=[ekf_path, {'use_sim_time': True}]
+            parameters=[ekf_path, {'use_sim_time': False}]
         ),
 
         Node(
@@ -51,7 +55,7 @@ def generate_launch_description():
             name='static_transforms_publisher',
             parameters=[
                 {'static_transform_file': static_transform_path},
-                {'use_sim_time': True}
+                {'use_sim_time': False}
             ],
             output='screen'
         ),

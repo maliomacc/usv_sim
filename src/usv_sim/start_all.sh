@@ -38,17 +38,30 @@
 #    • Parkour Navigation Script (Anlık engel kaçınma ve kapı geçiş algoritması)
 #    • Thruster Converter
 #
-# 5. ./start_all.sh slam2d   ◄─ YENİ: 2D LiDAR + ZED Kamera ile Tam Parkur
-#    ► Amaç: RPLidar A1M8 + ZED 1.0 kamera ile TEKNOFEST tüm parkurunu tamamla.
+# 5. ./start_all.sh slam2d   — SİMÜLASYON: 2D LiDAR + ZED Kamera ile Tam Parkur
+#    ► Amaç: Gazebo simülasyonunda RPLidar A1M8 + ZED ile TEKNOFEST parkurunu test et.
 #    -----------------------------------------------------------
 #    • Gazebo Simülasyonu + 2D LaserScan Filtreleme (laser_filters)
-#    • slam_toolbox (2D SLAM — MOLA yerine, map→odom TF)
+#    • slam_toolbox (2D SLAM — map→odom TF)
 #    • Localization: GPS + IMU → EKF → odom→base_link TF
-#    • Nav2 MPPI (engel aşma, A* planlama)
-#    • Kamikaze Gözcü: HSV Sarı kapı (Parkur 2) + HSV Duba (Parkur 3)
-#    • Mission Manager: PID→MPPI→Kamikaze görev makinesi
-#    • Thruster Converter
-#    NOT: PointCloud→LaserScan veya MOLA ÇALIŞMAZ, sadece 2D LiDAR.
+#    • Nav2 MPPI + kamikaze_control + mission_manager
+#    • Thruster Converter (cmd_vel → Ignition thruster topics)
+#    NOT: use_sim_time:=true kullanır.
+#
+# 6. ./start_all.sh saha   ◄─ GERÇEK DONANIM: Jetson Orin NX Saha Testi
+#    ► Amaç: Pixhawk 2.4.8 + ZED 1.0 + RPLidar A1M8 ile gerçek saha testi.
+#    -----------------------------------------------------------
+#    • Gazebo BAŞLATILMAZ — gerçek donanım driver'ları önceden çalışıyor olmalı:
+#        - MAVROS  : ros2 launch mavros apm.launch fcu_url:=serial:///dev/ttyACM0:115200
+#        - ZED SDK : ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed
+#        - RPLidar : ros2 run rplidar_ros rplidar_composition \
+#                      --ros-args -p serial_port:=/dev/ttyUSB0 -p frame_id:=laser
+#    • 2D LaserScan Filtreleme (/scan → /scan/filtered)
+#    • slam_toolbox (2D SLAM — map→odom TF)
+#    • Localization: /mavros/imu/data + /mavros/global_position/global → EKF
+#    • Nav2 MPPI + kamikaze_control + mission_manager
+#    • cmd_vel_to_mavros köprüsü (/cmd_vel → /mavros/setpoint_velocity/cmd_vel_unstamped)
+#    NOT: use_sim_time:=false kullanır.
 #
 # ========================================================================
 
@@ -123,47 +136,56 @@ export IGN_GAZEBO_GUI_PLUGIN_PATH="${COLCON_WS}/install/workspace_gz/lib/workspa
 # /usr/local/lib/ardupilot_gazebo: ArduPilot SITL <-> Gazebo köprü plugin'i
 export LD_LIBRARY_PATH="${COLCON_WS}/install/workspace_gz/lib/workspace_gz:/usr/local/lib/ardupilot_gazebo:${LD_LIBRARY_PATH}"
 
-echo -e "${GREEN}[3/4] Gazebo simülasyonu başlatılıyor (GUI mod)...${NC}"
-echo -e "${YELLOW}  Gazebo penceresi açılacak, lütfen bekleyin...${NC}"
+if [ "$MODE" == "saha" ]; then
+    # ── SAHA MODU: Gazebo yok, gerçek donanım ───────────────────────────────
+    echo -e "${GREEN}[3/4] SAHA MODU — Gazebo atlanıyor.${NC}"
+    echo -e "${YELLOW}  Ön koşul: Aşağıdaki driver'lar ayrı terminallerde çalışıyor olmalı:${NC}"
+    echo -e "  ${CYAN}  1) MAVROS  : ros2 launch mavros apm.launch fcu_url:=serial:///dev/ttyACM0:115200${NC}"
+    echo -e "  ${CYAN}  2) ZED SDK : ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed${NC}"
+    echo -e "  ${CYAN}  3) RPLidar : ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/ttyUSB0 -p frame_id:=laser${NC}"
+    echo -e "  Kontrol: ros2 topic hz /mavros/imu/data /scan /zed/zed_node/depth/depth_registered"
 
-# GTX 1650 Ti ile Gazebo'yu GPU'da çalıştır (NVIDIA PRIME Offload)
-# prime-select on-demand modunda spesifik uygulamayı dGPU'ya yönlendirir
-export __NV_PRIME_RENDER_OFFLOAD=1
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export __VK_LAYER_NV_optimus=NVIDIA_only
-echo -e "  ${GREEN}GPU: GTX 1650 Ti (PRIME Offload aktif)${NC}"
+    # Gerçek donanım için use_sim_time=false
+    USE_SIM_TIME="false"
+    NV_ENV=""
+else
+    # ── SİMÜLASYON MODU: Gazebo başlat ─────────────────────────────────────
+    echo -e "${GREEN}[3/4] Gazebo simülasyonu başlatılıyor (GUI mod)...${NC}"
+    echo -e "${YELLOW}  Gazebo penceresi açılacak, lütfen bekleyin...${NC}"
 
-# NVIDIA PRIME env'lerini kalıcı olarak tanımla (tüm alt-process'ler için)
-# NOT: __GLX_VENDOR_LIBRARY_NAME=nvidia Qt (Gazebo GUI) çökmelerine neden olduğu için çıkarıldı.
-NV_ENV="env __NV_PRIME_RENDER_OFFLOAD=1"
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    echo -e "  ${GREEN}GPU: GTX 1650 Ti (PRIME Offload aktif)${NC}"
 
-# Simülasyonu başlat (Gazebo GUI açılacak) — NVIDIA GPU ile
-${NV_ENV} ros2 launch workspace_gz simulation.launch.py &
-SIM_PID=$!
-echo -e "  └─ Simulation PID: ${SIM_PID}"
+    NV_ENV="env __NV_PRIME_RENDER_OFFLOAD=1"
+    USE_SIM_TIME="true"
 
-# Gazebo'nun tamamen yüklenmesini bekle (aktif kontrol — 60s max)
-echo -e "${CYAN}  Gazebo dünyası bekleniyor (max 60 saniye)...${NC}"
-GZ_READY=false
-for i in $(seq 1 30); do
-    if ign service -s /world/default/control --reqtype ignition.msgs.WorldControl --reptype ignition.msgs.Boolean --timeout 2000 --req 'pause: false' 2>/dev/null; then
-        echo -e "  ${GREEN}✓ Gazebo hazır! (${i}x2 saniyede)${NC}"
-        GZ_READY=true
-        break
+    ${NV_ENV} ros2 launch workspace_gz simulation.launch.py &
+    SIM_PID=$!
+    echo -e "  └─ Simulation PID: ${SIM_PID}"
+
+    echo -e "${CYAN}  Gazebo dünyası bekleniyor (max 60 saniye)...${NC}"
+    GZ_READY=false
+    for i in $(seq 1 30); do
+        if ign service -s /world/default/control --reqtype ignition.msgs.WorldControl --reptype ignition.msgs.Boolean --timeout 2000 --req 'pause: false' 2>/dev/null; then
+            echo -e "  ${GREEN}✓ Gazebo hazır! (${i}x2 saniyede)${NC}"
+            GZ_READY=true
+            break
+        fi
+        echo -e "  ${YELLOW}  Bekleniyor... ($((i*2))s)${NC}"
+        sleep 2
+    done
+
+    if [ "$GZ_READY" != "true" ]; then
+        echo -e "${RED}UYARI: Gazebo 60 saniyede yanıt vermedi, devam ediliyor...${NC}"
     fi
-    echo -e "  ${YELLOW}  Bekleniyor... ($((i*2))s)${NC}"
-    sleep 2
-done
 
-if [ "$GZ_READY" != "true" ]; then
-    echo -e "${RED}UYARI: Gazebo 60 saniyede yanıt vermedi, devam ediliyor...${NC}"
+    ign service -s /world/default/control --reqtype ignition.msgs.WorldControl --reptype ignition.msgs.Boolean --timeout 3000 --req 'pause: false' 2>/dev/null || true
 fi
 
-# Simülasyonu unpause yap (yukarıdaki döngüde zaten yapıldı, bu sadece güvence)
-ign service -s /world/default/control --reqtype ignition.msgs.WorldControl --reptype ignition.msgs.Boolean --timeout 3000 --req 'pause: false' 2>/dev/null || true
-
 # LiDAR Filtresi başlat (mod'a göre farklı filtre)
-if [ "$MODE" == "slam2d" ]; then
+if [ "$MODE" == "slam2d" ] || [ "$MODE" == "saha" ]; then
     # 2D RPLidar A1M8: doğrudan LaserScan → filtrele
     echo -e "${CYAN}[2D] RPLidar LaserScan filtresi başlatılıyor...${NC}"
     echo -e "  └─ /scan → /scan/filtered (range + hull mask + speckle)"
@@ -208,10 +230,16 @@ if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ]; then
     ${NV_ENV} ros2 launch workspace_ros mola_slam.launch.py use_mola_gui:=true use_rviz:=true &
     SLAM_PID=$!
     echo -e "  └─ MOLA SLAM PID: ${SLAM_PID}"
-elif [ "$MODE" == "slam2d" ]; then
-    echo -e "${CYAN}[2D] Localization (GPS+IMU EKF) başlatılıyor...${NC}"
-    echo -e "  └─ IMU: /roboboat/sensors/imu/imu → /imu/fixed_cov"
-    echo -e "  └─ GPS: /roboboat/sensors/gps/navsat → navsat_transform → /odometry/gps"
+elif [ "$MODE" == "slam2d" ] || [ "$MODE" == "saha" ]; then
+    if [ "$MODE" == "saha" ]; then
+        echo -e "${CYAN}[SAHA] Localization (MAVROS GPS+IMU EKF) başlatılıyor...${NC}"
+        echo -e "  └─ IMU: /mavros/imu/data → /imu/fixed_cov"
+        echo -e "  └─ GPS: /mavros/global_position/global → navsat_transform → /odometry/gps"
+    else
+        echo -e "${CYAN}[2D] Localization (GPS+IMU EKF) başlatılıyor...${NC}"
+        echo -e "  └─ IMU: /mavros/imu/data → /imu/fixed_cov"
+        echo -e "  └─ GPS: /mavros/global_position/global → navsat_transform → /odometry/gps"
+    fi
     echo -e "  └─ EKF: GPS+IMU → odom→base_link TF"
     ros2 launch workspace_ros localization.launch.py &
     LOC_PID=$!
@@ -258,7 +286,7 @@ if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ]; then
     ros2 launch workspace_nav nav2.launch.py &
     NAV_PID=$!
     echo -e "  └─ Nav2 PID: ${NAV_PID}"
-elif [ "$MODE" == "slam2d" ]; then
+elif [ "$MODE" == "slam2d" ] || [ "$MODE" == "saha" ]; then
     echo -e "${CYAN}  slam_toolbox'ın harita üretmesi için 11 saniye bekleniyor...${NC}"
     sleep 11
 
@@ -282,8 +310,8 @@ elif [ "$MODE" == "parkour" ]; then
     echo -e "  └─ Parkour Navigation PID: ${NAV_PID}"
 fi
 
-# ─── Auto / slam2d modu: Mission State Machine ──────────────────────────────
-if [ "$MODE" == "auto" ] || [ "$MODE" == "slam2d" ]; then
+# ─── Auto / slam2d / saha modu: Mission State Machine ───────────────────────
+if [ "$MODE" == "auto" ] || [ "$MODE" == "slam2d" ] || [ "$MODE" == "saha" ]; then
     echo -e "${CYAN}[${MODE^^}] Nav2'nin tam olarak hazır olması için 8 s bekleniyor...${NC}"
     sleep 8
 
@@ -316,7 +344,7 @@ if [ "$MODE" == "auto" ] || [ "$MODE" == "slam2d" ]; then
 
     ros2 run workspace_nav mission_manager \
         --ros-args \
-        -p use_sim_time:=true \
+        -p use_sim_time:=${USE_SIM_TIME} \
         -p waypoints_file:="${WP_FILE}" \
         -p kamikaze_wp_id:="${KAMIKAZE_WP}" \
         -p kamikaze_trigger_dist:="${KMZ_DIST}" \
@@ -330,18 +358,28 @@ if [ "$MODE" == "auto" ] || [ "$MODE" == "slam2d" ]; then
     echo -e "${GREEN}[AUTO] ✓ Mission Manager PID: ${MISSION_PID}${NC}"
     echo -e "${GREEN}[AUTO] Terminal'de görev geçişleri: ros2 topic echo /mission_state${NC}"
 
-    # Kamikaze Gözcü (YOLO + LiDAR kapı tespiti) başlat
+    # Kamikaze Gözcü (HSV + LiDAR + ZED depth) başlat
     sleep 1
     echo -e "${CYAN}Kamikaze Gözcü başlatılıyor...${NC}"
     ros2 run workspace_nav kamikaze_control \
         --ros-args \
-        -p use_sim_time:=true &
+        -p use_sim_time:=${USE_SIM_TIME} &
     KAMIKAZE_PID=$!
     echo -e "  └─ Kamikaze Gözcü PID: ${KAMIKAZE_PID}"
 fi
 
-# cmd_vel -> thruster dönüştürücü başlat (tüm navigasyon modları için)
-if [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ] || [ "$MODE" == "parkour" ] || [ "$MODE" == "slam2d" ]; then
+# cmd_vel dönüştürücü başlat (mod'a göre farklı hedef)
+if [ "$MODE" == "saha" ]; then
+    # Gerçek donanım: cmd_vel → MAVROS setpoint (Pixhawk GUIDED modu)
+    sleep 2
+    echo -e "${CYAN}[SAHA] cmd_vel → MAVROS köprüsü başlatılıyor...${NC}"
+    echo -e "  └─ /cmd_vel → /mavros/setpoint_velocity/cmd_vel_unstamped"
+    echo -e "  ${YELLOW}NOT: ArduRover GUIDED modda olmalı ('mode GUIDED' + 'arm throttle')${NC}"
+    ros2 run workspace_ros cmd_vel_to_mavros &
+    CONV_PID=$!
+    echo -e "  └─ MAVROS Bridge PID: ${CONV_PID}"
+elif [ "$MODE" == "mola" ] || [ "$MODE" == "auto" ] || [ "$MODE" == "parkour" ] || [ "$MODE" == "slam2d" ]; then
+    # Simülasyon: cmd_vel → Ignition thruster topics
     sleep 2
     echo -e "${CYAN}Thruster Converter başlatılıyor...${NC}"
     ros2 run workspace_ros converter &
@@ -354,17 +392,31 @@ echo -e "${BLUE}╔════════════════════�
 echo -e "${BLUE}║              YILDIZ USV - Sistem Hazır!                    ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
-if [ "$MODE" == "slam2d" ]; then
-    echo -e "${GREEN}2D LiDAR + ZED — Topic Kontrol Komutları:${NC}"
-    echo -e "  ros2 topic hz /scan                            # ham LiDAR (5.5 Hz)"
-    echo -e "  ros2 topic hz /scan/filtered                   # filtreli LiDAR"
-    echo -e "  ros2 topic hz /roboboat/sensors/camera/image   # ZED RGB (30 Hz)"
-    echo -e "  ros2 topic hz /zed/depth/image                 # ZED derinlik (32FC1)"
-    echo -e "  ros2 topic hz /zed/depth/points               # ZED PointCloud2 (Nav2)"
-    echo -e "  ros2 topic echo /gate_center                   # HSV kapı tespiti"
-    echo -e "  ros2 topic echo /kamikaze_target               # HSV duba tespiti"
-    echo -e "  ros2 topic echo /odometry/filtered             # EKF konum tahmini"
-    echo -e "  ros2 topic echo /mission_state                 # görev aşaması"
+if [ "$MODE" == "saha" ]; then
+    echo -e "${GREEN}[SAHA] Gerçek Donanım Topic Kontrol Komutları:${NC}"
+    echo -e "  ros2 topic hz /scan                                         # RPLidar ham"
+    echo -e "  ros2 topic hz /scan/filtered                                # filtreli LiDAR"
+    echo -e "  ros2 topic hz /mavros/imu/data                              # Pixhawk IMU"
+    echo -e "  ros2 topic hz /mavros/global_position/global                # GPS"
+    echo -e "  ros2 topic hz /zed/zed_node/rgb/image_rect_color            # ZED RGB"
+    echo -e "  ros2 topic hz /zed/zed_node/depth/depth_registered          # ZED derinlik"
+    echo -e "  ros2 topic hz /zed/zed_node/point_cloud/cloud_registered    # ZED PointCloud2"
+    echo -e "  ros2 topic hz /zed/zed_node/odom                            # ZED odom"
+    echo -e "  ros2 topic echo /odometry/filtered                          # EKF konum"
+    echo -e "  ros2 topic echo /mission_state                              # görev aşaması"
+    echo -e "  ros2 topic echo /kamikaze_target                            # HSV duba tespiti"
+    echo -e "  ros2 topic echo /mavros/state                               # ArduRover modu"
+elif [ "$MODE" == "slam2d" ]; then
+    echo -e "${GREEN}[SİM] 2D LiDAR + ZED — Topic Kontrol Komutları:${NC}"
+    echo -e "  ros2 topic hz /scan                                         # ham LiDAR"
+    echo -e "  ros2 topic hz /scan/filtered                                # filtreli LiDAR"
+    echo -e "  ros2 topic hz /zed/zed_node/rgb/image_rect_color            # ZED RGB"
+    echo -e "  ros2 topic hz /zed/zed_node/depth/depth_registered          # ZED derinlik"
+    echo -e "  ros2 topic hz /zed/zed_node/point_cloud/cloud_registered    # ZED PointCloud2"
+    echo -e "  ros2 topic echo /gate_center                                # HSV kapı tespiti"
+    echo -e "  ros2 topic echo /kamikaze_target                            # HSV duba tespiti"
+    echo -e "  ros2 topic echo /odometry/filtered                          # EKF konum tahmini"
+    echo -e "  ros2 topic echo /mission_state                              # görev aşaması"
 else
     echo -e "${GREEN}LiDAR Topic Kontrolü:${NC}"
     echo -e "  ros2 topic list | grep lidar"

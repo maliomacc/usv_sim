@@ -12,7 +12,7 @@ class GpsCovarianceRepub(Node):
 
         self.subscription = self.create_subscription(
             NavSatFix,
-            '/roboboat/sensors/gps/navsat',
+            '/mavros/global_position/global',
             self.gps_callback,
             10
         )

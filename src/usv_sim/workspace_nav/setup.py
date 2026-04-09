@@ -57,6 +57,7 @@ setup(
             # Detector node (Strategy Pattern: sim HSV / real YOLO)
             'yolo_detector         = workspace_nav_entry.yolo_detector:main',
             'kamikaze_control      = scripts.kamikaze_control:main',
+            'yolo_depth_fusion     = scripts.yolo_depth_fusion:main',
         ],
     },
 )
