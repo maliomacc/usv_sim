@@ -98,17 +98,32 @@ local_costmap:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         publish_observations: True
         enabled: True
-        observation_sources: scan
+        # ── Sensor Fusion: 2D LiDAR + ZED PointCloud2 ───────────────────────
+        observation_sources: scan zed_points
         scan:
-          topic:  /roboboat/sensors/lidar/scan
-          max_obstacle_height: 1.0
+          topic: /scan/filtered
+          data_type: "LaserScan"
+          max_obstacle_height: 2.0
+          min_obstacle_height: 0.0
           clearing: True
           marking: True
-          data_type: "LaserScan"
           obstacle_max_range: 10.0
           obstacle_min_range: 0.1
           raytrace_max_range: 10.0
           raytrace_min_range: 0.1
+        zed_points:
+          # ZED 1.0 derinlik noktası bulutu — yüzey seviyesinin üst/alt engelleri yakalar
+          topic: /zed/depth/points
+          data_type: "PointCloud2"
+          # Yalnızca LiDAR'ın ıskaladığı yükseklik dilimini işle (su yüzeyi üstü engeller)
+          max_obstacle_height: 2.5
+          min_obstacle_height: 0.1
+          clearing: True
+          marking: True
+          obstacle_max_range: 8.0
+          obstacle_min_range: 0.5
+          raytrace_max_range: 8.0
+          raytrace_min_range: 0.5
       always_send_full_costmap: True
       
 global_costmap:

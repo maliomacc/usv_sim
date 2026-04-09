@@ -144,8 +144,13 @@ def generate_launch_description():
                 # on zed_camera_link. The Ignition topic base is the sensor <topic> value.
                 "/roboboat/sensors/camera/image@sensor_msgs/msg/Image[ignition.msgs.Image",
                 "/roboboat/sensors/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
-                "/roboboat/sensors/camera/depth@sensor_msgs/msg/Image[ignition.msgs.Image",
-                "/roboboat/sensors/camera/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked",
+                # Ignition rgbd_camera publishes depth and points as sub-topics of base:
+                # {base_topic}/camera_info  {base_topic}/depth_image  {base_topic}/points
+                "/roboboat/sensors/camera/image/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
+                "/roboboat/sensors/camera/image/depth_image@sensor_msgs/msg/Image[ignition.msgs.Image",
+                "/roboboat/sensors/camera/image/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked",
+                # ── ZED Visual Odometry (OdometryPublisher plugin) ─────────────
+                "/roboboat/zed/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry",
             ],
             remappings=[
                 ("/world/default/clock", "/clock"),
@@ -165,9 +170,13 @@ def generate_launch_description():
                 # ZED rgbd_camera remappings
                 ("/roboboat/sensors/camera/image",       "/roboboat/sensors/camera/image"),
                 ("/roboboat/sensors/camera/camera_info", "/roboboat/sensors/camera/camera_info"),
-                # Depth remapped to /zed/depth for SensorFusionNode
-                ("/roboboat/sensors/camera/depth",       "/zed/depth"),
-                ("/roboboat/sensors/camera/points",      "/roboboat/sensors/camera/pointcloud"),
+                # Depth + PointCloud remapped to /zed namespace consumed by
+                # kamikaze_control (smart fallback) and Nav2 costmap (Parkur 2)
+                ("/roboboat/sensors/camera/image/camera_info", "/zed/depth/camera_info"),
+                ("/roboboat/sensors/camera/image/depth_image", "/zed/depth/image"),
+                ("/roboboat/sensors/camera/image/points",      "/zed/depth/points"),
+                # ZED odometry (OdometryPublisher plugin ground-truth)
+                ("/roboboat/zed/odom",                   "/zed/odom"),
             ],
             parameters=[{'use_sim_time': True}],
             output='screen'

@@ -716,4 +716,23 @@
     <child  link="rplidar_a1_link"/>
   </joint>
 
+  <!--
+    ════════════════════════════════════════════════════════
+    ZED Visual Odometry — Ignition OdometryPublisher
+    libgazebo_ros_p3d.so eşdeğeri (Ignition Gazebo)
+    Topic: /roboboat/zed/odom → ros_gz_bridge → /zed/odom
+    ════════════════════════════════════════════════════════
+  -->
+  <gazebo>
+    <plugin filename="ignition-gazebo-odometry-publisher-system"
+            name="ignition::gazebo::systems::OdometryPublisher">
+      <!-- Gürültüsüz ground-truth odometri (simülasyon-gerçeklik farkını kapatır) -->
+      <odom_topic>/roboboat/zed/odom</odom_topic>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_frame>odom</odom_frame>
+      <!-- 30 Hz — ZED 1.0 odometri çıkış hızıyla eşleştirildi -->
+      <odom_publish_frequency>30</odom_publish_frequency>
+    </plugin>
+  </gazebo>
+
 </robot>

@@ -23,7 +23,6 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from sensor_msgs.msg import Image, LaserScan
 from std_msgs.msg import Bool, Int32
 from geometry_msgs.msg import Point, PointStamped, PoseStamped, Twist
-from geometry_msgs.msg import PointStamped as FusionTarget
 
 
 # =============================================================================
@@ -39,7 +38,7 @@ TARGET_RED   = 0
 TARGET_GREEN = 1
 TARGET_BLACK = 2
 
-TARGET_NAMES = {TARGET_RED: 'KIRMIZI', TARGET_GREEN: 'YEŞİL', TARGET_BLACK: 'SİYAH'}
+TARGET_NAMES = {TARGET_RED: 'KIRMIZI', TARGET_GREEN: 'YESIL', TARGET_BLACK: 'SIYAH'}
 TARGET_COLORS_BGR = {
     TARGET_RED:   (0,   0,   255),
     TARGET_GREEN: (0,   200, 0),
@@ -170,6 +169,38 @@ def _hsv_detect_yellow(frame: np.ndarray) -> list:
 
 
 # =============================================================================
+# YARDIMCI: ZED DERİNLİK PİKSEL OKUMA
+# =============================================================================
+
+def _zed_depth_at_pixel(depth_img: np.ndarray,
+                         cx_px: int, cy_px: int,
+                         win: int = 5,
+                         rgb_w: int = None,
+                         rgb_h: int = None) -> float | None:
+    """32FC1 derinlik görüntüsünden [cy_px, cx_px] etrafındaki medyan mesafeyi (m) döndür.
+
+    rgb_w / rgb_h verilirse piksel koordinatları depth çözünürlüğüne otomatik ölçeklenir.
+    ZED depth 320x180, RGB (legacy kamera) 1280x720 olduğunda bu gereklidir.
+
+    Geçersiz (NaN/Inf/≤0.1 m/≥30 m) piksel değerleri filtrelenir.
+    Geçerli piksel kalmadıysa None döner.
+    """
+    if depth_img is None:
+        return None
+    h, w = depth_img.shape[:2]
+    # RGB çözünürlüğü ≠ depth çözünürlüğü → koordinatları ölçekle
+    if rgb_w is not None and rgb_w > 0 and rgb_w != w:
+        cx_px = int(cx_px * w / rgb_w)
+    if rgb_h is not None and rgb_h > 0 and rgb_h != h:
+        cy_px = int(cy_px * h / rgb_h)
+    y0 = max(0, cy_px - win);  y1 = min(h, cy_px + win + 1)
+    x0 = max(0, cx_px - win);  x1 = min(w, cx_px + win + 1)
+    patch = depth_img[y0:y1, x0:x1]
+    valid = patch[np.isfinite(patch) & (patch > 0.1) & (patch < 30.0)]
+    return float(np.median(valid)) if valid.size > 0 else None
+
+
+# =============================================================================
 # GATE DETECTOR — Parkur 2 (değişmedi)
 # =============================================================================
 
@@ -215,7 +246,8 @@ class GateDetector:
         self._pub.publish(pose)
 
     def detect_and_publish(self, frame: np.ndarray,
-                            yellow_buoys: list, image_width: int) -> bool:
+                            yellow_buoys: list, image_width: int,
+                            depth_img: np.ndarray | None = None) -> bool:
         n = len(yellow_buoys)
         vis      = Bool()
         vis.data = n > 0
@@ -229,8 +261,18 @@ class GateDetector:
         if n == 1:
             b     = yellow_buoys[0]
             angle = ((b['cx'] / image_width) - 0.5) * FOV_H_RAD
-            dist  = self._safe_lidar_dist(angle) or self._last_valid_left_dist
-            self._last_valid_left_dist = dist
+            lidar_d = self._safe_lidar_dist(angle)
+            if lidar_d is not None:
+                dist = lidar_d
+                self._last_valid_left_dist = lidar_d
+            else:
+                zed_d = _zed_depth_at_pixel(
+                    depth_img, int(b['cx']), int(b['cy']),
+                    rgb_w=image_width, rgb_h=frame.shape[0],
+                )
+                dist  = zed_d if zed_d is not None else self._last_valid_left_dist
+                if zed_d is not None:
+                    self._last_valid_left_dist = zed_d
             gx = dist * math.cos(angle)
             gy = dist * math.sin(angle)
             gy = gy - GATE_HALF_WIDTH if gy > 0.0 else gy + GATE_HALF_WIDTH
@@ -253,7 +295,12 @@ class GateDetector:
         gate_dist  = self._safe_lidar_dist(gate_angle)
 
         if gate_dist is None:
-            gate_dist = (self._last_valid_left_dist + self._last_valid_right_dist) / 2.0
+            zed_d = _zed_depth_at_pixel(
+                depth_img, int(gate_px), int(gate_py),
+                rgb_w=image_width, rgb_h=frame.shape[0],
+            )
+            gate_dist = (zed_d if zed_d is not None
+                         else (self._last_valid_left_dist + self._last_valid_right_dist) / 2.0)
         else:
             la = ((left_b['cx']  / image_width) - 0.5) * FOV_H_RAD
             ra = ((right_b['cx'] / image_width) - 0.5) * FOV_H_RAD
@@ -316,10 +363,11 @@ class KamikazeControl(Node):
         self.latest_image = None
         self.latest_scan  = None
 
-        # Sensör füzyon verisi (mesafe + kaynak)
-        self._fusion_dist:   float = -1.0   # -1 = bilinmiyor
-        self._fusion_source: float = -1.0   # 0=LiDAR, 1=ZED, -1=yok
-        self._fusion_yaw:    float = 0.0
+        # Sensör füzyon verisi — smart fallback tarafından doldurulur
+        self._fusion_dist:      float              = -1.0   # -1 = bilinmiyor
+        self._fusion_source:    float              = -1.0   # 0=LiDAR, 1=ZED, -1=yok
+        self._fusion_yaw:       float              = 0.0
+        self._latest_depth_img: np.ndarray | None  = None   # /zed/depth/image
 
         sensor_qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
@@ -341,8 +389,8 @@ class KamikazeControl(Node):
             self._color_cmd_cb, 10,
         )
         self.create_subscription(
-            PointStamped, '/fusion/target',
-            self._fusion_cb, 10,
+            Image, '/zed/depth/image',
+            self._depth_cb, sensor_qos,
         )
         # ── Yayıncılar ───────────────────────────────────────────────────────
         self._target_pub         = self.create_publisher(Point,        '/kamikaze_target', 10)
@@ -385,10 +433,32 @@ class KamikazeControl(Node):
         self.latest_scan = msg
         self._gate_detector.update_scan(msg)
 
-    def _fusion_cb(self, msg: PointStamped) -> None:
-        self._fusion_dist   = msg.point.x   # metre, -1.0 = açı-only
-        self._fusion_yaw    = msg.point.y   # rad
-        self._fusion_source = msg.point.z   # 0=LiDAR, 1=ZED, -1=yok
+    def _depth_cb(self, msg: Image) -> None:
+        try:
+            self._latest_depth_img = self.bridge.imgmsg_to_cv2(
+                msg, desired_encoding='32FC1'
+            )
+        except Exception as exc:
+            self.get_logger().error(
+                f'[ZED Depth] Dönüşüm hatası: {exc}', throttle_duration_sec=5.0
+            )
+
+    def _safe_lidar_dist(self, angle: float, window: int = 15) -> float | None:
+        """Verilen açıya karşılık gelen LiDAR mesafesini döndür (None = ıskalama)."""
+        if self.latest_scan is None:
+            return None
+        msg = self.latest_scan
+        n   = len(msg.ranges)
+        if n == 0 or msg.angle_increment == 0.0:
+            return None
+        idx = int(round((angle - msg.angle_min) / msg.angle_increment))
+        idx = max(0, min(n - 1, idx))
+        cands = [
+            msg.ranges[i]
+            for i in range(max(0, idx - window), min(n, idx + window + 1))
+            if math.isfinite(msg.ranges[i]) and msg.ranges[i] > 0.1
+        ]
+        return float(min(cands)) if cands else None
 
     def _color_cmd_cb(self, msg: Int32) -> None:
         """
@@ -476,7 +546,8 @@ class KamikazeControl(Node):
         # PARKUR 2 — HSV SARI DUBA TESPİTİ
         # ═══════════════════════════════════════════════════════════════════
         yellow_buoys = _hsv_detect_yellow(frame)
-        self._gate_detector.detect_and_publish(frame, yellow_buoys, width)
+        self._gate_detector.detect_and_publish(frame, yellow_buoys, width,
+                                               depth_img=self._latest_depth_img)
 
         if yellow_buoys:
             self.get_logger().info(
@@ -531,7 +602,7 @@ class KamikazeControl(Node):
             ('SENSOR FUZYON', (200, 200, 200)),
             (f'Mesafe : {dist_txt}',    src_c),
             (f'Kaynak : {src_name}',    src_c),
-            (f'Aci    : {yaw_deg:+.1f}°', (200, 200, 200)),
+            (f'Aci    : {yaw_deg:+.1f} deg', (200, 200, 200)),
         ]
         fx, fy = width - 240, 12
         for i, (txt, col) in enumerate(fusion_lines):
@@ -546,16 +617,16 @@ class KamikazeControl(Node):
                     (8, 18), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 220, 0), 1)
         cv2.putText(frame, f'LiDAR: {"OK" if scan_ok else "YOK"}',
                     (8, 36), cv2.FONT_HERSHEY_SIMPLEX, 0.5, scan_col, 1)
-        fusion_conn = self._fusion_dist != -1.0 or self._fusion_source != -1.0
-        fus_col = (0, 220, 0) if fusion_conn else (80, 80, 80)
-        cv2.putText(frame, f'FUZYON: {"OK" if fusion_conn else "YOK"}',
-                    (8, 54), cv2.FONT_HERSHEY_SIMPLEX, 0.5, fus_col, 1)
+        zed_depth_ok = self._latest_depth_img is not None
+        zed_col = (0, 220, 0) if zed_depth_ok else (80, 80, 80)
+        cv2.putText(frame, f'ZED DEPTH: {"OK" if zed_depth_ok else "YOK"}',
+                    (8, 54), cv2.FONT_HERSHEY_SIMPLEX, 0.5, zed_col, 1)
 
         # ── Alt durum çubuğu ─────────────────────────────────────────────
         overlay = frame.copy()
         cv2.rectangle(overlay, (0, height - 28), (width, height), (0, 0, 0), -1)
         cv2.addWeighted(overlay, 0.6, frame, 0.4, 0, frame)
-        lock_sym  = '🔒 KİLİTLİ' if self.target_locked else 'ARAMA'
+        lock_sym  = '[LOCK] KILITLI' if self.target_locked else 'ARAMA'
         status_txt = (f'P2-SARI:{len(yellow_buoys)}  |  '
                       f'P3-HEDEF:{color_name}  |  '
                       f'{lock_sym}  |  '
@@ -585,7 +656,7 @@ class KamikazeControl(Node):
             self._lost_frames      = 0
 
         cv2.putText(
-            frame, f'HEDEF ARANIYOR... ({color_name})',
+            frame, f'HEDEF ARANIYOR... ({color_name})',   # ASCII-safe
             (20, 50), cv2.FONT_HERSHEY_DUPLEX, 1.0, (0, 255, 255), 2,
         )
 
@@ -638,9 +709,29 @@ class KamikazeControl(Node):
         # cmd_vel bu node tarafından yayınlanmaz.
         # mission_manager /kamikaze_target'i okur ve kendi cmd_vel'ini üretir.
 
+        # ── Smart Fallback mesafe hesabı ─────────────────────────────────
+        cx_px  = int(tgt['cx'])
+        cy_px  = int(tgt['cy'])
+        angle  = (cx_norm - 0.5) * FOV_H_RAD          # Step 1: açı
+
+        lidar_d = self._safe_lidar_dist(angle)          # Step 2: LiDAR
+        if lidar_d is not None:
+            self._fusion_dist   = lidar_d
+            self._fusion_source = 0.0                   # LiDAR
+        else:
+            zed_d = _zed_depth_at_pixel(               # Step 3: ZED fallback
+                self._latest_depth_img, cx_px, cy_px,
+                rgb_w=width, rgb_h=height,
+            )
+            if zed_d is not None:
+                self._fusion_dist   = zed_d
+                self._fusion_source = 1.0               # ZED
+            else:
+                self._fusion_dist   = -1.0
+                self._fusion_source = -1.0
+        self._fusion_yaw = angle
+
         # ── HUD ──────────────────────────────────────────────────────────
-        cx_px = int(tgt['cx'])
-        cy_px = int(tgt['cy'])
         cx_f  = width // 2
 
         cv2.rectangle(frame, (tgt['x'], tgt['y']), (tgt['x2'], tgt['y2']),
@@ -658,7 +749,7 @@ class KamikazeControl(Node):
         err_disp = 0.5 - cx_norm
         cv2.putText(
             frame,
-            f'{color_name} KİLİTLİ | Sapma={err_disp:+.3f}',
+            f'{color_name} KILITLI | Sapma={err_disp:+.3f}',
             (20, 38), cv2.FONT_HERSHEY_DUPLEX, 0.9, color_bgr, 2,
         )
         cv2.putText(
@@ -668,10 +759,10 @@ class KamikazeControl(Node):
         )
 
         if remaining > 0.0:
-            timer_txt = f'KİLİT GERİ SAYIM: {remaining:.1f}s'
+            timer_txt = f'KILIT GERI SAYIM: {remaining:.1f}s'
             timer_col = (0, 255, 255)
         else:
-            timer_txt = f'⚔  TAM HIZ — {ATTACK_MAX_SPEED:.1f} m/s'
+            timer_txt = f'>>> TAM HIZ SALDIRI {ATTACK_MAX_SPEED:.1f} m/s'
             timer_col = (0, 0, 255)
 
         cv2.putText(

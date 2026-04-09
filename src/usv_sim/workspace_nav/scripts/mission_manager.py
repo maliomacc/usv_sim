@@ -671,7 +671,7 @@ class MissionManager(Node):
 
         self.create_subscription(Odometry,        '/odometry/filtered',   self._odom_cb,    _rel)
         self.create_subscription(Detection2DArray,'/yolo/detections',     self._det_cb,     _be)
-        self.create_subscription(CameraInfo,      '/zed/rgb/camera_info', self._caminfo_cb, _rel)
+        self.create_subscription(CameraInfo,      '/camera/camera_info',  self._caminfo_cb, _rel)
 
         self.create_subscription(Point, '/kamikaze_target', self._kamikaze_target_cb, 10)
 
@@ -834,13 +834,13 @@ class MissionManager(Node):
                         throttle_duration_sec=2.0,
                     )
                 else:
-                    self._s2._kmz_wp['x'] = new_x
-                    self._s2._kmz_wp['y'] = new_y
+                   # self._s2._kmz_wp['x'] = new_x
+                   # self._s2._kmz_wp['y'] = new_y
                     self.get_logger().info(
-                        f'[GateFusion] WP5 güncellendi → ({new_x:.1f},{new_y:.1f}) '
+                        f'[GateFusion] Görsel kilit: ({new_x:.1f},{new_y:.1f}) '
                         f'dist={dist_to_new_wp5:.1f}m '
-                        '(dist_to_wp5 ölçümü için referans)'
-                    )
+                        '(Sadece loglama, WP5 DEĞİŞTİRİLMEDİ!)'
+                )
 
     def _kamikaze_target_cb(self, msg):
 
@@ -1395,16 +1395,35 @@ class MissionManager(Node):
                 throttle_duration_sec=0.3,
             )
         else:
-            # ── FAZ 1: Hedef görüldü, kilit bekleniyor — dur-ma, hemen saldır ─
-            cmd.linear.x  = float(_P1_LINEAR)
-            cmd.angular.z = float(max(-_P1_ANG_CLAMP,
-                                      min(_P1_ANG_CLAMP,
-                                          self._kp_yaw * err * _P1_ANG_MULT)))
-            self.get_logger().info(
-                f'[KAMIKAZE] 🚀 CHARGE! Sapma={err:+.3f} | '
-                f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s',
-                throttle_duration_sec=0.3,
-            )
+            # ── FAZ 1: HEDEF GÖRÜLDÜ (YAKLAŞMA VE HİZALANMA) ──
+            abs_err = abs(err)
+            
+            # Eğer hedef merkeze uzaksa (Sapma > 0.15 yani ekranın %15'inden fazlaysa)
+            if abs_err > 0.15:
+                # SADECE DÖNÜŞ (Tank Dönüşü) - İleri gitmeyi kes, rotayı düzelt!
+                cmd.linear.x  = 0.2  # Dümen dinlesin diye pervaneye çok hafif su veriyoruz
+                cmd.angular.z = float(max(-_P1_ANG_CLAMP, 
+                                          min(_P1_ANG_CLAMP, 
+                                              self._kp_yaw * err * 25.0))) # Ekstra Agresif Dönüş!
+                
+                self.get_logger().info(
+                    f'[KAMIKAZE] 🔄 HİZALANIYOR! Sapma={err:+.3f} | '
+                    f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s',
+                    throttle_duration_sec=0.3,
+                )
+            else:
+                # Hedef nişangaha oturdu (Sapma < 0.15) -> ÜZERİNE ÇULLAN!
+                adaptive_speed = _P1_LINEAR * (1.0 - abs_err * 3.0)
+                cmd.linear.x  = float(max(1.5, adaptive_speed)) # Minimum 1.5 m/s ile atıl
+                cmd.angular.z = float(max(-_P1_ANG_CLAMP, 
+                                          min(_P1_ANG_CLAMP, 
+                                              self._kp_yaw * err * _P1_ANG_MULT)))
+                
+                self.get_logger().info(
+                    f'[KAMIKAZE] 🚀 CHARGE! Sapma={err:+.3f} | '
+                    f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s',
+                    throttle_duration_sec=0.3,
+                )
 
         self._cmd_pub.publish(cmd)
 
