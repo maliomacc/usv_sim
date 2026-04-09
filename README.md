@@ -1,864 +1,753 @@
-<div align="center">
-
-<h1>STI_USV</h1>
-
-**Otonom İnsansız Su Yüzeyi Aracı — TEKNOFEST Yarışma Navigasyon Sistemi**
-
-[![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04_LTS-E95420?logo=ubuntu&logoColor=white)](https://releases.ubuntu.com/22.04/)
-[![ROS2](https://img.shields.io/badge/ROS_2-Humble_Hawksbill-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/humble/)
-[![Gazebo](https://img.shields.io/badge/Gazebo-Fortress_(Ignition)-F58113?logo=gazebo&logoColor=white)](https://gazebosim.org/docs/fortress/)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Algılama](https://img.shields.io/badge/Alg%C4%B1lama-Saf_HSV_%2B_TensorRT_YOLOv8-00FFFF?logo=opencv&logoColor=black)](https://opencv.org/)
-[![Nav2](https://img.shields.io/badge/Navigasyon-Nav2_MPPI-22314E)](https://navigation.ros.org/)
-[![License](https://img.shields.io/badge/Lisans-Apache_2.0-blue)](./LICENSE.txt)
-
-*Bitirme Projesi · Tam Otonom Navigasyon · TEKNOFEST USV Yarışması*
-
-</div>
+# STI USV — Autonomy Architecture Reference
+### TEKNOFEST 2026 | Unmanned Surface Vehicle Competition
+**Author:** Senior Autonomous Systems Architect  
+**Maintained by:** Muhammedali Omaç (Lead Engineer)  
+**Branch:** `feateure/2d-rplidar-a1m8-nav`  
+**Platform:** Jetson Orin NX 8 GB · ROS 2 Humble · Ignition Fortress  
 
 ---
 
-## 📋 İçindekiler
+## Table of Contents
 
-1. [Proje Genel Bakış](#-proje-genel-bakış)
-2. [Temel Kaynak Kodunun Atıfı](#-temel-kaynak-kodunun-atıfı)
-3. [Bu Projede Geliştirilen Özgün Mühendislik Katkıları](#-bu-projede-geliştirilen-özgün-mühendislik-katkıları)
-4. [Sistem Mimarisi](#-sistem-mimarisi)
-5. [Paket Yapısı](#-paket-yapısı)
-6. [Kurulum ve Bağımlılıklar](#-kurulum-ve-bağımlılıklar)
-7. [Kullanım](#-kullanım)
-8. [**Uçtan Uca Sistem Akışı**](#-uçtan-uca-sistem-akışı)
-9. [**Algoritma Tasarımları**](#-algoritma-tasarımları)
-10. [Görev Senaryosu: TEKNOFEST Parkurları](#-görev-senaryosu-teknofest-parkurları)
-11. [ROS Topic Referansı](#-ros-topic-referansı)
-12. [Sorun Giderme](#-sorun-giderme)
-13. [Katkıda Bulunanlar](#-katkıda-bulunanlar)
+1. [Mission Strategy & Hybrid Control](#1-mission-strategy--hybrid-control)
+2. [Multithreaded Perception Engine](#2-multithreaded-perception-engine)
+3. [Sensor Fusion & Marine Optimization](#3-sensor-fusion--marine-optimization)
+4. [Navigation Logic — Parkur 2 & 3](#4-navigation-logic--parkur-2--3)
+5. [Sim-to-Real: Field Challenges & Solutions](#5-sim-to-real-field-challenges--solutions)
+6. [Debugging & Troubleshooting](#6-debugging--troubleshooting)
 
 ---
 
-## 🎯 Proje Genel Bakış
+## 1. Mission Strategy & Hybrid Control
 
-**STI_USV**, TEKNOFEST İnsansız Su Araçları (İDA) yarışması görevlerini bağımsız olarak tamamlamak üzere tasarlanmış, tam otonom bir İnsansız Su Yüzeyi Aracı (USV) navigasyon sistemidir. Proje, bir **Bitirme Projesi** kapsamında geliştirilmiş olup gerçek dünya yarışma koşullarını simüle eden Gazebo Ignition (Fortress) ortamında doğrulanmıştır.
+### 1.1 The Three-Phase Mission Overview
 
-### Temel Teknik Hedefler
+The competition course is divided into three sequentially activated phases. The system does not run all phases simultaneously — it transitions state via `mission_manager.py`, which acts as the master arbiter of all control authority.
 
-| Hedef | Yaklaşım |
-|-------|----------|
-| GPS Bazlı Açık Su Navigasyonu | Özel PID Yaw Kontrolcüsü |
-| Duba Kapısı Geçişi (Slalom) | Nav2 MPPI + Güven Kilidi Algoritması |
-| Kamikaze Saldırısı (Sim) | Saf HSV Renk Filtreleme (YOLO-FREE) |
-| Kamikaze Saldırısı (Gerçek Dünya) | TensorRT YOLOv8 + HSV Doğrulama Füzyonu |
-| Sağlam Nesne Algılama | OpenCV HSV Bant Filtreleme |
-| Kesin Konum Belirleme | MOLA SLAM + EKF Sensör Füzyonu |
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  PARKUR 1         PARKUR 2              PARKUR 3                    │
+│  ──────────       ─────────────         ────────────────────────    │
+│  Pixhawk AUTO     Jetson GUIDED         Jetson GUIDED               │
+│  L1 waypoints     Nav2 MPPI + YOLO      YOLO visual servo + lock    │
+│  GPS-based        Gate detection        Kamikaze terminal attack     │
+│  No camera        /gate_center          /kamikaze_target + locked    │
+└─────────────────────────────────────────────────────────────────────┘
+         │                   │                        │
+    ArduPilot           cmd_vel_to_mavros        cmd_vel_to_mavros
+    internal PID        → MAVROS GUIDED          → MAVROS GUIDED
+```
 
-> **Akademik Not:** Bu depo, Bitirme Projesi danışmanlarının ve teknik jürilerin teknik derinliği doğrulayabilmesi amacıyla **mühendislik kararları ve tasarım gerekçeleriyle** birlikte dokümante edilmiştir.
+### 1.2 Parkur 1: Why Pixhawk L1 Controller Is Used
+
+During Parkur 1, the Pixhawk 2.4.8 runs in `AUTO` mode with pre-loaded GPS waypoints. Control authority belongs entirely to ArduPilot's internal L1 controller — Jetson does not issue any velocity commands.
+
+**Why this is architecturally superior to running Nav2 from the start:**
+
+| Factor | Pixhawk L1 (Parkur 1) | Nav2 MPPI (Parkur 2+) |
+|--------|----------------------|-----------------------|
+| GPS accuracy requirement | Low (5–10 m tolerance) | Not primary sensor |
+| Latency | 0 ms (onboard) | ~50–100 ms (offboard) |
+| Robustness | Runs even if Jetson crashes | Requires full ROS stack |
+| Heading stability | ArduPilot magnetometer fusion | EKF + IMU only |
+| Dependency | ArduPilot firmware | ROS 2 + robot_localization + Nav2 |
+
+The L1 guidance law is a lateral acceleration controller that minimizes cross-track error to a lookahead point on the planned path. For an open-water transit leg with no obstacles, this is both computationally cheaper and more robust than running a full Nav2 costmap at 10 Hz.
+
+### 1.3 The GUIDED Mode Handoff
+
+When `mission_manager.py` detects mission phase transition, it commands Pixhawk to switch from `AUTO` to `GUIDED` mode via MAVROS service call. From this point, Jetson assumes full control authority:
+
+```
+mission_manager.py
+    │
+    ├── ros2 service call /mavros/set_mode  (GUIDED)
+    │
+    └── begins publishing /cmd_vel (Twist)
+              │
+        cmd_vel_to_mavros node
+              │
+        /mavros/setpoint_velocity/cmd_vel_unstamped
+              │
+          Pixhawk 2.4.8  →  ESC/Motor PWM
+```
+
+`cmd_vel_to_mavros` is a thin translation node in `workspace_ros` that maps `Twist.linear.x` to surge thrust and `Twist.angular.z` to yaw rate, passing these as `PositionTarget` velocity setpoints to ArduPilot's velocity controller.
+
+**Critical note:** If `cmd_vel_to_mavros` dies, Pixhawk receives no new setpoints and holds its last commanded velocity. The watchdog timeout in ArduPilot (`FS_GCS_TIMEOUT`) will eventually trigger a failsafe. Always verify this node is alive before field deployment.
+
+### 1.4 EKF Localization Chain
+
+During Parkur 2 and 3, the boat's pose estimate is produced by `robot_localization` running on Jetson:
+
+```
+/mavros/imu/data  ──→  imu_covariance_repub  ──→  /imu/fixed_cov
+                                                         │
+/mavros/global_position/global  ──→  gps_covariance_repub  ──→  /gps/fixed_cov
+                                                         │
+                                              navsat_transform_node
+                                              (GPS UTM → /odometry/gps)
+                                                         │
+                                              ekf_node  (GPS odom + IMU)
+                                                         │
+                                              /odometry/filtered
+                                              TF: odom → base_link
+```
+
+The covariance re-publishers inject realistic uncertainty values because MAVROS reports zero-covariance by default — `robot_localization` will reject or over-weight such inputs without corrected values. The injected values are tuned for the Pixhawk 2.4.8 + ublox M8N GPS combination typical of the competition hardware class.
+
+**slam_toolbox** then adds the `map → odom` transform using the RPLidar A1M8 (`/dev/ttyUSB0`) on `/scan/filtered`, closing the full TF chain:
+
+```
+map → odom → base_link
+```
 
 ---
 
-## 🤝 Temel Kaynak Kodunun Atıfı
+## 2. Multithreaded Perception Engine
 
-Bu projenin **3D simülasyon ortamı, su fiziği, bot modeli, sensör eklentileri ve temel ROS-Gazebo köprüleme altyapısı**, açık kaynak [YILDIZ-USV](https://github.com/YILDIZ-USV/YILDIZ-USV) projesinden türetilmiştir. Bu çalışmanın sağlam bir başlangıç noktası sunduğunu ve zaman kazandırdığını açıkça belirtmek ve ekibe teşekkür etmek isteriz.
+### 2.1 The Problem: YOLO Blocks the ROS Executor
 
-**Temel kaynak katkıları:**
-- Gazebo Ignition'da gerçekçi su fiziği (Gerstner dalgaları, hidrodinamik sürüklenme)
-- USV tekne modeli (mesh, kütle, atalet özellikleri)
-- Velodyne LiDAR, kamera ve GPS sensör eklentileri
-- `ros_ign_bridge` aracılığıyla temel ROS-Gazebo topic köprüsü
+YOLOv8 TensorRT inference on a Jetson Orin NX 8 GB takes approximately **8–15 ms per frame** at 320×180 resolution with the `.engine` format. This is not fast enough to run inside a ROS subscriber callback without consequences.
 
-Bu proje, yukarıdaki simülasyon katmanını **üretim düzeyinde bir otonom navigasyon yazılım yığınıyla** genişletmektedir.
+ROS 2's default `SingleThreadedExecutor` processes all callbacks sequentially. If `_image_cb` calls `model.predict()` directly, the executor is blocked for 8–15 ms. During this time:
 
----
+- `/scan` callbacks are dropped (LiDAR data becomes stale)
+- `/cmd_vel` timer callbacks fire late (motor control jitter)
+- The 20 Hz control loop degrades to an effective 5–10 Hz
 
-## 🔬 Bu Projede Geliştirilen Özgün Mühendislik Katkıları
+This is catastrophic for the visual servo loop in Parkur 3, where consistent 20 Hz yaw correction is essential for target lock.
 
-> Bu bölüm, temel kaynak repoya kıyasla projenin **özgün mühendislik değerini** ortaya koymaktadır.
-
-### 1 · Algılama Mimarisi (`kamikaze_control.py` ve `kamikaze_control_real.py`)
-
-> **Kritik Tasarım Kararı:** YOLOv11 simülasyonda tamamen kaldırıldı. Jetson Orin'in GPU/termal bütçesi gereksiz yere tüketilmemelidir. Gerçek dünya modülünde YOLO, yalnızca bounding box önermek için kullanılır; renk kararını HSV verir.
-
-#### Simülasyon Modülü (`kamikaze_control.py`) — Saf HSV
+### 2.2 The 4-Thread Architecture
 
 ```
-Kamera Karesi
-    ├── HSV Sarı Filtresi  → /gate_center    (Parkur 2 — kapı orta noktası)
-    └── HSV Dinamik Hedef → /kamikaze_target  (Parkur 3 — kamikaze saldırısı)
-                             0=KIRMIZI | 1=YEŞİL | 2=SİYAH
+┌───────────────────────────────────────────────────────────────────────┐
+│  MultiThreadedExecutor (4 threads)                                    │
+│                                                                       │
+│  Thread A: ROS Subscriber — _image_cb                                 │
+│  ┌─────────────────────────────────────────────────────────────┐     │
+│  │  imgmsg_to_cv2()  ──→  queue.put_nowait(bgr)                │     │
+│  │  Duration: < 3 ms    [drops oldest if queue full]           │     │
+│  └─────────────────────────────────────────────────────────────┘     │
+│            │  queue.Queue(maxsize=2)                                   │
+│            ▼                                                          │
+│  Thread C: Daemon Thread — _inference_loop  (NOT in ROS executor)    │
+│  ┌─────────────────────────────────────────────────────────────┐     │
+│  │  queue.get(timeout=0.5)                                      │     │
+│  │  model.predict(bgr, device='0')    ← GPU inference 8-15ms   │     │
+│  │  parse boxes → dets[]                                        │     │
+│  │  with _det_lock: _latest_detections = dets   ← atomic write │     │
+│  └─────────────────────────────────────────────────────────────┘     │
+│                                                                       │
+│  Thread B: ROS Subscribers — _scan_cb, _depth_cb, _conf_cb           │
+│  ┌─────────────────────────────────────────────────────────────┐     │
+│  │  Lightweight assigns:                                        │     │
+│  │    self._latest_scan  = msg                                  │     │
+│  │    self._latest_depth = bridge.imgmsg_to_cv2(...)           │     │
+│  │    self._latest_conf  = bridge.imgmsg_to_cv2(...)           │     │
+│  └─────────────────────────────────────────────────────────────┘     │
+│                                                                       │
+│  Thread D: ROS Timer — _publish_loop (20 Hz, 50 ms period)           │
+│  ┌─────────────────────────────────────────────────────────────┐     │
+│  │  with _det_lock: dets = list(_latest_detections)  ← snapshot│     │
+│  │  depth = self._latest_depth  (no lock — CPython GIL safe)   │     │
+│  │  _handle_gate(yellow_buoys, ...)                             │     │
+│  │  _process_target(target_det, ...)                            │     │
+│  │  publish: /gate_center, /kamikaze_target, /kamikaze_locked   │     │
+│  │           /yellow_visible, /yolo/detection_image             │     │
+│  └─────────────────────────────────────────────────────────────┘     │
+└───────────────────────────────────────────────────────────────────────┘
 ```
 
-**Kapı Geometri Düzeltmesi:** İki sarı dubanın piksel merkezlerinden geometrik orta nokta hesaplanır. Tek bir LiDAR açısından mesafe okunur — eski "iki mesafenin ortalaması" yöntemi asimetrik mesafelerde sapıyordu.
+### 2.3 `queue.Queue(maxsize=2)` — The Drop-Oldest Strategy
 
-```
-    Eski: gate_x = (d_sol + d_sağ)/2 × orta_açı   ← HATALI (d_sol=7m, d_sağ=4m → 5.5m)
-    Yeni: gate_px = (cx1+cx2)/2 → tek açı → LiDAR(o açı) → doğru 3D konum
-```
-
-#### Gerçek Dünya Modülü (`kamikaze_control_real.py`) — YOLOv8 TensorRT + HSV Füzyon
-
-```
-ZED Kamera (ROS2)
-         │
-   ┌─────▼──────────────────────────────┐
-   │     BuoyPerception (GPU+CPU)        │
-   │  1) TensorRT YOLOv8 (.engine)       │ ← GPU, 640×384px infer
-   │  2) HSV ColorVerifier (ROI only)    │ ← CPU, yalnızca kutucuk içi
-   │     ratio = renk_px / toplam_px     │
-   │     ratio < 12% → REDDET            │
-   └─────┬──────────────────────────────┘
-         │ (cx_norm, area)
-         ▼
-   /kamikaze_target  +  /kamikaze_locked
-```
-
-**Jetson Orin Optimizasyonları:**
-- Çıkarım girişi `640×384` — tam kare (1280×720) yerine
-- HSV yalnızca YOLO ROI bölgesinde hesaplanır — tam kare maskeleme yok
-- QoS depth=1 — eski kare birikimi yok
-- Timer frekansı yapılandırılabilir (`INFER_HZ`, varsayılan 15 Hz)
-
----
-
-### 2 · Görev Yönetimi ve Durum Makinesi (`mission_manager.py`)
-
-Merkezi bir `MissionManager` düğümü, kameranın körleşmesine ya da GPS kaymasına karşı savunmacı geçiş koşulları uygulayarak üç parkuru sırasıyla yönetmektedir.
-
-#### Parkur 1 — PID Yaw Kontrolcüsü
-
-Nav2'nin doğrudan GPS koordinatlarına navigasyon yapmaması nedeniyle, WP1→WP4 arası için özel bir PID yaw kontrolcüsü yazılmıştır.
-
-```
-Hata Hesabı:     e = atan2(dy, dx) − robot_yaw       [radyan]
-Kontrol Çıktısı: ω = Kp·e + Ki·∫e·dt + Kd·Δe/Δt     [rad/s]
-İleri Hız:       Vx = Vmax · (1 − |e| / π)           [m/s]
-```
-
-| Parametre | Değer | Gerekçe |
-|-----------|-------|---------|
-| Kp | 1.5 | Hızlı azalma, ama aşım olmadan |
-| Ki | 0.0 | Simülasyon ortamında rüzgar/drift yok |
-| Kd | 1.2 | Anahtarlama salınımlarını söndürür |
-| WP Toleransı | 1.5 m | Rüzgar taşınmasına karşı bant genişliği |
-
-#### Parkur 2 — MPPI Slalom + Sniper Confidence Lock
-
-**Problem:** Ham YOLOv11 tespit koordinatları, sahte olumlu tepkiler nedeniyle kare başına titreşir. Böyle ham verilerin Nav2 hedefleri olarak gönderilmesi, kontrolcü sunucusunu sürekli iptal/yeniden görev döngüsüne iter; bu da tutarsız kapı geçişlerine yol açar.
-
-**Çözüm — GateFusionHandler Sniper Lock Algoritması:**
+The image queue is deliberately limited to **2 slots**. This is not a ring buffer by default; the drop-oldest behavior is enforced explicitly:
 
 ```python
-# Sahte Kodla Temel Mantık
-for her tespit:
-    gate_harita_koord = lidar_kamera_fuzyon(tespit)
-    if mesafe < MIN_KAPI_MENZILI:  kapat     # Çok yakın → reddet
-    if mesafe > MAX_KAPI_MENZILI:  kapat     # Çok uzak  → reddet
-
-    tampon.ekle(gate_harita_koord)           # Hareketli yavaşlatma tamponu
-
-    if len(tampon) >= 3 AND std(tampon) < 1.0m:  # Düşük varyans → yüksek güven
-        kilit_koordinat(ortalama(tampon))    # Nav2'ye YALNIZCA TEK BİR hedef gönder
-        kilidi_asla_güncelleme()             # Titreşimi önle
+def _image_cb(self, msg: Image) -> None:
+    bgr = self._bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+    if self._img_queue.full():
+        try:
+            self._img_queue.get_nowait()   # evict oldest
+        except queue.Empty:
+            pass
+    self._img_queue.put_nowait(bgr)
 ```
 
-Bu algoritma şu sorunları çözmektedir:
-- **Hedef kayması:** Ortalama alma kural dışı tespitleri bastırır
-- **Nav2 sarsıntısı:** Onaylanan her kapı için yalnızca bir hedef gönderilir
-- **Nav2'nin LiDAR özellik kıtlığı:** Kapa tespiti yoksa koy, LiDAR costmap güvenli geçiş sağlar
+**Why maxsize=2 and not 1?**  
+A queue of size 1 would result in the inference thread blocking frequently on `get()` due to the put/get timing jitter. Size 2 provides a single frame of cushion without allowing unbounded staleness.
 
-MPPI kontrolcüsü iki farklı parametre kümesi arasında dinamik olarak değiştirilmektedir:
+**Why not larger?**  
+A queue of size 10 would mean the inference thread could be processing frames that are 10 × (1/30 Hz) = ~330 ms old. In Parkur 3, the boat is moving at up to 1.0 m/s. A 330 ms stale detection translates to **33 cm of uncorrected position error** — enough to miss the target at close range.
 
-| Mod | Hız | Ufuk | Engel Ağırlığı | Ne Zaman |
-|-----|-----|------|----------------|----------|
-| **Sprint** | 2.5 m/s | 15 adım | 5 | Açık suda WP1→WP4 |
-| **Slalom** | 0.8 m/s | 56 adım | 20 | Kapı geçişi WP5 |
+### 2.4 `threading.Lock` — Preventing the Detection Race
 
-#### Parkur 3 — Dinamik HSV Kamikaze Servo
+`_det_lock` protects a single shared variable: `_latest_detections`. Without it, Thread D could read a partially-written list while Thread C is still appending to it, producing a torn read.
 
-Nav2 tamamen iptal edilir. Yetki, seçili renkteki dubayı kilitledikten sonra doğrudan `/cmd_vel`'e komut veren tam hız saldırı kontrolcüsüne aktarılır:
+The critical design decision is **minimizing lock hold time**:
+
+```python
+# Thread C (YOLO) — lock held < 1 microsecond
+with self._det_lock:
+    self._latest_detections = dets        # atomic reference replace
+
+# Thread D (20Hz) — lock held < 1 microsecond
+with self._det_lock:
+    detections = list(self._latest_detections)   # shallow copy, then release
+# All computation happens outside the lock
+```
+
+This pattern ensures that Thread C (GPU inference) is never blocked waiting for Thread D to finish a depth lookup, and Thread D is never blocked waiting for Thread C to finish parsing boxes.
+
+**Note on the CPython GIL:** NumPy operations (`_zed_depth_at_pixel`) do release the GIL, but Python list assignments do not. The Lock is still required for correctness and to signal intent clearly. Do not remove it.
+
+### 2.5 The Daemon Flag
+
+```python
+t = threading.Thread(target=self._inference_loop, daemon=True, name='yolo_inference')
+```
+
+`daemon=True` means the thread will be killed automatically when the main Python process exits. Without this flag, pressing Ctrl+C would signal the main thread and ROS executor to stop, but the YOLO thread would continue running (blocking `rclpy.shutdown()`) because it is stuck in `queue.get(timeout=0.5)`. The daemon flag prevents this 0.5-second hang at every node teardown.
+
+---
+
+## 3. Sensor Fusion & Marine Optimization
+
+### 3.1 YOLOv8 TensorRT: From Training to Deployment
+
+The perception backbone is a custom YOLOv8 model trained on competition buoy imagery and exported to TensorRT `.engine` format for Jetson deployment.
+
+**Class Map:**
+
+| YOLO Class ID | Label | Role |
+|--------------|-------|------|
+| 0 | `yellow_buoy` | Gate marker — Parkur 2 passage target |
+| 1 | `red_buoy` | Kamikaze target (if `init_target_color=0`) |
+| 2 | `green_buoy` | Kamikaze target (if `init_target_color=1`) |
+| 3 | `black_buoy` | Kamikaze target (if `init_target_color=2`) |
+
+**The internal target color mapping:**
+
+```python
+_TARGET_TO_YOLO_CLS = {
+    TARGET_RED   (0): 1,   # YOLO class 1 = red_buoy
+    TARGET_GREEN (1): 2,   # YOLO class 2 = green_buoy
+    TARGET_BLACK (2): 3,   # YOLO class 3 = black_buoy
+}
+```
+
+This decoupling means `init_target_color=0` (passed by mission_manager) maps to YOLO class 1 — not class 0. Class 0 is reserved exclusively for gate detection. This prevents any risk of the gate detection logic accidentally interpreting a gate buoy as the Parkur 3 target.
+
+**TensorRT Engine Loading:**
+
+```python
+self._model = UltralyticsYOLO(self._model_path)   # loads .engine directly
+dummy = np.zeros((180, 320, 3), dtype=np.uint8)
+self._model.predict(dummy, device='0', verbose=False)  # warm-up pass
+```
+
+The warm-up pass is mandatory. TensorRT defers JIT kernel compilation to the first inference call. Without warm-up, the first real frame takes 500–2000 ms instead of 8–15 ms, causing the `_img_queue` to overflow during mission startup.
+
+### 3.2 3D Deprojection: Bounding Box to Metric Distance
+
+The system uses a **hybrid metric localization** approach rather than pure camera-based 3D reconstruction, because the ZED 1.0's depth accuracy degrades with specular water surfaces.
+
+#### Strategy A: LiDAR Primary (Preferred)
+
+For a detected buoy at horizontal pixel position `cx`, the angular bearing is:
 
 ```
-Hatay Hesabı: error_x = 0.5 − cx_norm     [-0.5 … +0.5]
-ω  (rad/s)  = −Kp_yaw × error_x           [±0.6 ile sınırlı]
-Vx (m/s)   = ATTACK_MAX_SPEED (1.0 m/s)  ← TAM HIZ (kilit sonrası)
+angle = (cx / image_width - 0.5) × FOV_H_RAD
 ```
 
-**Dinamik Hedef Seçimi:**
+Where `FOV_H_RAD = 1.919 rad` (110° for ZED 1.0).
+
+The LiDAR range at that bearing is extracted from the RPLidar scan:
+
+```python
+idx = round((angle - scan.angle_min) / scan.angle_increment)
+cands = [r for r in scan.ranges[idx-15 : idx+15] if isfinite(r) and r > 0.1]
+dist = min(cands) if cands else None
+```
+
+The 15-beam window (±15 indices ≈ ±5.4° at 0.36°/beam for A1M8) accounts for the physical offset between the LiDAR and camera, and provides robustness against individual beam returns hitting water spray rather than the buoy.
+
+The 3D gate center in `base_link` frame:
+
+```
+gx = dist × cos(angle)    # forward
+gy = dist × sin(angle)    # lateral
+```
+
+#### Strategy B: ZED Depth Fallback
+
+When LiDAR returns `None` (beam missed, range outside 0.1–12 m window, or target behind boat beam width gap), the ZED depth image is sampled:
+
+```python
+def _zed_depth_at_pixel(self, depth_img, conf_img, cx_px, cy_px,
+                          win=5, rgb_w=0, rgb_h=0):
+```
+
+The `win=5` parameter creates an **11×11 pixel window** (2×5+1) around the bounding box center. `np.median()` is taken over all valid pixels in this window. Median is superior to mean here because:
+
+1. A water surface specularity hit produces a single NaN or `inf` in the depth image. Mean with NaN-filtering would shrink the sample pool. Median is unaffected by even 50% invalid pixels.
+2. The buoy occupies the center pixels; the 11×11 window may clip the water behind it at the edges. Median naturally selects the mode of the distribution, which corresponds to the buoy surface.
+
+**Coordinate scaling** for mismatched resolutions: ZED 1.0 depth may be published at a lower resolution than the RGB stream. The scaling is applied before window extraction:
+
+```python
+cx_depth = int(cx_rgb × depth_width / rgb_width)
+cy_depth = int(cy_rgb × depth_height / rgb_height)
+```
+
+### 3.3 ZED Confidence Map: Eliminating Ghost Obstacles
+
+The confidence map (`/zed/zed_node/confidence/confidence_map`) is an 8-bit unsigned image where each pixel value represents ZED's internal confidence in the corresponding depth pixel:
+
+- `0` = no confidence (invalid depth, typically water surface or sky)
+- `100` = maximum confidence (solid, textured surface at ideal range)
+
+#### The Ghost Obstacle Problem
+
+On open water under afternoon sun (15:00–17:00 range typical for competitions), the ZED stereo matcher encounters:
+
+1. **Sun glint:** Mirror-like water patches return near-infinite luminance in both left and right cameras. The stereo disparity matcher finds false matches across these saturated regions, producing depth values of 0.5–2.0 m that do not correspond to any real obstacle.
+
+2. **Wave crests:** Dynamic surface texture causes the stereo matcher to compute depth for the water surface itself, at 3–8 m range, creating a "virtual floor" of false obstacles.
+
+3. **Wake interference:** The boat's own wake produces highly textured, close-range false depth returns directly ahead.
+
+These false depth values, if unfiltered, would produce erroneous `_zed_depth_at_pixel()` returns and cause incorrect gate/target distance estimates.
+
+#### The Confidence Filter
+
+```python
+mask = np.isfinite(depth_patch) & (depth_patch > 0.3) & (depth_patch < 20.0)
+
+if conf_img is not None:
+    conf_patch = conf_img[cy0:cy1, cx0:cx1]
+    ph = min(mask.shape[0], conf_patch.shape[0])
+    pw = min(mask.shape[1], conf_patch.shape[1])
+    mask[:ph, :pw] &= (conf_patch[:ph, :pw] >= self._conf_min_depth)
+
+valid = depth_patch[mask]
+return float(np.median(valid)) if valid.size > 0 else None
+```
+
+The vectorized NumPy operation `conf_patch >= self._conf_min_depth` creates a boolean mask in a single pass over the 11×11 array (121 comparisons). This is approximately **40× faster** than a Python loop equivalent and adds negligible latency (< 0.1 ms) to the depth sampling call.
+
+**Why `conf_min_depth = 50`?**
+
+ZED's confidence is calibrated such that:
+- Values `< 20`: Almost certainly invalid (water surface, sky, over/under-exposed)
+- Values `20–50`: Uncertain (textured but potentially water)
+- Values `> 50`: Reliable (solid object with stereo disparity consensus)
+- Values `> 80`: High confidence (close, well-textured surface in ideal light)
+
+`conf_min_depth = 50` is the empirically validated threshold that eliminates water ghost obstacles while still accepting buoy returns. Buoys are solid, brightly colored, cylindrical objects — they consistently produce confidence values of 70–95 at ranges up to 10 m.
+
+If you lower this threshold (e.g., to 20) in afternoon glare conditions, the depth return will snap to the water surface distance (3–5 m) rather than the buoy, causing the boat to stop prematurely or diverge in gate navigation.
+
+**Graceful degradation:** If `/zed/zed_node/confidence/confidence_map` is not available (`self._latest_conf = None`), the `if conf_img is not None` branch is skipped entirely. The system falls back to the range-only filter (`0.3–20 m`), which still rejects most gross errors.
+
+---
+
+## 4. Navigation Logic — Parkur 2 & 3
+
+### 4.1 Parkur 2: Gate Navigation
+
+**Detection:** Up to 2 `yellow_buoy` (YOLO class 0) detections are retained, sorted descending by bounding box area (area ∝ proximity).
+
+**Two-buoy case (nominal):**
+
+```
+                     Image plane
+          │  left_b      right_b  │
+          │    □             □    │
+          │      ↖           ↗    │
+          │         gate_px       │
+          │            ↓          │
+          │          (midpoint)   │
+
+gate_px = (left_b.cx + right_b.cx) / 2
+angle   = (gate_px / width - 0.5) × FOV_H_RAD
+dist    = LiDAR(angle) ?? ZED_depth(gate_px, gate_py) ?? 5.0m fallback
+gx = dist × cos(angle)    → published as gate_center.pose.position.x
+gy = dist × sin(angle)    → published as gate_center.pose.position.y
+```
+
+The published `PoseStamped` in `base_link` frame is consumed by `gate_goal_publisher.py`, which transforms it to the `map` frame and sends it as a Nav2 goal. The MPPI controller then drives the boat through the gate.
+
+**One-buoy case (partial occlusion):**
+
+When only one yellow buoy is visible (the other is behind the camera FoV edge or obscured by spray), a virtual gate is estimated by offsetting from the visible buoy by `GATE_HALF_WIDTH = 1.125 m` in the lateral direction:
+
+```python
+gy = gy - GATE_HALF_WIDTH if gy > 0.0 else gy + GATE_HALF_WIDTH
+```
+
+This heuristic assumes the visible buoy is either left or right of center and offsets the goal toward the opening. It is less accurate than the two-buoy case but prevents complete navigation failure.
+
+### 4.2 Nav2 MPPI Controller Configuration
+
+The Model Predictive Path Integral (MPPI) controller in `nav2_params.yaml` is configured with multi-source costmap inputs:
+
+```yaml
+# Observation sources for ObstacleLayer:
+observation_sources: scan point_cloud
+
+scan:
+  topic: /scan/filtered          # RPLidar A1M8 → 2D laser
+  data_type: LaserScan
+
+point_cloud:
+  topic: /zed/zed_node/point_cloud/cloud_registered   # ZED 3D points
+  data_type: PointCloud2
+  min_obstacle_height: 0.1
+  max_obstacle_height: 1.5
+```
+
+The LiDAR layer provides the primary 360° obstacle ring. The ZED PointCloud2 adds forward-hemisphere volumetric obstacle awareness, allowing the costmap to see objects below the LiDAR plane (e.g., low buoys in wave troughs, debris at waterline).
+
+**Important:** The `max_obstacle_height: 1.5` setting ensures that the ZED does not inflate the costmap based on returns above 1.5 m — this prevents the boat's own structure (mast, camera mount) from appearing in the costmap if their reflections appear in the point cloud.
+
+### 4.3 Parkur 3: Kamikaze Visual Servo
+
+**Phase 1 — Acquisition (no lock):**
+
+The YOLO thread continuously searches for the target class buoy. When found, `_process_target()` is called. The system publishes `/kamikaze_target` as `geometry_msgs/Point`:
+
+```python
+target_msg.x = cx_norm    # [0.0, 1.0] horizontal position in frame
+target_msg.y = cy_norm    # [0.0, 1.0] vertical position in frame
+target_msg.z = float(area)  # bounding box area in pixels²
+```
+
+`mission_manager.py` reads this and computes yaw error:
+
+```
+yaw_error = 0.5 - cx_norm        # positive = target left of center
+yaw_cmd   = clip(yaw_error × ATTACK_YAW_GAIN, -ATTACK_YAW_CLAMP, +ATTACK_YAW_CLAMP)
+```
+
+**Phase 2 — Lock countdown (3 seconds):**
+
+Once target is first detected, `_lock_start_time` is recorded. For the next 3 seconds, the system continues publishing `/kamikaze_target` and `/kamikaze_locked = False`. The boat is already executing the visual servo (aligning toward the target) during this window.
+
+The 3-second delay serves two purposes:
+1. Confirms the detection is stable (not a false positive from spray or glint)
+2. Allows the boat to complete rough heading alignment before full-speed attack
+
+**Phase 3 — Full attack (`/kamikaze_locked = True`):**
+
+After 3 seconds of continuous detection, `/kamikaze_locked = True` is published once (idempotent — `_lock_signal_sent` prevents re-publish). `mission_manager.py` transitions to maximum speed forward thrust. The visual servo yaw correction continues to run at 20 Hz.
+
+**Hysteresis (`LOCK_HYSTERESIS_FRAMES = 10`):**
+
+If the target is lost, the system does not immediately unlock. It counts consecutive lost frames. Only after 10 frames (~500 ms at 20 Hz) without a detection does it reset the lock state. This prevents transient occlusions (wave crests, spray bursts) from resetting a valid lock.
+
+**Smart Fallback Distance Chain:**
+
+```
+Priority 1: LiDAR range at target bearing        (most accurate, 0.1–12 m)
+Priority 2: ZED depth at bounding box center     (good 0.3–8 m, conf-filtered)
+Priority 3: -1.0 (unknown)                       (mission_manager uses area proxy)
+```
+
+The distance estimate is stored in `_fusion_dist` and `_fusion_source` for HUD display on `/yolo/detection_image`. `mission_manager.py` can use the bounding box area (`target_msg.z`) as a proximity proxy when the metric distance is unavailable — larger area = closer target.
+
+---
+
+## 5. Sim-to-Real: Field Challenges & Solutions
+
+### 5.1 Known Real-World Failure Modes
+
+#### A. Salt Spray on ZED Lens
+
+**Symptom:** Sudden drop in detection confidence, YOLO confidence scores fall below `YOLO_CONF_THRESH = 0.4`, all detections disappear.  
+**Indicator:** `/yolo/detection_image` shows boxes disappearing while buoys are visually obvious. `/zed/zed_node/confidence/confidence_map` average drops below 20 across the entire frame.
+
+**Mitigation:**
+- Physically wipe lens before each run (required field procedure)
+- Lower `YOLO_CONF_THRESH` to `0.25` if light spray is unavoidable (increases false positive rate)
+- The hysteresis mechanism (`LOCK_HYSTERESIS_FRAMES = 10`) prevents a brief occlusion from unlocking a confirmed target
+
+#### B. Afternoon Sun Glare (15:00–17:00)
+
+**Symptom:** `/kamikaze_target` jumps erratically. Gate center oscillates. LiDAR and ZED disagree by > 2 m.  
+**Root cause:** ZED confidence map degrades on sun-facing water. ZED returns ghost obstacles 3–5 m ahead on open water. YOLO may mis-classify sun glint patches as yellow/white buoys.
+
+**Mitigation:**
+- Increase `conf_min_depth` from 50 → 70 for afternoon deployment
+- The LiDAR primary / ZED fallback chain naturally degrades gracefully — LiDAR is unaffected by sun glare
+- Monitor `/zed/zed_node/confidence/confidence_map` in RViz — if the entire forward hemisphere is below 50, ZED depth is unreliable and the system correctly falls back to LiDAR-only
+
+#### C. Dynamic Water Surface
+
+**Symptom:** RPLidar A1M8 scan shows noise returns 0.3–1.0 m from the hull at low scan angles. The scan topic shows intermittent close-range returns that do not correspond to real obstacles.
+
+**Mitigation:**
+- The `/scan/filtered` topic (passed through a scan filter node) should have `range_min` set to at least `0.3 m` to eliminate water surface returns
+- Verify `scan_filter.yaml` includes a `range_filter` plugin removing returns below hull waterline level
+- The 15-beam window in `_safe_lidar_dist()` takes the **minimum** valid reading — if water noise is at 0.4 m and buoy is at 3.0 m, the minimum will incorrectly return 0.4 m. Increase `range_min` in the scan filter to 0.5–0.8 m if wave noise is observed.
+
+#### D. RPLidar A1M8 Rotation Speed
+
+The A1M8 rotates at 5.5 Hz nominal, producing ~360 beams/rotation at ~0.65°/beam resolution. At boat speeds of 1 m/s, the boat travels ~18 cm per LiDAR rotation. For targets at 3 m distance, this is a 3.4° angular uncertainty. The 15-beam window in `_safe_lidar_dist()` (±5.4°) is sized to account for this motion uncertainty.
+
+If the A1M8 is not spinning or is spinning too slowly (USB power issue), the scan topic will be present but with very few beams. Check `ros2 topic hz /scan` — it should be 5–6 Hz with ~500+ beams/message.
+
+### 5.2 Field Tuning Guide
+
+#### Parameter: `conf_min_depth` (default: 50)
+
+| Condition | Recommended Value | Rationale |
+|-----------|-------------------|-----------|
+| Overcast / morning | 30 | Good ZED conditions, accept more depth data |
+| Partly cloudy | 50 | Default balanced setting |
+| Direct sun on water | 65–70 | Aggressive ghost filtering |
+| Heavy spray / rain | 25 | ZED confidence universally low, fallback to LiDAR |
+
+Set at launch:
 ```bash
-# Runtime'da hedef renk değiştirme:
-ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 0}"  # KIRMIZI
-ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 1}"  # YEŞİL
-ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 2}"  # SİYAH
+ros2 run workspace_nav kamikaze_control \
+  --ros-args -p conf_min_depth:=65
 ```
 
-**Kilitleme Mantığı:** Hedef renk `N=6` ardışık frame onaylandıktan sonra `kamikaze_locked=True` gönderilir. İletişim kesilirse `init_target_color` parametresine geri dönülür.
+#### Parameter: `ATTACK_YAW_GAIN` (default: 1.2, in source)
 
----
+This is the P-gain for the visual servo yaw controller. Higher values = faster correction but risk oscillation.
 
-### 3 · Sağlamlık ve Graceful Degradation
+| Boat Speed | Recommended Gain | Notes |
+|------------|-----------------|-------|
+| Slow approach (~0.3 m/s) | 0.8–1.0 | Stable, damped |
+| Normal attack (~0.7 m/s) | 1.2 | Default, validated |
+| Full speed (1.0 m/s) | 1.4–1.6 | Faster correction needed for speed |
 
-| Arıza Durumu | Sistem Davranışı |
-|--------------|-----------------|
-| Kamera akışı kesildi | YOLO/HSV yayınları durur; navigasyon GPS+LiDAR costmap ile sürer |
-| MOLA SLAM TF gecikti | Localization başlangıcı için 10 s ek bekleme zamanı uygulanır |
-| Nav2 zaten çalışıyor | Başlatma betiği duplicate algılar, hata verir ve çıkar |
-| Kırmızı duba kayboldu (timeout) | `lost > 3.0 s` → 0.6 rad/s yeniden arama spin hareketi |
+If the boat oscillates left-right while approaching the target (hunting), reduce by 0.2 increments. If the boat arrives at the target still pointed 15°+ off-center, increase by 0.2.
 
----
-
-## 🏗️ Sistem Mimarisi
-
-### Bileşen Veri Akışı
-
-```mermaid
-flowchart TD
-    SIM["🌊 Gazebo Simülasyonu\nFizik · Sensörler · Thruster"]
-
-    LF["LiDAR Filtresi\nGürültü Temizleme"]
-    PC["PointCloud → LaserScan\n3D → 2D Dönüşüm"]
-    MOLA["MOLA SLAM\nHarita + map→odom TF"]
-    LOC["EKF Lokalizasyon\nGPS + IMU + Odom Füzyonu\n→ /odometry/filtered"]
-    NAV2["Nav2 MPPI Navigasyon\nYol Planlama + Engel Kaçınma"]
-    MM["Mission Manager\nParkur 1 PID → Parkur 2 Nav2 → Parkur 3 Kamikaze"]
-    KMZ["Kamikaze Control\nSaf HSV Filtresi (YOLO-FREE)\n/kamikaze_color_cmd → Dinamik Renk"]
-    CONV["Thruster Converter\nδ-Sürüş Dönüşümü"]
-
-    SIM -->|"/lidar/points PointCloud2"| LF
-    SIM -->|"/gps/fix + /imu/data"| LOC
-    SIM -->|"/camera/image"| KMZ
-    LF -->|"/lidar/filtered"| MOLA & PC
-    MOLA -->|"map→odom TF + /odom"| LOC
-    PC -->|"/lidar/scan LaserScan"| NAV2 & KMZ
-    LOC -->|"/odometry/filtered"| NAV2 & MM
-    KMZ -->|"/gate_center + /kamikaze_target + /kamikaze_locked"| MM
-    MM -->|"NavigateToPose (Action)"| NAV2
-    MM & NAV2 -->|"/cmd_vel Twist"| CONV
-    CONV -->|"/thrusters/left+right Float64"| SIM
+This parameter requires a code change in `kamikaze_control.py`:
+```python
+ATTACK_YAW_GAIN: float = 1.2   # ← adjust here
 ```
 
-### Görev Aşamasına Göre `/cmd_vel` Otoritesi
+A future improvement would be to expose this as a ROS parameter.
 
-| Aşama | `/cmd_vel` Üreticisi | Nav2 Durumu | Pixhawk Modu |
-|-------|----------------------|-------------|-------------|
-| INIT | — | Bekliyor | HOLD |
-| PARKUR 1 (WP1→WP4) | **Pixhawk dahili navigasyon** | Pasif | **AUTO** |
-| PARKUR 2 (Slalom WP5) | Nav2 MPPI Kontrolcüsü → MAVROS | Aktif | GUIDED |
-| PARKUR 3 (Kamikaze) | Mission Manager (Görsel Servo) → MAVROS | İptal Edildi | GUIDED |
+#### Parameter: `model_path` (default: `/home/seatech/models/buoy.engine`)
 
----
+The `.engine` file is **device-specific**. A model exported on one Jetson cannot be used on another Jetson with a different TensorRT version or GPU architecture without re-export.
 
-## 📁 Paket Yapısı
-
-```
-sti_usv/src/usv_sim/
-│
-├── 📄 start_all.sh              # Tek komutla tam sistem başlatma
-├── 📄 stop_all.sh               # Tüm süreçleri durdurma
-│
-├── workspace_gz/                # Gazebo Simülasyon Paketi [Upstream'den]
-│   ├── launch/
-│   │   └── simulation.launch.py # Ana simülasyon başlatıcı
-│   ├── worlds/world.sdf         # Gazebo dünya dosyası (su + dalgalar)
-│   ├── models/
-│   │   ├── roboboat/            # USV gövde modeli (mesh, sensörler)
-│   │   ├── buoys/               # Yarışma dubası modelleri
-│   │   └── waves/               # Gerstner dalga yüzeyi
-│   └── plugins/                 # Hidrodinamik ve skor eklentileri
-│
-├── workspace_ros/               # ROS 2 Çekirdek Paketi
-│   ├── launch/
-│   │   ├── localization.launch.py   # EKF + NavSat + Statik TF
-│   │   ├── lidar_filter.launch.py   # Nokta bulutu filtreleme
-│   │   └── mola_slam.launch.py      # MOLA SLAM başlatıcı
-│   ├── config/
-│   │   ├── ekf.yaml                 # EKF parametre dosyası
-│   │   ├── navsat.yaml              # GPS dönüşüm parametreleri
-│   │   └── static_transform.yaml   # Rijit TF dönüşümleri
-│   └── scripts/
-│       ├── converter.py             # cmd_vel → thruster dönüştürücü
-│       ├── lidar_processor.py       # Nokta bulutu gürültü filtresi
-│       ├── imu_covariance_repub.py  # IMU kovaryans ekleme
-│       ├── gps_covariance_repub.py  # GPS kovaryans ekleme
-│       └── wasd_teleop.py           # Manuel klavye kontrolü
-│
-└── workspace_nav/               # Navigasyon Paketi [Bu Projede Geliştirilen]
-    ├── launch/
-    │   └── nav2.launch.py           # Nav2 MPPI başlatıcı
-    ├── config/
-    │   └── nav2_params.yaml         # Nav2 ve MPPI parametre dosyası
-    ├── json/
-    │   └── waypoints.json           # TEKNOFEST waypoint koordinatları
-    └── scripts/
-        ├── mission_manager.py       # ★ 3 Aşamalı Görev Durum Makinesi
-            ├── kamikaze_control.py      # ★ Simülasyon: Saf HSV Algılama (YOLO-FREE)
-            └── kamikaze_control_real.py # ★ Gerçek Dünya: TensorRT YOLOv8 + HSV Füzyon
+To verify the engine is valid for the current device:
+```bash
+python3 -c "from ultralytics import YOLO; m = YOLO('/home/seatech/models/buoy.engine'); print('OK')"
 ```
 
-> `★` işareti bu projenin özgün katkılarını göstermektedir.
+If this fails with a TensorRT engine error, re-export from the `.pt` source:
+```bash
+yolo export model=buoy.pt format=engine device=0 imgsz=320,180
+```
+
+If the competition rules require a different buoy color set or the training domain shifts (different water color, different buoy sizes), retrain and re-export. The class IDs `{0: yellow, 1: red, 2: green, 3: black}` must be preserved in the new model for the mapping in `_TARGET_TO_YOLO_CLS` to remain correct.
 
 ---
 
-## ⚙️ Kurulum ve Bağımlılıklar
+## 6. Debugging & Troubleshooting
 
-### Sistem Gereksinimleri
-
-| Bileşen | Sürüm | Not |
-|---------|-------|-----|
-| İşletim Sistemi | Ubuntu 22.04 LTS | Zorunlu |
-| ROS 2 | Humble Hawksbill | Zorunlu |
-| Gazebo | Fortress (Ignition) | Zorunlu |
-| Python | ≥ 3.10 | Zorunlu |
-| GPU | NVIDIA (PRIME Offload) | Önerilir |
-
----
-
-### Adım 1 — ROS 2 Humble Kurulumu
+### 6.1 Pre-Launch Verification Checklist
 
 ```bash
-sudo apt update && sudo apt install -y curl gnupg lsb-release
-sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
-    -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
-    http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" \
-    | sudo tee /etc/apt/sources.list.d/ros2.list
-sudo apt update
-sudo apt install -y ros-humble-desktop python3-colcon-common-extensions
-```
+# 1. Verify all hardware is visible
+ls /dev/ttyUSB0   # RPLidar A1M8
+ls /dev/ttyACM0   # Pixhawk 2.4.8
 
----
-
-### Adım 2 — ROS 2 Bağımlılıklarının Kurulumu
-
-```bash
-sudo apt install -y \
-    ros-humble-ros-gz \
-    ros-humble-xacro \
-    ros-humble-robot-localization \
-    ros-humble-nav2-bringup \
-    ros-humble-navigation2 \
-    ros-humble-slam-toolbox \
-    ros-humble-pointcloud-to-laserscan \
-    python3-pip
-```
-
----
-
-### Adım 3 — MOLA SLAM Kurulumu
-
-```bash
-# MOLA PPA deposunu ekle
-sudo apt-add-repository ppa:joseluisblancoc/mola-slam
-sudo apt update
-sudo apt install -y ros-humble-mola-lidar-odometry
-```
-
----
-
-### Adım 4 — Python Bağımlılıklarının Kurulumu
-
-```bash
-pip install ultralytics opencv-python-headless numpy
-```
-
----
-
-### Adım 5 — Depoyu Klonlama ve Derleme
-
-```bash
-mkdir -p ~/sti_usv/src
-cd ~/sti_usv/src
-git clone https://github.com/<kullanici_adi>/sti_usv.git usv_sim
-
+# 2. Start the stack (saha mode)
 cd ~/sti_usv
-source /opt/ros/humble/setup.bash
-colcon build --symlink-install
+source install/setup.bash
+bash start_all.sh saha
+
+# 3. Verify critical topics are publishing
+ros2 topic hz /scan                                    # ~5-6 Hz
+ros2 topic hz /zed/zed_node/rgb/image_rect_color      # ~15-30 Hz
+ros2 topic hz /zed/zed_node/depth/depth_registered    # ~15 Hz
+ros2 topic hz /mavros/imu/data                        # ~100 Hz
+ros2 topic hz /mavros/global_position/global          # ~5 Hz
+ros2 topic hz /odometry/filtered                      # ~30 Hz
+
+# 4. Verify YOLO inference is running
+ros2 topic hz /yolo/detection_image                   # ~10-15 Hz (GPU bound)
+
+# 5. Verify TF chain is complete
+ros2 run tf2_tools view_frames    # should show: map→odom→base_link
 ```
 
-> **Not:** `--symlink-install` bayrağı, betik değişikliklerinin yeniden derleme gerektirmeden etkili olmasını sağlar.
+### 6.2 GPU Load Monitoring with `jtop`
 
----
+Install and run `jtop` on the Jetson:
+```bash
+sudo pip3 install jetson-stats
+sudo jtop
+```
 
-### Adım 6 — Ortamı Kaynak Gösterme
+**Expected values during kamikaze_control operation:**
+
+| Metric | Idle | YOLO Running | Alarm Threshold |
+|--------|------|-------------|-----------------|
+| GPU Load | 0–5% | 25–45% | > 80% (thermal throttle risk) |
+| GPU Temp | 35–45°C | 50–65°C | > 80°C (throttle begins) |
+| CPU (core 0–3) | 10–20% | 30–50% | > 90% |
+| RAM | ~3 GB | ~4.5 GB | > 7 GB |
+| Swap | 0 | 0 | Any swap usage is a warning |
+
+If GPU load exceeds 80%, the TensorRT engine is thermally throttling. This increases inference latency and degrades the 20 Hz control loop. Ensure the Jetson heatsink is not obstructed and the fan is operating.
+
+If RAM usage approaches 7 GB, check for memory leaks in the YOLO inference loop — TensorRT `.engine` models can accumulate GPU memory if not properly managed.
+
+### 6.3 Verifying Detection Performance via `/yolo/detection_image`
+
+Subscribe to the debug image topic in RViz or rqt_image_view:
 
 ```bash
-# Geçici (yalnızca bu terminal)
-source /opt/ros/humble/setup.bash
-source ~/sti_usv/install/setup.bash
-
-# Kalıcı (her yeni terminalde otomatik)
-echo "source /opt/ros/humble/setup.bash"    >> ~/.bashrc
-echo "source ~/sti_usv/install/setup.bash"  >> ~/.bashrc
-source ~/.bashrc
+ros2 run rqt_image_view rqt_image_view /yolo/detection_image
 ```
 
----
+**What to look for:**
 
-## 🚀 Kullanım
+| Observation | Diagnosis | Action |
+|-------------|-----------|--------|
+| No image appears | Node not running or no subscribers | Check `ros2 node list`, verify entry point |
+| Image frozen / updating at 1 Hz | Queue overflow, GPU inference too slow | Check `jtop`, reduce input resolution |
+| Boxes present but wrong class | Model class mismatch | Verify `{0:yellow,1:red,2:green,3:black}` in model |
+| Correct boxes but no `/gate_center` | Yellow buoy class not 0 in your model | Re-check model class order at export time |
+| Boxes flickering every other frame | `conf=0.4` threshold at boundary | Lower `YOLO_CONF_THRESH` slightly |
+| Status bar shows `DEPTH:NO` | `/zed/zed_node/depth/depth_registered` not publishing | Check ZED wrapper is running, check `ros2 topic list` |
+| Status bar shows `CONF:NO` | Confidence map not publishing | Set `confidence_mode: 1` in ZED wrapper config |
 
-### Tek Komutla Başlatma (Önerilen)
+### 6.4 Validating 3D Points in RViz
+
+To verify gate center and target positions are geometrically correct:
 
 ```bash
-cd ~/sti_usv/src/usv_sim
-./start_all.sh auto
+# Add these displays in RViz:
+# 1. PoseStamped → /gate_center          (Fixed frame: map or base_link)
+# 2. PointStamped → (if added) target 3D
+# 3. LaserScan → /scan/filtered
+# 4. Image → /yolo/detection_image
 ```
 
-Bu komut şu sırayla 9 bileşeni başlatır:
+**Sanity check procedure:**
 
-| # | Bileşen | Bekleme |
-|---|---------|---------|
-| 1 | Gazebo Simülasyonu (GPU offload ile) | ~60 s (hazır beklenir) |
-| 2 | LiDAR Filtresi | — |
-| 3 | PointCloud → LaserScan Dönüştürücü | +2 s |
-| 4 | MOLA SLAM | +3 s |
-| 5 | EKF Lokalizasyon | +10 s |
-| 6 | Nav2 MPPI Navigasyonu | +3 s |
-| 7 | Mission Manager | +8 s |
-| 8 | Kamikaze Control (YOLO) | +1 s |
-| 9 | Thruster Converter | +2 s |
+1. Place the boat 5 m from a buoy pair.
+2. Observe `/gate_center` PoseStamped in RViz — the arrow should point directly toward the gap between buoys.
+3. Verify `pose.position.x` ≈ 5.0 (distance) and `pose.position.y` ≈ 0.0 (centered).
+4. If the arrow points sideways, verify `FOV_H_RAD = 1.919` matches the actual ZED 1.0 FoV. Measure: walk to the edge of the FoV, record pixel position, calculate actual FoV.
+5. If distance is wrong, check which source (`DIST:LiDAR` or `DIST:ZED`) is shown in `/yolo/detection_image` status bar.
 
-**Sistemi Durdurmak:**
-```bash
-./stop_all.sh
-# veya
-Ctrl + C
+### 6.5 Fail-Safe Mechanisms
+
+#### Sensor Disconnect
+
+| Sensor Lost | Immediate Effect | Degraded Behavior |
+|-------------|-----------------|-------------------|
+| RPLidar `/scan` | `_safe_lidar_dist()` returns `None` | ZED depth used as fallback. Performance degrades at close range. |
+| ZED RGB | `_img_queue` stops receiving frames | `_inference_loop` blocks on `queue.get(timeout=0.5)`, retries. `_publish_loop` logs warning every 3s. No detections. |
+| ZED Depth | `_latest_depth = None` | Depth fallback unavailable. LiDAR-only operation. |
+| ZED Confidence | `_latest_conf = None` | Confidence filter skipped. Range-only depth filtering. Higher ghost risk. |
+| MAVROS (Pixhawk) | `/mavros/imu/data` stops | EKF localization degrades. ArduPilot triggers GCS failsafe after timeout. |
+
+#### YOLO Target Loss
+
+If the target buoy disappears from YOLO detections (occlusion, spray, exit from FoV):
+
+1. `_publish_loop` finds no matching class detections
+2. `_handle_lost()` increments `_lost_frames`
+3. At `_lost_frames == 10` (~500 ms), lock state resets: `_target_locked = False`, `_lock_signal_sent = False`
+4. `mission_manager.py` receives no further `/kamikaze_target` publications
+5. `mission_manager.py` should implement its own timeout — if `/kamikaze_target` is not received for N seconds, it should reduce forward speed and wait for re-acquisition
+
+**Current gap:** `kamikaze_control.py` does not publish an explicit "target lost" signal. If you need `mission_manager.py` to respond to loss of detection, subscribe to `/kamikaze_target` with a message age check, or add a `Bool` topic `/kamikaze_searching` to `kamikaze_control.py`.
+
+#### YOLO Model Load Failure
+
+If the `.engine` file is not found or is incompatible:
+
+```python
+self._model = None
 ```
 
----
+The inference thread checks `if self._model is None: continue` and exits the loop body each iteration. The node remains alive, subscribing to all topics, but publishes nothing. The 20 Hz timer fires but finds empty detections. `mission_manager.py` receives no detection signals and should hold its last commanded state.
 
-### Mod Seçenekleri
-
-| Komut | Amaç | Başlatılan Bileşenler |
-|-------|------|----------------------|
-| `./start_all.sh` | Temel simülasyon | Gazebo + LiDAR Filtresi + KISS-ICP |
-| `./start_all.sh mola` | Tam SLAM testi | + MOLA SLAM + EKF + Nav2 |
-| `./start_all.sh auto` | **Tam otonom görev** | + Mission Manager + Kamikaze Control |
-| `./start_all.sh parkour` | Reaktif navigasyon | Gazebo + LiDAR + Parkur Navigasyonu |
-
----
-
-### Görev Parametrelerini Özelleştirme
-
-```bash
-# Ortam değişkenleriyle parametreleri geçersiz kılın
-KAMIKAZE_TRIGGER_DIST=8.0 \
-BASE_SPEED=2.0 \
-KP_YAW=1.5 \
-./start_all.sh auto
-```
-
----
-
-### Manuel Klavye Kontrolü
-
-```bash
-ros2 run workspace_ros wasd_teleop
-```
-
-| Tuş | Hareket |
-|-----|---------|
-| `W` | İleri |
-| `S` | Geri |
-| `A` | Sola Dönüş |
-| `D` | Sağa Dönüş |
-| `Q` | Dur |
-| `ESC` | Çıkış |
-
----
-
-## 🔄 Uçtan Uca Sistem Akışı
-
-> Bu bölüm, İDA'ya güç verilmesinden görevin sonuçlandırılmasına kadar gerçek donanım üzerindeki fonksiyonel süreci anlatmaktadır.
-
-### Gerçek Donanım Platformu
-
-| Bileşen | Donanım | Görev |
-|---------|---------|-------|
-| Hesaplama | Jetson Orin NX 8 GB | Algılama, görev yönetimi, ROS 2 |
-| Otopilot | Pixhawk Cube Orange (ArduRover) | Motor karması, IMU, GPS köprüsü |
-| Kamera | ZED 1.0 Stereo | Duba tespiti, kapı algılama |
-| LiDAR | Unitree L2 (3D) | Engel tespiti, kapı mesafesi |
-| GPS | M8N + Compass | Waypoint navigasyonu |
-| Haberleşme | 868 MHz Telemetri | Komut/izleme, kill-switch |
-| Güç | 2 × 4S 14.8V 12Ah LiPo | PDB → BEC → Tüm sistemler |
-
-### Adım 1 — Güç Verme ve Donanım Başlatma
-
-```
-1. 2× 4S LiPo bağlanır → Ana güç şalteri açılır
-2. Kill-switch pasif konuma alınır (motorlar kapalı)
-3. PDB üzerinden güç dağıtımı:
-   • Thruster ESC'ler → 14.8V direkt
-   • Jetson Orin NX  → 12V BEC
-   • Pixhawk          → 5.3V Power Module
-   • Unitree L2       → 12V BEC
-4. Pixhawk boot (~8s) → ArduRover firmware → M8N GPS fix bekler
-5. Jetson boot (~30s) → Ubuntu 22.04
-6. ZED 1.0 → USB 3.0 üzerinden Jetson'a otomatik bağlanır
-```
-
-### Adım 2 — `./start_all.sh auto` ile ROS 2 Node'larının Başlatılması
-
-| Sıra | Node / Servis | Çıktı Topic | Süre |
-|------|--------------|-------------|------|
-| 1 | `unitree_lidar_ros2` | `/roboboat/lidar/filtered` | ~5s |
-| 2 | `zed_wrapper` | `/zed/zed_node/left/image_rect_color` | ~8s |
-| 3 | `mavros_node` | `/mavros/global_position/local`, `/mavros/imu/data` | ~5s |
-| 4 | `pointcloud_to_laserscan` | `/roboboat/sensors/lidar/scan` | ~2s |
-| 5 | `mola_slam` | `map → odom TF` | +10s |
-| 6 | `robot_localization` EKF | `/odometry/filtered` | +3s |
-| 7 | `nav2_bringup` | `NavigateToPose action` | +10s |
-| 8 | `mission_manager` | `/cmd_vel`, `/mission_state` | +8s |
-| 9 | `kamikaze_control_real` | `/gate_center`, `/kamikaze_target`, `/kamikaze_locked` | +1s |
-| 10 | `converter` | `/mavros/rc/override` | +2s |
-
-### Adım 3 — INIT: GPS Waypoint Dönüşümü
-
-Sistem hazır olduktan sonra `mission_manager` INIT aşamasına girer:
-
-```
-waypoints.json okunur → WP1, WP2, WP3, WP4, WP5
-    ↓
-/fromLL servisi çağrılır (robot_localization)
-    → GPS (lat/lon) koordinatları → Harita çerçevesi (x, y) metre
-    ↓
-Tüm dönüşümler tamamlanınca → PARKUR 1 başlar
-```
-
-> M8N GPS, 3D fix ve HDOP < 2.0 gelmeden sistem bekler.
-
-### Adım 4 — Parkur Geçişleri ve Görev Sonlandırma
-
-```mermaid
-flowchart LR
-    A([BOOT\nPixhawk + Jetson\nGPS fix]) -->|GPS fix + node hazır| B
-    B([INIT\nWaypoint\nDönüşümü]) -->|WP1-5 haritaya\nçevrildi| C
-    C([PARKUR 1\nWP1 → WP4\nPID Kontrolü]) -->|WP4 dist < 4.0m| D
-    D([PARKUR 2\nKapı Geçişi\nNav2 + Görsel Servo]) -->|WP5 dist <= 2.0m| E
-    E([PARKUR 3\nKamikaze\nYOLOv8 + HSV]) -->|Temas / timeout| F
-    F([TAMAMLANDI\ncmd_vel = 0\nKill-switch])
-```
-
-| Geçiş | Tetikleyici Koşul |
-|-------|------------------|
-| Boot → INIT | Tüm ROS 2 node'ları başladı |
-| INIT → Parkur 1 | `waypoints.json` dönüşümü tamamlandı |
-| Parkur 1 → Parkur 2 | WP4'e mesafe < 4.0 m |
-| Parkur 2 → Parkur 3 | WP5'e mesafe ≤ 2.0 m (tek geçiş koşulu) |
-| Parkur 3 → Tamamlandı | Kamikaze temas veya timeout |
-
----
-
-## 🧠 Algoritma Tasarımları
-
-> Her parkur için hangi sensör verilerinin nasıl kullanıldığı ve temel algoritma akışı aşağıda tanımlanmıştır.
-
-### Parkur 1 — Pixhawk AUTO Modu ile GPS Waypoint Navigasyonu
-
-**Kullanılan Sensörler:**
-- **M8N GPS** (5 Hz) → Pixhawk dahili navigasyon için konum kaynağı
-- **Pixhawk IMU** (200 Hz) → Dahili EKF3 yaw ve hız tahmini
-- **Pixhawk EKF3** → Konum, yön ve hız füzyonu
-
-**Algoritma Akışı:**
-
-Waypoint koordinatları Jetson üzerinden MAVROS `/mavros/mission/push` servisi ile Pixhawk'a yüklenir. Pixhawk **AUTO moda** alınır. Pixhawk'ın dahili **L1 navigasyon kontrolcüsü**, GPS ve IMU verilerini EKF3 ile birleştirerek WP1→WP4 rotasını takip eder. Thruster PWM karması Pixhawk tarafından doğrudan üretilir. Jetson bu aşamada `/mavros/mission/reached` topic'ini dinler; WP4 mesajı alındığında Pixhawk GUIDED moda geçirilir ve Parkur 2 başlar.
-
-```mermaid
-flowchart TD
-    GPS["M8N GPS\n5 Hz"]
-    IMU["Pixhawk Dahili IMU\n200 Hz"]
-
-    subgraph PX["Pixhawk Cube Orange — AUTO Mod"]
-        EKF3["Dahili EKF3\nKonum + Yön + Hız"]
-        L1["L1 Navigasyon Kontrolcüsü\nWP1 → WP2 → WP3 → WP4"]
-        MIX["Motor Mikser\nDiferansiyel PWM Üretimi"]
-        EKF3 --> L1 --> MIX
-    end
-
-    GPS --> EKF3
-    IMU --> EKF3
-    MIX --> THR["Sol Thruster + Sağ Thruster"]
-
-    PX -->|"/mavros/mission/reached"| JET["Jetson\nmission_manager\n(yalnızca izler)"]
-    JET -->|"WP4 reached\n→ GUIDED mod\n→ Parkur 2"| P2(["PARKUR 2"])
-```
-
-**WP Toleransı:** ArduRover parametresi `WPNAV_RADIUS` ile ayarlanır (varsayılan ~2 m).
-
-**P1 → P2 Geçiş:** `/mavros/mission/reached` topic'inde WP4 indeksi görüldüğünde `mission_manager` P2'yi tetikler.
-
----
-
-### Parkur 2 — HPV Kapı Tespiti + Nav2 MPPI Engel Kaçınma
-
-**Kullanılan Sensörler:**
-- **ZED 1.0 Kamera** → HSV sarı duba tespiti
-- **Unitree L2 LiDAR → `/roboboat/sensors/lidar/scan`** → Kapı mesafesi ve engel costmap
-- **M8N GPS + EKF** → WP5 mesafesi takibi ve fallback yönlendirme
-- **Nav2 MPPI** → Arka planda engel kaçınma costmap yönetimi
-
-**Algoritma Akışı:**
-
-`kamikaze_control_real` node'u kameradan sarı dubaları HSV ile tespit edip LiDAR mesafesiyle birleştirerek `/gate_center` yayınlar. `mission_manager` bu bilgiyi görsel servo (P-kontrolcü) olarak kullanır. Sarı duba kaybolursa GPS yönünde kör ilerleme (fallback) devreye girer.
-
-```mermaid
-flowchart TD
-    CAM["ZED 1.0 Kamera\n/zed/zed_node/left/image_rect_color"]
-    LID["Unitree L2 LiDAR\n/roboboat/lidar/filtered"]
-    PC2LS["pointcloud_to_laserscan\n/roboboat/sensors/lidar/scan"]
-    NAV2["Nav2 MPPI\nEngel Kaçınma Costmap"]
-
-    subgraph KMZ["kamikaze_control_real"]
-        HSV["HSV Sarı Filtresi\nH:26-38 S:100+ V:40+\nEn büyük 2 kontur"]
-        GD["GateDetector\nLiDAR mesafe füzyonu\ngate_x gate_y hesapla"]
-        HSV --> GD
-    end
-
-    subgraph MM2["mission_manager"]
-        GS["Görsel Servo\n/gate_center → P-kontrolcü\n→ /cmd_vel"]
-        FB["GPS Fallback\nSarı duba yok 2.5s\n→ WP5 yönü"]
-        CHK2{"dist_to_WP5\n<= 2.0 m?"}
-    end
-
-    CAM --> HSV
-    LID --> PC2LS
-    PC2LS --> GD
-    PC2LS --> NAV2
-    GD -->|"/gate_center"| GS
-    GS --> CHK2
-    FB --> CHK2
-    GS -->|"2.5s timeout"| FB
-    CHK2 -->|"Hayır"| GS
-    CHK2 -->|"Evet"| P3(["PARKUR 3"])
-    GS --> CMD2["/cmd_vel → converter\n→ MAVROS → Thrusters"]
-    FB --> CMD2
-```
-
-**GateDetector Mantığı:**
-- 2 sarı duba: Piksel midpoint → LiDAR açısından mesafe → `gate_x, gate_y (base_link)`
-- 1 sarı duba: ±1.125 m sanal ofset ile kapı tahmini
-- 0 sarı duba: `/yellow_visible = False`, GPS fallback başlar
-
----
-
-### Parkur 3 — TensorRT YOLOv8 + HSV Renk Doğrulama ile Kamikaze Saldırısı
-
-**Kullanılan Sensörler:**
-- **ZED 1.0 Kamera** (15 FPS) → YOLOv8 + HSV pipeline girişi
-- **Jetson Orin NX GPU** (Ampere 32 Tensor Core) → TensorRT `best.engine` çıkarımı
-- **Jetson CPU** → HSV ColorVerifier (BB içi ROI)
-
-**Algoritma Akışı:**
-
-Özel duba veri setiyle eğitilmiş YOLOv8 modeli TensorRT `.engine` formatına dönüştürülmüş ve Jetson GPU'sunda çalıştırılmaktadır. Her bounding box için CPU'da HSV renk doğrulaması yapılır. 6 ardışık frame onayı sonrası tam hız saldırı başlar.
-
-```mermaid
-flowchart TD
-    CAM2["ZED 1.0 Kamera\n/zed/zed_node/left/image_rect_color\n15 FPS"]
-
-    subgraph JET["kamikaze_control_real — Jetson Orin NX"]
-        YOLO["YOLOv8 TensorRT GPU\nbest.engine 640x384px\nSinif 0:Kirmizi 1:Yesil 2:Siyah 3:Sari"]
-        HSV2["HSV ColorVerifier CPU\nYalnizca BB ici ROI\nRenk orani >= yüzde 12?"]
-        CNT["Kilit Sayaci\nconfirm_count++"]
-        LOCK["confirm_count >= 6?\n/kamikaze_locked = True\n/kamikaze_target yayinla"]
-        YOLO -->|"BB bulundu"| HSV2
-        YOLO -->|"BB yok lost_frames++"| YOLO
-        HSV2 -->|"Gecti"| CNT
-        HSV2 -->|"False positive"| YOLO
-        CNT --> LOCK
-    end
-
-    subgraph ATK["mission_manager — Saldiri"]
-        EXEC["Nav2 IPTAL\nTAM HIZ /cmd_vel\nlinear_x = max\nangular_z = hedef hizalama"]
-    end
-
-    CAM2 --> YOLO
-    LOCK -->|"Kilit onaylandi"| EXEC
-    LOCK -->|"Henuz 6 frame yok\ndusuk hiz devam"| CAM2
-    EXEC --> CMD3["/cmd_vel → converter\n→ MAVROS RC_Override\n→ Sol+Sag Thruster\nTAM HIZ"]
-    CMD3 --> END(["Hedef Temas\nGorev Tamamlandi"])
-```
-
-**Hedef Renk Seçimi:**
-- `init_target_color` ROS 2 parametresi ile başlangıçta ayarlanır (`0`=Kırmızı, `1`=Yeşil, `2`=Siyah)
-- 868 MHz telemetri üzerinden `/kamikaze_color_cmd` (Int32) ile runtime değiştirilebilir
-- İletişim kesilirse parametre değeri geçerliliğini korur (failsafe)
-
----
-
-## 🏁 Görev Senaryosu: TEKNOFEST Parkurları
-
-### Parkur 1 — Pixhawk AUTO Modu ile GPS Waypoint Navigasyonu
-
-**Mimari:** Parkur 1'de navigasyon hesaplaması **tamamen Pixhawk Cube Orange** üzerinde gerçekleşir. Waypoint koordinatları Jetson üzerinden MAVROS aracılığıyla Pixhawk'a mission olarak yüklenir. Pixhawk **AUTO moduna** alınır ve dahili **EKF3 + L1 navigasyon algoritması** ile WP1'den WP4'e kadar olan rotayı takip eder. Diferansiyel thruster karması (sol/sağ PWM) doğrudan Pixhawk tarafından üretilir. Jetson bu aşamada yalnızca `/mavros/mission/reached` topic'ini izler; WP4'e ulaşıldığında durum makinesi tetiklenir ve Pixhawk GUIDED moda alınarak Parkur 2 başlar.
-
-```
-    [Başlangıç] ──AUTO──► [WP1] ──► [WP2] ──► [WP3] ──► [WP4]
-                   Pixhawk iç navigasyon (EKF3 + L1)
-                   Jetson yalnızca /mavros/mission/reached izler
-```
-
-### Parkur 2 — MPPI Slalom Kapı Geçişi
-
-```
-[WP4] ──Nav2/MPPI──► [Kapı 1] ──► [Kapı 2] ──► [Kapı N] ──► [WP5]
-           ↑                  ↑
-     Sniper Lock        GateFusion
-  (Güven Kilidi)    (LiDAR+Kamera)
-```
-
-- **Kontrol:** Nav2 MPPI Kontrolcüsü — /cmd_vel üretir
-- **Kapı Tespiti:** `kamikaze_control` → `/gate_center` → `mission_manager` → Nav2 hedefi
-- **Geçiş:** WP5'e `5.0 m` yaklaşıldığında veya Nav2 hedefe ulaştığında
-
-### Parkur 3 — Kamikaze Görsel Servo
-
-```
-[WP5] ──Kamera──► [Kırmızı Duba Algılandı] ──3s Kilit──► [Kamikaze Aktif]
-                          ↓
-               Nav2 İPTAL EDİLDİ
-               Doğrudan /cmd_vel (Görsel Servo)
-                          ↓
-                   [Hedef Vuruldu] ──► COMPLETE
-```
-
----
-
-## 📡 ROS Topic Referansı
-
-### Sensör Topic'leri (Gazebo → ROS)
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/roboboat/lidar/points` | `PointCloud2` | Ham 3D LiDAR bulutu |
-| `/roboboat/lidar/filtered` | `PointCloud2` | Filtrelenmiş nokta bulutu |
-| `/roboboat/sensors/lidar/scan` | `LaserScan` | 2D tarama (PC→LS dönüşümü) |
-| `/roboboat/sensors/camera/image` | `Image` | Ham kamera akışı |
-| `/gps/fix` | `NavSatFix` | Ham GPS koordinatları |
-| `/imu/data` | `Imu` | Ham IMU ölçümleri |
-
-### İşlenmiş Topic'ler
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/odometry/filtered` | `Odometry` | EKF füzyon çıktısı |
-| `/odom` | `Odometry` | MOLA SLAM odometrisi |
-| `/mission_state` | `String` | Anlık görev aşaması |
-
-### Kamikaze/Vision Topic'leri
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/kamikaze_target` | `Point` | Hedef merkezi (error_x, cy_norm, alan) |
-| `/kamikaze_locked` | `Bool` | Kilitleme onayı (N frame sonra True) |
-| `/kamikaze_color_cmd` | `Int32` | Runtime hedef renk: 0=KIRMIZI, 1=YEŞİL, 2=SİYAH |
-| `/gate_center` | `PoseStamped` | Kapı merkezi (base_link frame) |
-| `/yellow_visible` | `Bool` | Sarı duba görünürlük durumu |
-
-### Kontrol Topic'leri
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/cmd_vel` | `Twist` | Hız komutu |
-| `/roboboat/thrusters/left/thrust` | `Float64` | Sol thruster kuvveti |
-| `/roboboat/thrusters/right/thrust` | `Float64` | Sağ thruster kuvveti |
-
----
-
-## 🔧 Sorun Giderme
-
-### Gazebo Açılmıyor / Yanıt Vermiyor
+**Detection:** Run `ros2 topic echo /yolo/detection_image` — if the topic is at 0 Hz and the node is alive, the model failed to load. Check node startup logs:
 
 ```bash
-# Kilitli Gazebo süreçlerini temizle
-pkill -f "ign gazebo"; pkill -f "ruby.*gz"
-sleep 3 && ./start_all.sh auto
+ros2 topic echo /rosout | grep "YOLO"
+# Should show: [YOLO] Model yuklendi: /path/to/buoy.engine
+# Error case:  [YOLO] Model yuklenemedi: <error message>
 ```
 
-### TF Ekstrapolasyon Hatası
+### 6.6 Common Error Reference
 
-```
-[WARN] Lookup would require extrapolation...
-```
+| Error Message | File | Root Cause | Fix |
+|--------------|------|-----------|-----|
+| `No CameraInfo received` in RViz | simulation.launch.py | Missing camera_info bridge | Add `/roboboat/sensors/camera/image/camera_info` bridge |
+| PointCloud2 pointing upward | zed_camera.xacro | `gz_frame_id=zed_camera_optical_frame` | Change to `zed_camera_link` |
+| `Goruntu yok` warning every 3s | kamikaze_control.py | ZED not publishing or wrong topic | Check `/zed/zed_node/rgb/image_rect_color` in `ros2 topic list` |
+| TF lookup timeout `map→odom` | slam_toolbox | LiDAR not scanning or slam_toolbox not running | Check `/scan`, check `ros2 node list` for slam_toolbox |
+| EKF covariance explosion | ekf_node | GPS/IMU covariance not injected | Verify imu_covariance_repub and gps_covariance_repub are running |
+| `Model yuklenemedi: engine` | kamikaze_control.py | `.engine` built for different TRT version | Re-export from `.pt` on this device |
+| `cmd_vel` published but no motion | cmd_vel_to_mavros | MAVROS not in GUIDED mode | `ros2 service call /mavros/set_mode mavros_msgs/srv/SetMode "{custom_mode: 'GUIDED'}"` |
 
-`use_sim_time:=true` parametresinin tüm düğümlere doğru şekilde iletilip iletilmediğini doğrulayın:
+---
 
+## Appendix A: Node Reference
+
+| Node | Package | Binary | Role |
+|------|---------|--------|------|
+| `kamikaze_control` | workspace_nav | scripts/kamikaze_control.py | YOLO perception + visual servo |
+| `mission_manager` | workspace_nav | workspace_nav_entry/mission_manager.py | State machine master |
+| `gate_goal_publisher` | workspace_nav | scripts/gate_goal_publisher.py | /gate_center → Nav2 goal |
+| `local_goal_bridge` | workspace_nav | scripts/local_goal_bridge.py | Local goal relay |
+| `parkour_navigation` | workspace_nav | scripts/parkour_navigation.py | Parkur sequencer |
+| `imu_covariance_repub` | workspace_ros | scripts/imu_covariance_repub.py | MAVROS IMU → covariance injected |
+| `gps_covariance_repub` | workspace_ros | scripts/gps_covariance_repub.py | MAVROS GPS → covariance injected |
+| `static_transform_publisher` | workspace_ros | scripts/static_transform_publisher.py | URDF-free static TFs |
+| `cmd_vel_to_mavros` | workspace_ros | scripts/cmd_vel_to_mavros.py | Twist → MAVROS velocity |
+
+## Appendix B: Topic Map (Saha / Real Hardware)
+
+| Topic | Type | Publisher | Subscriber |
+|-------|------|-----------|-----------|
+| `/zed/zed_node/rgb/image_rect_color` | Image | ZED ROS2 Wrapper | kamikaze_control |
+| `/zed/zed_node/depth/depth_registered` | Image | ZED ROS2 Wrapper | kamikaze_control |
+| `/zed/zed_node/confidence/confidence_map` | Image | ZED ROS2 Wrapper | kamikaze_control |
+| `/zed/zed_node/rgb/camera_info` | CameraInfo | ZED ROS2 Wrapper | kamikaze_control, mission_manager |
+| `/zed/zed_node/point_cloud/cloud_registered` | PointCloud2 | ZED ROS2 Wrapper | Nav2 costmap |
+| `/zed/zed_node/odom` | Odometry | ZED ROS2 Wrapper | EKF node |
+| `/scan` | LaserScan | rplidar_ros | scan_filter |
+| `/scan/filtered` | LaserScan | scan_filter | slam_toolbox, Nav2 costmap, kamikaze_control |
+| `/mavros/imu/data` | Imu | MAVROS | imu_covariance_repub |
+| `/mavros/global_position/global` | NavSatFix | MAVROS | gps_covariance_repub |
+| `/odometry/filtered` | Odometry | EKF node | Nav2, mission_manager |
+| `/kamikaze_target` | geometry_msgs/Point | kamikaze_control | mission_manager |
+| `/kamikaze_locked` | Bool | kamikaze_control | mission_manager |
+| `/gate_center` | PoseStamped | kamikaze_control | gate_goal_publisher |
+| `/yellow_visible` | Bool | kamikaze_control | mission_manager |
+| `/yolo/detection_image` | Image | kamikaze_control | RViz / rqt (debug) |
+| `/cmd_vel` | Twist | mission_manager | cmd_vel_to_mavros |
+
+## Appendix C: Serial Port Reference
+
+| Device | Port | Baud Rate | Protocol |
+|--------|------|-----------|----------|
+| RPLidar A1M8 | `/dev/ttyUSB0` | 115200 | RPLIDAR binary |
+| Pixhawk 2.4.8 | `/dev/ttyACM0` | 115200 | MAVLink 2.0 |
+
+**Verify ports before field deployment:**
 ```bash
-ros2 param get /mission_manager use_sim_time
-ros2 param get /kamikaze_control use_sim_time
-```
-
-### Nav2 Zaten Çalışıyor Hatası
-
-```bash
-pkill -f "lifecycle_manager"
-pkill -f "nav2_container"
-sleep 2 && ./start_all.sh auto
-```
-
-### MOLA SLAM Başlamıyor
-
-MOLA'nın `/roboboat/lidar/filtered` topic'ini yayınlanmadan başlatılmasını önlemek için betikte 10 saniyelik bekleme süresi bulunmaktadır. Sorun devam ederse:
-
-```bash
-ros2 topic hz /roboboat/lidar/filtered   # Verinin gelip gelmediğini kontrol edin
-```
-
-### Sistem Durumunu İzleme
-
-```bash
-# Görev aşamasını izle
-ros2 topic echo /mission_state
-
-# Tüm aktif topic'leri listele
-ros2 topic list
-
-# Topic frekanslarını kontrol et
-ros2 topic hz /odometry/filtered
-ros2 topic hz /roboboat/sensors/lidar/scan
+ls -la /dev/ttyUSB0 /dev/ttyACM0
+# Add user to dialout group if permission denied:
+sudo usermod -a -G dialout $USER
 ```
 
 ---
 
-## 👥 Katkıda Bulunanlar
-
-### Bu Projeyi Geliştiren (STI_USV Özgün Yazılım Yığını)
-
-Bu deponun özgün navigasyon yazılım yığını (Göreve Özel Algılama, Sniper Lock, PID Kontrolcüsü, Mission Manager) **Bitirme Projesi** kapsamında geliştirilmiştir.
-
----
-
-### Gazebo Simülasyon Ortamına Katkıda Bulunanlar ([YILDIZ-USV](https://github.com/YILDIZ-USV/YILDIZ-USV))
-
-Bu projenin 3D simülasyon altyapısı aşağıdaki geliştiricilerin çalışmalarına dayanmaktadır:
-
-| İsim | GitHub |
-|------|--------|
-| Görkem Direybatoğulları | [@GorkemDireybatogullari](https://github.com/GorkemDireybatogullari) |
-| Mustafa Berat Yavaş | [@MustafaBeratYavas](https://github.com/MustafaBeratYavas) |
-| Muhammet Al | [@MuhammetAll](https://github.com/MuhammetAll) |
-| Muhammed Kerem Demirbent | [@MuhammedKeremDemirbent](https://github.com/MuhammedKeremDemirbent) |
-| Harun Kurt | [@harunkurtdev](https://github.com/harunkurtdev) |
-
----
-
-## 📚 Referanslar
-
-- [ROS 2 Humble Dokümantasyonu](https://docs.ros.org/en/humble/)
-- [Nav2 MPPI Kontrolcüsü](https://navigation.ros.org/configuration/packages/controller_plugins/mppi.html)
-- [MOLA SLAM Kütüphanesi](https://github.com/MOLAorg/mola)
-- [Ultralytics YOLOv11](https://docs.ultralytics.com/)
-- [robot_localization EKF](https://docs.ros.org/en/humble/p/robot_localization/)
-- [Toward Maritime Robotic Simulation in Gazebo](https://wiki.nps.edu/display/BB/Publications?preview=/1173263776/1173263778/PID6131719.pdf)
-
----
-
-## 📄 Lisans
-
-Bu proje [Apache License 2.0](./LICENSE.txt) kapsamında lisanslanmıştır.
-
----
-
-<div align="center">
-
-**STI_USV** · Bitirme Projesi · TEKNOFEST İDA Yarışması
-
-</div>
+*Document version: 2026-04-09 | TEKNOFEST 2026 Submission Branch*
