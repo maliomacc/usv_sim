@@ -407,7 +407,7 @@ class KamikazeControl(Node):
 
         self.get_logger().warn(
             '\n╔══════════════════════════════════════════════════════════════╗\n'
-            '║  YILDIZ USV — KamikazeControl  [ASKERI SINIF HSV-ONLY]     ║\n'
+            '║  STI USV — KamikazeControl  [ASKERI SINIF HSV-ONLY]     ║\n'
             '╠══════════════════════════════════════════════════════════════╣\n'
             f'║  Başlangıç hedefi : {TARGET_NAMES.get(_init_color,"?"):<36}║\n'
             '║  Değiştirmek için : /kamikaze_color_cmd (Int32: 0/1/2)      ║\n'
@@ -636,7 +636,7 @@ class KamikazeControl(Node):
                     (8, height - 8),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.44, (0, 255, 255), 1)
 
-        cv2.imshow('YILDIZ USV | Nesne Tanima Paneli', frame)
+        cv2.imshow('STI USV | Nesne Tanima Paneli', frame)
         cv2.waitKey(1)
 
     # ── Yardımcı metodlar ────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# YILDIZ USV - Tüm Servisleri Durdur (Robust Version with SIGKILL)
+# STI USV - Tüm Servisleri Durdur (Robust Version with SIGKILL)
 #
 
 RED='\033[0;31m'

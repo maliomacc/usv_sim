@@ -57,7 +57,7 @@
 
 ## 🤝 Temel Kaynak Kodunun Atıfı
 
-Bu projenin **3D simülasyon ortamı, su fiziği, bot modeli, sensör eklentileri ve temel ROS-Gazebo köprüleme altyapısı**, açık kaynak [YILDIZ-USV](https://github.com/YILDIZ-USV/YILDIZ-USV) projesinden türetilmiştir. Bu çalışmanın sağlam bir başlangıç noktası sunduğunu ve zaman kazandırdığını açıkça belirtmek ve ekibe teşekkür etmek isteriz.
+Bu projenin **3D simülasyon ortamı, su fiziği, bot modeli, sensör eklentileri ve temel ROS-Gazebo köprüleme altyapısı**, açık kaynak [STI-USV](https://github.com/STI-USV/STI-USV) projesinden türetilmiştir. Bu çalışmanın sağlam bir başlangıç noktası sunduğunu ve zaman kazandırdığını açıkça belirtmek ve ekibe teşekkür etmek isteriz.
 
 **Temel kaynak katkıları:**
 - Gazebo Ignition'da gerçekçi su fiziği (Gerstner dalgaları, hidrodinamik sürüklenme)
@@ -826,7 +826,7 @@ Bu deponun özgün navigasyon yazılım yığını (Göreve Özel Algılama, Sni
 
 ---
 
-### Gazebo Simülasyon Ortamına Katkıda Bulunanlar ([YILDIZ-USV](https://github.com/YILDIZ-USV/YILDIZ-USV))
+### Gazebo Simülasyon Ortamına Katkıda Bulunanlar ([STI-USV](https://github.com/STI-USV/STI-USV))
 
 Bu projenin 3D simülasyon altyapısı aşağıdaki geliştiricilerin çalışmalarına dayanmaktadır:
 

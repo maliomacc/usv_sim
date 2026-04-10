@@ -341,7 +341,7 @@ class KamikazeControlReal(Node):
 
         self.get_logger().warn(
             '\n╔═══════════════════════════════════════════════════════════════╗\n'
-            '║  YILDIZ USV — KamikazeControlReal  [GERÇEK DÜNYA]           ║\n'
+            '║  STI USV — KamikazeControlReal  [GERÇEK DÜNYA]           ║\n'
             '╠═══════════════════════════════════════════════════════════════╣\n'
             f'║  Hedef    : {TARGET_NAMES[_init_color]:<48}║\n'
             f'║  Engine   : {Path(engine_path).name:<48}║\n'

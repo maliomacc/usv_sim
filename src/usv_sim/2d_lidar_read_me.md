@@ -1,4 +1,4 @@
-# YILDIZ USV — 2D LiDAR Otonom Navigasyon Sistemi
+# STI USV — 2D LiDAR Otonom Navigasyon Sistemi
 
 **Platform:** TEKNOFEST Denizcilik Yarışması  
 **ROS Sürümü:** ROS 2 Humble  

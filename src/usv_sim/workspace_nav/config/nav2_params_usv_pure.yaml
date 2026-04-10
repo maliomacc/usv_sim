@@ -1,5 +1,5 @@
 # =============================================================================
-# nav2_params_usv_pure.yaml — YILDIZ USV — TEKNOFEST 2025
+# nav2_params_usv_pure.yaml — STI USV — TEKNOFEST 2025
 # =============================================================================
 # Araç:  Çift motorlu katamaran, 0.70 m × 0.50 m, DiffDrive kinematik
 # Kontrolcü: MPPI  (nav2_mppi_controller)

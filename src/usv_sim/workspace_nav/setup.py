@@ -43,8 +43,8 @@ setup(
     data_files=data_files,
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='YILDIZ USV',
-    maintainer_email='yildiz.usv@outlook.com',
+    maintainer='STI USV',
+    maintainer_email='sti.usv@outlook.com',
     description='Nav2-based autonomous route planning package customized for the TEKNOFEST Unmanned Surface Vehicle (USV) Competition.',
     license='Apache-2.0',
     entry_points={

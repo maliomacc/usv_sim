@@ -37,7 +37,7 @@ class WasdTeleop(Node):
 
     def print_controls(self):
         print('\n' + '='*40)
-        print('YILDIZ USV - Diferansiyel Teleop Kontrol')
+        print('STI USV - Diferansiyel Teleop Kontrol')
         print('='*40)
         print('Hareket Kontrolleri:')
         print('  W - İleri')

@@ -340,7 +340,7 @@ class YoloDetectorNode(Node):
         cv2.line(debug_bgr, (w//2, h//2 - 15), (w//2, h//2 + 15), (0, 255, 0), 1)
 
         if self._show_win:
-            cv2.imshow('YOLO Debug — YILDIZ USV', debug_bgr)
+            cv2.imshow('YOLO Debug — STI USV', debug_bgr)
             cv2.waitKey(1)
 
         if self._debug_pub is not None:

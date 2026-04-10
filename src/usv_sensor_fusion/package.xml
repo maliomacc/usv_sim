@@ -10,7 +10,7 @@
     invalid LiDAR readings (wave-pitch / water splash conditions).
   </description>
 
-  <maintainer email="yildiz.usv@outlook.com">YILDIZ USV</maintainer>
+  <maintainer email="sti.usv@outlook.com">STI USV</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

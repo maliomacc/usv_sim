@@ -1,6 +1,6 @@
-# Contributing to YILDIZ-USV
+# Contributing to STI-USV
 
-Thank you for your interest in contributing! This document explains the process for contributing to the YILDIZ-USV repository in a simple, professional way.
+Thank you for your interest in contributing! This document explains the process for contributing to the STI-USV repository in a simple, professional way.
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ Thank you for your interest in contributing! This document explains the process 
 
 ## Purpose
 
-This file documents how external contributors and project members should collaborate on the YILDIZ-USV repository. It aims to set clear expectations about issues, code contributions, reviews, and testing.
+This file documents how external contributors and project members should collaborate on the STI-USV repository. It aims to set clear expectations about issues, code contributions, reviews, and testing.
 
 ## How to Contribute
 
@@ -41,18 +41,18 @@ Always branch from the latest `develop` (or `main` if `develop` is not used). Ke
 Short instructions for getting started locally:
 
 ```bash
-mkdir -p ~/yildiz_ws/src
-cd ~/yildiz_ws/src
-git clone https://github.com/YILDIZ-USV/YILDIZ-USV.git
+mkdir -p ~/sti_usv_ws/src
+cd ~/sti_usv_ws/src
+git clone https://github.com/STI-USV/STI-USV.git
 ```
 
 ```bash
-cd ~/yildiz_ws
+cd ~/sti_usv_ws
 colcon build --merge-install
 ```
 
 ```bash
-source ~/yildiz_ws/install/setup.bash
+source ~/sti_usv_ws/install/setup.bash
 ```
 
 Add any environment or dependency notes specific to your machine in the issue or PR.
@@ -109,4 +109,4 @@ For questions, open an issue or contact the maintainers listed in `README.md`.
 
 ---
 
-Thank you for helping improve YILDIZ-USV — we appreciate your time and contributions!
+Thank you for helping improve STI-USV — we appreciate your time and contributions!

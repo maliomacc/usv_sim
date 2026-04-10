@@ -1,4 +1,4 @@
-# KISS-ICP Configuration for YILDIZ USV
+# KISS-ICP Configuration for STI USV
 # Su yüzeyi filtreleme için optimize edilmiş
 
 kiss_icp_node:

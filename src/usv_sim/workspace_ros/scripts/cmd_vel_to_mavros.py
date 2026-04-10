@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-cmd_vel_to_mavros.py — YILDIZ USV
+cmd_vel_to_mavros.py — STI USV
 ─────────────────────────────────────────────────────────────────────────────
 /cmd_vel  ──►  /mavros/setpoint_velocity/cmd_vel_unstamped
 

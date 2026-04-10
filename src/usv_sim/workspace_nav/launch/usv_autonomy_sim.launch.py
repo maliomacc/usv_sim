@@ -1,5 +1,5 @@
 # =============================================================================
-# usv_autonomy_sim.launch.py — YILDIZ USV Simülasyon Tam Otonomya
+# usv_autonomy_sim.launch.py — STI USV Simülasyon Tam Otonomya
 # =============================================================================
 #
 # 2D RPLidar A1M8 + ZED 1.0 Kamera mimarisi ile tam parkur:

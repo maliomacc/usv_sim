@@ -292,7 +292,7 @@ def print_report(study: optuna.Study) -> None:
 
 def main() -> None:
     print("╔" + "═" * 58 + "╗")
-    print("║  YILDIZ USV — MPPI Otonom Parametre Avcısı (Optuna)   ║")
+    print("║  STI USV — MPPI Otonom Parametre Avcısı (Optuna)   ║")
     print(f"║  Deneme sayısı: {N_TRIALS:<42}║")
     print(f"║  WP1 hedef: /plan topiğinden otomatik keşfedilir      ║")
     print(f"║  Timeout/deneme: {TRIAL_TIMEOUT_SEC:.0f} s{'':>38}║")

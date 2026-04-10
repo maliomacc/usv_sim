@@ -6,7 +6,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch.conditions import IfCondition
 
 # =============================================================================
-# MOLA SLAM Konfigürasyon Rehberi (YILDIZ USV)
+# MOLA SLAM Konfigürasyon Rehberi (STI USV)
 # =============================================================================
 # MOLA'nın parametreleri ayrı bir YAML dosyasında değil, launch_arguments
 # üzerinden environment değişkenleriyle kontrol edilir.
@@ -119,7 +119,7 @@ def generate_launch_description():
 
     return LaunchDescription([
 
-        LogInfo(msg='[YILDIZ USV] MOLA LiDAR SLAM başlatılıyor...'),
+        LogInfo(msg='[STI USV] MOLA LiDAR SLAM başlatılıyor...'),
         LogInfo(msg='  Mod: Yarışma (planar_motion=ON, simplemap=OFF, min_pts=200)'),
         LogInfo(msg='  LiDAR : /roboboat/lidar/filtered'),
         LogInfo(msg='  IMU   : /roboboat/sensors/imu/imu/data'),

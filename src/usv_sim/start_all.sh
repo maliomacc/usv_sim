@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# YILDIZ USV - Tek Komutla Tüm Sistemi Başlat
+# STI USV - Tek Komutla Tüm Sistemi Başlat
 # ROS 2 Humble + Gazebo Fortress (Ignition) + MOLA SLAM
 #
 # =============================================================================
@@ -65,7 +65,7 @@ NC='\033[0m' # No Color
 MODE="${1:-sim}"
 
 echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║           YILDIZ USV - Sistem Başlatılıyor                 ║${NC}"
+echo -e "${BLUE}║           STI USV - Sistem Başlatılıyor                 ║${NC}"
 echo -e "${BLUE}║       Mod: ${MODE}$([ ${#MODE} -lt 7 ] && printf '%*s' $((7-${#MODE})) '')                                   ${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 
@@ -298,7 +298,7 @@ if [ "$MODE" == "auto" ] || [ "$MODE" == "slam2d" ]; then
     GREEN_ID="${GREEN_CLASS_ID:-1}"
 
     echo -e "${CYAN}╔══════════════════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║          YILDIZ USV — Mission Manager Başlatılıyor   ║${NC}"
+    echo -e "${CYAN}║          STI USV — Mission Manager Başlatılıyor   ║${NC}"
     echo -e "${CYAN}╠══════════════════════════════════════════════════════╣${NC}"
     echo -e "${CYAN}║  Aşama 1 : WP1 → WP4  (PID navigasyon)              ║${NC}"
     echo -e "${CYAN}║  Aşama 2 : WP5'e Engeli Aşarak Navigasyon           ║${NC}"
@@ -351,7 +351,7 @@ fi
 
 echo ""
 echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║              YILDIZ USV - Sistem Hazır!                    ║${NC}"
+echo -e "${BLUE}║              STI USV - Sistem Hazır!                    ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 if [ "$MODE" == "slam2d" ]; then

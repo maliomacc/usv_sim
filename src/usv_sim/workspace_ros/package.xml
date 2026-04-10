@@ -5,7 +5,7 @@
   <version>0.0.2</version>
   <description>ROS 2 Jazzy package customized for the TEKNOFEST Unmanned Surface Vehicle (USV) Competition.</description>
 
-  <maintainer email="yildiz.usv@outlook.com">YILDIZ USV</maintainer>
+  <maintainer email="sti.usv@outlook.com">STI USV</maintainer>
   <license>Apache-2.0</license>
 
   <author>Görkem Direybatoğulları</author>
