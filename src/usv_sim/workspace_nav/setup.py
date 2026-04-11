@@ -58,6 +58,8 @@ setup(
             'yolo_detector         = workspace_nav_entry.yolo_detector:main',
             'kamikaze_control      = scripts.kamikaze_control:main',
             'yolo_depth_fusion     = scripts.yolo_depth_fusion:main',
+            'parkur2_standalone    = scripts.parkur2_standalone:main',
+            'parkur3_standalone    = scripts.parkur3_standalone:main',
         ],
     },
 )
