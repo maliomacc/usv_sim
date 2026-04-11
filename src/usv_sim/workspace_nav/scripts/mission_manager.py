@@ -687,8 +687,13 @@ class MissionManager(Node):
 
         self._nav2 = ActionClient(self, NavigateToPose, self._action_srv)
         self.get_logger().info(f'[INIT] Waiting for Nav2 "{self._action_srv}" …')
-        self._nav2.wait_for_server()
-        self.get_logger().info('[INIT] ✓ Nav2 action server connected')
+        if self._nav2.wait_for_server(timeout_sec=10.0):
+            self.get_logger().info('[INIT] ✓ Nav2 action server connected')
+        else:
+            self.get_logger().warn(
+                '[INIT] ⚠ Nav2 action server bulunamadı (10s timeout) — '
+                'Parkur 2 devre dışı. Parkur 1 ve Parkur 3 çalışmaya devam eder.'
+            )
 
         self._mppi = MppiParamClient(self)
 
