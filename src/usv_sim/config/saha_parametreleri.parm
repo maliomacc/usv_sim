@@ -1,0 +1,36 @@
+# ============================================================
+# ArduRover — Saha Yarışma Parametreleri
+# ============================================================
+# Masa basi testinden sonra bu dosyayi yukle.
+#
+# Yuklemek icin (MAVProxy):
+#   param load ~/sti_usv/src/usv_sim/config/saha_parametreleri.parm
+#   param save
+# ============================================================
+
+# Arming kontrolleri — tum kontroller aktif
+ARMING_CHECK        1
+
+# Safety switch — aktif
+BRD_SAFETY_DEFLT    1
+
+# Failsafe — tumu aktif
+FS_GCS_ENABLE       1
+FS_GPS_ENABLE       1
+FS_CRASH_CHECK      1
+FS_THR_ENABLE       1
+
+# Otomatik disarm — 10 sn hareketsizlikte disarm
+DISARM_DELAY        10
+
+# Motor guc limiti — tam guc
+THR_MAX             100
+
+# Arm aninda hafif spin
+MOT_SPIN_ARM        0.1
+
+# GUIDED mod max hiz (m/s)
+WP_SPEED            2.5
+
+# Donus hiz siniri (deg/s)
+ATC_STR_RAT_MAX     180

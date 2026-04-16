@@ -37,7 +37,7 @@ if yolo_files:
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(include=['scripts', 'scripts.*']),
+    packages=find_packages(include=['scripts', 'scripts.*', 'workspace_ros', 'workspace_ros.*']),
     data_files=data_files,
     install_requires=['setuptools'],
     zip_safe=True,
@@ -47,12 +47,10 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-            'converter = scripts.converter:main',
-            'gps_covariance_repub = scripts.gps_covariance_repub:main',
-            'imu_covariance_repub = scripts.imu_covariance_repub:main',
+            'gps_covariance_repub       = scripts.gps_covariance_repub:main',
+            'imu_covariance_repub       = scripts.imu_covariance_repub:main',
             'static_transform_publisher = scripts.static_transform_publisher:main',
-            'lidar_processor = scripts.lidar_processor:main',
-            'wasd_teleop = scripts.wasd_teleop:main',
+            'cmd_vel_to_mavros          = workspace_ros.cmd_vel_to_mavros:main',
         ],
     },
 )

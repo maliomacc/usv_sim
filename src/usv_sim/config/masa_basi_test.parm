@@ -1,0 +1,37 @@
+# ============================================================
+# ArduRover — Masa Basi Test Parametreleri
+# ============================================================
+# UYARI: Bu dosyayi sadece masa basi/ic mekan testlerinde kullan.
+# Sahaya cikmadan once saha_parametreleri.parm dosyasini yukle.
+#
+# Yuklemek icin (MAVProxy):
+#   param load ~/sti_usv/src/usv_sim/config/masa_basi_test.parm
+#   param save
+# ============================================================
+
+# Arming kontrolleri — GPS ve diger on kosullari atla
+ARMING_CHECK        0
+
+# Safety switch — switch takilmamissa arming engelini kaldir
+BRD_SAFETY_DEFLT    0
+
+# Failsafe — ic mekanda GPS yok, RC yok, GCS kesintili
+FS_GCS_ENABLE       0
+FS_GPS_ENABLE       0
+FS_CRASH_CHECK      0
+FS_THR_ENABLE       0
+
+# Otomatik disarm — test sirasinda disarm olmasin
+DISARM_DELAY        0
+
+# Motor guc limiti — masa basinda %30 ile sinirla
+THR_MAX             30
+
+# Arm aninda motor dönmesin (komut gelince donmeye baslar)
+MOT_SPIN_ARM        0.0
+
+# GUIDED mod max hiz (m/s) — ikinci guvenlik katmani
+WP_SPEED            0.5
+
+# Donus hiz siniri (deg/s)
+ATC_STR_RAT_MAX     60

@@ -49,17 +49,12 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-            'parkour_navigation    = scripts.parkour_navigation:main',
-            'gate_goal_publisher   = scripts.gate_goal_publisher:main',
-            'local_goal_bridge     = scripts.local_goal_bridge:main',
-            # Use workspace_nav_entry namespace to avoid shadowing by workspace_ros/scripts
-            'mission_manager       = workspace_nav_entry.mission_manager:main',
-            # Detector node (Strategy Pattern: sim HSV / real YOLO)
-            'yolo_detector         = workspace_nav_entry.yolo_detector:main',
-            'kamikaze_control      = scripts.kamikaze_control:main',
-            'yolo_depth_fusion     = scripts.yolo_depth_fusion:main',
-            'parkur2_standalone    = scripts.parkur2_standalone:main',
-            'parkur3_standalone    = scripts.parkur3_standalone:main',
+            'local_goal_bridge  = scripts.local_goal_bridge:main',
+            'mission_manager    = workspace_nav_entry.mission_manager:main',
+            'kamikaze_control   = workspace_nav_entry.kamikaze_control:main',
+            'parkur2_standalone = workspace_nav_entry.parkur2_standalone:main',
+            'parkur3_standalone = workspace_nav_entry.parkur3_standalone:main',
         ],
     },
+
 )

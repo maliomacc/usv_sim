@@ -90,19 +90,15 @@ def generate_launch_description():
         ],
     )
 
-    gate_goal_node = Node(
+    kamikaze_node = Node(
         package='workspace_nav',
-        executable='gate_goal_publisher',
-        name='gate_goal_publisher',
+        executable='kamikaze_control',
+        name='kamikaze_control',
         output='screen',
         arguments=['--ros-args', '--log-level', log_level],
         parameters=[{
             'use_sim_time':       use_sim_time,
-            'detection_topic':    LaunchConfiguration('yolo_topic'),
-            'depth_topic':        LaunchConfiguration('depth_topic'),
-            'camera_info_topic':  LaunchConfiguration('camera_info_topic'),
-            'red_class_id':       LaunchConfiguration('red_class_id'),
-            'green_class_id':     LaunchConfiguration('green_class_id'),
+            'init_target_color':  0,
         }],
     )
 
@@ -149,16 +145,16 @@ def generate_launch_description():
         }],
     )
 
-    cmd_vel_relay = Node(
-        package='topic_tools',
-        executable='relay',
+    cmd_vel_bridge = Node(
+        package='workspace_ros',
+        executable='cmd_vel_to_mavros',
         name='cmd_vel_to_mavros',
         output='screen',
-        arguments=[
-            '/cmd_vel',
-            '/mavros/setpoint_velocity/cmd_vel_unstamped',
-        ],
-        parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{
+            'use_sim_time':    use_sim_time,
+            'use_rc_override': False,
+            'max_speed':       1.0,
+        }],
     )
 
     ld = LaunchDescription()
@@ -170,10 +166,10 @@ def generate_launch_description():
         ld.add_action(arg)
 
     ld.add_action(ekf_node)
-    ld.add_action(gate_goal_node)
+    ld.add_action(kamikaze_node)
     ld.add_action(bridge_node)
     ld.add_action(nav2_launch)
     ld.add_action(mission_manager_node)
-    ld.add_action(cmd_vel_relay)
+    ld.add_action(cmd_vel_bridge)
 
     return ld
