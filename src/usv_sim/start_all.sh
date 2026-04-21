@@ -290,7 +290,7 @@ elif [ "$MODE" == "saha_p2" ]; then
 
 elif [ "$MODE" == "saha_p3" ]; then
     # ── PARKUR 3 BAĞIMSIZ: yalnızca kamikaze_control + parkur3_standalone ───
-    TARGET_COLOR="${TARGET_COLOR:-0}"
+    TARGET_COLOR="${TARGET_COLOR:-1}"
 
     echo -e "${CYAN}╔══════════════════════════════════════════════════════╗${NC}"
     echo -e "${CYAN}║      YILDIZ USV — PARKUR 3 BAĞIMSIZ TEST            ║${NC}"
@@ -306,7 +306,8 @@ elif [ "$MODE" == "saha_p3" ]; then
     ros2 run workspace_nav kamikaze_control \
         --ros-args \
         -p use_sim_time:=${USE_SIM_TIME} \
-        -p model_path:="${MODEL_PATH}" &
+        -p model_path:="${MODEL_PATH}" \
+        -p init_target_color:="${TARGET_COLOR}" &
     KAMIKAZE_PID=$!
     echo -e "  └─ Kamikaze Gözcü PID: ${KAMIKAZE_PID}"
 

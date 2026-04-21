@@ -29,8 +29,8 @@ def generate_launch_description():
         DeclareLaunchArgument('yolo_topic',         default_value='/yolo/detections'),
         DeclareLaunchArgument('depth_topic',        default_value='/zed/depth/depth_registered'),
         DeclareLaunchArgument('camera_info_topic',  default_value='/zed/depth/camera_info'),
-        DeclareLaunchArgument('red_class_id',       default_value='0'),
-        DeclareLaunchArgument('green_class_id',     default_value='1'),
+        DeclareLaunchArgument('red_class_id',       default_value='1'),
+        DeclareLaunchArgument('green_class_id',     default_value='2'),
 
         DeclareLaunchArgument('nav2_params_file',
             default_value=PathJoinSubstitution(
