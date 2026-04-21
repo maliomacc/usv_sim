@@ -20,12 +20,14 @@ CLASS_RED_BUOY    = 0
 CLASS_YELLOW_BUOY = 1
 CLASS_ORANGE_BUOY = 2
 CLASS_GREEN_BUOY  = 3
+CLASS_BLACK_BUOY  = 4
 
 CLASS_NAMES = {
     CLASS_RED_BUOY:    'red_buoy',
     CLASS_YELLOW_BUOY: 'yellow_buoy',
     CLASS_ORANGE_BUOY: 'orange_buoy',
     CLASS_GREEN_BUOY:  'green_buoy',
+    CLASS_BLACK_BUOY:  'black_buoy',
 }
 
 class DetectionResult:
@@ -155,11 +157,13 @@ class YOLOv11Detector(BaseDetector):
         'yellow_buoy': CLASS_YELLOW_BUOY,
         'orange_buoy': CLASS_ORANGE_BUOY,
         'green_buoy':  CLASS_GREEN_BUOY,
+        'black_buoy':  CLASS_BLACK_BUOY,
 
         'red':         CLASS_RED_BUOY,
         'yellow':      CLASS_YELLOW_BUOY,
         'orange':      CLASS_ORANGE_BUOY,
         'green':       CLASS_GREEN_BUOY,
+        'black':       CLASS_BLACK_BUOY,
     }
 
     def __init__(self, model_path: str):
@@ -216,6 +220,7 @@ class YOLOv11Detector(BaseDetector):
             CLASS_ORANGE_BUOY: (0,   128, 255),
             CLASS_YELLOW_BUOY: (0,   255, 255),
             CLASS_GREEN_BUOY:  (0,   200,   0),
+            CLASS_BLACK_BUOY:  (128, 128, 128),
         }
         for det in detections:
             c   = colours.get(det.class_id, (255, 255, 255))
