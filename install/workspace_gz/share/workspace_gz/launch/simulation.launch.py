@@ -1,0 +1,1 @@
+/home/aliomacc/sti_usv/src/usv_sim/workspace_gz/launch/simulation.launch.py

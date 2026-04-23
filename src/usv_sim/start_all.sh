@@ -274,6 +274,8 @@ if [ "$MODE" == "auto" ]; then
     # Kamikaze Gözcü (YOLO + LiDAR kapı tespiti) başlat
     sleep 1
     echo -e "${CYAN}Kamikaze Gözcü başlatılıyor...${NC}"
+    export DISPLAY="${DISPLAY:-:0}"
+    export XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
     ros2 run workspace_nav kamikaze_control \
         --ros-args \
         -p use_sim_time:=true &

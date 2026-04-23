@@ -1,0 +1,25 @@
+{
+    "ROS2.distro": "humble",
+    "python.autoComplete.extraPaths": [
+        "/home/aliomacc/sti_usv/build/workspace_ros",
+        "/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages",
+        "/home/aliomacc/sti_usv/build/workspace_nav",
+        "/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages",
+        "/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages",
+        "/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages",
+        "/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/aliomacc/sti_usv/build/workspace_ros",
+        "/home/aliomacc/sti_usv/install/workspace_ros/lib/python3.10/site-packages",
+        "/home/aliomacc/sti_usv/build/workspace_nav",
+        "/home/aliomacc/sti_usv/install/workspace_nav/lib/python3.10/site-packages",
+        "/home/aliomacc/ros2_ws/install/actions_py/lib/python3.10/site-packages",
+        "/home/aliomacc/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages",
+        "/home/aliomacc/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

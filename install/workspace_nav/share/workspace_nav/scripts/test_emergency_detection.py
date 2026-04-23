@@ -1,0 +1,1 @@
+/home/aliomacc/sti_usv/build/workspace_nav/scripts/test_emergency_detection.py
