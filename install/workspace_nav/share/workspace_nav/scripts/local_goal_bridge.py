@@ -1,1 +1,0 @@
-/home/aliomacc/sti_usv/build/workspace_nav/scripts/local_goal_bridge.py

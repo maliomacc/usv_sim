@@ -1,0 +1,49 @@
+# ROS2 / Colcon build artifacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+.eggs/
+dist/
+*.so
+
+# C/C++ compiled objects
+*.o
+*.a
+*.out
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+
+# VS Code
+.vscode/browse.vc.db
+.vscode/browse.vc.db-shm
+.vscode/browse.vc.db-wal
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Colcon
+COLCON_IGNORE
+
+# Model weights / large binary datasets
+*.pt
+*.pth
+*.onnx
+*.weights
+*.h5
+
+# Env / secrets
+.env
+*.env.local

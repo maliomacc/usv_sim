@@ -1,1 +1,0 @@
-/home/aliomacc/sti_usv/build/workspace_ros/scripts/gps_covariance_repub.py

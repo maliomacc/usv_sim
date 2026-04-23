@@ -1,1 +1,0 @@
-/home/aliomacc/sti_usv/build/workspace_ros/scripts/__init__.py

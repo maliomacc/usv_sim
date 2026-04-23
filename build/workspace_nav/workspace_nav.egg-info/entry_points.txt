@@ -1,8 +1,0 @@
-[console_scripts]
-gate_goal_publisher = scripts.gate_goal_publisher:main
-kamikaze_control = workspace_nav_entry.kamikaze_control:main
-local_goal_bridge = scripts.local_goal_bridge:main
-mission_manager = workspace_nav_entry.mission_manager:main
-parkour_navigation = scripts.parkour_navigation:main
-yolo_detector = workspace_nav_entry.yolo_detector:main
-

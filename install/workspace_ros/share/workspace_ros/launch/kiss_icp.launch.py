@@ -1,1 +1,0 @@
-/home/aliomacc/sti_usv/build/workspace_ros/launch/kiss_icp.launch.py
