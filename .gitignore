@@ -8,5 +8,7 @@ __pycache__/
 *.ipch
 # TensorRT ve YOLO model dosyaları (büyük binary — LFS veya ayrı paylaşım)
 *.engine
-*.pt
 *.onnx
+# .pt dosyaları build/install dışında src/ içinde takip edilir
+*.pt
+!src/**/*.pt
