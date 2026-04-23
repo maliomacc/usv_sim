@@ -10,3 +10,9 @@ __pycache__/
 *.engine
 *.pt
 *.onnx
+# Editor geçici dosyaları
+*.save
+*.swp
+*~
+# Build hata logları
+build_errors*.log
