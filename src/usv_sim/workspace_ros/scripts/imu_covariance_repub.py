@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-
-# ----------------------------------------------------------------------------------------------- #
-#  Node that republishes IMU (sensor_msgs/Imu) data with a defined covariance matrix for improved
-#  localization consistency. It assigns fixed covariance values to ensure stable input for
-#  sensor fusion processes such as robot_localization.
-# ----------------------------------------------------------------------------------------------- #
-
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Imu

@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<!--
+  ============================================================
+  Stereolabs ZED 1.0 Stereo-Derinlik Kamera Sens?r?
+  Ignition Gazebo (Fortress/Garden) + ROS 2 Tan?m?
+  ============================================================
+
+  Donan?m Parametreleri (ZED 1.0 Orijinal De?erleri):
+  ???????????????????????????????????????????????????
+    Yatay G?r?? A??s?  : 110?  (1.91986 rad)
+    ??z?n?rl?k         : 1280 ? 720 (720p)
+    G?ncelleme H?z?    : 30 FPS
+    Yak?n S?n?r        : 0.5 m
+    Uzak S?n?r         : 20.0 m
+    Stereo Baseline    : 0.12 m (sol?sa? lens merkezi aras? mesafe)
+
+  Koordinat Sistemi Hizalamas?:
+  ?????????????????????????????
+    Gazebo,  X-?ne / Y-sola / Z-yukar? (REP-103 robot frame) kullan?r.
+    OpenCV,  X-sa?a / Y-a?a?? / Z-?ne  (kamera optik frame)  kullan?r.
+    Bu iki sistem aras?ndaki fark, zed_camera_optical_frame joint'inde
+    rpy="-pi/2, 0, -pi/2" d?n???m?yle kapat?l?r.
+
+  ROS 2 Topic K?pr?s? (ros_gz_bridge):
+  ?????????????????????????????????????
+    Ignition yerel topic'leri, projenin start_all.sh / launch dosyas?ndaki
+    ros_gz_bridge yap?land?rmas?na eklenerek ROS 2'ye k?pr?lenir:
+
+    Ignition Topic                                  ? ROS 2 Topic
+    ?????????????????????????????????????????????????????????????
+    /roboboat/sensors/camera/image                  ? /roboboat/sensors/camera/image
+    /roboboat/sensors/camera/camera_info            ? /roboboat/sensors/camera/camera_info
+    /roboboat/sensors/camera/depth                  ? /roboboat/sensors/camera/depth
+    /roboboat/sensors/camera/depth/camera_info      ? /roboboat/sensors/camera/depth/camera_info
+    /roboboat/sensors/camera/points                 ? /roboboat/sensors/camera/pointcloud
+
+    Mesaj T?rleri:
+      image        : sensor_msgs/msg/Image
+      camera_info  : sensor_msgs/msg/CameraInfo
+      depth        : sensor_msgs/msg/Image
+      points       : sensor_msgs/msg/PointCloud2
+  ============================================================
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- ??????????????????????????????????????????????????????
+       B?L?M 1 ? F?Z?KSEL G?VDE L?NK? (zed_camera_link)
+       ZED kameran?n fiziksel yerine, g?rsel ve ?arp??ma
+       geometrisi bu linke ba?l?d?r.
+       ?????????????????????????????????????????????????????? -->
+  <link name="zed_camera_link">
+
+    <!--
+      G?rsel Temsil: ZED 1.0 g?vdesini temsil eden basit kutu geometri.
+      Ger?ek ZED 1.0 boyutlar?: 175 mm ? 30 mm ? 33 mm (geni?lik ? derinlik ? y?kseklik)
+      Baseline (0.12 m) boyunca lens merkezleri aras?ndaki mesafedir.
+    -->
+    <visual name="visual_zed_camera_body">
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <!-- ZED 1.0 fiziksel g?vdesi: 175 mm geni?lik, 30 mm derinlik, 33 mm y?kseklik -->
+        <box size="0.030 0.175 0.033"/>
+      </geometry>
+      <material name="zed_dark_grey">
+        <color rgba="0.2 0.2 0.2 1.0"/>
+      </material>
+    </visual>
+
+    <!--
+      Sol Lens Dairesi ? sadece g?rsel
+    -->
+    <visual name="visual_zed_lens_left">
+      <origin xyz="0.015 0.030 0.0" rpy="1.5707963 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.005" radius="0.010"/>
+      </geometry>
+      <material name="zed_lens_glass">
+        <color rgba="0.1 0.1 0.3 0.8"/>
+      </material>
+    </visual>
+
+    <!--
+      Sa? Lens Dairesi ? sadece g?rsel
+      Not: baseline=0.12 m ? sol lens +0.06 m, sa? lens -0.06 m Y ekseninde
+    -->
+    <visual name="visual_zed_lens_right">
+      <origin xyz="0.015 -0.030 0.0" rpy="1.5707963 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.005" radius="0.010"/>
+      </geometry>
+      <material name="zed_lens_glass">
+        <color rgba="0.1 0.1 0.3 0.8"/>
+      </material>
+    </visual>
+
+    <!-- ?arp??ma Alan?: ZED 1.0 g?vde kutusu -->
+    <collision name="collision_zed_camera">
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.033 0.175 0.033"/>
+      </geometry>
+    </collision>
+
+    <!--
+      Atalet (Inertia): ZED 1.0 a??rl??? ~160 g = 0.16 kg
+      Yekpare kutu i?in atalet tens?r?:
+        m=0.16 kg, x=0.030 m, y=0.175 m, z=0.033 m
+        Ixx = m*(y?+z?)/12 = 0.16*(0.030625+0.001089)/12 ? 0.000422
+        Iyy = m*(x?+z?)/12 = 0.16*(0.000900+0.001089)/12 ? 0.0000265
+        Izz = m*(x?+y?)/12 = 0.16*(0.000900+0.030625)/12 ? 0.000420
+    -->
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <mass value="0.16"/>
+      <inertia
+        ixx="0.000422" ixy="0.0" ixz="0.0"
+        iyy="0.0000265" iyz="0.0"
+        izz="0.000420"/>
+    </inertial>
+
+  </link>
+
+
+  <!-- ??????????????????????????????????????????????????????
+       B?L?M 2 ? OPT?K FRAME L?NK? (zed_camera_optical_frame)
+       OpenCV kamera koordinat sistemiyle hizalamak i?in
+       bu linke roll=-?/2, pitch=0, yaw=-?/2 d?n???m? uygulan?r.
+
+       D?n???m?n Anlam?:
+         Gazebo: X ?ne, Y sola, Z yukar?
+         OpenCV: X sa?a, Y a?a??, Z ?ne
+         Fark: rpy = (-90?, 0?, -90?)  ?  (-?/2, 0, -?/2)
+       ?????????????????????????????????????????????????????? -->
+  <link name="zed_camera_optical_frame">
+    <!-- Optik frame k?tlesiz ve geometrisiz bir referans ?er?evesidir -->
+  </link>
+
+  <!--
+    Optik Frame Joint'i:
+    zed_camera_link ? zed_camera_optical_frame
+    rpy = (-?/2, 0, -?/2) ile Gazebo'dan OpenCV koordinat sistemine ge?i?.
+  -->
+  <joint name="zed_camera_link_to_optical_frame" type="fixed">
+    <!--
+      xyz="0 0 0": Optik merkez fiziksel merkezi ile ?ak???yor.
+      rpy: Gazebo (REP-103) ? OpenCV d?n???m?.
+        roll  = -?/2  ? Y-a?a?? ekseni olu?turur
+        pitch =  0
+        yaw   = -?/2  ? X-sa?a ekseni olu?turur
+    -->
+    <origin xyz="0.0 0.0 0.0" rpy="-1.5707963267948966 0.0 -1.5707963267948966"/>
+    <parent link="zed_camera_link"/>
+    <child  link="zed_camera_optical_frame"/>
+  </joint>
+
+
+  <!-- ??????????????????????????????????????????????????????
+       B?L?M 3 ? IGNITION GAZEBO SENS?R TANIMI
+       Ignition Gazebo'nun yerle?ik rgbd_camera sens?r?
+       kullan?larak hem RGB g?r?nt? hem derinlik hem de
+       nokta bulutu verisi yay?nlan?r.
+
+       NOT: libgazebo_ros_camera.so klasik Gazebo 9/11'e
+       aittir. Ignition Gazebo'da bu eklenti ?ALI?MAZ.
+       Veri ak??? i?in ros_gz_bridge kullan?lmal?d?r.
+       (Bkz. dosya ba??ndaki k?pr? tablosu.)
+       ?????????????????????????????????????????????????????? -->
+  <gazebo reference="zed_camera_link">
+
+    <!--
+      Ignition Gazebo ? rgbd_camera Sens?r?
+      ??????????????????????????????????????
+      type="rgbd_camera": RGB + Derinlik + PointCloud tek sens?rde.
+
+      ZED 1.0 Optik Parametreleri:
+        Yatay FOV  = 110?  = 1.91986 rad
+        Dikey FOV  = Otomatik hesaplan?r: 2*atan(tan(hfov/2)*(H/W))
+                   = 2*atan(tan(0.95993)*(720/1280)) ? 70.4? ? 1.22922 rad
+        Odak Uzunlu?u (fx=fy): f = (W/2) / tan(hfov/2)
+                           = 640 / tan(0.95993) ? 400 piksel (normalle?tirilmi?)
+
+      Baseline Notu:
+        ZED 1.0 baseline = 0.12 m (sol?sa? lens merkezi aras?)
+        Ignition'da stereo sim?lasyonu i?in tek kamera kullan?l?r;
+        derinlik verisi tek sens?rden hesaplan?r (ger?ek stereo de?il).
+        Baseline de?eri SDF'de kay?t alt?na al?nm??t?r.
+        Ger?ek stereo pipeline i?in iki ayr? kamera sens?r?
+        ve stereo_image_proc kullan?lmas? gerekir.
+    -->
+    <sensor name="sensor_zed_camera" type="rgbd_camera">
+
+      <!-- ?? Ignition Topic Adlar? ????????????????????????
+           Bu topic'ler ros_gz_bridge arac?l???yla ROS 2'ye k?pr?lenir.
+           K?pr? yap?land?rmas? i?in bkz. dosya ba??ndaki tablo.
+      -->
+      <topic>/roboboat/sensors/camera/image</topic>
+
+      <!-- G?r?nt? her zaman yay?nlan?r (g?? tasarruf modu yok) -->
+      <always_on>true</always_on>
+
+      <!-- Sim?lasyonda g?rselle?tirme etkin (RViz ile g?r?nt?leme i?in) -->
+      <visualize>true</visualize>
+
+      <!-- ZED 1.0 nominal FPS = 30 Hz (720p modunda) -->
+      <update_rate>30</update_rate>
+
+      <!-- Sens?r? zed_camera_optical_frame'e referansla -->
+      <gz_frame_id>zed_camera_optical_frame</gz_frame_id>
+
+      <camera name="zed_1_camera">
+
+        <!-- ?? G?r?nt? ??z?n?rl??? ??????????????????????
+             ZED 1.0 desteklenen modlar: 2208?1242, 1920?1080, 1280?720, 672?376
+             Se?ilen mod: 1280?720 (720p) ? en dengeli h?z/kalite modu
+        -->
+        <image>
+          <width>1280</width>
+          <height>720</height>
+          <!-- R8G8B8: 8-bit/kanal, sensorMsg/Image encoding="rgb8" -->
+          <format>R8G8B8</format>
+        </image>
+
+        <!-- ?? G?r?? A??s? (Field of View) ?????????????
+             ZED 1.0 @ 720p: Yatay FOV = 110? = 1.91986 rad
+             Kaynak: Stereolabs resmi datasheet
+        -->
+        <horizontal_fov>1.91986</horizontal_fov>
+
+        <!-- ?? K?rpma D?zlemleri (Clipping Planes) ??????
+             near = 0.5 m : ZED 1.0'?n k?r noktas? (blind spot)
+                            Bu mesafeden yak?n nesneler alg?lanamaz.
+             far  = 20.0 m: ZED 1.0 maksimum g?venilir derinlik mesafesi
+                            (iyi ???kta 20m, ger?ekte ~15m tipik)
+        -->
+        <clip>
+          <near>0.5</near>
+          <far>20.0</far>
+        </clip>
+
+        <!-- ?? Derinlik Kamera Ayarlar? ??????????????????
+             ZED 1.0 stereo baseline = 0.12 m
+             Bu de?er, derinlik do?rulu?unu etkiler:
+               ?_z ? z? * ?_d / (f * B)
+             Ignition single-camera depth yakla??m?nda baseline
+             dolayl? olarak max_depth clip ile modellenir.
+        -->
+        <depth_camera>
+          <output>depths</output>
+          <!-- Derinlik g?r?nt?s? i?in yak?n/uzak s?n?rlar -->
+          <clip>
+            <near>0.5</near>
+            <far>20.0</far>
+          </clip>
+        </depth_camera>
+
+        <!-- ?? G?r?nt? G?r?lt?s? (Noise) ?????????????????
+             ZED 1.0 tipik RGB kamera g?r?lt?s? modeli:
+             Gaussian g?r?lt?, stddev=0.007 (27/255 ? %1)
+        -->
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+
+        <!-- ?? Derinlik G?r?lt?s? ??????????????????????????
+             ZED 1.0 derinlik do?rulu?u: ~1% @ 1m, ~4% @ 5m
+             Stereo disparity g?r?lt?s? do?rusal de?il; basit model:
+             Gaussian stddev=0.015 m (yak?n mesafede)
+        -->
+        <distortion>
+          <k1>0.0</k1>
+          <k2>0.0</k2>
+          <k3>0.0</k3>
+          <p1>0.0</p1>
+          <p2>0.0</p2>
+          <center>0.5 0.5</center>
+        </distortion>
+
+        <!-- ?? Lens ?zellikleri ??????????????????????????
+             ZED 1.0 lens tipi: Pinhole (ideal, bozulmas?z model)
+             Ger?ek lens bozulmas? ihmal edilir (ZED SDK d?zeltir).
+        -->
+        <lens>
+          <type>stereographic</type>
+          <scale_to_hfov>true</scale_to_hfov>
+        </lens>
+
+      </camera>
+
+      <!--
+        ?? Nokta Bulutu (PointCloud) Ayarlar? ????????????
+        rgbd_camera sens?r? otomatik olarak PointCloud2 yay?nlar.
+        Topic: /roboboat/sensors/camera/image/points
+               (ros_gz_bridge ile /roboboat/sensors/camera/pointcloud'a k?pr?lenir)
+      -->
+
+    </sensor>
+
+  </gazebo>
+
+</robot>

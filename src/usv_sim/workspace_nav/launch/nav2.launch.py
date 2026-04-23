@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-
-# ----------------------------------------------------------------------------------------------- #
-#  Custom Nav2 navigation launch for YILDIZ USV.
-#  Launches navigation nodes directly without bringup_launch to avoid Jazzy compatibility issues.
-# ----------------------------------------------------------------------------------------------- #
-
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, GroupAction, SetEnvironmentVariable
@@ -14,35 +7,32 @@ from launch_ros.actions import Node, SetParameter, LoadComposableNodes
 from launch_ros.descriptions import ComposableNode, ParameterFile
 from nav2_common.launch import RewrittenYaml
 
-
 def generate_launch_description():
     package_name = 'workspace_nav'
     package_share = FindPackageShare(package_name)
-    
-    nav2_config = PathJoinSubstitution([package_share, 'config', 'nav2_params.yaml'])
+
+    nav2_config = PathJoinSubstitution([package_share, 'config', 'nav2_params_usv_pure.yaml'])
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     params_file = LaunchConfiguration('params_file')
     autostart = LaunchConfiguration('autostart')
     log_level = LaunchConfiguration('log_level')
 
-    # Lifecycle nodes that navigation_launch manages
     lifecycle_nodes = [
         'controller_server',
-        'smoother_server',
         'planner_server',
         'behavior_server',
-        'velocity_smoother',
-        'collision_monitor',
         'bt_navigator',
         'waypoint_follower',
+        'smoother_server',
+        'velocity_smoother',
+        'collision_monitor',
     ]
 
     remappings = [('/tf', 'tf'), ('/tf_static', 'tf_static')]
 
-    # Create parameter substitutions
     param_substitutions = {'autostart': autostart}
-    
+
     configured_params = ParameterFile(
         RewrittenYaml(
             source_file=params_file,
@@ -77,7 +67,6 @@ def generate_launch_description():
         'RCUTILS_LOGGING_BUFFERED_STREAM', '1'
     )
 
-    # Container for composition
     container = Node(
         name='nav2_container',
         package='rclcpp_components',
@@ -88,7 +77,6 @@ def generate_launch_description():
         output='screen',
     )
 
-    # Load composable nodes
     load_composable_nodes = LoadComposableNodes(
         target_container='nav2_container',
         composable_node_descriptions=[
@@ -127,7 +115,7 @@ def generate_launch_description():
                 parameters=[configured_params],
                 remappings=remappings + [
                     ('cmd_vel', 'cmd_vel_nav'),
-                    ('cmd_vel_smoothed', 'cmd_vel')
+
                 ],
             ),
             ComposableNode(
@@ -135,7 +123,10 @@ def generate_launch_description():
                 plugin='nav2_collision_monitor::CollisionMonitor',
                 name='collision_monitor',
                 parameters=[configured_params],
-                remappings=remappings,
+                remappings=remappings + [
+
+                    ('cmd_vel_cm_out', 'cmd_vel'),
+                ],
             ),
             ComposableNode(
                 package='nav2_bt_navigator',
@@ -154,7 +145,6 @@ def generate_launch_description():
         ],
     )
 
-    # Lifecycle manager
     lifecycle_manager = Node(
         package='nav2_lifecycle_manager',
         executable='lifecycle_manager',

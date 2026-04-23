@@ -2,8 +2,9 @@
 <sdf version="1.6">
   <world name="default">
 
-    <physics name="4ms" type="dart">
-      <max_step_size>0.004</max_step_size>
+    <physics name="6ms" type="dart">
+      <!-- 0.004→0.006s: 167Hz fizik. 0.010s thruster dinamiğini bozuyordu. -->
+      <max_step_size>0.006</max_step_size>
       <real_time_factor>1.0</real_time_factor>
     </physics>
 

@@ -39,7 +39,7 @@ if map_files:
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(include=['scripts', 'scripts.*']),
+    packages=find_packages(include=['scripts', 'scripts.*', 'workspace_nav_entry', 'workspace_nav_entry.*']),
     data_files=data_files,
     install_requires=['setuptools'],
     zip_safe=True,
@@ -49,7 +49,13 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-            'parkour_navigation = scripts.parkour_navigation:main',
+            'parkour_navigation    = scripts.parkour_navigation:main',
+            'gate_goal_publisher   = scripts.gate_goal_publisher:main',
+            'local_goal_bridge     = scripts.local_goal_bridge:main',
+            # Use workspace_nav_entry namespace to avoid shadowing by workspace_ros/scripts
+            'mission_manager       = workspace_nav_entry.mission_manager:main',
+            # Detector node (Strategy Pattern: sim HSV / real YOLO)
+            'yolo_detector         = workspace_nav_entry.yolo_detector:main',
         ],
     },
 )

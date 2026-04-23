@@ -1,13 +1,3 @@
-#!/usr/bin/env python3
-
-# ----------------------------------------------------------------------------------------------- #
-#  Launch file for initializing the localization stack of the RoboBoat.
-#  It fuses IMU, GPS, and odometry data using the robot_localization package
-#  to provide a continuous state estimate for navigation and control.
-#  The file also republishes sensor data with fixed covariances and sets up
-#  static transforms required for consistent frame alignment across the system.
-# ----------------------------------------------------------------------------------------------- #
-
 from launch_ros.actions import Node
 from launch import LaunchDescription
 from launch.substitutions import PathJoinSubstitution
@@ -66,6 +56,4 @@ def generate_launch_description():
             output='screen'
         ),
 
-        # NOTE: map->odom TF is published by MOLA SLAM, not here
-        # This prevents TF_OLD_DATA conflicts
     ])

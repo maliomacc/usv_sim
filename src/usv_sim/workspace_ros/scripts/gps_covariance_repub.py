@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-
-# ----------------------------------------------------------------------------------------------- #
-#  Node that republishes GPS (NavSatFix) data with an assigned covariance matrix for localization
-#  consistency. It adjusts the covariance values to provide stable input for sensor fusion nodes
-#  such as robot_localization.
-# ----------------------------------------------------------------------------------------------- #
-
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import NavSatFix

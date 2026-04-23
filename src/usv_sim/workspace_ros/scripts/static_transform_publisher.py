@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-
-# ----------------------------------------------------------------------------------------------- #
-#  Node that loads and publishes a set of static transforms as TF2 frames, using YAML or parameter
-#  input. It converts roll–pitch–yaw rotations to quaternions and ensures all valid transforms are
-#  broadcasted once for consistent frame alignment.
-# ----------------------------------------------------------------------------------------------- #
-
 import math
 import os
 import sys

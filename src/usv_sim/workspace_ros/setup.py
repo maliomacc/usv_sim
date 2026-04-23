@@ -53,6 +53,7 @@ setup(
             'static_transform_publisher = scripts.static_transform_publisher:main',
             'lidar_processor = scripts.lidar_processor:main',
             'wasd_teleop = scripts.wasd_teleop:main',
+            'kamikaze_control = scripts.kamikaze_control:main',
         ],
     },
 )

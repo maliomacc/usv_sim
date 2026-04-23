@@ -29,6 +29,12 @@ pkill -f "map_to_odom_tf" 2>/dev/null || true
 pkill -f "static_transforms_publisher" 2>/dev/null || true
 pkill -f "start_all.sh" 2>/dev/null || true
 pkill -f "python3.*launch" 2>/dev/null || true
+# Nav2 bileşenlerini durdur — aksi takdirde aktif node'lar askıda kalır
+pkill -f "nav2_container" 2>/dev/null || true
+pkill -f "lifecycle_manager" 2>/dev/null || true
+pkill -f "controller_server" 2>/dev/null || true
+pkill -f "bt_navigator" 2>/dev/null || true
+pkill -f "planner_server" 2>/dev/null || true
 
 # Kısa bekleme
 sleep 2
@@ -48,12 +54,22 @@ pkill -9 -f "robot_state_publisher" 2>/dev/null || true
 pkill -9 -f "kiss_icp" 2>/dev/null || true
 pkill -9 -f "start_all.sh" 2>/dev/null || true
 pkill -9 -f "python3.*launch" 2>/dev/null || true
+# Nav2 bileşenlerini zorla kapat
+pkill -9 -f "nav2_container" 2>/dev/null || true
+pkill -9 -f "lifecycle_manager" 2>/dev/null || true
+pkill -9 -f "controller_server" 2>/dev/null || true
+pkill -9 -f "bt_navigator" 2>/dev/null || true
+pkill -9 -f "planner_server" 2>/dev/null || true
 
 # Gazebo shared memory temizle
 rm -f /dev/shm/gazebo_* 2>/dev/null || true
 rm -f /tmp/gz*.log 2>/dev/null || true
 
 sleep 1
+
+echo "[INFO] Gözcü (kamikaze_control.py) durduruluyor..."
+pkill -f kamikaze_control.py
+echo "[INFO] Tüm sistemler başarıyla kapatıldı!"
 
 echo -e "${GREEN}Tüm servisler zorla durduruldu.${NC}"
 exit 0
