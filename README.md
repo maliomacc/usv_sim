@@ -1,864 +1,485 @@
-<div align="center">
+# STI USV — TEKNOFEST İnsansız Su Üstü Aracı
 
-<h1>STI_USV</h1>
-
-**Otonom İnsansız Su Yüzeyi Aracı — TEKNOFEST Yarışma Navigasyon Sistemi**
-
-[![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04_LTS-E95420?logo=ubuntu&logoColor=white)](https://releases.ubuntu.com/22.04/)
-[![ROS2](https://img.shields.io/badge/ROS_2-Humble_Hawksbill-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/humble/)
-[![Gazebo](https://img.shields.io/badge/Gazebo-Fortress_(Ignition)-F58113?logo=gazebo&logoColor=white)](https://gazebosim.org/docs/fortress/)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Algılama](https://img.shields.io/badge/Alg%C4%B1lama-Saf_HSV_%2B_TensorRT_YOLOv8-00FFFF?logo=opencv&logoColor=black)](https://opencv.org/)
-[![Nav2](https://img.shields.io/badge/Navigasyon-Nav2_MPPI-22314E)](https://navigation.ros.org/)
-[![License](https://img.shields.io/badge/Lisans-Apache_2.0-blue)](./LICENSE.txt)
-
-*Bitirme Projesi · Tam Otonom Navigasyon · TEKNOFEST USV Yarışması*
-
-</div>
+ROS 2 Humble tabanlı, 2D LiDAR + stereo kamera mimarisiyle çalışan tam otonom deniz aracı yazılımı.  
+Ignition Gazebo Fortress simülasyonu desteklenir; aynı kod yapısı gerçek donanım üzerinde de çalışır.
 
 ---
 
-## 📋 İçindekiler
+## İçindekiler
 
-1. [Proje Genel Bakış](#-proje-genel-bakış)
-2. [Temel Kaynak Kodunun Atıfı](#-temel-kaynak-kodunun-atıfı)
-3. [Bu Projede Geliştirilen Özgün Mühendislik Katkıları](#-bu-projede-geliştirilen-özgün-mühendislik-katkıları)
-4. [Sistem Mimarisi](#-sistem-mimarisi)
-5. [Paket Yapısı](#-paket-yapısı)
-6. [Kurulum ve Bağımlılıklar](#-kurulum-ve-bağımlılıklar)
-7. [Kullanım](#-kullanım)
-8. [**Uçtan Uca Sistem Akışı**](#-uçtan-uca-sistem-akışı)
-9. [**Algoritma Tasarımları**](#-algoritma-tasarımları)
-10. [Görev Senaryosu: TEKNOFEST Parkurları](#-görev-senaryosu-teknofest-parkurları)
-11. [ROS Topic Referansı](#-ros-topic-referansı)
-12. [Sorun Giderme](#-sorun-giderme)
-13. [Katkıda Bulunanlar](#-katkıda-bulunanlar)
-
----
-
-## 🎯 Proje Genel Bakış
-
-**STI_USV**, TEKNOFEST İnsansız Su Araçları (İDA) yarışması görevlerini bağımsız olarak tamamlamak üzere tasarlanmış, tam otonom bir İnsansız Su Yüzeyi Aracı (USV) navigasyon sistemidir. Proje, bir **Bitirme Projesi** kapsamında geliştirilmiş olup gerçek dünya yarışma koşullarını simüle eden Gazebo Ignition (Fortress) ortamında doğrulanmıştır.
-
-### Temel Teknik Hedefler
-
-| Hedef | Yaklaşım |
-|-------|----------|
-| GPS Bazlı Açık Su Navigasyonu | Özel PID Yaw Kontrolcüsü |
-| Duba Kapısı Geçişi (Slalom) | Nav2 MPPI + Güven Kilidi Algoritması |
-| Kamikaze Saldırısı (Sim) | Saf HSV Renk Filtreleme (YOLO-FREE) |
-| Kamikaze Saldırısı (Gerçek Dünya) | TensorRT YOLOv8 + HSV Doğrulama Füzyonu |
-| Sağlam Nesne Algılama | OpenCV HSV Bant Filtreleme |
-| Kesin Konum Belirleme | MOLA SLAM + EKF Sensör Füzyonu |
-
-> **Akademik Not:** Bu depo, Bitirme Projesi danışmanlarının ve teknik jürilerin teknik derinliği doğrulayabilmesi amacıyla **mühendislik kararları ve tasarım gerekçeleriyle** birlikte dokümante edilmiştir.
+- [Sistem Gereksinimleri](#sistem-gereksinimleri)
+- [Repo Yapısı](#repo-yapısı)
+- [Mimari Genel Bakış](#mimari-genel-bakış)
+- [Topic Haritası](#topic-haritası)
+- [TF Ağacı](#tf-ağacı)
+- [Derleme](#derleme)
+- [Çalıştırma](#çalıştırma)
+  - [Simülasyon](#simülasyon)
+  - [Gerçek Donanım](#gerçek-donanım)
+- [Parkur Mantığı](#parkur-mantığı)
+- [Parametreler ve Konfigürasyon](#parametreler-ve-konfigürasyon)
+- [Paketler ve Nodlar](#paketler-ve-nodlar)
+- [YOLO Model Dosyaları](#yolo-model-dosyaları)
 
 ---
 
-## 🤝 Temel Kaynak Kodunun Atıfı
+## Sistem Gereksinimleri
 
-Bu projenin **3D simülasyon ortamı, su fiziği, bot modeli, sensör eklentileri ve temel ROS-Gazebo köprüleme altyapısı**, açık kaynak [STI-USV](https://github.com/STI-USV/STI-USV) projesinden türetilmiştir. Bu çalışmanın sağlam bir başlangıç noktası sunduğunu ve zaman kazandırdığını açıkça belirtmek ve ekibe teşekkür etmek isteriz.
+| Bileşen | Versiyon |
+|---|---|
+| Ubuntu | 22.04 LTS |
+| ROS 2 | Humble Hawksbill |
+| Ignition Gazebo | Fortress (ignition-gazebo6) |
+| Python | 3.10 |
+| CMake | ≥ 3.22 |
 
-**Temel kaynak katkıları:**
-- Gazebo Ignition'da gerçekçi su fiziği (Gerstner dalgaları, hidrodinamik sürüklenme)
-- USV tekne modeli (mesh, kütle, atalet özellikleri)
-- Velodyne LiDAR, kamera ve GPS sensör eklentileri
-- `ros_ign_bridge` aracılığıyla temel ROS-Gazebo topic köprüsü
-
-Bu proje, yukarıdaki simülasyon katmanını **üretim düzeyinde bir otonom navigasyon yazılım yığınıyla** genişletmektedir.
-
----
-
-## 🔬 Bu Projede Geliştirilen Özgün Mühendislik Katkıları
-
-> Bu bölüm, temel kaynak repoya kıyasla projenin **özgün mühendislik değerini** ortaya koymaktadır.
-
-### 1 · Algılama Mimarisi (`kamikaze_control.py` ve `kamikaze_control_real.py`)
-
-> **Kritik Tasarım Kararı:** YOLOv11 simülasyonda tamamen kaldırıldı. Jetson Orin'in GPU/termal bütçesi gereksiz yere tüketilmemelidir. Gerçek dünya modülünde YOLO, yalnızca bounding box önermek için kullanılır; renk kararını HSV verir.
-
-#### Simülasyon Modülü (`kamikaze_control.py`) — Saf HSV
-
-```
-Kamera Karesi
-    ├── HSV Sarı Filtresi  → /gate_center    (Parkur 2 — kapı orta noktası)
-    └── HSV Dinamik Hedef → /kamikaze_target  (Parkur 3 — kamikaze saldırısı)
-                             0=KIRMIZI | 1=YEŞİL | 2=SİYAH
-```
-
-**Kapı Geometri Düzeltmesi:** İki sarı dubanın piksel merkezlerinden geometrik orta nokta hesaplanır. Tek bir LiDAR açısından mesafe okunur — eski "iki mesafenin ortalaması" yöntemi asimetrik mesafelerde sapıyordu.
-
-```
-    Eski: gate_x = (d_sol + d_sağ)/2 × orta_açı   ← HATALI (d_sol=7m, d_sağ=4m → 5.5m)
-    Yeni: gate_px = (cx1+cx2)/2 → tek açı → LiDAR(o açı) → doğru 3D konum
-```
-
-#### Gerçek Dünya Modülü (`kamikaze_control_real.py`) — YOLOv8 TensorRT + HSV Füzyon
-
-```
-ZED Kamera (ROS2)
-         │
-   ┌─────▼──────────────────────────────┐
-   │     BuoyPerception (GPU+CPU)        │
-   │  1) TensorRT YOLOv8 (.engine)       │ ← GPU, 640×384px infer
-   │  2) HSV ColorVerifier (ROI only)    │ ← CPU, yalnızca kutucuk içi
-   │     ratio = renk_px / toplam_px     │
-   │     ratio < 12% → REDDET            │
-   └─────┬──────────────────────────────┘
-         │ (cx_norm, area)
-         ▼
-   /kamikaze_target  +  /kamikaze_locked
-```
-
-**Jetson Orin Optimizasyonları:**
-- Çıkarım girişi `640×384` — tam kare (1280×720) yerine
-- HSV yalnızca YOLO ROI bölgesinde hesaplanır — tam kare maskeleme yok
-- QoS depth=1 — eski kare birikimi yok
-- Timer frekansı yapılandırılabilir (`INFER_HZ`, varsayılan 15 Hz)
-
----
-
-### 2 · Görev Yönetimi ve Durum Makinesi (`mission_manager.py`)
-
-Merkezi bir `MissionManager` düğümü, kameranın körleşmesine ya da GPS kaymasına karşı savunmacı geçiş koşulları uygulayarak üç parkuru sırasıyla yönetmektedir.
-
-#### Parkur 1 — PID Yaw Kontrolcüsü
-
-Nav2'nin doğrudan GPS koordinatlarına navigasyon yapmaması nedeniyle, WP1→WP4 arası için özel bir PID yaw kontrolcüsü yazılmıştır.
-
-```
-Hata Hesabı:     e = atan2(dy, dx) − robot_yaw       [radyan]
-Kontrol Çıktısı: ω = Kp·e + Ki·∫e·dt + Kd·Δe/Δt     [rad/s]
-İleri Hız:       Vx = Vmax · (1 − |e| / π)           [m/s]
-```
-
-| Parametre | Değer | Gerekçe |
-|-----------|-------|---------|
-| Kp | 1.5 | Hızlı azalma, ama aşım olmadan |
-| Ki | 0.0 | Simülasyon ortamında rüzgar/drift yok |
-| Kd | 1.2 | Anahtarlama salınımlarını söndürür |
-| WP Toleransı | 1.5 m | Rüzgar taşınmasına karşı bant genişliği |
-
-#### Parkur 2 — MPPI Slalom + Sniper Confidence Lock
-
-**Problem:** Ham YOLOv11 tespit koordinatları, sahte olumlu tepkiler nedeniyle kare başına titreşir. Böyle ham verilerin Nav2 hedefleri olarak gönderilmesi, kontrolcü sunucusunu sürekli iptal/yeniden görev döngüsüne iter; bu da tutarsız kapı geçişlerine yol açar.
-
-**Çözüm — GateFusionHandler Sniper Lock Algoritması:**
-
-```python
-# Sahte Kodla Temel Mantık
-for her tespit:
-    gate_harita_koord = lidar_kamera_fuzyon(tespit)
-    if mesafe < MIN_KAPI_MENZILI:  kapat     # Çok yakın → reddet
-    if mesafe > MAX_KAPI_MENZILI:  kapat     # Çok uzak  → reddet
-
-    tampon.ekle(gate_harita_koord)           # Hareketli yavaşlatma tamponu
-
-    if len(tampon) >= 3 AND std(tampon) < 1.0m:  # Düşük varyans → yüksek güven
-        kilit_koordinat(ortalama(tampon))    # Nav2'ye YALNIZCA TEK BİR hedef gönder
-        kilidi_asla_güncelleme()             # Titreşimi önle
-```
-
-Bu algoritma şu sorunları çözmektedir:
-- **Hedef kayması:** Ortalama alma kural dışı tespitleri bastırır
-- **Nav2 sarsıntısı:** Onaylanan her kapı için yalnızca bir hedef gönderilir
-- **Nav2'nin LiDAR özellik kıtlığı:** Kapa tespiti yoksa koy, LiDAR costmap güvenli geçiş sağlar
-
-MPPI kontrolcüsü iki farklı parametre kümesi arasında dinamik olarak değiştirilmektedir:
-
-| Mod | Hız | Ufuk | Engel Ağırlığı | Ne Zaman |
-|-----|-----|------|----------------|----------|
-| **Sprint** | 2.5 m/s | 15 adım | 5 | Açık suda WP1→WP4 |
-| **Slalom** | 0.8 m/s | 56 adım | 20 | Kapı geçişi WP5 |
-
-#### Parkur 3 — Dinamik HSV Kamikaze Servo
-
-Nav2 tamamen iptal edilir. Yetki, seçili renkteki dubayı kilitledikten sonra doğrudan `/cmd_vel`'e komut veren tam hız saldırı kontrolcüsüne aktarılır:
-
-```
-Hatay Hesabı: error_x = 0.5 − cx_norm     [-0.5 … +0.5]
-ω  (rad/s)  = −Kp_yaw × error_x           [±0.6 ile sınırlı]
-Vx (m/s)   = ATTACK_MAX_SPEED (1.0 m/s)  ← TAM HIZ (kilit sonrası)
-```
-
-**Dinamik Hedef Seçimi:**
-```bash
-# Runtime'da hedef renk değiştirme:
-ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 0}"  # KIRMIZI
-ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 1}"  # YEŞİL
-ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 2}"  # SİYAH
-```
-
-**Kilitleme Mantığı:** Hedef renk `N=6` ardışık frame onaylandıktan sonra `kamikaze_locked=True` gönderilir. İletişim kesilirse `init_target_color` parametresine geri dönülür.
-
----
-
-### 3 · Sağlamlık ve Graceful Degradation
-
-| Arıza Durumu | Sistem Davranışı |
-|--------------|-----------------|
-| Kamera akışı kesildi | YOLO/HSV yayınları durur; navigasyon GPS+LiDAR costmap ile sürer |
-| MOLA SLAM TF gecikti | Localization başlangıcı için 10 s ek bekleme zamanı uygulanır |
-| Nav2 zaten çalışıyor | Başlatma betiği duplicate algılar, hata verir ve çıkar |
-| Kırmızı duba kayboldu (timeout) | `lost > 3.0 s` → 0.6 rad/s yeniden arama spin hareketi |
-
----
-
-## 🏗️ Sistem Mimarisi
-
-### Bileşen Veri Akışı
-
-```mermaid
-flowchart TD
-    SIM["🌊 Gazebo Simülasyonu\nFizik · Sensörler · Thruster"]
-
-    LF["LiDAR Filtresi\nGürültü Temizleme"]
-    PC["PointCloud → LaserScan\n3D → 2D Dönüşüm"]
-    MOLA["MOLA SLAM\nHarita + map→odom TF"]
-    LOC["EKF Lokalizasyon\nGPS + IMU + Odom Füzyonu\n→ /odometry/filtered"]
-    NAV2["Nav2 MPPI Navigasyon\nYol Planlama + Engel Kaçınma"]
-    MM["Mission Manager\nParkur 1 PID → Parkur 2 Nav2 → Parkur 3 Kamikaze"]
-    KMZ["Kamikaze Control\nSaf HSV Filtresi (YOLO-FREE)\n/kamikaze_color_cmd → Dinamik Renk"]
-    CONV["Thruster Converter\nδ-Sürüş Dönüşümü"]
-
-    SIM -->|"/lidar/points PointCloud2"| LF
-    SIM -->|"/gps/fix + /imu/data"| LOC
-    SIM -->|"/camera/image"| KMZ
-    LF -->|"/lidar/filtered"| MOLA & PC
-    MOLA -->|"map→odom TF + /odom"| LOC
-    PC -->|"/lidar/scan LaserScan"| NAV2 & KMZ
-    LOC -->|"/odometry/filtered"| NAV2 & MM
-    KMZ -->|"/gate_center + /kamikaze_target + /kamikaze_locked"| MM
-    MM -->|"NavigateToPose (Action)"| NAV2
-    MM & NAV2 -->|"/cmd_vel Twist"| CONV
-    CONV -->|"/thrusters/left+right Float64"| SIM
-```
-
-### Görev Aşamasına Göre `/cmd_vel` Otoritesi
-
-| Aşama | `/cmd_vel` Üreticisi | Nav2 Durumu | Pixhawk Modu |
-|-------|----------------------|-------------|-------------|
-| INIT | — | Bekliyor | HOLD |
-| PARKUR 1 (WP1→WP4) | **Pixhawk dahili navigasyon** | Pasif | **AUTO** |
-| PARKUR 2 (Slalom WP5) | Nav2 MPPI Kontrolcüsü → MAVROS | Aktif | GUIDED |
-| PARKUR 3 (Kamikaze) | Mission Manager (Görsel Servo) → MAVROS | İptal Edildi | GUIDED |
-
----
-
-## 📁 Paket Yapısı
-
-```
-sti_usv/src/usv_sim/
-│
-├── 📄 start_all.sh              # Tek komutla tam sistem başlatma
-├── 📄 stop_all.sh               # Tüm süreçleri durdurma
-│
-├── workspace_gz/                # Gazebo Simülasyon Paketi [Upstream'den]
-│   ├── launch/
-│   │   └── simulation.launch.py # Ana simülasyon başlatıcı
-│   ├── worlds/world.sdf         # Gazebo dünya dosyası (su + dalgalar)
-│   ├── models/
-│   │   ├── roboboat/            # USV gövde modeli (mesh, sensörler)
-│   │   ├── buoys/               # Yarışma dubası modelleri
-│   │   └── waves/               # Gerstner dalga yüzeyi
-│   └── plugins/                 # Hidrodinamik ve skor eklentileri
-│
-├── workspace_ros/               # ROS 2 Çekirdek Paketi
-│   ├── launch/
-│   │   ├── localization.launch.py   # EKF + NavSat + Statik TF
-│   │   ├── lidar_filter.launch.py   # Nokta bulutu filtreleme
-│   │   └── mola_slam.launch.py      # MOLA SLAM başlatıcı
-│   ├── config/
-│   │   ├── ekf.yaml                 # EKF parametre dosyası
-│   │   ├── navsat.yaml              # GPS dönüşüm parametreleri
-│   │   └── static_transform.yaml   # Rijit TF dönüşümleri
-│   └── scripts/
-│       ├── converter.py             # cmd_vel → thruster dönüştürücü
-│       ├── lidar_processor.py       # Nokta bulutu gürültü filtresi
-│       ├── imu_covariance_repub.py  # IMU kovaryans ekleme
-│       ├── gps_covariance_repub.py  # GPS kovaryans ekleme
-│       └── wasd_teleop.py           # Manuel klavye kontrolü
-│
-└── workspace_nav/               # Navigasyon Paketi [Bu Projede Geliştirilen]
-    ├── launch/
-    │   └── nav2.launch.py           # Nav2 MPPI başlatıcı
-    ├── config/
-    │   └── nav2_params.yaml         # Nav2 ve MPPI parametre dosyası
-    ├── json/
-    │   └── waypoints.json           # TEKNOFEST waypoint koordinatları
-    └── scripts/
-        ├── mission_manager.py       # ★ 3 Aşamalı Görev Durum Makinesi
-            ├── kamikaze_control.py      # ★ Simülasyon: Saf HSV Algılama (YOLO-FREE)
-            └── kamikaze_control_real.py # ★ Gerçek Dünya: TensorRT YOLOv8 + HSV Füzyon
-```
-
-> `★` işareti bu projenin özgün katkılarını göstermektedir.
-
----
-
-## ⚙️ Kurulum ve Bağımlılıklar
-
-### Sistem Gereksinimleri
-
-| Bileşen | Sürüm | Not |
-|---------|-------|-----|
-| İşletim Sistemi | Ubuntu 22.04 LTS | Zorunlu |
-| ROS 2 | Humble Hawksbill | Zorunlu |
-| Gazebo | Fortress (Ignition) | Zorunlu |
-| Python | ≥ 3.10 | Zorunlu |
-| GPU | NVIDIA (PRIME Offload) | Önerilir |
-
----
-
-### Adım 1 — ROS 2 Humble Kurulumu
-
-```bash
-sudo apt update && sudo apt install -y curl gnupg lsb-release
-sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
-    -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
-    http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" \
-    | sudo tee /etc/apt/sources.list.d/ros2.list
-sudo apt update
-sudo apt install -y ros-humble-desktop python3-colcon-common-extensions
-```
-
----
-
-### Adım 2 — ROS 2 Bağımlılıklarının Kurulumu
+**ROS 2 paket bağımlılıkları:**
 
 ```bash
 sudo apt install -y \
-    ros-humble-ros-gz \
-    ros-humble-xacro \
-    ros-humble-robot-localization \
-    ros-humble-nav2-bringup \
-    ros-humble-navigation2 \
-    ros-humble-slam-toolbox \
-    ros-humble-pointcloud-to-laserscan \
-    python3-pip
+  ros-humble-slam-toolbox \
+  ros-humble-nav2-bringup \
+  ros-humble-robot-localization \
+  ros-humble-laser-filters \
+  ros-humble-cv-bridge \
+  ros-humble-vision-msgs \
+  ros-humble-ros-gz-bridge \
+  ros-humble-ros-gz-sim \
+  ros-humble-topic-tools \
+  ros-humble-xacro \
+  python3-opencv \
+  python3-numpy \
+  python3-scipy
+```
+
+Gerçek donanım için ek olarak:
+
+```bash
+sudo apt install -y ros-humble-mavros ros-humble-mavros-extras
 ```
 
 ---
 
-### Adım 3 — MOLA SLAM Kurulumu
+## Repo Yapısı
 
-```bash
-# MOLA PPA deposunu ekle
-sudo apt-add-repository ppa:joseluisblancoc/mola-slam
-sudo apt update
-sudo apt install -y ros-humble-mola-lidar-odometry
+```
+sti_usv/
+├── src/
+│   ├── usv_sim/
+│   │   ├── workspace_gz/        # Gazebo simülasyon paketi (C++)
+│   │   │   ├── description/     # Robot URDF/xacro tanımları
+│   │   │   ├── models/          # Duba, dalga, tekne 3D modelleri
+│   │   │   ├── plugins/         # Özel Ignition Gazebo pluginleri
+│   │   │   ├── worlds/          # Simülasyon dünya dosyası
+│   │   │   └── launch/
+│   │   │       └── simulation.launch.py
+│   │   │
+│   │   ├── workspace_ros/       # Donanım sürücüleri ve algılayıcı ön işleme (Python)
+│   │   │   ├── config/          # EKF, navsat, SLAM, LiDAR filtre konfigürasyonları
+│   │   │   ├── scripts/         # converter, gps/imu_repub, wasd_teleop, vb.
+│   │   │   └── launch/
+│   │   │       ├── localization.launch.py
+│   │   │       ├── laser_filters.launch.py
+│   │   │       ├── slam_toolbox.launch.py
+│   │   │       └── kiss_icp.launch.py   # Alternatif 3D SLAM (isteğe bağlı)
+│   │   │
+│   │   └── workspace_nav/       # Görev ve navigasyon mantığı (Python)
+│   │       ├── config/          # Nav2 MPPI, EKF, SLAM parametre dosyaları
+│   │       ├── json/            # GPS waypoint dosyaları
+│   │       ├── scripts/         # mission_manager, kamikaze_control, vb.
+│   │       └── launch/
+│   │           ├── usv_autonomy_sim.launch.py    # Simülasyon için ana launch
+│   │           └── usv_autonomy.launch.py        # Gerçek donanım için ana launch
+│   │
+│   ├── usv_sensor_fusion/       # Kamera + LiDAR mesafe füzyon nodu (C++)
+│   └── kiss_icp/                # Opsiyonel 3D odometri kütüphanesi
 ```
 
 ---
 
-### Adım 4 — Python Bağımlılıklarının Kurulumu
+## Mimari Genel Bakış
 
-```bash
-pip install ultralytics opencv-python-headless numpy
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        ALGILAYICILAR                            │
+│  RPLidar A1M8 → /scan          ZED 1.0 → /roboboat/sensors/    │
+│  GPS → /roboboat/sensors/gps/  IMU → /roboboat/sensors/imu/    │
+└───────────┬────────────────────────────┬────────────────────────┘
+            │                            │
+            ▼                            ▼
+┌───────────────────┐        ┌────────────────────────┐
+│  laser_filters    │        │  imu/gps_covariance    │
+│  /scan →          │        │  _repub                │
+│  /scan/filtered   │        │  navsat_transform_node │
+│  (range+hull+     │        │  ekf_node              │
+│   speckle filtre) │        │  → /odometry/filtered  │
+└─────────┬─────────┘        └───────────┬────────────┘
+          │                              │
+          ▼                              ▼
+┌──────────────────────────────────────────────────────┐
+│                   TF AĞACI                           │
+│   map ──(slam_toolbox)──► odom ──(EKF)──► base_link  │
+└──────────────────────────────┬───────────────────────┘
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────┐
+│              NAV2 (MPPI + A* Planlayıcı)             │
+│  Giriş: /scan/filtered, /odometry/filtered, TF       │
+│  Çıkış: /cmd_vel                                     │
+└──────────────────────┬───────────────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────────────┐
+│              GÖREV YÖNETİCİSİ                        │
+│  Parkur 1: PID + GPS waypoint (WP1→WP4)              │
+│  Parkur 2: Nav2 MPPI + HSV sarı kapı servo           │
+│  Parkur 3: HSV/YOLO hedef duba kamikaze              │
+│  Çıkış: /cmd_vel                                     │
+└──────────────────────┬───────────────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────────────┐
+│                  CONVERTER                           │
+│  /cmd_vel (Twist) →                                  │
+│  /roboboat/thrusters/left/thrust  (Float64)          │
+│  /roboboat/thrusters/right/thrust (Float64)          │
+└──────────────────────────────────────────────────────┘
 ```
 
 ---
 
-### Adım 5 — Depoyu Klonlama ve Derleme
+## Topic Haritası
+
+### Algılayıcı Girdileri
+
+| Topic | Tip | Kaynak | Açıklama |
+|---|---|---|---|
+| `/scan` | `sensor_msgs/LaserScan` | RPLidar A1M8 / ros_gz_bridge | Ham 360° 2D tarama |
+| `/scan/filtered` | `sensor_msgs/LaserScan` | laser_filter_chain | Filtrelenmiş tarama (0.2–8.0 m) |
+| `/roboboat/sensors/camera/image` | `sensor_msgs/Image` | ZED 1.0 / ros_gz_bridge | RGB kamera görüntüsü |
+| `/roboboat/sensors/camera/image/depth_image` | `sensor_msgs/Image` | ZED depth / ros_gz_bridge | 32FC1 derinlik haritası |
+| `/roboboat/sensors/gps/navsat` | `sensor_msgs/NavSatFix` | GPS | Ham GPS |
+| `/roboboat/sensors/imu/imu` | `sensor_msgs/Imu` | IMU | Ham IMU |
+
+### İşlenmiş / Füzyon Çıktıları
+
+| Topic | Tip | Kaynak | Açıklama |
+|---|---|---|---|
+| `/imu/fixed_cov` | `sensor_msgs/Imu` | imu_covariance_repub | Sabit kovaryans ile IMU |
+| `/gps/fixed_cov` | `sensor_msgs/NavSatFix` | gps_covariance_repub | Sabit kovaryans ile GPS |
+| `/odometry/gps` | `nav_msgs/Odometry` | navsat_transform_node | GPS → UTM odometri |
+| `/odometry/filtered` | `nav_msgs/Odometry` | ekf_node | GPS + IMU EKF füzyonu |
+| `/fusion/target` | `geometry_msgs/PointStamped` | usv_sensor_fusion | Hedef mesafe + yaw (LiDAR+derinlik) |
+
+### Görev / Kontrol
+
+| Topic | Tip | Yön | Açıklama |
+|---|---|---|---|
+| `/cmd_vel` | `geometry_msgs/Twist` | mission_manager → converter | Ana hareket komutu |
+| `/gate_center` | `geometry_msgs/PointStamped` | kamikaze_control → mission_manager | Parkur 2 kapı merkezi açısı |
+| `/kamikaze_target` | `geometry_msgs/PointStamped` | kamikaze_control → sensor_fusion | Parkur 3 normalize piksel hedefi |
+| `/kamikaze_locked` | `std_msgs/Bool` | kamikaze_control | Hedef kilitlendi sinyali |
+| `/kamikaze_color_cmd` | `std_msgs/Int32` | dış müdahale | Çalışma anında hedef rengi değiştir (0=K, 1=Y, 2=S) |
+| `/usv_local_goal` | `geometry_msgs/PoseStamped` | gate_goal_publisher → local_goal_bridge | YOLO tespitinden yerel hedef |
+| `/yolo/detections` | `vision_msgs/Detection2DArray` | yolo_detector | Gerçek donanım duba tespitleri |
+| `/roboboat/thrusters/left/thrust` | `std_msgs/Float64` | converter | Sol itici komutu |
+| `/roboboat/thrusters/right/thrust` | `std_msgs/Float64` | converter | Sağ itici komutu |
+
+---
+
+## TF Ağacı
+
+```
+map
+ └─ odom              ← slam_toolbox (2D async SLAM, /scan/filtered)
+      └─ base_link    ← ekf_node (GPS + IMU füzyonu)
+           ├─ rplidar_a1_link
+           └─ zed_camera_link
+                └─ zed_camera_optical_frame
+```
+
+---
+
+## Derleme
 
 ```bash
-mkdir -p ~/sti_usv/src
-cd ~/sti_usv/src
-git clone https://github.com/<kullanici_adi>/sti_usv.git usv_sim
-
 cd ~/sti_usv
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
+source install/setup.bash
 ```
 
-> **Not:** `--symlink-install` bayrağı, betik değişikliklerinin yeniden derleme gerektirmeden etkili olmasını sağlar.
+Sadece belirli bir paket:
+
+```bash
+colcon build --symlink-install --packages-select workspace_nav
+```
+
+> `--symlink-install` kullanılması, Python dosyalarında yapılan değişikliklerin yeniden derleme gerektirmeden anında aktif olmasını sağlar.
 
 ---
 
-### Adım 6 — Ortamı Kaynak Gösterme
+## Çalıştırma
+
+### Simülasyon
+
+İki ayrı terminalde:
+
+**Terminal 1 — Gazebo:**
 
 ```bash
-# Geçici (yalnızca bu terminal)
-source /opt/ros/humble/setup.bash
 source ~/sti_usv/install/setup.bash
-
-# Kalıcı (her yeni terminalde otomatik)
-echo "source /opt/ros/humble/setup.bash"    >> ~/.bashrc
-echo "source ~/sti_usv/install/setup.bash"  >> ~/.bashrc
-source ~/.bashrc
+ros2 launch workspace_gz simulation.launch.py
 ```
 
----
+Gazebo açıldıktan ~10 saniye sonra tekne sahneye spawn edilir.
 
-## 🚀 Kullanım
-
-### Tek Komutla Başlatma (Önerilen)
+**Terminal 2 — Otonom Yığın:**
 
 ```bash
-cd ~/sti_usv/src/usv_sim
-./start_all.sh auto
+source ~/sti_usv/install/setup.bash
+ros2 launch workspace_nav usv_autonomy_sim.launch.py
 ```
 
-Bu komut şu sırayla 9 bileşeni başlatır:
+#### Simülasyon Launch Argümanları
 
-| # | Bileşen | Bekleme |
-|---|---------|---------|
-| 1 | Gazebo Simülasyonu (GPU offload ile) | ~60 s (hazır beklenir) |
-| 2 | LiDAR Filtresi | — |
-| 3 | PointCloud → LaserScan Dönüştürücü | +2 s |
-| 4 | MOLA SLAM | +3 s |
-| 5 | EKF Lokalizasyon | +10 s |
-| 6 | Nav2 MPPI Navigasyonu | +3 s |
-| 7 | Mission Manager | +8 s |
-| 8 | Kamikaze Control (YOLO) | +1 s |
-| 9 | Thruster Converter | +2 s |
+| Argüman | Varsayılan | Açıklama |
+|---|---|---|
+| `slam_mode` | `mapping` | `mapping`: ilk çalıştırmada harita oluştur. `localization`: kaydedilmiş harita yükle |
+| `map_file_name` | `/tmp/usv_map` | Localization modunda yüklenecek `.posegraph` dosyası (uzantısız) |
+| `init_target_color` | `0` | Parkur 3 başlangıç hedefi: `0`=Kırmızı `1`=Yeşil `2`=Siyah |
+| `kamikaze_wp_id` | `WP5` | Parkur 2→3 geçiş waypointi |
+| `kamikaze_trigger_dist` | `5.0` | WP5'e bu mesafe (m) altına girilince Parkur 3 tetiklenir |
+| `base_speed` | `1.5` | Parkur 3 ileri hız (m/s) |
+| `kp_yaw` | `1.2` | Parkur 3 görsel servo yaw P-kazancı |
 
-**Sistemi Durdurmak:**
-```bash
-./stop_all.sh
-# veya
-Ctrl + C
-```
-
----
-
-### Mod Seçenekleri
-
-| Komut | Amaç | Başlatılan Bileşenler |
-|-------|------|----------------------|
-| `./start_all.sh` | Temel simülasyon | Gazebo + LiDAR Filtresi + KISS-ICP |
-| `./start_all.sh mola` | Tam SLAM testi | + MOLA SLAM + EKF + Nav2 |
-| `./start_all.sh auto` | **Tam otonom görev** | + Mission Manager + Kamikaze Control |
-| `./start_all.sh parkour` | Reaktif navigasyon | Gazebo + LiDAR + Parkur Navigasyonu |
-
----
-
-### Görev Parametrelerini Özelleştirme
+Örnek özel başlatma:
 
 ```bash
-# Ortam değişkenleriyle parametreleri geçersiz kılın
-KAMIKAZE_TRIGGER_DIST=8.0 \
-BASE_SPEED=2.0 \
-KP_YAW=1.5 \
-./start_all.sh auto
+ros2 launch workspace_nav usv_autonomy_sim.launch.py \
+  slam_mode:=localization \
+  map_file_name:=/tmp/usv_map \
+  init_target_color:=1
 ```
 
----
+#### Harita Kaydetme (İlk Çalıştırma)
 
-### Manuel Klavye Kontrolü
+`slam_mode:=mapping` modunda çalıştırıp sahayı gezdikten sonra:
 
 ```bash
-ros2 run workspace_ros wasd_teleop
+ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "{name: {data: '/tmp/usv_map'}}"
 ```
 
-| Tuş | Hareket |
-|-----|---------|
-| `W` | İleri |
-| `S` | Geri |
-| `A` | Sola Dönüş |
-| `D` | Sağa Dönüş |
-| `Q` | Dur |
-| `ESC` | Çıkış |
+Bir sonraki çalıştırmada `slam_mode:=localization` kullanın.
 
 ---
 
-## 🔄 Uçtan Uca Sistem Akışı
+### Gerçek Donanım
 
-> Bu bölüm, İDA'ya güç verilmesinden görevin sonuçlandırılmasına kadar gerçek donanım üzerindeki fonksiyonel süreci anlatmaktadır.
-
-### Gerçek Donanım Platformu
-
-| Bileşen | Donanım | Görev |
-|---------|---------|-------|
-| Hesaplama | Jetson Orin NX 8 GB | Algılama, görev yönetimi, ROS 2 |
-| Otopilot | Pixhawk Cube Orange (ArduRover) | Motor karması, IMU, GPS köprüsü |
-| Kamera | ZED 1.0 Stereo | Duba tespiti, kapı algılama |
-| LiDAR | Unitree L2 (3D) | Engel tespiti, kapı mesafesi |
-| GPS | M8N + Compass | Waypoint navigasyonu |
-| Haberleşme | 868 MHz Telemetri | Komut/izleme, kill-switch |
-| Güç | 2 × 4S 14.8V 12Ah LiPo | PDB → BEC → Tüm sistemler |
-
-### Adım 1 — Güç Verme ve Donanım Başlatma
-
-```
-1. 2× 4S LiPo bağlanır → Ana güç şalteri açılır
-2. Kill-switch pasif konuma alınır (motorlar kapalı)
-3. PDB üzerinden güç dağıtımı:
-   • Thruster ESC'ler → 14.8V direkt
-   • Jetson Orin NX  → 12V BEC
-   • Pixhawk          → 5.3V Power Module
-   • Unitree L2       → 12V BEC
-4. Pixhawk boot (~8s) → ArduRover firmware → M8N GPS fix bekler
-5. Jetson boot (~30s) → Ubuntu 22.04
-6. ZED 1.0 → USB 3.0 üzerinden Jetson'a otomatik bağlanır
+```bash
+source ~/sti_usv/install/setup.bash
+ros2 launch workspace_nav usv_autonomy.launch.py
 ```
 
-### Adım 2 — `./start_all.sh auto` ile ROS 2 Node'larının Başlatılması
+Gerçek donanım launch dosyası şu bileşenleri başlatır:
 
-| Sıra | Node / Servis | Çıktı Topic | Süre |
-|------|--------------|-------------|------|
-| 1 | `unitree_lidar_ros2` | `/roboboat/lidar/filtered` | ~5s |
-| 2 | `zed_wrapper` | `/zed/zed_node/left/image_rect_color` | ~8s |
-| 3 | `mavros_node` | `/mavros/global_position/local`, `/mavros/imu/data` | ~5s |
-| 4 | `pointcloud_to_laserscan` | `/roboboat/sensors/lidar/scan` | ~2s |
-| 5 | `mola_slam` | `map → odom TF` | +10s |
-| 6 | `robot_localization` EKF | `/odometry/filtered` | +3s |
-| 7 | `nav2_bringup` | `NavigateToPose action` | +10s |
-| 8 | `mission_manager` | `/cmd_vel`, `/mission_state` | +8s |
-| 9 | `kamikaze_control_real` | `/gate_center`, `/kamikaze_target`, `/kamikaze_locked` | +1s |
-| 10 | `converter` | `/mavros/rc/override` | +2s |
+- `ekf_node` — ZED odometrisi + MAVROS IMU füzyonu
+- `gate_goal_publisher` — YOLO tespitlerinden + derinlik bilgisinden yerel hedef üretir
+- `local_goal_bridge` — lokal hedefi Nav2 action'a çevirir
+- `nav2_bringup`
+- `mission_manager`
+- `cmd_vel_to_mavros` relay — `/cmd_vel` → `/mavros/setpoint_velocity/cmd_vel_unstamped`
 
-### Adım 3 — INIT: GPS Waypoint Dönüşümü
+#### Gerçek Donanım Launch Argümanları
 
-Sistem hazır olduktan sonra `mission_manager` INIT aşamasına girer:
-
-```
-waypoints.json okunur → WP1, WP2, WP3, WP4, WP5
-    ↓
-/fromLL servisi çağrılır (robot_localization)
-    → GPS (lat/lon) koordinatları → Harita çerçevesi (x, y) metre
-    ↓
-Tüm dönüşümler tamamlanınca → PARKUR 1 başlar
-```
-
-> M8N GPS, 3D fix ve HDOP < 2.0 gelmeden sistem bekler.
-
-### Adım 4 — Parkur Geçişleri ve Görev Sonlandırma
-
-```mermaid
-flowchart LR
-    A([BOOT\nPixhawk + Jetson\nGPS fix]) -->|GPS fix + node hazır| B
-    B([INIT\nWaypoint\nDönüşümü]) -->|WP1-5 haritaya\nçevrildi| C
-    C([PARKUR 1\nWP1 → WP4\nPID Kontrolü]) -->|WP4 dist < 4.0m| D
-    D([PARKUR 2\nKapı Geçişi\nNav2 + Görsel Servo]) -->|WP5 dist <= 2.0m| E
-    E([PARKUR 3\nKamikaze\nYOLOv8 + HSV]) -->|Temas / timeout| F
-    F([TAMAMLANDI\ncmd_vel = 0\nKill-switch])
-```
-
-| Geçiş | Tetikleyici Koşul |
-|-------|------------------|
-| Boot → INIT | Tüm ROS 2 node'ları başladı |
-| INIT → Parkur 1 | `waypoints.json` dönüşümü tamamlandı |
-| Parkur 1 → Parkur 2 | WP4'e mesafe < 4.0 m |
-| Parkur 2 → Parkur 3 | WP5'e mesafe ≤ 2.0 m (tek geçiş koşulu) |
-| Parkur 3 → Tamamlandı | Kamikaze temas veya timeout |
+| Argüman | Varsayılan | Açıklama |
+|---|---|---|
+| `ekf_config` | `config/ekf_fusion.yaml` | EKF parametre dosyası |
+| `zed_odom_topic` | `/zed/odom` | ZED odometri topic |
+| `imu_topic` | `/mavros/imu/data` | MAVROS IMU topic |
+| `yolo_topic` | `/yolo/detections` | YOLO tespit topic |
+| `red_class_id` | `0` | YOLO modelindeki kırmızı duba sınıf ID |
+| `green_class_id` | `1` | YOLO modelindeki yeşil duba sınıf ID |
+| `kamikaze_wp_id` | `WP5` | Parkur 2→3 geçiş waypointi |
 
 ---
 
-## 🧠 Algoritma Tasarımları
+## Parkur Mantığı
 
-> Her parkur için hangi sensör verilerinin nasıl kullanıldığı ve temel algoritma akışı aşağıda tanımlanmıştır.
+Görev üç aşamadan oluşur. `mission_manager` node bu geçişleri otomatik yönetir.
 
-### Parkur 1 — Pixhawk AUTO Modu ile GPS Waypoint Navigasyonu
+### Parkur 1 — GPS Waypoint (WP1 → WP4)
 
-**Kullanılan Sensörler:**
-- **M8N GPS** (5 Hz) → Pixhawk dahili navigasyon için konum kaynağı
-- **Pixhawk IMU** (200 Hz) → Dahili EKF3 yaw ve hız tahmini
-- **Pixhawk EKF3** → Konum, yön ve hız füzyonu
+- **Giriş:** `/odometry/filtered` (EKF pozisyonu), `waypoints.json` (GPS lat/lon)
+- **Çıkış:** `/cmd_vel` (doğrudan PID kontrolü)
+- **Mantık:** GPS koordinatları `robot_localization/FromLL` servisi aracılığıyla `map` frame'ine dönüştürülür. PID kontrolcüsü her waypointe sırasıyla yönelir. WP4'e `4.0 m` yaklaşınca Parkur 2'ye geçilir.
 
-**Algoritma Akışı:**
+### Parkur 2 — Engel Aşma / Kapı Geçişi
 
-Waypoint koordinatları Jetson üzerinden MAVROS `/mavros/mission/push` servisi ile Pixhawk'a yüklenir. Pixhawk **AUTO moda** alınır. Pixhawk'ın dahili **L1 navigasyon kontrolcüsü**, GPS ve IMU verilerini EKF3 ile birleştirerek WP1→WP4 rotasını takip eder. Thruster PWM karması Pixhawk tarafından doğrudan üretilir. Jetson bu aşamada `/mavros/mission/reached` topic'ini dinler; WP4 mesajı alındığında Pixhawk GUIDED moda geçirilir ve Parkur 2 başlar.
-
-```mermaid
-flowchart TD
-    GPS["M8N GPS\n5 Hz"]
-    IMU["Pixhawk Dahili IMU\n200 Hz"]
-
-    subgraph PX["Pixhawk Cube Orange — AUTO Mod"]
-        EKF3["Dahili EKF3\nKonum + Yön + Hız"]
-        L1["L1 Navigasyon Kontrolcüsü\nWP1 → WP2 → WP3 → WP4"]
-        MIX["Motor Mikser\nDiferansiyel PWM Üretimi"]
-        EKF3 --> L1 --> MIX
-    end
-
-    GPS --> EKF3
-    IMU --> EKF3
-    MIX --> THR["Sol Thruster + Sağ Thruster"]
-
-    PX -->|"/mavros/mission/reached"| JET["Jetson\nmission_manager\n(yalnızca izler)"]
-    JET -->|"WP4 reached\n→ GUIDED mod\n→ Parkur 2"| P2(["PARKUR 2"])
-```
-
-**WP Toleransı:** ArduRover parametresi `WPNAV_RADIUS` ile ayarlanır (varsayılan ~2 m).
-
-**P1 → P2 Geçiş:** `/mavros/mission/reached` topic'inde WP4 indeksi görüldüğünde `mission_manager` P2'yi tetikler.
-
----
-
-### Parkur 2 — HPV Kapı Tespiti + Nav2 MPPI Engel Kaçınma
-
-**Kullanılan Sensörler:**
-- **ZED 1.0 Kamera** → HSV sarı duba tespiti
-- **Unitree L2 LiDAR → `/roboboat/sensors/lidar/scan`** → Kapı mesafesi ve engel costmap
-- **M8N GPS + EKF** → WP5 mesafesi takibi ve fallback yönlendirme
-- **Nav2 MPPI** → Arka planda engel kaçınma costmap yönetimi
-
-**Algoritma Akışı:**
-
-`kamikaze_control_real` node'u kameradan sarı dubaları HSV ile tespit edip LiDAR mesafesiyle birleştirerek `/gate_center` yayınlar. `mission_manager` bu bilgiyi görsel servo (P-kontrolcü) olarak kullanır. Sarı duba kaybolursa GPS yönünde kör ilerleme (fallback) devreye girer.
-
-```mermaid
-flowchart TD
-    CAM["ZED 1.0 Kamera\n/zed/zed_node/left/image_rect_color"]
-    LID["Unitree L2 LiDAR\n/roboboat/lidar/filtered"]
-    PC2LS["pointcloud_to_laserscan\n/roboboat/sensors/lidar/scan"]
-    NAV2["Nav2 MPPI\nEngel Kaçınma Costmap"]
-
-    subgraph KMZ["kamikaze_control_real"]
-        HSV["HSV Sarı Filtresi\nH:26-38 S:100+ V:40+\nEn büyük 2 kontur"]
-        GD["GateDetector\nLiDAR mesafe füzyonu\ngate_x gate_y hesapla"]
-        HSV --> GD
-    end
-
-    subgraph MM2["mission_manager"]
-        GS["Görsel Servo\n/gate_center → P-kontrolcü\n→ /cmd_vel"]
-        FB["GPS Fallback\nSarı duba yok 2.5s\n→ WP5 yönü"]
-        CHK2{"dist_to_WP5\n<= 2.0 m?"}
-    end
-
-    CAM --> HSV
-    LID --> PC2LS
-    PC2LS --> GD
-    PC2LS --> NAV2
-    GD -->|"/gate_center"| GS
-    GS --> CHK2
-    FB --> CHK2
-    GS -->|"2.5s timeout"| FB
-    CHK2 -->|"Hayır"| GS
-    CHK2 -->|"Evet"| P3(["PARKUR 3"])
-    GS --> CMD2["/cmd_vel → converter\n→ MAVROS → Thrusters"]
-    FB --> CMD2
-```
-
-**GateDetector Mantığı:**
-- 2 sarı duba: Piksel midpoint → LiDAR açısından mesafe → `gate_x, gate_y (base_link)`
-- 1 sarı duba: ±1.125 m sanal ofset ile kapı tahmini
-- 0 sarı duba: `/yellow_visible = False`, GPS fallback başlar
-
----
-
-### Parkur 3 — TensorRT YOLOv8 + HSV Renk Doğrulama ile Kamikaze Saldırısı
-
-**Kullanılan Sensörler:**
-- **ZED 1.0 Kamera** (15 FPS) → YOLOv8 + HSV pipeline girişi
-- **Jetson Orin NX GPU** (Ampere 32 Tensor Core) → TensorRT `best.engine` çıkarımı
-- **Jetson CPU** → HSV ColorVerifier (BB içi ROI)
-
-**Algoritma Akışı:**
-
-Özel duba veri setiyle eğitilmiş YOLOv8 modeli TensorRT `.engine` formatına dönüştürülmüş ve Jetson GPU'sunda çalıştırılmaktadır. Her bounding box için CPU'da HSV renk doğrulaması yapılır. 6 ardışık frame onayı sonrası tam hız saldırı başlar.
-
-```mermaid
-flowchart TD
-    CAM2["ZED 1.0 Kamera\n/zed/zed_node/left/image_rect_color\n15 FPS"]
-
-    subgraph JET["kamikaze_control_real — Jetson Orin NX"]
-        YOLO["YOLOv8 TensorRT GPU\nbest.engine 640x384px\nSinif 0:Kirmizi 1:Yesil 2:Siyah 3:Sari"]
-        HSV2["HSV ColorVerifier CPU\nYalnizca BB ici ROI\nRenk orani >= yüzde 12?"]
-        CNT["Kilit Sayaci\nconfirm_count++"]
-        LOCK["confirm_count >= 6?\n/kamikaze_locked = True\n/kamikaze_target yayinla"]
-        YOLO -->|"BB bulundu"| HSV2
-        YOLO -->|"BB yok lost_frames++"| YOLO
-        HSV2 -->|"Gecti"| CNT
-        HSV2 -->|"False positive"| YOLO
-        CNT --> LOCK
-    end
-
-    subgraph ATK["mission_manager — Saldiri"]
-        EXEC["Nav2 IPTAL\nTAM HIZ /cmd_vel\nlinear_x = max\nangular_z = hedef hizalama"]
-    end
-
-    CAM2 --> YOLO
-    LOCK -->|"Kilit onaylandi"| EXEC
-    LOCK -->|"Henuz 6 frame yok\ndusuk hiz devam"| CAM2
-    EXEC --> CMD3["/cmd_vel → converter\n→ MAVROS RC_Override\n→ Sol+Sag Thruster\nTAM HIZ"]
-    CMD3 --> END(["Hedef Temas\nGorev Tamamlandi"])
-```
-
-**Hedef Renk Seçimi:**
-- `init_target_color` ROS 2 parametresi ile başlangıçta ayarlanır (`0`=Kırmızı, `1`=Yeşil, `2`=Siyah)
-- 868 MHz telemetri üzerinden `/kamikaze_color_cmd` (Int32) ile runtime değiştirilebilir
-- İletişim kesilirse parametre değeri geçerliliğini korur (failsafe)
-
----
-
-## 🏁 Görev Senaryosu: TEKNOFEST Parkurları
-
-### Parkur 1 — Pixhawk AUTO Modu ile GPS Waypoint Navigasyonu
-
-**Mimari:** Parkur 1'de navigasyon hesaplaması **tamamen Pixhawk Cube Orange** üzerinde gerçekleşir. Waypoint koordinatları Jetson üzerinden MAVROS aracılığıyla Pixhawk'a mission olarak yüklenir. Pixhawk **AUTO moduna** alınır ve dahili **EKF3 + L1 navigasyon algoritması** ile WP1'den WP4'e kadar olan rotayı takip eder. Diferansiyel thruster karması (sol/sağ PWM) doğrudan Pixhawk tarafından üretilir. Jetson bu aşamada yalnızca `/mavros/mission/reached` topic'ini izler; WP4'e ulaşıldığında durum makinesi tetiklenir ve Pixhawk GUIDED moda alınarak Parkur 2 başlar.
-
-```
-    [Başlangıç] ──AUTO──► [WP1] ──► [WP2] ──► [WP3] ──► [WP4]
-                   Pixhawk iç navigasyon (EKF3 + L1)
-                   Jetson yalnızca /mavros/mission/reached izler
-```
-
-### Parkur 2 — MPPI Slalom Kapı Geçişi
-
-```
-[WP4] ──Nav2/MPPI──► [Kapı 1] ──► [Kapı 2] ──► [Kapı N] ──► [WP5]
-           ↑                  ↑
-     Sniper Lock        GateFusion
-  (Güven Kilidi)    (LiDAR+Kamera)
-```
-
-- **Kontrol:** Nav2 MPPI Kontrolcüsü — /cmd_vel üretir
-- **Kapı Tespiti:** `kamikaze_control` → `/gate_center` → `mission_manager` → Nav2 hedefi
-- **Geçiş:** WP5'e `5.0 m` yaklaşıldığında veya Nav2 hedefe ulaştığında
+- **Giriş:** `/scan/filtered` (Nav2 costmap), `/roboboat/sensors/camera/image` (HSV sarı kapı), `/gate_center` (kapı açı bilgisi)
+- **Çıkış:** `/cmd_vel` (görsel servo PID)
+- **Mantık:** Nav2 MPPI engelleri costmap üzerinden takip eder. `kamikaze_control` node eş zamanlı olarak kameradan sarı (HSV) kapıyı tespit edip `/gate_center` topic'ine açı yayar. Mission manager bu açıya göre yaw PID uygular. Kapı geçişi `GATE_PASS_CONFIRM_N=3` frame onayı ile tescillenir. WP5'e `5.0 m` yaklaşınca Parkur 3'e geçilir.
 
 ### Parkur 3 — Kamikaze Görsel Servo
 
+- **Giriş:** `/roboboat/sensors/camera/image` (HSV hedef duba), `/scan/filtered` (mesafe), `/kamikaze_color_cmd` (opsiyonel renk override)
+- **Çıkış:** `/cmd_vel`, `/kamikaze_target`, `/kamikaze_locked`
+- **Mantık:** `kamikaze_control` hedef duba rengini (Kırmızı / Yeşil / Siyah) HSV ile tespit eder. Merkezi normalize piksel koordinatları `/kamikaze_target` ile yayar. `usv_sensor_fusion` nodu bu açıyı LiDAR veya ZED derinlik verisiyle füzyon ederek gerçek mesafeyi hesaplar. Mission manager `LOCK_COUNTDOWN_SEC=3.0` saniye boyunca kilitlendikten sonra tam hızda hedefe saldırır.
+- Hedef rengi çalışma anında değiştirmek için:
+  ```bash
+  ros2 topic pub /kamikaze_color_cmd std_msgs/Int32 "{data: 1}"  # 0=Kırmızı 1=Yeşil 2=Siyah
+  ```
+
+---
+
+## Parametreler ve Konfigürasyon
+
+### `json/waypoints.json`
+
+5 waypointi barındırır (WP1–WP5). GPS lat/lon değerleri yarışma alanına göre güncellenir.
+
+```json
+[
+  { "id": "WP1", "latitude": 37.21039, "longitude": 27.57949, "altitude": 0.0 },
+  ...
+  { "id": "WP5", "latitude": 37.21039, "longitude": 27.57996, "altitude": 0.0 }
+]
 ```
-[WP5] ──Kamera──► [Kırmızı Duba Algılandı] ──3s Kilit──► [Kamikaze Aktif]
-                          ↓
-               Nav2 İPTAL EDİLDİ
-               Doğrudan /cmd_vel (Görsel Servo)
-                          ↓
-                   [Hedef Vuruldu] ──► COMPLETE
+
+### `config/rplidar_filters.yaml`
+
+LiDAR filtre zinciri:
+1. **Range:** 0.2 m – 8.0 m (yakın gürültü + uzak su yüzeyi)
+2. **Angular footprint mask:** ±165° (tekne gövdesini / motoru gölgeleyen açılar kesilir)
+3. **Speckle filter:** su sıçraması gürültüsü temizleme
+
+### `config/nav2_params_usv_pure.yaml`
+
+Nav2 MPPI kontrolcüsü ve A* planlayıcı parametreleri. Kritik değerler:
+
+| Parametre | Değer | Açıklama |
+|---|---|---|
+| `max_vel_x` | `1.5 m/s` | Maksimum ileri hız |
+| `min_vel_x` | `-0.3 m/s` | Maksimum geri hız |
+| `robot_radius` | `0.40 m` | Costmap engel toleransı |
+| `inflation_radius` | `0.55 m` | Costmap şişirme yarıçapı |
+
+### `config/slam_toolbox.yaml`
+
+Async SLAM ayarları. `mode: mapping` veya `mode: localization` launch argümanıyla override edilir.
+
+---
+
+## Paketler ve Nodlar
+
+### `workspace_gz` — Gazebo Simülasyon
+
+| Bileşen | Açıklama |
+|---|---|
+| `description/roboboat/roboboat.xacro` | Ana robot URDF; RPLidar A1M8 + ZED 1.0 içerir |
+| `description/roboboat/rplidar_a1.xacro` | 2D LiDAR sensör tanımı (360°, 1 kanal, 5.5 Hz) |
+| `description/roboboat/zed_camera.xacro` | ZED 1.0 rgbd_camera sensör tanımı |
+| `worlds/world.sdf` | Su yüzeyi + dalgalar + duba yerleşimi |
+| `plugins/` | Hidrodinamik, rüzgar, pusula, duba gibi Ignition Gazebo pluginleri |
+| `launch/simulation.launch.py` | Gazebo başlatma + `ros_gz_bridge` konfigürasyonu |
+
+**`ros_gz_bridge` topic eşlemeleri (sim → ROS 2):**
+
+| Ignition Topic | ROS 2 Topic | Tip |
+|---|---|---|
+| `/roboboat/sensors/lidar/scan` | `/scan` | `LaserScan` |
+| `/roboboat/sensors/camera/image` | `/roboboat/sensors/camera/image` | `Image` |
+| `/roboboat/sensors/camera/image/depth_image` | `/zed/depth/image` | `Image` |
+| `/roboboat/gps/navsat` | `/roboboat/sensors/gps/navsat` | `NavSatFix` |
+| `/roboboat/imu/imu` | `/roboboat/sensors/imu/imu` | `Imu` |
+| `/roboboat/zed/odom` | `/zed/odom` | `Odometry` |
+
+---
+
+### `workspace_ros` — Donanım Köprüsü
+
+| Node / Script | Giriş | Çıkış | Açıklama |
+|---|---|---|---|
+| `imu_covariance_repub` | `/roboboat/sensors/imu/imu` | `/imu/fixed_cov` | Sıfır kovaryans değerlerini sabit değerle doldurur |
+| `gps_covariance_repub` | `/roboboat/sensors/gps/navsat` | `/gps/fixed_cov` | GPS kovaryansını sabitler |
+| `static_transform_publisher` | `static_transform.yaml` | TF static | Sensör çerçeve dönüşümleri |
+| `converter` | `/cmd_vel` (Twist) | `/roboboat/thrusters/{left,right}/thrust` (Float64) | `left = linear*3 - angular*15` formülü |
+| `wasd_teleop` | Klavye | `/cmd_vel` | Manuel test için WASD teleop |
+| `lidar_processor` | `/roboboat/lidar/points` (PointCloud2) | `/roboboat/lidar/filtered` | 3D nokta bulutu filtresi (isteğe bağlı) |
+
+**Lokalizasyon akışı (`localization.launch.py`):**
+
+```
+/roboboat/sensors/imu/imu
+    → imu_covariance_repub → /imu/fixed_cov
+                                              ↘
+                                               ekf_node → /odometry/filtered → TF odom→base_link
+                                              ↗
+/roboboat/sensors/gps/navsat
+    → gps_covariance_repub → /gps/fixed_cov
+        → navsat_transform_node → /odometry/gps
 ```
 
 ---
 
-## 📡 ROS Topic Referansı
+### `workspace_nav` — Görev ve Navigasyon
 
-### Sensör Topic'leri (Gazebo → ROS)
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/roboboat/lidar/points` | `PointCloud2` | Ham 3D LiDAR bulutu |
-| `/roboboat/lidar/filtered` | `PointCloud2` | Filtrelenmiş nokta bulutu |
-| `/roboboat/sensors/lidar/scan` | `LaserScan` | 2D tarama (PC→LS dönüşümü) |
-| `/roboboat/sensors/camera/image` | `Image` | Ham kamera akışı |
-| `/gps/fix` | `NavSatFix` | Ham GPS koordinatları |
-| `/imu/data` | `Imu` | Ham IMU ölçümleri |
-
-### İşlenmiş Topic'ler
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/odometry/filtered` | `Odometry` | EKF füzyon çıktısı |
-| `/odom` | `Odometry` | MOLA SLAM odometrisi |
-| `/mission_state` | `String` | Anlık görev aşaması |
-
-### Kamikaze/Vision Topic'leri
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/kamikaze_target` | `Point` | Hedef merkezi (error_x, cy_norm, alan) |
-| `/kamikaze_locked` | `Bool` | Kilitleme onayı (N frame sonra True) |
-| `/kamikaze_color_cmd` | `Int32` | Runtime hedef renk: 0=KIRMIZI, 1=YEŞİL, 2=SİYAH |
-| `/gate_center` | `PoseStamped` | Kapı merkezi (base_link frame) |
-| `/yellow_visible` | `Bool` | Sarı duba görünürlük durumu |
-
-### Kontrol Topic'leri
-
-| Topic | Tip | Açıklama |
-|-------|-----|----------|
-| `/cmd_vel` | `Twist` | Hız komutu |
-| `/roboboat/thrusters/left/thrust` | `Float64` | Sol thruster kuvveti |
-| `/roboboat/thrusters/right/thrust` | `Float64` | Sağ thruster kuvveti |
+| Node | Giriş | Çıkış | Açıklama |
+|---|---|---|---|
+| `mission_manager` | `/odometry/filtered`, `/gate_center`, `/kamikaze_target`, `/kamikaze_locked` | `/cmd_vel`, Nav2 action | 3-aşama görev state machine |
+| `kamikaze_control` | `/roboboat/sensors/camera/image`, `/scan` | `/gate_center`, `/kamikaze_target`, `/kamikaze_locked` | HSV kapı + duba tespiti |
+| `gate_goal_publisher` | `/yolo/detections`, `/zed/depth/depth_registered`, `/zed/depth/camera_info` | `/usv_local_goal` | YOLO + derinlik → harita hedefi (gerçek donanım) |
+| `local_goal_bridge` | `/usv_local_goal` | Nav2 `NavigateToPose` action | Lokal hedefi Nav2'ye iletir |
+| `parkour_navigation` | — | — | Alternatif basit navigasyon nodu |
+| `yolo_detector` | `/roboboat/sensors/camera/image` | `/yolo/detections` | Gerçek donanımda YOLOv11 duba tespiti |
 
 ---
 
-## 🔧 Sorun Giderme
+### `usv_sensor_fusion` — Kamera + LiDAR Füzyonu (C++)
 
-### Gazebo Açılmıyor / Yanıt Vermiyor
+| Giriş | Açıklama |
+|---|---|
+| `/kamikaze_target` (`PointStamped`) | Normalize piksel koordinatı: `x=cx [0..1]`, `y=cy [0..1]` |
+| `/scan/filtered` (`LaserScan`) | RPLidar taraması (mesafe ölçümü) |
+| `/zed/depth` (`Image`, 32FC1) | ZED derinlik haritası (yedek) |
+
+| Çıkış | Açıklama |
+|---|---|
+| `/fusion/target` (`PointStamped`) | `x=mesafe[m]`, `y=yaw[rad]`, `z=kaynak (0=LiDAR, 1=ZED)` |
+
+Birincil kaynak LiDAR'dır. LiDAR geçerli ölçüm yapamıyorsa ZED derinliğine geçer. Her iki kaynak da başarısız olursa `distance=-1.0` yayar.
+
+---
+
+## YOLO Model Dosyaları
+
+`.pt` model dosyaları git ile takip **edilmez** (`.gitignore: *.pt`). Her bilgisayara ayrıca aktarılması gerekir.
+
+Beklenen konum:
+
+```
+src/usv_sim/workspace_ros/YOLOv11/YOLOv11.pt
+```
+
+Model olmadan sistem simülasyonda HSV algılama ile çalışmaya devam eder.  
+Gerçek donanımda `yolo_detector` node başlatılmadan önce model dosyasının mevcut olması gerekir.
+
+---
+
+## Manuel Test
+
+Joystick veya klavye ile manuel sürüş:
 
 ```bash
-# Kilitli Gazebo süreçlerini temizle
-pkill -f "ign gazebo"; pkill -f "ruby.*gz"
-sleep 3 && ./start_all.sh auto
+# Klavye
+ros2 run workspace_ros wasd_teleop
+
+# Sadece converter başlatmak için
+ros2 run workspace_ros converter
 ```
 
-### TF Ekstrapolasyon Hatası
-
-```
-[WARN] Lookup would require extrapolation...
-```
-
-`use_sim_time:=true` parametresinin tüm düğümlere doğru şekilde iletilip iletilmediğini doğrulayın:
+SLAM haritasını RViz ile görüntülemek için:
 
 ```bash
-ros2 param get /mission_manager use_sim_time
-ros2 param get /kamikaze_control use_sim_time
+rviz2 -d src/usv_sim/workspace_ros/config/lidar_rviz.rviz
 ```
-
-### Nav2 Zaten Çalışıyor Hatası
-
-```bash
-pkill -f "lifecycle_manager"
-pkill -f "nav2_container"
-sleep 2 && ./start_all.sh auto
-```
-
-### MOLA SLAM Başlamıyor
-
-MOLA'nın `/roboboat/lidar/filtered` topic'ini yayınlanmadan başlatılmasını önlemek için betikte 10 saniyelik bekleme süresi bulunmaktadır. Sorun devam ederse:
-
-```bash
-ros2 topic hz /roboboat/lidar/filtered   # Verinin gelip gelmediğini kontrol edin
-```
-
-### Sistem Durumunu İzleme
-
-```bash
-# Görev aşamasını izle
-ros2 topic echo /mission_state
-
-# Tüm aktif topic'leri listele
-ros2 topic list
-
-# Topic frekanslarını kontrol et
-ros2 topic hz /odometry/filtered
-ros2 topic hz /roboboat/sensors/lidar/scan
-```
-
----
-
-## 👥 Katkıda Bulunanlar
-
-### Bu Projeyi Geliştiren (STI_USV Özgün Yazılım Yığını)
-
-Bu deponun özgün navigasyon yazılım yığını (Göreve Özel Algılama, Sniper Lock, PID Kontrolcüsü, Mission Manager) **Bitirme Projesi** kapsamında geliştirilmiştir.
-
----
-
-### Gazebo Simülasyon Ortamına Katkıda Bulunanlar ([STI-USV](https://github.com/STI-USV/STI-USV))
-
-Bu projenin 3D simülasyon altyapısı aşağıdaki geliştiricilerin çalışmalarına dayanmaktadır:
-
-| İsim | GitHub |
-|------|--------|
-| Görkem Direybatoğulları | [@GorkemDireybatogullari](https://github.com/GorkemDireybatogullari) |
-| Mustafa Berat Yavaş | [@MustafaBeratYavas](https://github.com/MustafaBeratYavas) |
-| Muhammet Al | [@MuhammetAll](https://github.com/MuhammetAll) |
-| Muhammed Kerem Demirbent | [@MuhammedKeremDemirbent](https://github.com/MuhammedKeremDemirbent) |
-| Harun Kurt | [@harunkurtdev](https://github.com/harunkurtdev) |
-
----
-
-## 📚 Referanslar
-
-- [ROS 2 Humble Dokümantasyonu](https://docs.ros.org/en/humble/)
-- [Nav2 MPPI Kontrolcüsü](https://navigation.ros.org/configuration/packages/controller_plugins/mppi.html)
-- [MOLA SLAM Kütüphanesi](https://github.com/MOLAorg/mola)
-- [Ultralytics YOLOv11](https://docs.ultralytics.com/)
-- [robot_localization EKF](https://docs.ros.org/en/humble/p/robot_localization/)
-- [Toward Maritime Robotic Simulation in Gazebo](https://wiki.nps.edu/display/BB/Publications?preview=/1173263776/1173263778/PID6131719.pdf)
-
----
-
-## 📄 Lisans
-
-Bu proje [Apache License 2.0](./LICENSE.txt) kapsamında lisanslanmıştır.
-
----
-
-<div align="center">
-
-**STI_USV** · Bitirme Projesi · TEKNOFEST İDA Yarışması
-
-</div>
