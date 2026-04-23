@@ -1,1 +1,0 @@
-/home/aliomacc/sti_usv/build/kiss_icp/ament_cmake_environment_hooks/local_setup.sh

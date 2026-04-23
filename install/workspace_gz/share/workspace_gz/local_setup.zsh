@@ -1,1 +1,0 @@
-/home/aliomacc/sti_usv/build/workspace_gz/ament_cmake_environment_hooks/local_setup.zsh

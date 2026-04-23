@@ -1,7 +1,0 @@
-[0.011s] Invoking command in '/home/aliomacc/sti_usv/build/workspace_gz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8
-[0.047s] [35m[1mConsolidate compiler generated dependencies of target Waves[0m
-[0.060s] [  4%] [32mBuilding CXX object CMakeFiles/Waves.dir/plugins/Wavefield.cc.o[0m
-[3.562s] gmake[2]: *** [CMakeFiles/Waves.dir/build.make:76: CMakeFiles/Waves.dir/plugins/Wavefield.cc.o] Sistem kesmesi
-[3.563s] gmake[1]: *** [CMakeFiles/Makefile2:153: CMakeFiles/Waves.dir/all] Sistem kesmesi
-[3.563s] gmake: *** [Makefile:146: all] Sistem kesmesi
-[3.605s] Invoked command in '/home/aliomacc/sti_usv/build/workspace_gz' returned '-2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aliomacc/ros2_ws/install/actions_py:/home/aliomacc/ros2_ws/install/lifecycle_py:/opt/ros/humble /usr/bin/cmake --build /home/aliomacc/sti_usv/build/workspace_gz -- -j8 -l8

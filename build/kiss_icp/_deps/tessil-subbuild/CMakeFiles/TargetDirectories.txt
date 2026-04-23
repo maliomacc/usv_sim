@@ -1,3 +1,0 @@
-/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-subbuild/CMakeFiles/tessil-populate.dir
-/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-subbuild/CMakeFiles/edit_cache.dir
-/home/aliomacc/sti_usv/build/kiss_icp/_deps/tessil-subbuild/CMakeFiles/rebuild_cache.dir
