@@ -10,3 +10,8 @@ __pycache__/
 *.engine
 *.pt
 *.onnx
+
+# MAVLink binary loglar ve Pixhawk EEPROM yedekleri
+*.tlog
+*.tlog.raw
+eeprom.bin

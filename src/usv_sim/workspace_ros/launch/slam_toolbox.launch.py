@@ -47,16 +47,15 @@ def generate_launch_description():
             slam_params_file,
             {
                 'use_sim_time': True,
-                # In localization mode, provide the map to load
                 'map_file_name': LaunchConfiguration('map_file_name'),
-                # Switch between mapping and localization
                 'mode': LaunchConfiguration('mode'),
             }
         ],
         remappings=[
-            # slam_toolbox subscribes to /scan by default — matches our bridge output
             ('/scan', '/scan/filtered'),
-        ]
+        ],
+        respawn=True,
+        respawn_delay=5.0,
     )
 
     return LaunchDescription([

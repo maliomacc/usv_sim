@@ -1,0 +1,62 @@
+ start_all.sh Modları — Test Rehberi
+                                                                                                                                    
+  Ön koşul: Her modda ayrı terminal(ler)de çalışması gerekenler
+                                                                                                                                    
+  # Terminal 1 — MAVROS (her zaman)
+  ros2 launch mavros apm.launch fcu_url:=serial:///dev/ttyACM0:115200                                                               
+                                                                                                                                    
+  # Terminal 2 — ZED kamera (P2 ve P3 için)                                                                                         
+  ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed                                                                    
+                                                                                                                                    
+  # Terminal 3 — RPLidar (sadece P2 için)                                                                                           
+  ros2 run rplidar_ros rplidar_composition --ros-args \                                                                           
+    -p serial_port:=/dev/ttyUSB0 -p frame_id:=laser                                                                                 
+                                                                                                                                    
+  ---                                                                                                                               
+  Mod 1 — saha (Tam Yarışma)                                                                                                        
+                                                                                                                                    
+  cd ~/sti_usv/src/usv_sim
+  ./start_all.sh saha                                                                                                               
+                                                            
+  Ne çalışır: laser_filters → localization (EKF+GPS) → slam_toolbox → usv_autonomy (tüm stack)                                      
+  Ne zaman kullanılır: Gerçek yarışma günü. Parkur 1 Pixhawk'ta koşuyor, sen GUIDED'a geçince P2+P3 devralır.
+                                                                                                                                    
+  Parametreleri değiştirmek istersen:                                                                                               
+  BASE_SPEED=1.2 KP_YAW=1.0 ./start_all.sh saha                                                                                     
+                                                                                                                                    
+  ---                                                                                                                               
+  Mod 2 — saha_p2 (Parkur 2 İzole Test)
+                                                                                                                                    
+  ./start_all.sh saha_p2                                    
+                                                                                                                                    
+  Ne çalışır: laser_filters → localization → slam_toolbox → parkur2_standalone + Nav2                                               
+  Ne zaman kullanılır: Kapı geçişini, GateFusion kilidini ve MPPI davranışını P1 olmadan test ederken.
+                                                                                                                                    
+  WP5 koordinatını haritada biliyorsan GPS dönüşümünü atla:                                                                         
+  WP5_MAP_X=15.3 WP5_MAP_Y=-4.1 ./start_all.sh saha_p2                                                                              
+                                                                                                                                    
+  ---                                                                                                                               
+  Mod 3 — saha_p3 (Parkur 3 İzole Test) — En Sık Kullanacağın
+                                                                                                                                    
+  ./start_all.sh saha_p3                                    
+                                                                                                                                    
+  Ne çalışır: sensor_fusion_node + kamikaze_control + parkur3_standalone + cmd_vel_to_mavros                                        
+  Ne zaman kullanılır: Kırmızı şamandıraya saldırı algoritmalarını test ederken. LiDAR, SLAM, GPS, Nav2 hiç başlamaz — sadece ZED +
+  MAVROS yeterli.                                                                                                                   
+                                                            
+  Hedef renk değiştir (0=kırmızı, 1=yeşil, 2=siyah):                                                                                
+  TARGET_COLOR=1 ./start_all.sh saha_p3                     
+                                                                                                                                    
+  Tüm parametreleri bir arada:                              
+  TARGET_COLOR=0 BASE_SPEED=1.0 KP_YAW=0.8 KAMIKAZE_LOST_TIMEOUT=5.0 ./start_all.sh saha_p3                                         
+   
+  ---                                                                                                                               
+  Durdurmak                                                 
+                                                                                                                                    
+  # Ctrl+C  →  start_all.sh cleanup() çağırır, stop_all.sh çalışır
+  # veya doğrudan:                                                                                                                  
+  ./stop_all.sh                                                                                                                     
+                                                                                                                                    
+  ---                                                                                                                               
+  Önerilen test sırası: saha_p3 → saha_p2 → saha (karmaşıklık sırası böyle).
+

@@ -20,7 +20,8 @@ def collect_files(dirpath, extensions):
 config_files = collect_files('config', ['.yaml'])
 launch_files = collect_files('launch', ['.launch.py'])
 script_files = collect_files('scripts', ['.py'])
-map_files = collect_files('map', ['.pgm'])
+map_files    = collect_files('map',    ['.pgm'])
+json_files   = collect_files('json',   ['.json', '.yaml'])
 
 data_files = [
     ('share/ament_index/resource_index/packages', [os.path.join('resource', package_name)]),
@@ -35,6 +36,8 @@ if script_files:
     data_files.append((f'share/{package_name}/scripts', script_files))
 if map_files:
     data_files.append((f'share/{package_name}/map', map_files))
+if json_files:
+    data_files.append((f'share/{package_name}/json', json_files))
 
 setup(
     name=package_name,

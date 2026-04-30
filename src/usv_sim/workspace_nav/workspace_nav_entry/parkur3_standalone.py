@@ -14,11 +14,12 @@ Gereksinimler (önceden çalışıyor olmalı):
   • EKF               → /odometry/filtered (opsiyonel, loglama için)
   • Nav2              → MPPI susturma için (opsiyonel — çalışmıyorsa uyarı verir)
 
-YOLO Sınıfları (kamikaze_control / son.engine):
-  0: yellow_buoy  → Parkur 2 kapı (bu node kullanmaz)
-  1: red_buoy     → Parkur 3 hedef
-  2: green_buoy   → Parkur 3 hedef
-  3: black_buoy   → Parkur 3 hedef
+YOLO Sınıfları (son.engine):
+  0: Black   → Parkur 3 hedef (TARGET_BLACK)
+  1: Green   → Parkur 3 hedef (TARGET_GREEN)
+  2: Orange  → kullanılmıyor
+  3: Red     → Parkur 3 hedef (TARGET_RED)
+  4: Yellow  → Parkur 2 kapı (bu node kullanmaz)
 
 /kamikaze_target mesaj formatı (kamikaze_control yayınlar):
   .x = cx_norm   ← piksel merkezi [0,1] (0.5=merkez)
@@ -48,7 +49,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import HistoryPolicy, QoSProfile, ReliabilityPolicy
 
-from geometry_msgs.msg import Point, Twist
+from geometry_msgs.msg import Point, PointStamped, Twist
 from mavros_msgs.msg import State
 from nav_msgs.msg import Odometry
 from rcl_interfaces.msg import Parameter, ParameterValue, ParameterType
@@ -64,9 +65,9 @@ TARGET_GREEN = 1
 TARGET_BLACK = 2
 
 TARGET_NAMES = {
-    TARGET_RED:   'KIRMIZI (red_buoy,   cls=1)',
-    TARGET_GREEN: 'YEŞİL   (green_buoy, cls=2)',
-    TARGET_BLACK: 'SİYAH   (black_buoy, cls=3)',
+    TARGET_RED:   'KIRMIZI (Red,   cls=3)',
+    TARGET_GREEN: 'YEŞİL   (Green, cls=1)',
+    TARGET_BLACK: 'SİYAH   (Black, cls=0)',
 }
 
 
@@ -123,15 +124,21 @@ class Parkur3Standalone(Node):
         self._kamikaze_last_seen: float = time.monotonic()
         self._x = self._y = self._yaw  = 0.0
 
+        # Sensor fusion
+        self._fusion_distance: float  = -1.0
+        self._fusion_source: float    = -1.0
+        self._fusion_last_seen: float = 0.0
+
         # ── QoS ──────────────────────────────────────────────────────────────
         _rel = QoSProfile(reliability=ReliabilityPolicy.RELIABLE,
                           history=HistoryPolicy.KEEP_LAST, depth=10)
 
         # ── Abonelikler ───────────────────────────────────────────────────────
-        self.create_subscription(State,    '/mavros/state',        self._state_cb,   _rel)
-        self.create_subscription(Point,    '/kamikaze_target',     self._target_cb,  10)
-        self.create_subscription(Bool,     '/kamikaze_locked',     self._locked_cb,  10)
-        self.create_subscription(Odometry, '/odometry/filtered',   self._odom_cb,    _rel)
+        self.create_subscription(State,        '/mavros/state',      self._state_cb,   _rel)
+        self.create_subscription(PointStamped, '/kamikaze_target',  self._target_cb,  10)
+        self.create_subscription(PointStamped, '/fusion/target',    self._fusion_cb,  10)
+        self.create_subscription(Bool,         '/kamikaze_locked',  self._locked_cb,  10)
+        self.create_subscription(Odometry,     '/odometry/filtered',self._odom_cb,    _rel)
 
         # ── Yayıncılar ────────────────────────────────────────────────────────
         self._cmd_pub   = self.create_publisher(Twist,  '/cmd_vel',       10)
@@ -242,6 +249,17 @@ class Parkur3Standalone(Node):
         # cx_norm [0,1]: 0.5=merkez; err>0 → hedef sağda → sola dön
         err = 0.5 - self._kamikaze_target.x
 
+        # Fusion mesafesi
+        now_f  = self.get_clock().now().nanoseconds / 1e9
+        dist   = self._fusion_distance if (self._fusion_last_seen > 0.0 and
+                                           now_f - self._fusion_last_seen < 1.0) else -1.0
+        src_str = {0.0: 'LiDAR', 1.0: 'ZED', -1.0: 'açı'}.get(self._fusion_source, '?')
+
+        # Yakınlık auto-kilit
+        if dist > 0.0 and dist <= 1.5 and not self._kamikaze_locked:
+            self._kamikaze_locked = True
+            self.get_logger().warn(f'[KİLİT] AUTO-KİLİT! mesafe={dist:.2f}m [{src_str}]')
+
         if self._kamikaze_locked:
             # ── FAZ 2: Kilit onaylandı — maksimum güç ────────────────────────
             cmd.linear.x  = float(self._P2_LINEAR)
@@ -249,38 +267,43 @@ class Parkur3Standalone(Node):
                                       min(self._P2_ANG_CLAMP,
                                           self._kp * err * self._P2_ANG_MULT)))
             self._cmd_pub.publish(cmd)
+            dist_str = f'{dist:.1f}m [{src_str}]' if dist > 0.0 else '?'
             self.get_logger().warn(
-                f'[KAMIKAZE] FAZ-2 KILL PHASE! '
-                f'err={err:+.3f} v={cmd.linear.x:.1f}m/s ω={cmd.angular.z:+.2f}rad/s',
+                f'[KAMIKAZE] FAZ-2 KILL! err={err:+.3f} v={cmd.linear.x:.1f}m/s '
+                f'ω={cmd.angular.z:+.2f} dist={dist_str}',
                 throttle_duration_sec=0.3,
             )
         else:
             # ── FAZ 1: Hedef görüldü ──────────────────────────────────────────
             abs_err = abs(err)
 
+            # Mesafe bazlı hız çarpanı
+            if dist > 0.0:
+                dist_mult = 1.8 if dist < 3.0 else (1.3 if dist < 6.0 else 1.0)
+            else:
+                dist_mult = 1.0
+
             if abs_err > 0.15:
-                # Sapma büyük → önce hizalan (tank dönüşü)
                 cmd.linear.x  = 0.2
                 cmd.angular.z = float(max(-self._P1_ANG_CLAMP,
                                           min(self._P1_ANG_CLAMP,
                                               self._kp * err * 25.0)))
                 self._cmd_pub.publish(cmd)
                 self.get_logger().info(
-                    f'[KAMIKAZE] FAZ-1 HİZALANIYOR — '
-                    f'err={err:+.3f} ω={cmd.angular.z:+.2f}',
+                    f'[KAMIKAZE] FAZ-1 HİZALANIYOR err={err:+.3f} ω={cmd.angular.z:+.2f}',
                     throttle_duration_sec=0.3,
                 )
             else:
-                # Nişangah oturdu → hücum
-                adaptive_speed = self._P1_LINEAR * (1.0 - abs_err * 3.0)
+                adaptive_speed = self._P1_LINEAR * dist_mult * (1.0 - abs_err * 3.0)
                 cmd.linear.x  = float(max(1.5, adaptive_speed))
                 cmd.angular.z = float(max(-self._P1_ANG_CLAMP,
                                           min(self._P1_ANG_CLAMP,
                                               self._kp * err * self._P1_ANG_MULT)))
                 self._cmd_pub.publish(cmd)
+                dist_str = f'{dist:.1f}m [{src_str}]' if dist > 0.0 else '?'
                 self.get_logger().info(
-                    f'[KAMIKAZE] FAZ-1 CHARGE! '
-                    f'err={err:+.3f} v={cmd.linear.x:.2f} ω={cmd.angular.z:+.2f}',
+                    f'[KAMIKAZE] FAZ-1 CHARGE! err={err:+.3f} v={cmd.linear.x:.2f} '
+                    f'ω={cmd.angular.z:+.2f} dist={dist_str}',
                     throttle_duration_sec=0.3,
                 )
 
@@ -296,13 +319,14 @@ class Parkur3Standalone(Node):
                 f'[MAVROS] Mod → {"AKTİF (GUIDED+ARM)" if self._guided else "PASİF"}'
             )
 
-    def _target_cb(self, msg: Point):
-        """
-        /kamikaze_target: x=cx_norm, y=cy_norm, z=alan_px²
-        kamikaze_control formatıyla birebir uyumlu.
-        """
-        self._kamikaze_target    = msg
+    def _target_cb(self, msg: PointStamped):
+        self._kamikaze_target    = msg.point   # Point olarak sakla
         self._kamikaze_last_seen = self.get_clock().now().nanoseconds / 1e9
+
+    def _fusion_cb(self, msg: PointStamped):
+        self._fusion_distance  = msg.point.x
+        self._fusion_source    = msg.point.z
+        self._fusion_last_seen = self.get_clock().now().nanoseconds / 1e9
 
     def _locked_cb(self, msg: Bool):
         if msg.data and not self._kamikaze_locked:

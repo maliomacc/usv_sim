@@ -19,6 +19,8 @@ def generate_launch_description():
             executable='imu_covariance_repub',
             name='imu_covariance_repub',
             parameters=[{'use_sim_time': False}],
+            respawn=True,
+            respawn_delay=2.0,
         ),
 
         # GPS: /mavros/global_position/global → /gps/fixed_cov (covariance inject)
@@ -27,6 +29,8 @@ def generate_launch_description():
             executable='gps_covariance_repub',
             name='gps_covariance_repub',
             parameters=[{'use_sim_time': False}],
+            respawn=True,
+            respawn_delay=2.0,
         ),
 
         # navsat_transform: GPS (UTM) → /odometry/gps (EKF girişi)
@@ -38,7 +42,9 @@ def generate_launch_description():
             remappings=[
                 ('imu', '/imu/fixed_cov'),
                 ('gps/fix', '/gps/fixed_cov')
-            ]
+            ],
+            respawn=True,
+            respawn_delay=2.0,
         ),
 
         # EKF: GPS odom + IMU → /odometry/filtered + odom→base_link TF
@@ -46,7 +52,9 @@ def generate_launch_description():
             package='robot_localization',
             executable='ekf_node',
             name='ekf_node',
-            parameters=[ekf_path, {'use_sim_time': False}]
+            parameters=[ekf_path, {'use_sim_time': False}],
+            respawn=True,
+            respawn_delay=3.0,
         ),
 
         Node(
@@ -57,7 +65,9 @@ def generate_launch_description():
                 {'static_transform_file': static_transform_path},
                 {'use_sim_time': False}
             ],
-            output='screen'
+            output='screen',
+            respawn=True,
+            respawn_delay=2.0,
         ),
 
     ])

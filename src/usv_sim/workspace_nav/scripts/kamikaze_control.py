@@ -4,8 +4,9 @@ kamikaze_control.py — YOLOv8 TRT Multi-Thread (YOLO + ZED Confidence)
 Parkur 2: YOLO yellow_buoy cifti → /gate_center  (kapi orta noktasi)
 Parkur 3: YOLO hedef duba      → /kamikaze_target + /kamikaze_locked
 
-YOLO Siniflari: {0: yellow_buoy, 1: red_buoy, 2: green_buoy, 3: black_buoy}
-Hedef rengi   : init_target_color param (0=RED→cls1, 1=GREEN→cls2, 2=BLACK→cls3)
+YOLO Siniflari (son.engine / son.pt):
+  {0: Black, 1: Green, 2: Orange, 3: Red, 4: Yellow}
+Hedef rengi   : init_target_color param (0=RED→cls3, 1=GREEN→cls1, 2=BLACK→cls0)
 
 Thread Mimarisi:
   Thread A: _image_cb       → queue.Queue(maxsize=2) [< 3ms, drop-oldest]
@@ -32,7 +33,7 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 
 from sensor_msgs.msg import Image, LaserScan, CameraInfo
 from std_msgs.msg import Bool, Int32
-from geometry_msgs.msg import Point, PoseStamped
+from geometry_msgs.msg import Point, PointStamped, PoseStamped
 
 try:
     from ultralytics import YOLO as UltralyticsYOLO
@@ -67,13 +68,14 @@ TARGET_COLORS_BGR = {
     TARGET_BLACK: (80,  80,  80),
 }
 
-# init_target_color → YOLO class id
+# init_target_color → YOLO class id  (son.engine: 0=Black,1=Green,2=Orange,3=Red,4=Yellow)
 _TARGET_TO_YOLO_CLS = {
-    TARGET_RED:   1,   # red_buoy
-    TARGET_GREEN: 2,   # green_buoy
-    TARGET_BLACK: 3,   # black_buoy
+    TARGET_RED:   3,   # Red
+    TARGET_GREEN: 1,   # Green
+    TARGET_BLACK: 0,   # Black
 }
-YOLO_YELLOW_CLASS = 0   # yellow_buoy → gate (Parkur 2)
+YOLO_YELLOW_CLASS  = 4   # Yellow → gate (Parkur 2)
+YOLO_ORANGE_CLASS  = 2   # Orange
 
 YOLO_CONF_THRESH: float     = 0.4
 
@@ -191,7 +193,7 @@ class KamikazeControl(Node):
         )
 
         # ── Yayincilar ───────────────────────────────────────────────────────
-        self._target_pub         = self.create_publisher(Point,       '/kamikaze_target',      10)
+        self._target_pub         = self.create_publisher(PointStamped, '/kamikaze_target',      10)
         self._locked_pub         = self.create_publisher(Bool,        '/kamikaze_locked',      10)
         self._gate_pub           = self.create_publisher(PoseStamped, '/gate_center',          10)
         self._yellow_visible_pub = self.create_publisher(Bool,        '/yellow_visible',       10)
@@ -206,11 +208,11 @@ class KamikazeControl(Node):
 
         self.get_logger().warn(
             '\n==============================================================\n'
-            '  YILDIZ USV — KamikazeControl  [YOLOv8 TRT MULTI-THREAD]\n'
+            '  STI USV — KamikazeControl  [YOLOv8 TRT MULTI-THREAD]\n'
             '==============================================================\n'
             f'  Baslangic hedefi : {TARGET_NAMES.get(_init_color, "?")}\n'
             f'  Model            : {self._model_path}\n'
-            '  YOLO Siniflari   : 0=yellow 1=red 2=green 3=black\n'
+            '  YOLO Siniflari   : 0=Black 1=Green 2=Orange 3=Red 4=Yellow\n'
             f'  conf_min_depth   : {self._conf_min_depth} (0-100)\n'
             '=============================================================='
         )
@@ -517,11 +519,13 @@ class KamikazeControl(Node):
                 f'cls={tgt["cls"]} conf={tgt["conf"]:.2f} alan={area:.0f}px2'
             )
 
-        # ── /kamikaze_target (geometry_msgs/Point) — backward compat ─────
-        target_msg   = Point()
-        target_msg.x = cx_norm
-        target_msg.y = cy_norm
-        target_msg.z = float(area)
+        # ── /kamikaze_target (geometry_msgs/PointStamped) ────────────────
+        target_msg         = PointStamped()
+        target_msg.header.stamp    = self.get_clock().now().to_msg()
+        target_msg.header.frame_id = 'camera_link'
+        target_msg.point.x = cx_norm
+        target_msg.point.y = cy_norm
+        target_msg.point.z = float(area)
         self._target_pub.publish(target_msg)
 
         elapsed   = now - self._lock_start_time
@@ -578,12 +582,13 @@ class KamikazeControl(Node):
         h, w = out.shape[:2]
 
         _cls_colors = {
-            YOLO_YELLOW_CLASS: (0,   255, 255),
-            1:                 (0,   0,   255),
-            2:                 (0,   200, 0),
-            3:                 (60,  60,  60),
+            0: (60,  60,  60),    # Black
+            1: (0,   200, 0),     # Green
+            2: (0,   140, 255),   # Orange (BGR)
+            3: (0,   0,   255),   # Red
+            4: (0,   255, 255),   # Yellow
         }
-        _cls_names = {YOLO_YELLOW_CLASS: 'yellow', 1: 'red', 2: 'green', 3: 'black'}
+        _cls_names = {0: 'black', 1: 'green', 2: 'orange', 3: 'red', 4: 'yellow'}
 
         for d in detections:
             col  = _cls_colors.get(d['cls'], (200, 200, 200))

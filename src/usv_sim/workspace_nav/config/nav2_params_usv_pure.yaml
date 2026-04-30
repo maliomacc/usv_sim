@@ -266,7 +266,7 @@ local_costmap:
         enabled: true
         observation_sources: scan
         scan:
-          topic: /roboboat/sensors/lidar/scan
+          topic: /scan/filtered
           max_obstacle_height: 1.5    # duba maks yüksekliği ~1 m; 1.5 yeterli, görültü düşer
           clearing: true
           marking: true
@@ -325,7 +325,7 @@ global_costmap:
         enabled: true
         observation_sources: scan
         scan:
-          topic: /roboboat/sensors/lidar/scan
+          topic: /scan/filtered
           max_obstacle_height: 1.5    # global'de de aynı yaw filtresi
           clearing: true
           marking: true
@@ -448,7 +448,7 @@ collision_monitor:
     observation_sources: ["scan"]
     scan:
       type: "scan"
-      topic: "/roboboat/sensors/lidar/scan"
+      topic: "/scan/filtered"
       min_height: 0.05
       max_height: 1.5
       enabled: true

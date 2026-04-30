@@ -1,9 +1,6 @@
-import os
-
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
-    GroupAction,
     IncludeLaunchDescription,
     SetEnvironmentVariable,
 )
@@ -21,16 +18,9 @@ def generate_launch_description():
         DeclareLaunchArgument('log_level',          default_value='info'),
         DeclareLaunchArgument('autostart',          default_value='true'),
 
-        DeclareLaunchArgument('ekf_config',
-            default_value=PathJoinSubstitution([pkg_share, 'config', 'ekf_fusion.yaml'])),
-        DeclareLaunchArgument('zed_odom_topic',     default_value='/zed/odom'),
-        DeclareLaunchArgument('imu_topic',          default_value='/mavros/imu/data'),
-
         DeclareLaunchArgument('yolo_topic',         default_value='/yolo/detections'),
-        DeclareLaunchArgument('depth_topic',        default_value='/zed/depth/depth_registered'),
-        DeclareLaunchArgument('camera_info_topic',  default_value='/zed/depth/camera_info'),
-        DeclareLaunchArgument('red_class_id',       default_value='1'),
-        DeclareLaunchArgument('green_class_id',     default_value='2'),
+        DeclareLaunchArgument('red_class_id',       default_value='3'),   # son.engine: 3=Red
+        DeclareLaunchArgument('green_class_id',     default_value='1'),   # son.engine: 1=Green
 
         DeclareLaunchArgument('nav2_params_file',
             default_value=PathJoinSubstitution(
@@ -61,34 +51,20 @@ def generate_launch_description():
             'kamikaze_lost_timeout',
             default_value='3.0',
             description='Seconds before spinning to search for red buoy'),
+        DeclareLaunchArgument(
+            'model_path',
+            default_value='/home/seatech/models/buoy.engine',
+            description='TensorRT model path for YOLO buoy detection'),
     ]
 
     use_sim_time      = LaunchConfiguration('use_sim_time')
     log_level         = LaunchConfiguration('log_level')
     autostart         = LaunchConfiguration('autostart')
-    ekf_config        = LaunchConfiguration('ekf_config')
     nav2_params_file  = LaunchConfiguration('nav2_params_file')
 
     set_sim_time = SetParameter(name='use_sim_time', value=use_sim_time)
 
     stdout_linebuf = SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1')
-
-    ekf_node = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_node',
-        output='screen',
-        arguments=['--ros-args', '--log-level', log_level],
-        parameters=[
-            ekf_config,
-            {'use_sim_time': use_sim_time},
-        ],
-
-        remappings=[
-            ('odometry/filtered', '/odometry/filtered'),
-            ('set_pose',          '/set_pose'),
-        ],
-    )
 
     kamikaze_node = Node(
         package='workspace_nav',
@@ -99,7 +75,21 @@ def generate_launch_description():
         parameters=[{
             'use_sim_time':       use_sim_time,
             'init_target_color':  0,
+            'model_path':         LaunchConfiguration('model_path'),
         }],
+        respawn=True,
+        respawn_delay=2.0,
+    )
+
+    sensor_fusion_node = Node(
+        package='usv_sensor_fusion',
+        executable='sensor_fusion_node',
+        name='sensor_fusion_node',
+        output='screen',
+        arguments=['--ros-args', '--log-level', log_level],
+        parameters=[{'use_sim_time': use_sim_time}],
+        respawn=True,
+        respawn_delay=2.0,
     )
 
     bridge_node = Node(
@@ -112,6 +102,8 @@ def generate_launch_description():
             'use_sim_time': use_sim_time,
             'target_frame': 'map',
         }],
+        respawn=True,
+        respawn_delay=2.0,
     )
 
     nav2_launch = IncludeLaunchDescription(
@@ -143,6 +135,8 @@ def generate_launch_description():
             'base_speed':            LaunchConfiguration('base_speed'),
             'kamikaze_lost_timeout': LaunchConfiguration('kamikaze_lost_timeout'),
         }],
+        respawn=True,
+        respawn_delay=3.0,
     )
 
     cmd_vel_bridge = Node(
@@ -155,6 +149,8 @@ def generate_launch_description():
             'use_rc_override': False,
             'max_speed':       1.0,
         }],
+        respawn=True,
+        respawn_delay=2.0,
     )
 
     ld = LaunchDescription()
@@ -165,7 +161,7 @@ def generate_launch_description():
     for arg in args:
         ld.add_action(arg)
 
-    ld.add_action(ekf_node)
+    ld.add_action(sensor_fusion_node)
     ld.add_action(kamikaze_node)
     ld.add_action(bridge_node)
     ld.add_action(nav2_launch)

@@ -50,6 +50,7 @@ private:
   double lidar_min_valid_;    // LiDAR valid range lower bound [m]
   double lidar_max_valid_;    // LiDAR valid range upper bound [m]
   std::string depth_encoding_;
+  std::string depth_topic_;
 
   // ── Cached sensor data ───────────────────────────────────────────────────
   sensor_msgs::msg::LaserScan::SharedPtr last_scan_;

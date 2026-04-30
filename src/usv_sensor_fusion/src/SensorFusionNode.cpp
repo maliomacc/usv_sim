@@ -29,6 +29,8 @@ SensorFusionNode::SensorFusionNode(const rclcpp::NodeOptions & options)
   this->declare_parameter<double>("lidar_min_valid",     0.2);
   this->declare_parameter<double>("lidar_max_valid",    15.0);  // raised: sim scale
   this->declare_parameter<std::string>("depth_encoding", "32FC1");
+  this->declare_parameter<std::string>("depth_topic",
+    "/zed/zed_node/depth/depth_registered");
 
   camera_hfov_rad_ = this->get_parameter("camera_hfov_deg").as_double() * M_PI / 180.0;
   image_width_px_  = this->get_parameter("image_width_px").as_double();
@@ -36,6 +38,7 @@ SensorFusionNode::SensorFusionNode(const rclcpp::NodeOptions & options)
   lidar_min_valid_ = this->get_parameter("lidar_min_valid").as_double();
   lidar_max_valid_ = this->get_parameter("lidar_max_valid").as_double();
   depth_encoding_  = this->get_parameter("depth_encoding").as_string();
+  depth_topic_     = this->get_parameter("depth_topic").as_string();
 
   RCLCPP_INFO(this->get_logger(),
     "[SensorFusion] Init | HFOV=%.1f° | img=%.0fx%.0f | lidar=[%.2f, %.2f]m",
@@ -58,9 +61,8 @@ SensorFusionNode::SensorFusionNode(const rclcpp::NodeOptions & options)
     "/scan/filtered", sensor_qos,
     std::bind(&SensorFusionNode::onScan, this, std::placeholders::_1));
 
-  // ZED depth: /roboboat/sensors/camera/depth (bridged from Ignition rgbd_camera)
   sub_depth_ = this->create_subscription<sensor_msgs::msg::Image>(
-    "/zed/depth", rclcpp::QoS(rclcpp::KeepLast(1)).best_effort(),
+    depth_topic_, rclcpp::QoS(rclcpp::KeepLast(1)).best_effort(),
     std::bind(&SensorFusionNode::onDepth, this, std::placeholders::_1));
 
   // ── Publisher ─────────────────────────────────────────────────────────────
@@ -68,7 +70,8 @@ SensorFusionNode::SensorFusionNode(const rclcpp::NodeOptions & options)
     "/fusion/target", reliable_qos);
 
   RCLCPP_INFO(this->get_logger(),
-    "[SensorFusion] Ready. /kamikaze_target(RELIABLE) | /scan/filtered | /zed/depth");
+    "[SensorFusion] Ready. /kamikaze_target(RELIABLE) | /scan/filtered | %s",
+    depth_topic_.c_str());
 }
 
 // =============================================================================
