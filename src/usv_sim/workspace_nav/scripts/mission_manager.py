@@ -65,15 +65,7 @@ GATE_KP_YAW    = 1.0
 GATE_KD_YAW    = 0.15  # Visual servo D terimi (sallanma önleme)
 GATE_BASE_SPD  = 0.7   # m/s
 GATE_ANG_CLAMP = 1.5   # rad/s max
-GATE_PASS_DIST = 1.5   # m — bu mesafede sayımı başlat
-GATE_TIMEOUT   = 8.0   # s
 KMZ_KD_YAW     = 0.3   # Kamikaze yaw PD D terimi
-
-# Erken geçiş korunması:
-# GATE_PASS_DIST altına ardı ardına bu kadar frame gelirse geçildi say.
-GATE_PASS_CONFIRM_N = 3
-# Bu GPS mesafesi aşılırsa (hala WP5'ten uzak) Parkur 3 geçişi engelleniyor.
-GATE_WP5_CLOSE_M    = 20.0
 
 def _yaw_from_quaternion(q) -> float:
     siny_cosp = 2.0 * (q.w * q.z + q.x * q.y)
@@ -864,47 +856,15 @@ class MissionManager(Node):
             throttle_duration_sec=1.0,
         )
 
-        # ── GateFusion ikincil yedek: WP5 tahminini güncelle ─────────────
+        # GateFusion: tespit tamponu ve kilit durumunu takip et (teşhis amaçlı).
+        # WP5 koordinatı KASITLI OLARAK güncellenmez — P3 eşiği her zaman
+        # orijinal GPS WP5'e (kırmızı dubanın konumu) göre hesaplanır.
+        # GateFusion WP5'i gate center'a taşısaydı, kapı geçilmeden P3
+        # tetiklenebilirdi.
         if self._gate_fusion is not None:
-            should_send = self._gate_fusion.on_gate_center(
+            self._gate_fusion.on_gate_center(
                 msg, self._x, self._y, self._yaw, _time.monotonic()
             )
-            if should_send:
-                new_x = self._gate_fusion.active_wp['x']
-                new_y = self._gate_fusion.active_wp['y']
-
-                # KORUMA 1: Yeni WP5 tahmini robota çok yakınsa (< 8.0m) reddet.
-                # (3.0m eşiği, 3.7m tespitinin geçmesine ve erken kamikaze'ye yol açmıştı.)
-                dist_to_new_wp5 = math.hypot(new_x - self._x, new_y - self._y)
-                if dist_to_new_wp5 < 8.0:
-                    self.get_logger().warn(
-                        f'[GateFusion] WP5 güncelleme REDDEDİLDİ — '
-                        f'yeni WP5 robota çok yakın: {dist_to_new_wp5:.1f}m < 8.0m '
-                        f'({new_x:.1f},{new_y:.1f}) '
-                        '(false-positive kilitlemesi önlendi)',
-                        throttle_duration_sec=2.0,
-                    )
-                else:
-                    # [P6] GateFusion WP5 güncellemesi — yalnızca hâlâ uzaktayken
-                    dist_to_wp5_now = math.hypot(
-                        self._s2.kmz_wp['x'] - self._x,
-                        self._s2.kmz_wp['y'] - self._y,
-                    )
-                    if dist_to_wp5_now > 5.0:
-                        self._s2._kmz_wp['x'] = new_x
-                        self._s2._kmz_wp['y'] = new_y
-                        self.get_logger().warn(
-                            f'[GateFusion] ✓ WP5 güncellendi: '
-                            f'({new_x:.1f},{new_y:.1f}) '
-                            f'dist_gate={dist_to_new_wp5:.1f}m '
-                            f'dist_wp5={dist_to_wp5_now:.1f}m'
-                        )
-                    else:
-                        self.get_logger().info(
-                            f'[GateFusion] WP5 güncelleme atlandı: '
-                            f'çok yakın dist={dist_to_wp5_now:.1f}m ≤ 5.0m',
-                            throttle_duration_sec=2.0,
-                        )
 
     def _kamikaze_target_cb(self, msg: PointStamped):
         self._kamikaze_target    = msg.point
@@ -1217,7 +1177,6 @@ class MissionManager(Node):
 
         self._kamikaze_locked_flag   = False
         self._nav2_goal_succeeded    = False
-        self._gate_pass_confirm      = 0
         self._gate_last_cb_t         = 0.0
         self._gate_angle_prev        = 0.0
         self._mppi_suppressed_for_gate = False
