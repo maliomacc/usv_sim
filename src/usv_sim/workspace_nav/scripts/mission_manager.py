@@ -671,7 +671,8 @@ class MissionManager(Node):
 
         # ── P2/P3/P4/P5: Parkur 2 kontrol iyileştirmeleri ────────────────────
         self._gate_angle_prev        = 0.0    # PD için önceki açı
-        self._gate_dx_prev           = float('inf')   # geçiş tespiti
+        self._gate_close_count: int  = 0      # görsel geçiş: N ardışık yakın frame
+        self._gate_last_cb_t: float  = 0.0    # PD dt için gerçek zaman damgası
         self._gate_visually_passed   = False  # görsel kapı geçişi bayrağı
         self._mppi_suppressed_for_gate = False  # cmd_vel yarış önleme
 
@@ -817,7 +818,8 @@ class MissionManager(Node):
 
         # ── Son görülme zamanını güncelle ─────────────────────────────────
         import time as _time
-        self._gate_last_seen = _time.monotonic()
+        now_t = _time.monotonic()
+        self._gate_last_seen = now_t
 
         # ── [P2] MPPI sustur — visual servo aktif ─────────────────────────
         if not self._mppi_suppressed_for_gate:
@@ -836,17 +838,28 @@ class MissionManager(Node):
         dist  = math.hypot(dx, dy)
         angle = math.atan2(dy, dx)   # [-π, +π]
 
-        # ── [P3] Görsel geçiş tespiti: dx işaret değişimi ────────────────
-        if self._gate_dx_prev > 0.0 and dx < 0.0 and not self._gate_visually_passed:
-            self._gate_visually_passed = True
-            self.get_logger().warn(
-                f'[PARKUR 2] 🚪 GÖRSEL GEÇİŞ: dx {self._gate_dx_prev:.2f}→{dx:.2f} '
-                '(kapı arkada kaldı)'
-            )
-        self._gate_dx_prev = dx
+        # ── [P3] Görsel geçiş tespiti: N ardışık yakın frame (dx≤2m) ─────
+        # Eski yöntem (dx işaret değişimi) çalışmıyordu: gx = dist*cos(angle)
+        # her zaman pozitif olduğu için dx asla negatife dönmüyordu.
+        GATE_CLOSE_THRESH_M = 2.0
+        GATE_CLOSE_FRAMES   = 3
+        if not self._gate_visually_passed:
+            if dist <= GATE_CLOSE_THRESH_M:
+                self._gate_close_count += 1
+                if self._gate_close_count >= GATE_CLOSE_FRAMES:
+                    self._gate_visually_passed = True
+                    self.get_logger().warn(
+                        f'[PARKUR 2] 🚪 GÖRSEL GEÇİŞ: {GATE_CLOSE_FRAMES} ardışık '
+                        f'frame'de kapı ≤{GATE_CLOSE_THRESH_M:.1f}m (dist={dist:.2f}m)'
+                    )
+            else:
+                self._gate_close_count = 0
 
-        # ── [P4] PD kontrol (sallanma önleme) ────────────────────────────
-        d_angle           = (angle - self._gate_angle_prev) / 0.05  # ~20Hz
+        # ── [P4] PD kontrol — gerçek dt kullan (sabit ~20Hz varsayımı yerine) ──
+        real_dt = (now_t - self._gate_last_cb_t) if self._gate_last_cb_t > 0.0 else 0.05
+        real_dt = max(0.01, min(0.5, real_dt))   # 10ms–500ms sınırla
+        self._gate_last_cb_t = now_t
+        d_angle           = (angle - self._gate_angle_prev) / real_dt
         self._gate_angle_prev = angle
         angular_z = float(max(-GATE_ANG_CLAMP,
                               min(GATE_ANG_CLAMP,
@@ -1225,7 +1238,8 @@ class MissionManager(Node):
         self._nav2_goal_succeeded    = False
         self._gate_pass_confirm      = 0
         self._gate_visually_passed   = False
-        self._gate_dx_prev           = float('inf')
+        self._gate_close_count       = 0
+        self._gate_last_cb_t         = 0.0
         self._gate_angle_prev        = 0.0
         self._mppi_suppressed_for_gate = False
         self._wp4_pos                = (self._x, self._y)  # [P8] WP4 çıkış noktası
