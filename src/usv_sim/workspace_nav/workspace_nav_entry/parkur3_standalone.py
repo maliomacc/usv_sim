@@ -44,6 +44,7 @@ Başlatma:
 from __future__ import annotations
 
 import time
+from collections import deque
 
 import rclpy
 from rclpy.node import Node
@@ -91,6 +92,7 @@ class Parkur3Standalone(Node):
         # ── Parametreler ──────────────────────────────────────────────────────
         self.declare_parameter('base_speed',            1.5)
         self.declare_parameter('kp_yaw',                1.2)
+        self.declare_parameter('kd_yaw',                0.3)
         self.declare_parameter('kamikaze_lost_timeout', 3.0)
         self.declare_parameter('init_target_color',     TARGET_RED)
         self.declare_parameter('bypass_guided_check',   False)
@@ -98,10 +100,12 @@ class Parkur3Standalone(Node):
 
         self._v0            = float(self.get_parameter('base_speed').value)
         self._kp            = float(self.get_parameter('kp_yaw').value)
+        self._kd            = float(self.get_parameter('kd_yaw').value)
         self._timeout       = float(self.get_parameter('kamikaze_lost_timeout').value)
         init_color          = int(self.get_parameter('init_target_color').value)
         self._bypass_guided = bool(self.get_parameter('bypass_guided_check').value)
         hz                  = float(self.get_parameter('control_hz').value)
+        self._dt            = 1.0 / hz
 
         if init_color not in TARGET_NAMES:
             self.get_logger().warn(f'init_target_color={init_color} geçersiz → KIRMIZI (0)')
@@ -123,6 +127,18 @@ class Parkur3Standalone(Node):
         self._kamikaze_locked: bool     = False
         self._kamikaze_last_seen: float = time.monotonic()
         self._x = self._y = self._yaw  = 0.0
+
+        # PD kontrol durumu
+        self._err_prev: float   = 0.0   # bir önceki karedeki hata (D terimi için)
+
+        # Faz histerezisi
+        self._in_charge_phase: bool = False   # FAZ-1b'de mi?
+
+        # Son yön hafızası (FAZ-0 arama yönü)
+        self._last_err: float = 0.0   # son görülen hedefin yön hatası
+
+        # Tespit kararlılığı — son 3 cx_norm ortalaması
+        self._cx_buffer: deque = deque(maxlen=3)
 
         # Sensor fusion
         self._fusion_distance: float  = -1.0
@@ -161,7 +177,7 @@ class Parkur3Standalone(Node):
             f'║  base_speed   : {self._v0} m/s{" " * 37}║\n'
             f'║  Faz-1 hız    : {self._P1_LINEAR:.1f} m/s (base×3){"" * 29}║\n'
             f'║  Faz-2 hız    : {self._P2_LINEAR:.1f} m/s (base×5){"" * 29}║\n'
-            f'║  kp_yaw       : {self._kp}{" " * 40}║\n'
+            f'║  kp_yaw       : {self._kp}  kd_yaw: {self._kd}{" " * 29}║\n'
             f'║  lost_timeout : {self._timeout} s{" " * 38}║\n'
             '╠══════════════════════════════════════════════════════════╣\n'
             '║  Gereksinimler: kamikaze_control + MAVROS GUIDED+ARM     ║\n'
@@ -235,75 +251,97 @@ class Parkur3Standalone(Node):
         now  = self.get_clock().now().nanoseconds / 1e9
         lost = now - self._kamikaze_last_seen
 
-        # ── FAZ 0: Hedef kayıp → arama dönüşü ────────────────────────────────
+        # ── FAZ 0: Hedef kayıp → son bilinen yöne arama dönüşü ───────────────
         if self._kamikaze_target is None or lost >= 1.0:
+            # Son yön hafızası: hedef nerede görülmüştü?
+            search_dir    = 1.0 if self._last_err >= 0.0 else -1.0
             cmd.linear.x  = 0.0
-            cmd.angular.z = self._SEARCH_ANG_Z
+            cmd.angular.z = self._SEARCH_ANG_Z * search_dir
             self._cmd_pub.publish(cmd)
+            # FAZ-0'da D terimi birikmemesi için sıfırla
+            self._err_prev       = 0.0
+            self._in_charge_phase = False
+            self._cx_buffer.clear()
             self.get_logger().warn(
-                f'[KAMIKAZE] FAZ-0 ARAMA — {lost:.1f}s hedef yok, dönüyorum…',
+                f'[KAMIKAZE] FAZ-0 ARAMA — {lost:.1f}s hedef yok, '
+                f'{"sola" if search_dir > 0 else "sağa"} dönüyorum…',
                 throttle_duration_sec=1.5,
             )
             return
 
-        # cx_norm [0,1]: 0.5=merkez; err>0 → hedef sağda → sola dön
-        err = 0.5 - self._kamikaze_target.x
+        # ── [5] Tespit kararlılığı: son 3 cx_norm ortalaması ─────────────────
+        cx_smooth = (sum(self._cx_buffer) / len(self._cx_buffer)
+                     if self._cx_buffer else self._kamikaze_target.x)
+        err = 0.5 - cx_smooth
+        self._last_err = err   # [4] son yön güncelle
 
-        # Fusion mesafesi
-        now_f  = self.get_clock().now().nanoseconds / 1e9
-        dist   = self._fusion_distance if (self._fusion_last_seen > 0.0 and
-                                           now_f - self._fusion_last_seen < 1.0) else -1.0
+        # ── [1] PD terimleri ─────────────────────────────────────────────────
+        d_err          = (err - self._err_prev) / self._dt
+        self._err_prev = err
+
+        # ── Fusion mesafesi ───────────────────────────────────────────────────
+        now_f   = self.get_clock().now().nanoseconds / 1e9
+        dist    = self._fusion_distance if (self._fusion_last_seen > 0.0 and
+                                            now_f - self._fusion_last_seen < 1.0) else -1.0
         src_str = {0.0: 'LiDAR', 1.0: 'ZED', -1.0: 'açı'}.get(self._fusion_source, '?')
 
-        # Yakınlık auto-kilit
+        # ── Yakınlık auto-kilit ───────────────────────────────────────────────
         if dist > 0.0 and dist <= 1.5 and not self._kamikaze_locked:
             self._kamikaze_locked = True
             self.get_logger().warn(f'[KİLİT] AUTO-KİLİT! mesafe={dist:.2f}m [{src_str}]')
 
         if self._kamikaze_locked:
             # ── FAZ 2: Kilit onaylandı — maksimum güç ────────────────────────
+            wz_raw        = (self._kp * err + self._kd * d_err) * self._P2_ANG_MULT
             cmd.linear.x  = float(self._P2_LINEAR)
-            cmd.angular.z = float(max(-self._P2_ANG_CLAMP,
-                                      min(self._P2_ANG_CLAMP,
-                                          self._kp * err * self._P2_ANG_MULT)))
+            cmd.angular.z = float(max(-self._P2_ANG_CLAMP, min(self._P2_ANG_CLAMP, wz_raw)))
             self._cmd_pub.publish(cmd)
             dist_str = f'{dist:.1f}m [{src_str}]' if dist > 0.0 else '?'
             self.get_logger().warn(
-                f'[KAMIKAZE] FAZ-2 KILL! err={err:+.3f} v={cmd.linear.x:.1f}m/s '
-                f'ω={cmd.angular.z:+.2f} dist={dist_str}',
+                f'[KAMIKAZE] FAZ-2 KILL! err={err:+.3f} d_err={d_err:+.3f} '
+                f'v={cmd.linear.x:.1f}m/s ω={cmd.angular.z:+.2f} dist={dist_str}',
                 throttle_duration_sec=0.3,
             )
         else:
-            # ── FAZ 1: Hedef görüldü ──────────────────────────────────────────
             abs_err = abs(err)
 
-            # Mesafe bazlı hız çarpanı
-            if dist > 0.0:
-                dist_mult = 1.8 if dist < 3.0 else (1.3 if dist < 6.0 else 1.0)
-            else:
-                dist_mult = 1.0
+            # ── [2] Faz histerezisi (ping-pong önleme) ────────────────────────
+            if abs_err <= 0.10:
+                self._in_charge_phase = True
+            elif abs_err > 0.20:
+                self._in_charge_phase = False
+            # 0.10–0.20 arasında: mevcut faz korunur
 
-            if abs_err > 0.15:
+            if not self._in_charge_phase:
+                # ── FAZ 1a: Hizalanma — tank dönüşü, yavaş ileri ─────────────
+                wz_raw        = (self._kp * err + self._kd * d_err) * 25.0
                 cmd.linear.x  = 0.2
                 cmd.angular.z = float(max(-self._P1_ANG_CLAMP,
-                                          min(self._P1_ANG_CLAMP,
-                                              self._kp * err * 25.0)))
+                                          min(self._P1_ANG_CLAMP, wz_raw)))
                 self._cmd_pub.publish(cmd)
                 self.get_logger().info(
-                    f'[KAMIKAZE] FAZ-1 HİZALANIYOR err={err:+.3f} ω={cmd.angular.z:+.2f}',
+                    f'[KAMIKAZE] FAZ-1a HİZALANIYOR err={err:+.3f} '
+                    f'd_err={d_err:+.3f} ω={cmd.angular.z:+.2f}',
                     throttle_duration_sec=0.3,
                 )
             else:
-                adaptive_speed = self._P1_LINEAR * dist_mult * (1.0 - abs_err * 3.0)
-                cmd.linear.x  = float(max(1.5, adaptive_speed))
+                # ── FAZ 1b: Şarj — [3] sürekli mesafe bazlı hız ──────────────
+                if dist > 0.0:
+                    d_clamped = max(2.0, min(10.0, dist))
+                    t_dist    = (10.0 - d_clamped) / 8.0          # 0.0@10m → 1.0@2m
+                    speed     = self._v0 * (2.0 + 3.0 * t_dist)   # v0×2 → v0×5
+                else:
+                    speed = self._P1_LINEAR
+
+                wz_raw        = (self._kp * err + self._kd * d_err) * self._P1_ANG_MULT
+                cmd.linear.x  = float(max(self._v0, speed * (1.0 - abs_err * 2.0)))
                 cmd.angular.z = float(max(-self._P1_ANG_CLAMP,
-                                          min(self._P1_ANG_CLAMP,
-                                              self._kp * err * self._P1_ANG_MULT)))
+                                          min(self._P1_ANG_CLAMP, wz_raw)))
                 self._cmd_pub.publish(cmd)
                 dist_str = f'{dist:.1f}m [{src_str}]' if dist > 0.0 else '?'
                 self.get_logger().info(
-                    f'[KAMIKAZE] FAZ-1 CHARGE! err={err:+.3f} v={cmd.linear.x:.2f} '
-                    f'ω={cmd.angular.z:+.2f} dist={dist_str}',
+                    f'[KAMIKAZE] FAZ-1b CHARGE! err={err:+.3f} d_err={d_err:+.3f} '
+                    f'v={cmd.linear.x:.2f} ω={cmd.angular.z:+.2f} dist={dist_str}',
                     throttle_duration_sec=0.3,
                 )
 
@@ -320,8 +358,9 @@ class Parkur3Standalone(Node):
             )
 
     def _target_cb(self, msg: PointStamped):
-        self._kamikaze_target    = msg.point   # Point olarak sakla
+        self._kamikaze_target    = msg.point
         self._kamikaze_last_seen = self.get_clock().now().nanoseconds / 1e9
+        self._cx_buffer.append(msg.point.x)   # [5] tespit kararlılığı tamponu
 
     def _fusion_cb(self, msg: PointStamped):
         self._fusion_distance  = msg.point.x
