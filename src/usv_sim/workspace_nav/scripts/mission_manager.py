@@ -669,11 +669,9 @@ class MissionManager(Node):
         self._kmz_last_err   = 0.0
         self._kmz_cx_buffer: deque = deque(maxlen=3)
 
-        # ── P2/P3/P4/P5: Parkur 2 kontrol iyileştirmeleri ────────────────────
+        # ── P2/P4/P5: Parkur 2 kontrol iyileştirmeleri ───────────────────────
         self._gate_angle_prev        = 0.0    # PD için önceki açı
-        self._gate_close_count: int  = 0      # görsel geçiş: N ardışık yakın frame
-        self._gate_last_cb_t: float  = 0.0    # PD dt için gerçek zaman damgası
-        self._gate_visually_passed   = False  # görsel kapı geçişi bayrağı
+        self._gate_last_cb_t: float  = 0.0    # PD gerçek dt için zaman damgası
         self._mppi_suppressed_for_gate = False  # cmd_vel yarış önleme
 
         # ── P8: WP4 pozisyonu (dinamik settle) ───────────────────────────────
@@ -837,23 +835,6 @@ class MissionManager(Node):
         dy    = msg.pose.position.y   # yanal (pozitif = solda)
         dist  = math.hypot(dx, dy)
         angle = math.atan2(dy, dx)   # [-π, +π]
-
-        # ── [P3] Görsel geçiş tespiti: N ardışık yakın frame (dx≤2m) ─────
-        # Eski yöntem (dx işaret değişimi) çalışmıyordu: gx = dist*cos(angle)
-        # her zaman pozitif olduğu için dx asla negatife dönmüyordu.
-        GATE_CLOSE_THRESH_M = 2.0
-        GATE_CLOSE_FRAMES   = 3
-        if not self._gate_visually_passed:
-            if dist <= GATE_CLOSE_THRESH_M:
-                self._gate_close_count += 1
-                if self._gate_close_count >= GATE_CLOSE_FRAMES:
-                    self._gate_visually_passed = True
-                    self.get_logger().warn(
-                        f'[PARKUR 2] 🚪 GÖRSEL GEÇİŞ: {GATE_CLOSE_FRAMES} ardışık '
-                        f'frame'de kapı ≤{GATE_CLOSE_THRESH_M:.1f}m (dist={dist:.2f}m)'
-                    )
-            else:
-                self._gate_close_count = 0
 
         # ── [P4] PD kontrol — gerçek dt kullan (sabit ~20Hz varsayımı yerine) ──
         real_dt = (now_t - self._gate_last_cb_t) if self._gate_last_cb_t > 0.0 else 0.05
@@ -1237,8 +1218,6 @@ class MissionManager(Node):
         self._kamikaze_locked_flag   = False
         self._nav2_goal_succeeded    = False
         self._gate_pass_confirm      = 0
-        self._gate_visually_passed   = False
-        self._gate_close_count       = 0
         self._gate_last_cb_t         = 0.0
         self._gate_angle_prev        = 0.0
         self._mppi_suppressed_for_gate = False
@@ -1332,21 +1311,11 @@ class MissionManager(Node):
             throttle_duration_sec=2.0,
         )
 
-        # ╔══════════════════════════════════════════════════════════════════╗
-        # ║  GEÇİŞ KOŞULU (P3): GPS mesafesi VEYA görsel kapı geçişi       ║
-        # ╚══════════════════════════════════════════════════════════════════╝
+        # ── GEÇİŞ KOŞULU (KURAL 3): YALNIZCA GPS mesafesi ──────────────────
         if dist_to_wp5 <= 3.0:
             self.get_logger().warn(
                 f'[PARKUR 2] ✅ GPS GEÇİŞ — WP5 mesafesi {dist_to_wp5:.2f}m ≤ 3.0m '
                 '→ PARKUR 3 KAMİKAZE'
-            )
-            self._enter_parkur3_kamikaze()
-            return
-
-        if self._gate_visually_passed:
-            self.get_logger().warn(
-                f'[PARKUR 2] ✅ GÖRSEL GEÇİŞ — Kapı dx işareti döndü, '
-                f'WP5 mesafesi={dist_to_wp5:.1f}m → PARKUR 3 KAMİKAZE'
             )
             self._enter_parkur3_kamikaze()
             return
