@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import math
 import time
+from collections import deque
 from enum import Enum, auto
 from pathlib import Path
 from typing import Optional, List, Dict
@@ -61,10 +62,12 @@ PID_VX_LPF     = 0.10
 # Nav2 MPPI bu aşamada yalnızca costmap/obstacle için pasif çalışır.
 # Direksiyon doğrudan /gate_center açısından hesaplanan PID ile yapılır.
 GATE_KP_YAW    = 1.0
+GATE_KD_YAW    = 0.15  # Visual servo D terimi (sallanma önleme)
 GATE_BASE_SPD  = 0.7   # m/s
 GATE_ANG_CLAMP = 1.5   # rad/s max
 GATE_PASS_DIST = 1.5   # m — bu mesafede sayımı başlat
 GATE_TIMEOUT   = 8.0   # s
+KMZ_KD_YAW     = 0.3   # Kamikaze yaw PD D terimi
 
 # Erken geçiş korunması:
 # GATE_PASS_DIST altına ardı ardına bu kadar frame gelirse geçildi say.
@@ -310,8 +313,8 @@ class GateFusionHandler:
     MAX_GATE_UPDATE_DIST = 25.0
 
     GATE_BUFFER_SIZE       = 3    # Sniper-lock: only 3 samples needed
-    CONSENSUS_STD_THRESHOLD = 1.0  # Relaxed variance — far detections are noisy
-    MIN_SAMPLES_FALLBACK   = 1    # Lock immediately on first valid detection
+    CONSENSUS_STD_THRESHOLD = 0.5  # Sıkılaştırıldı: daha az gürültüye tolerans
+    MIN_SAMPLES_FALLBACK   = 3    # Erken kilit önleme: en az 3 örnek
     FALLBACK_TRIGGER_DIST  = 5.0
 
     LOCK_RELEASE_DIST  = 2.0
@@ -659,6 +662,22 @@ class MissionManager(Node):
         self._kamikaze_locked_flag: bool       = False
         self._gate_fusion: Optional['GateFusionHandler'] = None
 
+        # ── P1: Kamikaze PD + histerezis + yön hafızası + tespit kararlılığı ──
+        self._kmz_dt         = 1.0 / float(hz)
+        self._kmz_err_prev   = 0.0
+        self._kmz_in_charge  = False
+        self._kmz_last_err   = 0.0
+        self._kmz_cx_buffer: deque = deque(maxlen=3)
+
+        # ── P2/P3/P4/P5: Parkur 2 kontrol iyileştirmeleri ────────────────────
+        self._gate_angle_prev        = 0.0    # PD için önceki açı
+        self._gate_dx_prev           = float('inf')   # geçiş tespiti
+        self._gate_visually_passed   = False  # görsel kapı geçişi bayrağı
+        self._mppi_suppressed_for_gate = False  # cmd_vel yarış önleme
+
+        # ── P8: WP4 pozisyonu (dinamik settle) ───────────────────────────────
+        self._wp4_pos: Optional[tuple] = None
+
         # Sensor fusion: /fusion/target (sensor_fusion_node C++ çıkışı)
         self._fusion_distance: float = -1.0   # [m], -1.0 = bilinmiyor
         self._fusion_yaw: float      = 0.0    # [rad]
@@ -796,23 +815,48 @@ class MissionManager(Node):
         if self._stage != MissionStage.PARKUR_2_MPPI:
             return
 
-        # ── Son görülme zamanını güncelle ───────────────────────────────────
+        # ── Son görülme zamanını güncelle ─────────────────────────────────
         import time as _time
         self._gate_last_seen = _time.monotonic()
 
-        # ── Kapı açısını base_link çerçevesinden hesapla ─────────────────
-        dx = msg.pose.position.x   # ileri (pozitif = önde)
-        dy = msg.pose.position.y   # yanal (pozitif = solda)
-        dist  = math.hypot(dx, dy)
-        angle = math.atan2(dy, dx) # [-π, +π] — negatif = sağa dön
+        # ── [P2] MPPI sustur — visual servo aktif ─────────────────────────
+        if not self._mppi_suppressed_for_gate:
+            self._mppi._apply(
+                [('FollowPath.vx_max', 0.0), ('FollowPath.wz_max', 0.0)],
+                mode_name='GateServoSuppress',
+            )
+            self._mppi_suppressed_for_gate = True
+            self.get_logger().warn(
+                '[PARKUR 2] Sarı duba görüldü → MPPI susturuldu, visual servo TEK kaynak'
+            )
 
-        # ── Oransal kontrol (P-controller) ───────────────────────────────
-        # Açı hatası [-π, +π]; negatif = hedef sağda → sağa dön (angular.z < 0)
+        # ── Kapı açısını base_link çerçevesinden hesapla ─────────────────
+        dx    = msg.pose.position.x   # ileri (pozitif = önde)
+        dy    = msg.pose.position.y   # yanal (pozitif = solda)
+        dist  = math.hypot(dx, dy)
+        angle = math.atan2(dy, dx)   # [-π, +π]
+
+        # ── [P3] Görsel geçiş tespiti: dx işaret değişimi ────────────────
+        if self._gate_dx_prev > 0.0 and dx < 0.0 and not self._gate_visually_passed:
+            self._gate_visually_passed = True
+            self.get_logger().warn(
+                f'[PARKUR 2] 🚪 GÖRSEL GEÇİŞ: dx {self._gate_dx_prev:.2f}→{dx:.2f} '
+                '(kapı arkada kaldı)'
+            )
+        self._gate_dx_prev = dx
+
+        # ── [P4] PD kontrol (sallanma önleme) ────────────────────────────
+        d_angle           = (angle - self._gate_angle_prev) / 0.05  # ~20Hz
+        self._gate_angle_prev = angle
         angular_z = float(max(-GATE_ANG_CLAMP,
-                              min(GATE_ANG_CLAMP, -GATE_KP_YAW * angle)))
-        # Açı büyüdükçe hız azalır (hedef hizalanınca tam gaz)
-        linear_x  = float(max(0.2,
-                              GATE_BASE_SPD * (1.0 - abs(angle) / math.pi * 1.5)))
+                              min(GATE_ANG_CLAMP,
+                                  -(GATE_KP_YAW * angle + GATE_KD_YAW * d_angle))))
+
+        # ── [P5] Hız-mesafe profili (kapıya yaklaşırken yavaşla) ─────────
+        dist_factor = min(1.0, dist / 5.0)
+        linear_x    = float(max(0.2,
+                                GATE_BASE_SPD * dist_factor
+                                * (1.0 - abs(angle) / math.pi * 1.5)))
 
         cmd = Twist()
         cmd.linear.x  = linear_x
@@ -821,7 +865,7 @@ class MissionManager(Node):
 
         self.get_logger().info(
             f'[PARKUR 2] 🎯 Kapı servo | dist={dist:.1f}m '
-            f'açı={math.degrees(angle):.1f}° '
+            f'açı={math.degrees(angle):.1f}° d_açı={math.degrees(d_angle):.1f}°/s '
             f'v={linear_x:.2f}m/s ω={angular_z:+.2f}rad/s',
             throttle_duration_sec=1.0,
         )
@@ -847,17 +891,31 @@ class MissionManager(Node):
                         throttle_duration_sec=2.0,
                     )
                 else:
-                   # self._s2._kmz_wp['x'] = new_x
-                   # self._s2._kmz_wp['y'] = new_y
-                    self.get_logger().info(
-                        f'[GateFusion] Görsel kilit: ({new_x:.1f},{new_y:.1f}) '
-                        f'dist={dist_to_new_wp5:.1f}m '
-                        '(Sadece loglama, WP5 DEĞİŞTİRİLMEDİ!)'
-                )
+                    # [P6] GateFusion WP5 güncellemesi — yalnızca hâlâ uzaktayken
+                    dist_to_wp5_now = math.hypot(
+                        self._s2.kmz_wp['x'] - self._x,
+                        self._s2.kmz_wp['y'] - self._y,
+                    )
+                    if dist_to_wp5_now > 5.0:
+                        self._s2._kmz_wp['x'] = new_x
+                        self._s2._kmz_wp['y'] = new_y
+                        self.get_logger().warn(
+                            f'[GateFusion] ✓ WP5 güncellendi: '
+                            f'({new_x:.1f},{new_y:.1f}) '
+                            f'dist_gate={dist_to_new_wp5:.1f}m '
+                            f'dist_wp5={dist_to_wp5_now:.1f}m'
+                        )
+                    else:
+                        self.get_logger().info(
+                            f'[GateFusion] WP5 güncelleme atlandı: '
+                            f'çok yakın dist={dist_to_wp5_now:.1f}m ≤ 5.0m',
+                            throttle_duration_sec=2.0,
+                        )
 
     def _kamikaze_target_cb(self, msg: PointStamped):
-        self._kamikaze_target = msg.point   # Point olarak sakla — downstream kod değişmez
+        self._kamikaze_target    = msg.point
         self._kamikaze_last_seen = self.get_clock().now().nanoseconds / 1e9
+        self._kmz_cx_buffer.append(msg.point.x)   # [P1] tespit kararlılığı
 
     def _fusion_target_cb(self, msg: PointStamped):
         self._fusion_distance  = msg.point.x   # [m], -1.0 = bilinmiyor
@@ -1163,9 +1221,14 @@ class MissionManager(Node):
             f'Nav2 obstacle avoidance active'
         )
 
-        self._kamikaze_locked_flag = False
-        self._nav2_goal_succeeded  = False
-        self._gate_pass_confirm    = 0    # geçiş onay sayacı sıfırla
+        self._kamikaze_locked_flag   = False
+        self._nav2_goal_succeeded    = False
+        self._gate_pass_confirm      = 0
+        self._gate_visually_passed   = False
+        self._gate_dx_prev           = float('inf')
+        self._gate_angle_prev        = 0.0
+        self._mppi_suppressed_for_gate = False
+        self._wp4_pos                = (self._x, self._y)  # [P8] WP4 çıkış noktası
 
         self._parkur2_entry_time   = self.get_clock().now().nanoseconds / 1e9
         self._parkur2_settle_sec   = 5.0
@@ -1223,15 +1286,20 @@ class MissionManager(Node):
           yalnızca GPS mesafe ölçümünden gelir.
         """
 
-        # ── Settle koruması: stage girilince ilk N saniye tetikleyici pasif ──
+        # ── [P8] Settle koruması: zaman VEYA WP4'ten yeterli mesafe ─────────────
         now_sec   = self.get_clock().now().nanoseconds / 1e9
         entry_t   = getattr(self, '_parkur2_entry_time', now_sec)
         settle    = getattr(self, '_parkur2_settle_sec', 5.0)
         elapsed   = now_sec - entry_t
 
-        if elapsed < settle:
+        dist_from_wp4 = (math.hypot(self._x - self._wp4_pos[0],
+                                     self._y - self._wp4_pos[1])
+                         if self._wp4_pos else 999.0)
+
+        if elapsed < settle and dist_from_wp4 < 3.0:
             self.get_logger().info(
-                f'[PARKUR 2] ⏳ Yerleşme süresi: {elapsed:.1f}s / {settle:.0f}s',
+                f'[PARKUR 2] ⏳ Yerleşme: {elapsed:.1f}s / {settle:.0f}s, '
+                f'WP4\'ten {dist_from_wp4:.1f}m (≥3.0m bekleniyor)',
                 throttle_duration_sec=1.5,
             )
             return
@@ -1251,13 +1319,20 @@ class MissionManager(Node):
         )
 
         # ╔══════════════════════════════════════════════════════════════════╗
-        # ║  TEK GEÇİŞ KOŞULU                                              ║
-        # ║  dist_to_wp5 <= 3.0 m olmadan Kamikaze modu KESİNLİKLE girmez. ║
+        # ║  GEÇİŞ KOŞULU (P3): GPS mesafesi VEYA görsel kapı geçişi       ║
         # ╚══════════════════════════════════════════════════════════════════╝
         if dist_to_wp5 <= 3.0:
             self.get_logger().warn(
-                f'[PARKUR 2] ✅ KAPI GEÇİLDİ — WP5 mesafesi {dist_to_wp5:.2f}m ≤ 3.0m '
+                f'[PARKUR 2] ✅ GPS GEÇİŞ — WP5 mesafesi {dist_to_wp5:.2f}m ≤ 3.0m '
                 '→ PARKUR 3 KAMİKAZE'
+            )
+            self._enter_parkur3_kamikaze()
+            return
+
+        if self._gate_visually_passed:
+            self.get_logger().warn(
+                f'[PARKUR 2] ✅ GÖRSEL GEÇİŞ — Kapı dx işareti döndü, '
+                f'WP5 mesafesi={dist_to_wp5:.1f}m → PARKUR 3 KAMİKAZE'
             )
             self._enter_parkur3_kamikaze()
             return
@@ -1267,23 +1342,25 @@ class MissionManager(Node):
             import time as _time
             self._gate_fusion.check_release(self._x, self._y, _time.monotonic())
 
-        # ── Sarı buba yoksa WP5'e GPS Fallback Servo ─────────────────────────
-        # _gate_center_cb yalnızca /gate_center geldiğinde cmd_vel yayınlar.
-        # Sarı duba görülemediği durumlarda (dalga, uzaklık, sis) tekne
-        # hareketsiz kalabilir. Burada _gate_last_seen zaman damgasına bakarak
-        # kapı görülmüyorsa doğrudan WP5 GPS başlığına yönlendiriyoruz.
+        # ── [P2] MPPI geri yükle — sarı duba görünmüyorsa ───────────────────────
         import time as _tnow
-        _gate_timeout_sec = 2.5   # bu kadar süre gate görülmemişse fallback aç
-        _gate_last         = getattr(self, '_gate_last_seen', 0.0)
-        _gate_silent       = (_tnow.monotonic() - _gate_last) > _gate_timeout_sec
+        _gate_timeout_sec = 2.5
+        _gate_last        = getattr(self, '_gate_last_seen', 0.0)
+        _gate_silent      = (_tnow.monotonic() - _gate_last) > _gate_timeout_sec
 
-        if _gate_silent and self._s2 is not None:
-            # WP5'e olan başlık açısı (base_link): yaw-dan fark al
-            wp5_dx  = self._s2.kmz_wp['x'] - self._x
-            wp5_dy  = self._s2.kmz_wp['y'] - self._y
-            wp5_head = math.atan2(wp5_dy, wp5_dx)      # global yön (rad)
-            err_yaw  = wp5_head - self._yaw             # teknenin mevcut yaw'ından fark
-            # [-π, +π] normalleştirme
+        if _gate_silent and self._mppi_suppressed_for_gate:
+            self._mppi.apply_slalom_mode()
+            self._mppi_suppressed_for_gate = False
+            self.get_logger().warn(
+                '[PARKUR 2] Sarı duba yok → MPPI Slalom geri yüklendi'
+            )
+
+        # ── [P7] GPS Fallback — yalnızca Nav2 aktif değilse ─────────────────
+        if _gate_silent and self._s2 is not None and self._nav2_goal_handle is None:
+            wp5_dx   = self._s2.kmz_wp['x'] - self._x
+            wp5_dy   = self._s2.kmz_wp['y'] - self._y
+            wp5_head = math.atan2(wp5_dy, wp5_dx)
+            err_yaw  = wp5_head - self._yaw
             while err_yaw >  math.pi: err_yaw -= 2 * math.pi
             while err_yaw < -math.pi: err_yaw += 2 * math.pi
 
@@ -1297,8 +1374,9 @@ class MissionManager(Node):
             self._cmd_pub.publish(_cmd)
 
             self.get_logger().info(
-                f'[PARKUR 2] 🧭 GPS FALLBACK — Sarı duba yok ({_tnow.monotonic()-_gate_last:.1f}s) '
-                f'→ WP5 yönü err={math.degrees(err_yaw):.1f}° '
+                f'[PARKUR 2] 🧭 GPS FALLBACK (Nav2 pasif) — '
+                f'Sarı duba yok ({_tnow.monotonic()-_gate_last:.1f}s) '
+                f'→ WP5 err={math.degrees(err_yaw):.1f}° '
                 f'v={linear_x:.2f} ω={angular_z:+.2f}',
                 throttle_duration_sec=1.5,
             )
@@ -1379,6 +1457,10 @@ class MissionManager(Node):
         # Tüm faz durumlarını sıfırla
         self._kmz_aligned          = False
         self._kamikaze_locked_flag = False
+        self._kmz_err_prev         = 0.0
+        self._kmz_in_charge        = False
+        self._kmz_last_err         = 0.0
+        self._kmz_cx_buffer.clear()
 
         self.get_logger().warn(
             '[PARKUR 3] 🚀 KAMIKAZE MODU AKTİF!\n'
@@ -1389,105 +1471,111 @@ class MissionManager(Node):
         )
 
     def _run_parkur3_kamikaze(self):
-        # ── Sabitler ──────────────────────────────────────────────────────────
-        _SEARCH_ANG_Z   = 1.5                      # Faz-0: hedef kayıpsa dönüş hızı
-        _P1_LINEAR      = self._base_speed * 3.0   # Faz-1: ileri hız (kilit öncesi)
-        _P1_ANG_MULT    = 8.0                       # Faz-1: yaw çarpanı
-        _P1_ANG_CLAMP   = 4.0                       # Faz-1: max angular.z
-        _P2_LINEAR      = self._base_speed * 5.0   # Faz-2: tam saldırı hızı
-        _P2_ANG_MULT    = 15.0                      # Faz-2: yaw çarpanı
-        _P2_ANG_CLAMP   = 5.0                       # Faz-2: max angular.z
+        _SEARCH_ANG_Z = 1.5
+        _P1_LINEAR    = self._base_speed * 3.0
+        _P1_ANG_MULT  = 8.0
+        _P1_ANG_CLAMP = 4.0
+        _P2_LINEAR    = self._base_speed * 5.0
+        _P2_ANG_MULT  = 15.0
+        _P2_ANG_CLAMP = 5.0
 
         cmd = Twist()
         now       = self.get_clock().now().nanoseconds / 1e9
         lost_time = now - self._kamikaze_last_seen
 
-        # ── FAZ 0: Hedef kayıp — arama dönüşü ────────────────────────────────
+        # ── [P1-4] FAZ 0: Hedef kayıp → son bilinen yöne arama ───────────────
         if self._kamikaze_target is None or lost_time >= 1.0:
+            search_dir    = 1.0 if self._kmz_last_err >= 0.0 else -1.0
             cmd.linear.x  = 0.0
-            cmd.angular.z = _SEARCH_ANG_Z
+            cmd.angular.z = _SEARCH_ANG_Z * search_dir
+            self._kmz_err_prev  = 0.0
+            self._kmz_in_charge = False
+            self._kmz_cx_buffer.clear()
             self.get_logger().warn(
-                f'[KAMIKAZE] ⚠ HEDEF KAYIP! ({lost_time:.1f}s) Etraf aranıyor...',
+                f'[KAMIKAZE] ⚠ HEDEF KAYIP! ({lost_time:.1f}s) '
+                f'{"sola" if search_dir > 0 else "sağa"} aranıyor...',
                 throttle_duration_sec=1.5,
             )
             self._cmd_pub.publish(cmd)
             return
 
-        err = 0.5 - self._kamikaze_target.x   # pozitif = hedef sağda, sola dön
+        # ── [P1-5] Tespit kararlılığı: son 3 cx_norm ortalaması ──────────────
+        cx_smooth = (sum(self._kmz_cx_buffer) / len(self._kmz_cx_buffer)
+                     if self._kmz_cx_buffer else self._kamikaze_target.x)
+        err = 0.5 - cx_smooth
+        self._kmz_last_err = err
 
-        # ── Fusion mesafesi ve kaynak bilgisi ──────────────────────────────────
-        dist   = self._fusion_distance   # [m], -1.0 = bilinmiyor
-        src_id = self._fusion_source     # 0=LiDAR, 1=ZED, -1=açı-yalnız
+        # ── [P1-1] PD terimleri ───────────────────────────────────────────────
+        d_err              = (err - self._kmz_err_prev) / self._kmz_dt
+        self._kmz_err_prev = err
+
+        # ── Fusion mesafesi ───────────────────────────────────────────────────
+        dist     = self._fusion_distance
+        src_id   = self._fusion_source
         fusion_stale = (
             self._fusion_last_seen == 0.0 or
             (now - self._fusion_last_seen) > 1.0
         )
         if fusion_stale:
             dist = -1.0
-
         src_str = {0.0: 'LiDAR', 1.0: 'ZED', -1.0: 'açı-yalnız'}.get(src_id, '?')
 
-        # ── Yakınlık auto-kilit: YOLO sinyali gelmese de mesafe yeterliyse kilitle
+        # ── Yakınlık auto-kilit ───────────────────────────────────────────────
         if dist > 0.0 and dist <= 1.5 and not self._kamikaze_locked_flag:
             self._kamikaze_locked_flag = True
             self.get_logger().warn(
-                f'[KAMIKAZE] 🔒 YAKИНLIK AUTO-KİLİT! '
-                f'Mesafe={dist:.2f}m (< 1.5m) [{src_str}]'
+                f'[KAMIKAZE] 🔒 AUTO-KİLİT! Mesafe={dist:.2f}m [{src_str}]'
             )
 
         if self._kamikaze_locked_flag:
-            # ── FAZ 2: Kilit onaylandı — maksimum güç, tam saldırı ────────────
+            # ── FAZ 2: Kilit onaylandı — maksimum güç ────────────────────────
+            wz_raw        = (self._kp_yaw * err + KMZ_KD_YAW * d_err) * _P2_ANG_MULT
             cmd.linear.x  = float(_P2_LINEAR)
-            cmd.angular.z = float(max(-_P2_ANG_CLAMP,
-                                      min(_P2_ANG_CLAMP,
-                                          self._kp_yaw * err * _P2_ANG_MULT)))
+            cmd.angular.z = float(max(-_P2_ANG_CLAMP, min(_P2_ANG_CLAMP, wz_raw)))
             dist_str = f'{dist:.1f}m [{src_str}]' if dist > 0.0 else 'bilinmiyor'
             self.get_logger().warn(
-                f'[KAMIKAZE] 💥 KILL PHASE! Sapma={err:+.3f} | '
-                f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s | '
-                f'Mesafe={dist_str}',
+                f'[KAMIKAZE] 💥 KILL! err={err:+.3f} d={d_err:+.2f} '
+                f'v={cmd.linear.x:.1f} ω={cmd.angular.z:+.2f} dist={dist_str}',
                 throttle_duration_sec=0.3,
             )
         else:
-            # ── FAZ 1: HEDEF GÖRÜLDÜ (YAKLAŞMA VE HİZALANMA) ────────────────
             abs_err = abs(err)
 
-            # Mesafe bazlı hız çarpanı: yakın = daha hızlı (çarpma enerjisi)
-            if dist > 0.0:
-                if dist > 6.0:
-                    dist_speed_mult = 1.0    # uzak: normal hız
-                elif dist > 3.0:
-                    dist_speed_mult = 1.3    # orta: biraz hızlan
-                else:
-                    dist_speed_mult = 1.8    # yakın: sprint, maksimum etki
-            else:
-                dist_speed_mult = 1.0        # bilinmiyor: varsayılan
+            # ── [P1-2] Faz histerezisi ────────────────────────────────────────
+            if abs_err <= 0.10:
+                self._kmz_in_charge = True
+            elif abs_err > 0.20:
+                self._kmz_in_charge = False
 
-            if abs_err > 0.15:
-                # SADECE DÖNÜŞ (Tank Dönüşü) - İleri gitmeyi kes, rotayı düzelt!
+            if not self._kmz_in_charge:
+                # ── FAZ 1a: Hizalanma ─────────────────────────────────────────
+                wz_raw        = (self._kp_yaw * err + KMZ_KD_YAW * d_err) * 25.0
                 cmd.linear.x  = 0.2
                 cmd.angular.z = float(max(-_P1_ANG_CLAMP,
-                                          min(_P1_ANG_CLAMP,
-                                              self._kp_yaw * err * 25.0)))
-                dist_str = f'{dist:.1f}m [{src_str}]' if dist > 0.0 else 'bilinmiyor'
+                                          min(_P1_ANG_CLAMP, wz_raw)))
                 self.get_logger().info(
-                    f'[KAMIKAZE] 🔄 HİZALANIYOR! Sapma={err:+.3f} | '
-                    f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s | '
-                    f'Mesafe={dist_str}',
+                    f'[KAMIKAZE] 🔄 HİZALANIYOR err={err:+.3f} d={d_err:+.2f} '
+                    f'ω={cmd.angular.z:+.2f}',
                     throttle_duration_sec=0.3,
                 )
             else:
-                # Hedef nişangaha oturdu → ÜZERİNE ÇULLAN!
-                adaptive_speed = _P1_LINEAR * dist_speed_mult * (1.0 - abs_err * 3.0)
-                cmd.linear.x  = float(max(1.5, adaptive_speed))
+                # ── FAZ 1b: Şarj — [P1-3] sürekli mesafe bazlı hız ───────────
+                if dist > 0.0:
+                    d_clamped = max(2.0, min(10.0, dist))
+                    t_dist    = (10.0 - d_clamped) / 8.0
+                    speed     = self._base_speed * (2.0 + 3.0 * t_dist)
+                else:
+                    speed = _P1_LINEAR
+
+                wz_raw        = (self._kp_yaw * err + KMZ_KD_YAW * d_err) * _P1_ANG_MULT
+                cmd.linear.x  = float(max(self._base_speed,
+                                          speed * (1.0 - abs_err * 2.0)))
                 cmd.angular.z = float(max(-_P1_ANG_CLAMP,
-                                          min(_P1_ANG_CLAMP,
-                                              self._kp_yaw * err * _P1_ANG_MULT)))
+                                          min(_P1_ANG_CLAMP, wz_raw)))
                 dist_str = f'{dist:.1f}m [{src_str}]' if dist > 0.0 else 'bilinmiyor'
                 self.get_logger().info(
-                    f'[KAMIKAZE] 🚀 CHARGE! Sapma={err:+.3f} | '
-                    f'Hız={cmd.linear.x:.2f}m/s | Dönüş={cmd.angular.z:+.2f}rad/s | '
-                    f'Mesafe={dist_str}',
+                    f'[KAMIKAZE] 🚀 CHARGE! err={err:+.3f} d={d_err:+.2f} '
+                    f'v={cmd.linear.x:.2f} ω={cmd.angular.z:+.2f} dist={dist_str}',
                     throttle_duration_sec=0.3,
                 )
 
