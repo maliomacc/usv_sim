@@ -1159,9 +1159,8 @@ class MissionManager(Node):
         import time as _t
         self._gate_last_seen       = _t.monotonic()  # servo timeout sayacı
         self.get_logger().warn(
-            '[PARKUR 2] ⚠ kamikaze_locked + nav2_goal_succeeded sıfırlandı '
-            '(Parkur 1 backlog temizlendi). '
-            f'Tetikleyici koruma: {self._parkur2_settle_sec:.0f}s'
+            '[PARKUR 2] ⚠ kamikaze_locked sıfırlandı (Parkur 1 backlog temizlendi). '
+            f'Settle koruması: {self._parkur2_settle_sec:.0f}s'
         )
 
         self._mppi.apply_slalom_mode()
@@ -1300,15 +1299,23 @@ class MissionManager(Node):
 
         # ── Nav2 hedef durumunu takip et ─────────────────────────────────────
         if self._nav2_goal_pending:
-            # BUG-3: sonsuz kilit önleme — 10s sonra zaman aşımı
             import time as _t
             if (self._goal_pending_since > 0.0
                     and (_t.monotonic() - self._goal_pending_since) > 10.0):
-                self.get_logger().error(
-                    '[PARKUR 2] ⚠ Nav2 goal_pending 10s aştı — kilit açıldı'
-                )
                 self._nav2_goal_pending  = False
                 self._goal_pending_since = 0.0
+                self._nav2_abort_count  += 1
+                if self._nav2_abort_count <= 5:
+                    self.get_logger().error(
+                        f'[PARKUR 2] ⚠ Nav2 goal_pending 10s aştı '
+                        f'({self._nav2_abort_count}/5) — yeniden deneniyor'
+                    )
+                    self._send_stage2_goal()
+                else:
+                    self.get_logger().error(
+                        '[PARKUR 2] ⚠ Nav2 goal_pending 10s aştı — '
+                        'limit aşıldı, GPS fallback aktif'
+                    )
             else:
                 return
 
@@ -1340,14 +1347,9 @@ class MissionManager(Node):
                         '[PARKUR 2] 🛑 Nav2 5x abort — GPS fallback modunda devam'
                     )
             elif status == GoalStatus.STATUS_CANCELED:
-                self.get_logger().warn('[STAGE 2] ⚠ Nav2 goal cancelled — resending …')
+                # _cancel_nav2_goal() handle'ı zaten None yapıyor; bu dalın
+                # çalışma koşulu yoktur. _nav2_result_cb STATUS_CANCELED'ı loglar.
                 self._nav2_goal_handle = None
-                if self._nav2_abort_count <= 5:
-                    self._send_stage2_goal()
-                else:
-                    self.get_logger().warn(
-                        '[PARKUR 2] 🛑 Abort limiti aşıldı — GPS fallback modunda devam'
-                    )
 
     def _send_stage2_goal(self):
         if self._stage != MissionStage.PARKUR_2_MPPI:
@@ -1519,10 +1521,23 @@ class MissionManager(Node):
         handle = future.result()
 
         if not handle.accepted:
-            self.get_logger().warn(
-                f'[NAV2] Goal rejected by server (stage={self._nav2_stage})'
-            )
             self._nav2_goal_pending = False
+            self._nav2_abort_count += 1
+            if self._nav2_abort_count <= 5 and self._stage == MissionStage.PARKUR_2_MPPI:
+                self.get_logger().warn(
+                    f'[NAV2] Goal rejected ({self._nav2_abort_count}/5) — 1s sonra yeniden deneniyor'
+                )
+                _t_ref = [None]
+                def _retry():
+                    if _t_ref[0] is not None:
+                        _t_ref[0].cancel()
+                        _t_ref[0] = None
+                    self._send_stage2_goal()
+                _t_ref[0] = self.create_timer(1.0, _retry)
+            else:
+                self.get_logger().error(
+                    f'[NAV2] Goal rejected — limit aşıldı veya sahne değişti, GPS fallback aktif'
+                )
             return
 
         # Geç kabul: P3'e geçildiyse veya visual servo devralıyorsa iptal et
