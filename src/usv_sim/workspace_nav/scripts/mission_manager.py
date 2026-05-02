@@ -84,18 +84,9 @@ def _make_pose(frame: str, x: float, y: float, yaw: float = 0.0) -> PoseStamped:
 
 class Stage2Handler:
 
-    def __init__(self, kamikaze_wp: Dict, trigger_dist: float, logger):
-        self._kamikaze_target = None
-        self._kamikaze_last_seen = 0.0
-        self._kmz_wp     = kamikaze_wp
-        self._trigger    = trigger_dist
-        self._log        = logger
-        self._goal_sent  = False
-        self._completed  = False
-
-    @property
-    def completed(self) -> bool:
-        return self._completed
+    def __init__(self, kamikaze_wp: Dict, logger):
+        self._kmz_wp = kamikaze_wp
+        self._log    = logger
 
     @property
     def kmz_wp(self) -> Dict:
@@ -105,33 +96,6 @@ class Stage2Handler:
         goal      = NavigateToPose.Goal()
         goal.pose = _make_pose('map', self._kmz_wp['x'], self._kmz_wp['y'])
         return goal
-
-    def check_proximity(self, robot_x: float, robot_y: float,
-                        fusion_wp: dict = None) -> bool:
-
-        target = fusion_wp if fusion_wp is not None else self._kmz_wp
-        dist = math.hypot(
-            target['x'] - robot_x,
-            target['y'] - robot_y,
-        )
-        self._log.info(
-            f'[PARKUR 2] → {self._kmz_wp["id"]} | '
-            f'dist={dist:.1f} m (kamikaze trigger < {self._trigger:.1f} m)'
-            + (' [GateFusion koord]' if fusion_wp is not None else ' [GPS koord]'),
-            throttle_duration_sec=3.0,
-        )
-        if dist < self._trigger:
-            self._log.warn(
-                f'[PARKUR 2] ⚡ Proximity triggered! dist={dist:.1f} m < '
-                f'{self._trigger:.1f} m → STAGE 3 KAMIKAZE'
-            )
-            self._completed = True
-        return self._completed
-
-    def on_goal_succeeded(self):
-
-        self._log.warn('[PARKUR 2] ✓ Nav2 reached WP5 — entering STAGE 3')
-        self._completed = True
 
 class MppiParamClient:
 
@@ -1026,7 +990,7 @@ class MissionManager(Node):
         )
 
         self._s1_wps = stage1_wps
-        self._s2 = Stage2Handler(kmz_wp, self._kmz_dist, self.get_logger())
+        self._s2 = Stage2Handler(kmz_wp, self.get_logger())
         self._s3 = Stage3Handler(
             self._red_id, self._kp_yaw,
             self._base_speed, self._lost_timeout,
@@ -1212,12 +1176,13 @@ class MissionManager(Node):
             self._clear_local_cli.call_async(Empty.Request())
             self.get_logger().info('[PARKUR 2] ✓ Local costmap cleared')
 
-        _sent = [False]
+        _t_ref = [None]
         def _delayed_goal():
-            if not _sent[0]:
-                _sent[0] = True
-                self._send_stage2_goal()
-        self.create_timer(0.8, _delayed_goal)
+            if _t_ref[0] is not None:
+                _t_ref[0].cancel()
+                _t_ref[0] = None
+            self._send_stage2_goal()
+        _t_ref[0] = self.create_timer(0.8, _delayed_goal)
 
     def _run_parkur2_mppi(self):
         """
@@ -1296,8 +1261,10 @@ class MissionManager(Node):
             if self._nav2_goal_handle is None and not self._nav2_goal_pending:
                 self._send_stage2_goal()
 
-        # ── [P7] GPS Fallback — yalnızca Nav2 aktif değilse ─────────────────
-        if _gate_silent and self._s2 is not None and self._nav2_goal_handle is None:
+        # ── [P7] GPS Fallback — Nav2 ne aktif ne pending değilse ────────────
+        if (_gate_silent and self._s2 is not None
+                and self._nav2_goal_handle is None
+                and not self._nav2_goal_pending):
             wp5_dx   = self._s2.kmz_wp['x'] - self._x
             wp5_dy   = self._s2.kmz_wp['y'] - self._y
             wp5_head = math.atan2(wp5_dy, wp5_dx)
@@ -1349,11 +1316,10 @@ class MissionManager(Node):
             status = self._nav2_goal_handle.status
             if status == GoalStatus.STATUS_SUCCEEDED:
                 self._nav2_goal_handle = None
-                self._s2.on_goal_succeeded()
                 self.get_logger().warn(
                     f'[PARKUR 2] ✅ Nav2 WP5\'e ulaştı! '
                     f'dist_to_wp5={dist_to_wp5:.2f}m — '
-                    'Proximity tetikleyici (≤2m) bekliyor.'
+                    'GPS geçiş eşiği (≤3.0m) bekleniyor.'
                 )
             elif status == GoalStatus.STATUS_ABORTED:
                 self._nav2_abort_count += 1
@@ -1384,6 +1350,8 @@ class MissionManager(Node):
                     )
 
     def _send_stage2_goal(self):
+        if self._stage != MissionStage.PARKUR_2_MPPI:
+            return
         goal = self._s2.build_nav2_goal()
         goal.pose.header.stamp = self.get_clock().now().to_msg()
         self.get_logger().info(
@@ -1557,10 +1525,12 @@ class MissionManager(Node):
             self._nav2_goal_pending = False
             return
 
-        # BUG-5: P3'e geçildikten sonra gelen geç kabul yanıtını iptal et
-        if self._stage != MissionStage.PARKUR_2_MPPI:
+        # Geç kabul: P3'e geçildiyse veya visual servo devralıyorsa iptal et
+        if self._stage != MissionStage.PARKUR_2_MPPI or self._mppi_suppressed_for_gate:
+            reason = (self._stage.name if self._stage != MissionStage.PARKUR_2_MPPI
+                      else 'visual-servo-aktif')
             self.get_logger().warn(
-                f'[NAV2] Geç kabul yanıtı — sahne artık {self._stage.name}, iptal ediliyor'
+                f'[NAV2] Geç kabul yanıtı — {reason}, iptal ediliyor'
             )
             handle.cancel_goal_async()
             self._nav2_goal_pending = False
@@ -1613,13 +1583,15 @@ class MissionManager(Node):
         )
 
     def _cancel_nav2_goal(self):
+        # Pending'i her durumda temizle — accept callback'i henüz gelmemiş olsa bile
+        self._nav2_goal_pending  = False
+        self._goal_pending_since = 0.0
         if self._nav2_goal_handle is None:
             return
         self.get_logger().info('[NAV2] Cancelling active goal …')
         f = self._nav2_goal_handle.cancel_goal_async()
         f.add_done_callback(lambda _: self.get_logger().info('[NAV2] Goal cancelled ✓'))
-        self._nav2_goal_handle  = None
-        self._nav2_goal_pending = False
+        self._nav2_goal_handle = None
 
     def _transition_log(self, new_stage: MissionStage):
         old = STAGE_NAMES.get(self._stage, self._stage.name)
