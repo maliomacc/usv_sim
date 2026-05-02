@@ -623,11 +623,6 @@ class MissionManager(Node):
         self._img_width: int = 640
         self._odom_last_seen: float = 0.0   # watchdog: odometry zaman damgası
 
-        # Parkur 2 — sarı duba görünürlüğü takibi
-        import time as _t
-        self._yellow_visible:       bool  = True
-        self._yellow_invisible_since: float = _t.monotonic()  # sarı kaybolduğunda güncellenecek
-
         self._pid_prev_error:   float = 0.0
         self._pid_integral:     float = 0.0
         self._pid_drift_active: bool  = False
@@ -636,17 +631,17 @@ class MissionManager(Node):
         self._pid_wps:          list  = []
 
         self._nav2_goal_handle        = None
-        self._nav2_goal_pending: bool = False
-        self._nav2_stage: int         = 0
-
-        self._nav2_goal_succeeded: bool = False
-        self._nav2_succeeded_stage: int = 0
+        self._nav2_goal_pending: bool  = False
+        self._nav2_stage: int          = 0
+        self._goal_pending_since: float = 0.0
+        self._nav2_abort_count: int    = 0
 
         self._raw_wps:           list  = []
         self._converted:         list  = []
         self._fromll_pending:    int   = 0
         self._gps_done:          bool  = False
         self._fromll_started:    bool  = False
+        self._gps_retry_pending: bool  = False   # BUG-1: tek timer garantisi
 
         self._kamikaze_target: Optional[Point] = None
         self._kamikaze_last_seen: float        = 0.0
@@ -776,15 +771,7 @@ class MissionManager(Node):
         self._odom_last_seen = self.get_clock().now().nanoseconds / 1e9
 
     def _yellow_visible_cb(self, msg) -> None:
-        """kamikaze_control'dan gelen /yellow_visible Bool mesajı.
-        Sarı görünüyorsa zamanlayıcıyı sorgula, kaybolunca saat başlat.
-        """
-        import time as _t
-        visible = bool(msg.data)
-        if visible:
-            # Sarı görülüyor — geçitten önceki kaybolşma zamanını sıfırla
-            self._yellow_invisible_since = _t.monotonic()
-        self._yellow_visible = visible
+        pass
 
     def _kamikaze_locked_cb(self, msg):
 
@@ -797,7 +784,7 @@ class MissionManager(Node):
 
         KURAL 3 GEREĞİ: Bu callback ARTIK Kamikaze geçişini tetiklemez.
         Parkur 2 → Parkur 3 geçişi YALNIZCA _run_parkur2_mppi içinde
-        dist_to_wp5 <= 2.0 koşuluna ulaşılınca yapılır.
+        dist_to_wp5 <= 3.0 koşuluna ulaşılınca yapılır.
 
         Bu metodun tek görevi:
           1. /cmd_vel üzerinden kapıya doğru görsel servo vermek (P-controller).
@@ -818,8 +805,10 @@ class MissionManager(Node):
                 mode_name='GateServoSuppress',
             )
             self._mppi_suppressed_for_gate = True
+            # BUG-7: Nav2 aktifken visual servo devralıyorsa goal çakışmasını önle
+            self._cancel_nav2_goal()
             self.get_logger().warn(
-                '[PARKUR 2] Sarı duba görüldü → MPPI susturuldu, visual servo TEK kaynak'
+                '[PARKUR 2] Sarı duba görüldü → MPPI susturuldu, Nav2 iptal, visual servo TEK kaynak'
             )
 
         # ── Kapı açısını base_link çerçevesinden hesapla ─────────────────
@@ -989,24 +978,29 @@ class MissionManager(Node):
             f'[INIT] ✓ GPS conversion done — {len(valid)}/{len(self._raw_wps)} WPs valid'
         )
 
-        # ── Sanity: fromLL (0,0) döndürüyorsa GPS henüz hazır değil → yeniden dene ──
-        all_at_origin = (
-            len(valid) > 0
-            and all(abs(w['x']) < 0.5 and abs(w['y']) < 0.5 for w in valid)
-        )
-        if all_at_origin:
+        def _schedule_gps_retry(reason: str):
             retry_no = getattr(self, '_gps_retry_count', 0) + 1
             self._gps_retry_count = retry_no
             self.get_logger().error(
-                f'[INIT] ✗ Tüm WP\'ler (0,0) yakınında — fromLL GPS başlatmadı. '
+                f'[INIT] ✗ {reason} '
                 f'Yeniden deneme #{retry_no} (5s sonra) …'
             )
-            # Retry state'i sıfırla
-            self._fromll_started  = False
-            self._fromll_pending  = 0
-            self._converted       = []
-            # 5 saniye sonra tekrar başlat
-            self.create_timer(5.0, self._retry_gps_once)
+            self._fromll_started = False
+            self._fromll_pending = 0
+            self._converted      = []
+            if not self._gps_retry_pending:
+                self._gps_retry_pending = True
+                self.create_timer(5.0, self._retry_gps_once)
+
+        # BUG-2: hiçbir WP dönüştürülemediyse (fromLL tamamen başarısız)
+        if len(valid) == 0:
+            _schedule_gps_retry('Hiçbir WP dönüştürülemedi — fromLL tamamen başarısız.')
+            return
+
+        # BUG-1 (guard zaten _schedule_gps_retry içinde): (0,0) kontrolü
+        all_at_origin = all(abs(w['x']) < 0.5 and abs(w['y']) < 0.5 for w in valid)
+        if all_at_origin:
+            _schedule_gps_retry("Tüm WP'ler (0,0) yakınında — fromLL GPS başlatmadı.")
             return
 
         stage1_wps = [w for w in valid if w['id'] != self._kmz_wp_id]
@@ -1048,8 +1042,9 @@ class MissionManager(Node):
 
     def _retry_gps_once(self):
         """GPS dönüşümü (0,0) verdi; bir kere yeniden dene."""
+        self._gps_retry_pending = False
         if self._gps_done:
-            return  # Zaten başarılı olduysa tekrarlama
+            return
         self.get_logger().warn('[INIT] 🔄 GPS dönüşümü yeniden deneniyor …')
         self._start_gps_conversion()
 
@@ -1176,7 +1171,8 @@ class MissionManager(Node):
         )
 
         self._kamikaze_locked_flag   = False
-        self._nav2_goal_succeeded    = False
+        self._goal_pending_since     = 0.0
+        self._nav2_abort_count       = 0
         self._gate_last_cb_t         = 0.0
         self._gate_angle_prev        = 0.0
         self._mppi_suppressed_for_gate = False
@@ -1227,7 +1223,7 @@ class MissionManager(Node):
         """
         KURAL 3 — TEK VE YEGÂNEKİŞ KOŞULU:
           Stage 2 → Stage 3 (Kamikaze) geçişi YALNIZCA teknenin WP5'e mesafesi
-          2.0 m veya altına düştüğünde tetiklenir.
+          3.0 m veya altına düştüğünde tetiklenir.
 
           Aşağıdaki erken geçiş mekanizmalarının TAMAMI KALDIRILDI:
             ✗  _kamikaze_locked_flag  (gözcü sinyal erken geçiş)
@@ -1296,6 +1292,9 @@ class MissionManager(Node):
             self.get_logger().warn(
                 '[PARKUR 2] Sarı duba yok → MPPI Slalom geri yüklendi'
             )
+            # BUG-7: MPPI restore → Nav2'yi yeniden tetikle
+            if self._nav2_goal_handle is None and not self._nav2_goal_pending:
+                self._send_stage2_goal()
 
         # ── [P7] GPS Fallback — yalnızca Nav2 aktif değilse ─────────────────
         if _gate_silent and self._s2 is not None and self._nav2_goal_handle is None:
@@ -1324,15 +1323,27 @@ class MissionManager(Node):
             )
 
         # ── MPPI adaptif ufuk — kapıya yaklaştıkça daha dar bak ─────────────
+        # BUG-6: visual servo aktifken (MPPI susturulmuş) slalom modunu bozma
         dist_to_gate = math.hypot(
             self._s2.kmz_wp['x'] - self._x,
             self._s2.kmz_wp['y'] - self._y,
         ) if self._s2 is not None else 999.0
-        self._mppi.apply_adaptive_horizon(dist_to_gate)
+        if not self._mppi_suppressed_for_gate:
+            self._mppi.apply_adaptive_horizon(dist_to_gate)
 
         # ── Nav2 hedef durumunu takip et ─────────────────────────────────────
         if self._nav2_goal_pending:
-            return
+            # BUG-3: sonsuz kilit önleme — 10s sonra zaman aşımı
+            import time as _t
+            if (self._goal_pending_since > 0.0
+                    and (_t.monotonic() - self._goal_pending_since) > 10.0):
+                self.get_logger().error(
+                    '[PARKUR 2] ⚠ Nav2 goal_pending 10s aştı — kilit açıldı'
+                )
+                self._nav2_goal_pending  = False
+                self._goal_pending_since = 0.0
+            else:
+                return
 
         if self._nav2_goal_handle is not None:
             status = self._nav2_goal_handle.status
@@ -1345,20 +1356,32 @@ class MissionManager(Node):
                     'Proximity tetikleyici (≤2m) bekliyor.'
                 )
             elif status == GoalStatus.STATUS_ABORTED:
+                self._nav2_abort_count += 1
                 self.get_logger().error(
                     '\n' +
                     '╔══════════════════════════════════════════════════════════════╗\n'
-                    '║  [NAV2 CRITICAL] MPPI FAILED — PLAN ABORTED!                ║\n'
+                    f'║  [NAV2 CRITICAL] MPPI FAILED — PLAN ABORTED! '
+                    f'({self._nav2_abort_count}/5)        ║\n'
                     '╚══════════════════════════════════════════════════════════════╝'
                 )
                 self._nav2_goal_handle = None
-                if self._clear_local_cli.service_is_ready():
-                    self._clear_local_cli.call_async(Empty.Request())
-                self._send_stage2_goal()
+                if self._nav2_abort_count <= 5:
+                    if self._clear_local_cli.service_is_ready():
+                        self._clear_local_cli.call_async(Empty.Request())
+                    self._send_stage2_goal()
+                else:
+                    self.get_logger().error(
+                        '[PARKUR 2] 🛑 Nav2 5x abort — GPS fallback modunda devam'
+                    )
             elif status == GoalStatus.STATUS_CANCELED:
                 self.get_logger().warn('[STAGE 2] ⚠ Nav2 goal cancelled — resending …')
                 self._nav2_goal_handle = None
-                self._send_stage2_goal()
+                if self._nav2_abort_count <= 5:
+                    self._send_stage2_goal()
+                else:
+                    self.get_logger().warn(
+                        '[PARKUR 2] 🛑 Abort limiti aşıldı — GPS fallback modunda devam'
+                    )
 
     def _send_stage2_goal(self):
         goal = self._s2.build_nav2_goal()
@@ -1369,8 +1392,10 @@ class MissionManager(Node):
             f'y={goal.pose.pose.position.y:.2f}) | '
             f'obstacle avoidance via local costmap'
         )
-        self._nav2_goal_pending = True
-        self._nav2_stage        = 2
+        import time as _t
+        self._nav2_goal_pending  = True
+        self._goal_pending_since = _t.monotonic()
+        self._nav2_stage         = 2
         future = self._nav2.send_goal_async(
             goal, feedback_callback=self._nav2_feedback_cb
         )
@@ -1397,7 +1422,6 @@ class MissionManager(Node):
         )
 
         # Tüm faz durumlarını sıfırla
-        self._kmz_aligned          = False
         self._kamikaze_locked_flag = False
         self._kmz_err_prev         = 0.0
         self._kmz_in_charge        = False
@@ -1532,6 +1556,16 @@ class MissionManager(Node):
             )
             self._nav2_goal_pending = False
             return
+
+        # BUG-5: P3'e geçildikten sonra gelen geç kabul yanıtını iptal et
+        if self._stage != MissionStage.PARKUR_2_MPPI:
+            self.get_logger().warn(
+                f'[NAV2] Geç kabul yanıtı — sahne artık {self._stage.name}, iptal ediliyor'
+            )
+            handle.cancel_goal_async()
+            self._nav2_goal_pending = False
+            return
+
         stage_tag = f'STAGE {self._nav2_stage}'
         self.get_logger().info(f'[NAV2] ✓ Goal accepted by Nav2 ({stage_tag})')
         self._nav2_goal_handle  = handle
@@ -1555,9 +1589,6 @@ class MissionManager(Node):
             self.get_logger().warn(
                 f'[NAV2] ✅ Goal SUCCEEDED for STAGE {self._nav2_stage}'
             )
-
-            self._nav2_goal_succeeded   = True
-            self._nav2_succeeded_stage  = self._nav2_stage
         elif status == GoalStatus.STATUS_ABORTED:
             self.get_logger().error(
                 f'[NAV2-MPPI] ⚠ Goal ABORTED for STAGE {self._nav2_stage} — '
@@ -1587,9 +1618,8 @@ class MissionManager(Node):
         self.get_logger().info('[NAV2] Cancelling active goal …')
         f = self._nav2_goal_handle.cancel_goal_async()
         f.add_done_callback(lambda _: self.get_logger().info('[NAV2] Goal cancelled ✓'))
-        self._nav2_goal_handle    = None
-        self._nav2_goal_pending   = False
-        self._nav2_goal_succeeded = False
+        self._nav2_goal_handle  = None
+        self._nav2_goal_pending = False
 
     def _transition_log(self, new_stage: MissionStage):
         old = STAGE_NAMES.get(self._stage, self._stage.name)
