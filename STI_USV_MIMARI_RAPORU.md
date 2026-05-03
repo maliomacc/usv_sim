@@ -1,346 +1,237 @@
-# STI USV — Mimari Raporu
-**Proje:** TEKNOFEST 2025 Otonom Deniz Aracı  
-**Platform:** Jetson Orin NX 8GB | ROS 2 Jazzy | ArduRover/Pixhawk  
-**Oluşturma Tarihi:** 2026-04-30  
+# STI USV — Mimari Rapor
+**Tarih:** 2026-05-03 | **Branch:** humble/saha-testi | **Hedef:** TEKNOFEST 2026
 
 ---
 
-## 1. Genel Paket Yapısı
+## 1. Paket Yapısı
 
 ```
-sti_usv/src/
+src/
+├── usv_sensor_fusion/          # C++ — LiDAR + ZED derinlik füzyonu
+│   └── src/SensorFusionNode.cpp
 ├── usv_sim/
-│   ├── workspace_nav/        # Python — Navigasyon & Görev Yönetimi
-│   └── workspace_ros/        # Python — Sensör Sürücüleri & Lokalizasyon Köprüsü
-└── usv_sensor_fusion/        # C++17 — 2.5D Sensör Füzyonu
-```
-
-Dış bağımlılıklar (kurulu, kaynak kodda yok):  
-`nav2_*` · `robot_localization` · `slam_toolbox` · `laser_filters` · `mavros` · `kiss_icp`
-
----
-
-## 2. Veri Akışı — Üst Düzey
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  DONANIM                                                        │
-│                                                                 │
-│  RPLidar A1M8  ──→ /scan ──→ [laser_filters] ──→ /scan/filtered │
-│                                                                 │
-│  ZED Kamera ──→ /zed/.../rgb/image_rect_color                   │
-│             ──→ /zed/.../depth/depth_registered                 │
-│             ──→ /zed/.../confidence/confidence_map              │
-│             ──→ /zed/.../rgb/camera_info                        │
-│                                                                 │
-│  Pixhawk IMU ──→ /mavros/imu/data                               │
-│  Pixhawk GPS ──→ /mavros/global_position/global                 │
-│  MAVROS      ──→ /mavros/state                                  │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │
-┌──────────────────────────▼──────────────────────────────────────┐
-│  ALGI KATMANI                                                   │
-│                                                                 │
-│  kamikaze_control (Python, 4 thread)                            │
-│    Thread-A: Görüntü yakalama (ring buffer, maxsize=2)          │
-│    Thread-C: YOLOv8 TRT çıkarımı (GPU, ~20 Hz)                  │
-│    Thread-D: 20 Hz yayın döngüsü                                │
-│    → /kamikaze_target  (PointStamped: cx_norm, cy_norm, area)   │
-│    → /gate_center      (PoseStamped: sarı şamandıra çifti)      │
-│    → /yellow_visible   (Bool)                                   │
-│    → /kamikaze_locked  (Bool: 3s kilit sayacı)                  │
-│                                                                 │
-│  sensor_fusion_node (C++, olay-güdümlü)                         │
-│    ← /kamikaze_target + /scan/filtered + /zed/.../depth         │
-│    → /fusion/target    (PointStamped: mesafe, yaw, kaynak)      │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │
-┌──────────────────────────▼──────────────────────────────────────┐
-│  LOKALİZASYON KATMANI                                           │
-│                                                                 │
-│  imu_covariance_repub ──→ /imu/fixed_cov                        │
-│  gps_covariance_repub ──→ /gps/fixed_cov                        │
-│  navsat_transform_node: /gps/fixed_cov → /odometry/gps          │
-│  ekf_node: /imu/fixed_cov + /odometry/gps → /odometry/filtered  │
-│            TF: odom → base_link                                  │
-│                                                                 │
-│  slam_toolbox (isteğe bağlı): /scan/filtered → /map             │
-│                                TF: map → odom                   │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │
-┌──────────────────────────▼──────────────────────────────────────┐
-│  PLANLAMA & KONTROL KATMANI                                     │
-│                                                                 │
-│  Nav2 (planner + MPPI controller + bt_navigator)                │
-│    ← /scan/filtered (costmap) + /odometry/filtered              │
-│    → /cmd_vel (collision_monitor çıkışı)                        │
-│                                                                 │
-│  mission_manager (Python, 3 aşamalı durum makinesi)             │
-│    Aşama 1: PID noktadan noktaya (WP1→WP4)                      │
-│    Aşama 2: Nav2/MPPI + GateFusion (WP4→WP5)                    │
-│    Aşama 3: Görsel servo Kamikaze (WP5→Kırmızı Şamandıra)       │
-│    → /cmd_vel + /mission_state                                  │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │
-┌──────────────────────────▼──────────────────────────────────────┐
-│  AKTÜASYON                                                      │
-│                                                                 │
-│  cmd_vel_to_mavros                                              │
-│    Mod 1 (GUIDED): /cmd_vel → /mavros/setpoint_velocity/...     │
-│    Mod 2 (RC Override): /cmd_vel → /mavros/rc/override (PWM)   │
-└─────────────────────────────────────────────────────────────────┘
+│   ├── workspace_nav/          # Python — Görev yönetimi, navigasyon
+│   │   ├── scripts/
+│   │   │   ├── mission_manager.py   ★ Ana görev yöneticisi
+│   │   │   ├── kamikaze_control.py  ★ YOLO görü + visual servo
+│   │   │   └── local_goal_bridge.py  Kapı hedefini Nav2'ye iletme köprüsü
+│   │   ├── config/
+│   │   │   ├── nav2_params_usv_pure.yaml  Nav2 / MPPI parametreleri
+│   │   │   └── ekf_fusion.yaml            EKF sensör füzyonu
+│   │   └── launch/
+│   │       ├── nav2.launch.py
+│   │       ├── parkur2.launch.py
+│   │       └── parkur3.launch.py
+│   └── workspace_ros/          # Python — Donanım köprüleri
+│       ├── workspace_ros/cmd_vel_to_mavros.py  ★ MAVROS köprüsü
+│       ├── scripts/
+│       │   ├── gps_covariance_repub.py    GPS kovaryans yayıncısı
+│       │   └── imu_covariance_repub.py    IMU kovaryans yayıncısı
+│       └── config/
+│           ├── ekf.yaml          Simülasyon EKF
+│           ├── navsat.yaml       GPS→odom dönüşümü
+│           ├── kiss_icp.yaml     LiDAR odometri
+│           └── rplidar_filters.yaml
 ```
 
 ---
 
-## 3. Paket Detayları
+## 2. Düğüm Kataloğu
 
-### 3.1 workspace_nav
+### 2.1 SensorFusionNode (C++)
+**Paket:** `usv_sensor_fusion`
 
-#### mission_manager
-| Özellik | Değer |
-|---------|-------|
-| **Dosya** | `scripts/mission_manager.py` |
-| **Giriş noktası** | `workspace_nav_entry/mission_manager.py` |
-| **Dil** | Python |
-| **Frekans** | 20 Hz (parametre: `control_hz`) |
+| Yön | Topic | Mesaj Türü | QoS |
+|-----|-------|-----------|-----|
+| SUB | `/kamikaze_target` | PointStamped | RELIABLE |
+| SUB | `/scan/filtered` | LaserScan | BEST_EFFORT |
+| SUB | `/zed/zed_node/depth/depth_registered` | Image (32FC1) | BEST_EFFORT |
+| PUB | `/fusion/target` | PointStamped | RELIABLE |
 
-**Subscribe:**
-
-| Topic | Tip | QoS |
-|-------|-----|-----|
-| `/odometry/filtered` | nav_msgs/Odometry | RELIABLE-10 |
-| `/kamikaze_target` | geometry_msgs/PointStamped | depth-10 |
-| `/fusion/target` | geometry_msgs/PointStamped | depth-10 |
-| `/kamikaze_locked` | std_msgs/Bool | depth-10 |
-| `/gate_center` | geometry_msgs/PoseStamped | depth-10 |
-| `/yellow_visible` | std_msgs/Bool | depth-10 |
-| `/zed/.../camera_info` | sensor_msgs/CameraInfo | RELIABLE-10 |
-
-**Publish:**
-
-| Topic | Tip |
-|-------|-----|
-| `/cmd_vel` | geometry_msgs/Twist |
-| `/mission_state` | std_msgs/String |
-
-**Service Client:**
-
-| Servis | Tip | Kullanım |
-|--------|-----|---------|
-| `/fromLL` | robot_localization/FromLL | GPS→harita dönüşümü |
-| `/controller_server/set_parameters` | rcl_interfaces/SetParameters | MPPI parametre güncelleme |
-| `/local_costmap/clear_entirely_local_costmap` | std_srvs/Empty | Costmap temizleme |
-| `/global_costmap/clear_entirely_global_costmap` | std_srvs/Empty | Costmap temizleme |
-
-**Action Client:** `navigate_to_pose` (nav2_msgs/NavigateToPose)
-
-**Temel Parametreler:**
-
-| Parametre | Varsayılan | Açıklama |
-|-----------|-----------|---------|
-| `waypoints_file` | json/waypoints.json | GPS rotası |
-| `kamikaze_wp_id` | WP5 | Aşama 2/3 hedef noktası |
-| `kamikaze_trigger_dist` | 5.0 m | Aşama 3 tetik mesafesi |
-| `kp_yaw` | 1.2 | Görsel servo P kazancı |
-| `base_speed` | 1.5 m/s | Kamikaze ileri hızı |
-| `kamikaze_lost_timeout` | 3.0 s | Hedef kayıp zaman aşımı |
+**Görev:** Kamera pikselinden yatay açı (yaw) hesaplar. LiDAR mesafe (öncelikli) → ZED derinlik (yedek) → açı-yalnız (-1.0) hiyerarşisiyle `/fusion/target` yayınlar. Mesaj kodlaması: `point.x=distance_m, point.y=yaw_rad, point.z=source` (source: 0=LiDAR, 1=ZED, -1=açı-yalnız).
 
 ---
 
-#### kamikaze_control
-| Özellik | Değer |
-|---------|-------|
-| **Dosya** | `scripts/kamikaze_control.py` |
-| **Dil** | Python, 4 thread |
-| **Frekans** | 20 Hz yayın + GPU çıkarım hızı |
+### 2.2 MissionManager (Python)
+**Paket:** `workspace_nav` | **Dosya:** `scripts/mission_manager.py`
 
-**Subscribe:**
+| Yön | Topic / Servis / Aksiyon | Mesaj Türü |
+|-----|--------------------------|-----------|
+| SUB | `/odometry/filtered` | Odometry (RELIABLE) |
+| SUB | `/yolo/detections` | Detection2DArray (BEST_EFFORT) |
+| SUB | `/zed/zed_node/rgb/camera_info` | CameraInfo |
+| SUB | `/kamikaze_target` | PointStamped |
+| SUB | `/fusion/target` | PointStamped |
+| SUB | `/kamikaze_locked` | Bool |
+| SUB | `/gate_center` | PoseStamped |
+| SUB | `/yellow_visible` | Bool |
+| PUB | `/cmd_vel` | Twist |
+| PUB | `/mission_state` | String |
+| ACT | `navigate_to_pose` | NavigateToPose (Nav2) |
+| SRV | `/fromLL` | FromLL (robot_localization) |
+| SRV | `/controller_server/set_parameters` | SetParameters |
+| SRV | `/local_costmap/clear_entirely_local_costmap` | Empty |
+| SRV | `/global_costmap/clear_entirely_global_costmap` | Empty |
 
-| Topic | Tip |
-|-------|-----|
-| `/zed/.../rgb/image_rect_color` | sensor_msgs/Image (BGR) |
-| `/scan` | sensor_msgs/LaserScan |
-| `/zed/.../depth/depth_registered` | sensor_msgs/Image (32FC1) |
-| `/zed/.../confidence/confidence_map` | sensor_msgs/Image (32FC1) |
-| `/zed/.../rgb/camera_info` | sensor_msgs/CameraInfo |
-| `/kamikaze_color_cmd` | std_msgs/Int32 |
-
-**Publish:**
-
-| Topic | Tip | Format |
-|-------|-----|--------|
-| `/kamikaze_target` | PointStamped | x=cx_norm, y=cy_norm, z=alan |
-| `/kamikaze_locked` | Bool | 3s kilit sayacı |
-| `/gate_center` | PoseStamped | sarı şamandıra çifti merkezi |
-| `/yellow_visible` | Bool | sarı görünürlük |
-| `/yolo/detection_image` | Image | debug görselleştirme |
-
-**YOLO Sınıf Eşlemesi:**
+**Durum Makinesi:**
 ```
-0: yellow_buoy  → Parkur 2 (kapı)
-1: red_buoy     → Parkur 3 (birincil hedef)
-2: green_buoy   → Parkur 3 (ikincil)
-3: black_buoy   → Parkur 3 (üçüncül)
+INIT
+ │  (fromLL GPS dönüşümü + hata/retry mekanizması)
+ ▼
+PARKUR_1_PID   → WP1→WP4 arası PID heading kontrolü (Kp=1.5, Ki=0.0, Kd=1.2)
+ │  (son WP'ye WP4_HANDOFF_TOL=4.0m yaklaşınca)
+ ▼
+PARKUR_2_MPPI  → Nav2/MPPI Slalom + görsel kapı servo (Parkur 2)
+ │  (WP5'e dist≤3.0m — KURAL 3: yalnızca GPS mesafesi)
+ ▼
+PARKUR_3_KAMIKAZE → Visual PD servo, kırmızı dubaya hücum
+ │
+ ▼
+COMPLETE
 ```
 
----
-
-#### parkur2_standalone
-| Özellik | Değer |
-|---------|-------|
-| **Dosya** | `workspace_nav_entry/parkur2_standalone.py` |
-| **Amaç** | Aşama 2 izole test düğümü |
-| **Subscribe** | `/odometry/filtered`, `/gate_center`, `/yellow_visible` |
-| **Publish** | `/cmd_vel`, `/mission_state` |
-
-mission_manager'ın Aşama 2 mantığını bağımsız çalıştırır. GPS dönüşümü veya doğrudan harita koordinatı ile WP5 hedefi belirlenebilir.
+**İç Sınıflar:**
+- `MppiParamClient` — Runtime MPPI parametre değiştirici (Sprint ↔ Slalom modu)
+- `GateFusionHandler` — Kapı konumu tampon/consensus kilitleme mantığı (3 örnek, stddev < 0.5m)
+- `Stage2Handler` — Nav2 hedef inşacısı (WP5 koordinatı yönetimi)
+- `Stage3Handler` — Legacy kırmızı duba visual servo (P-controller)
 
 ---
 
-#### parkur3_standalone
-| Özellik | Değer |
-|---------|-------|
-| **Dosya** | `workspace_nav_entry/parkur3_standalone.py` |
-| **Amaç** | Aşama 3 izole test düğümü |
-| **Subscribe** | `/mavros/state`, `/kamikaze_target`, `/fusion/target`, `/kamikaze_locked`, `/odometry/filtered` |
-| **Publish** | `/cmd_vel`, `/mission_state` |
+### 2.3 KamikazeControl (Python)
+**Paket:** `workspace_nav` | **Dosya:** `scripts/kamikaze_control.py`
 
-**Güvenlik kilidi:** `mavros/state` kontrol eder → GUIDED+ARM değilse sıfır hız gönderir.
+| Yön | Topic | Mesaj Türü |
+|-----|-------|-----------|
+| SUB | `/zed/zed_node/rgb/image_rect_color` | Image |
+| SUB | `/scan` | LaserScan |
+| SUB | `/zed/zed_node/depth/depth_registered` | Image (32FC1) |
+| SUB | `/zed/zed_node/confidence/confidence_map` | Image (32FC1) |
+| SUB | `/zed/zed_node/rgb/camera_info` | CameraInfo |
+| SUB | `/kamikaze_color_cmd` | Int32 |
+| PUB | `/kamikaze_target` | PointStamped (`cx_norm, cy_norm, area`) |
+| PUB | `/kamikaze_locked` | Bool |
+| PUB | `/gate_center` | PoseStamped (`base_link` çerçevesi) |
+| PUB | `/yellow_visible` | Bool |
+| PUB | `/yolo/detection_image` | Image (debug overlay) |
 
----
+**Thread Mimarisi (4 thread):**
+```
+Thread A (ROS CB)  : _image_cb → queue(maxsize=2) [drop-oldest, non-blocking]
+Thread B (ROS CB)  : _scan_cb, _depth_cb, _conf_cb [sensör önbelleği]
+Thread C (Daemon)  : _inference_loop [GPU/TensorRT, yazar _latest_detections]
+Thread D (ROS Timer): _publish_loop [20 Hz, okur + tüm topic'leri yayınlar]
+```
 
-#### local_goal_bridge
-| Özellik | Değer |
-|---------|-------|
-| **Dosya** | `scripts/local_goal_bridge.py` |
-| **Subscribe** | `/usv_local_goal` (PoseStamped, herhangi frame) |
-| **Action** | `navigate_to_pose` (Nav2 action gönderir) |
-
-TF ağacını kullanarak hedefi harita çerçevesine dönüştürür, ardından Nav2'ye iletir.
-
----
-
-### 3.2 workspace_ros
-
-#### imu_covariance_repub / gps_covariance_repub
-`/mavros/imu/data` → kovaryans enjekte → `/imu/fixed_cov`  
-`/mavros/global_position/global` → kovaryans enjekte → `/gps/fixed_cov`  
-robot_localization'ın yeterli hata modeli ile çalışması için zorunludur.
-
-#### static_transform_publisher
-YAML dosyasından sensör çerçeveleri TF ağacına yayınlar:  
-`lidar_link`, `imu_link`, `gps_link`, `camera_link` → `roboboat/base_link/sensor_*`
-
-#### cmd_vel_to_mavros
-`/cmd_vel` → GUIDED modda `/mavros/setpoint_velocity/cmd_vel_unstamped`  
-RC Override modunda linear.x/angular.z → [1000–2000] PWM değerlerine ölçekler.
+**YOLO Sınıfları:** 0=Black, 1=Green, 2=Orange, 3=Red, 4=Yellow  
+**Mesafe Kaynağı (akıllı fallback):** RPLidar → ZED derinlik (11×11 medyan, conf. maskeli) → 5.0m sabit
 
 ---
 
-### 3.3 usv_sensor_fusion (C++)
+### 2.4 CmdVelMavrosBridge (Python)
+**Paket:** `workspace_ros` | **Dosya:** `workspace_ros/cmd_vel_to_mavros.py`
 
-| Özellik | Değer |
-|---------|-------|
-| **Dosya** | `src/SensorFusionNode.cpp` |
-| **Dil** | C++17 |
-| **Tetikleyici** | /kamikaze_target geldiğinde olay-güdümlü |
+| Yön | Topic | Mesaj Türü |
+|-----|-------|-----------|
+| SUB | `/cmd_vel` | Twist |
+| SUB | `/mavros/state` | State |
+| PUB | `/mavros/setpoint_velocity/cmd_vel_unstamped` | Twist (GUIDED mod) |
+| PUB | `/mavros/rc/override` | OverrideRCIn (ACRO/MANUAL mod) |
 
-**Subscribe:**
-
-| Topic | Tip | QoS |
-|-------|-----|-----|
-| `/kamikaze_target` | PointStamped | RELIABLE-10 |
-| `/scan/filtered` | LaserScan | BEST_EFFORT-5 |
-| `/zed/.../depth_registered` | Image (32FC1) | BEST_EFFORT-1 |
-
-**Publish:**
-
-| Topic | Tip | Format |
-|-------|-----|--------|
-| `/fusion/target` | PointStamped | x=mesafe(m), y=yaw(rad), z=kaynak(0/1/-1) |
-
-**3 Kademeli Füzyon Hiyerarşisi:**
-1. **LiDAR birincil:** yaw → tarama açısı → `ranges[idx]`
-2. **ZED derinlik yedek:** piksel → 11×11 medyan penceresi
-3. **Sadece açı yedek:** mesafe=-1.0 (hiç düşürme)
+**Mod seçimi:** `use_rc_override=False` → GUIDED (velocity setpoint) / `True` → RC PWM override  
+**PWM formülü:** `CH3(gaz) = 1500 + (vx/max_spd) × 500` | `CH1(direksiyon) = 1500 - angular_z × 500`
 
 ---
 
-## 4. Görev Durum Makinesi
+### 2.5 GpsCovarianceRepub / ImuCovarianceRepub (Python)
+**Paket:** `workspace_ros`
+
+GPS: `/mavros/global_position/global` → `/gps/fixed_cov` (HDOP=3.0 varsayımıyla sabit kovaryans)  
+IMU: `/mavros/imu/data` → `/imu/fixed_cov` (sabit matrisler enjekte edilir)
+
+---
+
+### 2.6 LocalGoalBridge (Python)
+**Paket:** `workspace_nav` | **Dosya:** `scripts/local_goal_bridge.py`
+
+`/usv_local_goal` (PoseStamped) → TF dönüşümü → Nav2 `navigate_to_pose` action  
+**Histerezis:** < 0.5m mesafede aynı hedef yeniden gönderilmez.
+
+---
+
+### 2.7 Dış Servisler (Launch ile Başlatılan)
+
+| Servis | Paket | Temel Görevi |
+|--------|-------|-------------|
+| `ekf_node` | robot_localization | ZED odom + Pixhawk IMU → `/odometry/filtered` (30 Hz) |
+| `navsat_transform_node` | robot_localization | GPS lat/lon → map koordinat, `/fromLL` servisi |
+| `kiss_icp` | kiss_icp_ros | LiDAR tabanlı odometri |
+| `slam_toolbox` | slam_toolbox | Online SLAM, map→odom TF yayıncısı |
+| `nav2_bringup` | nav2_bringup | BT Nav, MPPI Controller, A* Planner, Costmap |
+| `laser_filters` | laser_filters | LiDAR ham → `/scan/filtered` |
+| `collision_monitor` | nav2_collision_monitor | Son savunma hattı (fiziksel yakınlık durdur) |
+
+---
+
+## 3. EKF Sensör Füzyonu
 
 ```
-          ┌─────────────────────────────────┐
-          │  BAŞLANGIC: GPS→Harita Dönüşümü │
-          └──────────────┬──────────────────┘
-                         │
-          ┌──────────────▼──────────────────┐
-          │  AŞAMA 1: PID (WP1 → WP4)       │
-          │  Kp=1.5, Kd=1.2, vmax=1.0 m/s  │
-          │  Tolerans: 1.5 m                │
-          └──────────────┬──────────────────┘
-                         │ WP4 veya kapı görüldü
-          ┌──────────────▼──────────────────┐
-          │  AŞAMA 2: MPPI + GateFusion      │
-          │  (WP4 → WP5)                    │
-          │  Nav2 hedef: WP5                │
-          │  GateFusion: sarı şamandıra     │
-          │  kilidinde WP5 güncellenir      │
-          └──────────────┬──────────────────┘
-                         │ WP5'e ≤ trigger_dist
-          ┌──────────────▼──────────────────┐
-          │  AŞAMA 3: KAMİKAZE              │
-          │  Faz 0: Arama (dön ω=1.5)       │
-          │  Faz 1a: Hizalama v=0.2         │
-          │  Faz 1b: Hücum v=base×3         │
-          │  Faz 2: Kilit v=base×5          │
-          └─────────────────────────────────┘
+ZED /zed/zed_node/odom  →  [x, y, z, vx, vy, vz]          GÜVEN: YÜK.
+Pixhawk /mavros/imu/data →  [roll, pitch, yaw, ωx, ωy, ωz]  GÜVEN: YÜK.
+
+ZED yaw bitleri KAPALI (drift sorunu nedeniyle)
+Pixhawk ivme bitleri KAPALI (tekne titremesi nedeniyle)
+Çıkış: /odometry/filtered @ 30 Hz
 ```
 
 ---
 
-## 5. Launch Dosyaları Özeti
-
-| Dosya | Paket | Başlatılan Düğümler |
-|-------|-------|---------------------|
-| `usv_autonomy.launch.py` | workspace_nav | sensor_fusion + kamikaze_control + local_goal_bridge + nav2 + mission_manager + cmd_vel_to_mavros |
-| `parkur2.launch.py` | workspace_nav | sensor_fusion + kamikaze_control + nav2 + parkur2_standalone + cmd_vel_to_mavros |
-| `parkur3.launch.py` | workspace_nav | sensor_fusion + kamikaze_control + parkur3_standalone + cmd_vel_to_mavros |
-| `localization.launch.py` | workspace_ros | imu_cov_repub + gps_cov_repub + navsat_transform + ekf_node + static_tf |
-| `slam_toolbox.launch.py` | workspace_ros | async_slam_toolbox_node |
-| `laser_filters.launch.py` | workspace_ros | scan_to_scan_filter_chain |
-
----
-
-## 6. Kritik Parametre Tablosu
-
-| Bileşen | Parametre | Değer | Etki |
-|---------|-----------|-------|------|
-| **Aşama 1 PID** | Kp/Kd | 1.5 / 1.2 | Rota takip hassasiyeti |
-| **Aşama 2 MPPI** | vx_max (slalom) | 0.8 m/s | Engelden kaçma hızı |
-| | ObstaclesCritic | 20.0 | Çarpışma cezası |
-| | xy_goal_tolerance | 2.5 m | WP5 kabul yarıçapı |
-| **Aşama 3** | base_speed | 1.5 m/s | Temel hücum hızı |
-| | kp_yaw | 1.2 | Yön kontrol kazancı |
-| **Sensör Füzyonu** | lidar_max_valid | 15.0 m | LiDAR mesafe tavanı |
-| **MAVROS köprüsü** | max_speed | 1.0 m/s | PWM ölçekleme referansı |
-| **EKF** | two_d_mode | true | 2B yüzey kısıtı |
-| **SLAM** | resolution | 0.05 m | Harita çözünürlüğü |
-
----
-
-## 7. TF Ağacı
+## 4. Sistem Veri Akış Diyagramı
 
 ```
-map
- └── odom              ← slam_toolbox veya sabit yayın
-      └── base_link    ← ekf_node (robot_localization)
-           ├── lidar_link
-           ├── imu_link
-           ├── gps_link
-           └── camera_link
+[GPS/MAVROS] ──► [GpsCovRepub] ──► /gps/fixed_cov ──► [navsat_transform_node]
+[IMU/MAVROS] ──► [ImuCovRepub] ──► /imu/fixed_cov  ──────────────────────────┐
+[ZED /odom]  ──────────────────────────────────────────────────────────────►─►┤
+                                                                               │ [EKF] ──► /odometry/filtered
+[RPLidar /scan] ──► [laser_filters] ──► /scan/filtered ──► [Nav2 Costmap]     │
+                                              └───────────► [SensorFusionNode] │
+[ZED RGB]   ──queue──► [YOLO TRT Thread] ──┐                                  │
+[ZED Depth] ─────────────────────────────►─┤                                  │
+[ZED Conf]  ─────────────────────────────►─┤                                  │
+                                           └──► [KamikazeControl 20Hz] ──────────────► /kamikaze_target
+                                                                         └──────────► /gate_center
+                                                                         └──────────► /kamikaze_locked
+
+/kamikaze_target ──► [SensorFusionNode] ──► /fusion/target
+/odometry/filtered ─┐
+/gate_center ───────┤
+/kamikaze_target ───┤──► [MissionManager 20Hz] ──► /cmd_vel ──► [CmdVelMavrosBridge] ──► MAVROS
+/fusion/target ─────┘                         └──► Nav2 Action (navigate_to_pose)
+                                               └──► /mission_state (teşhis)
 ```
 
 ---
 
-*Bu rapor otomatik kod taraması ile oluşturulmuştur. Dal: 2d-lidar-saha-testi*
+## 5. Görev Aşamaları Özeti
+
+| Aşama | Kontrol Katmanı | Birincil Girdi | /cmd_vel Kaynağı |
+|-------|----------------|---------------|-----------------|
+| **INIT** | GPS dönüşüm bekleme | `/fromLL` async | — |
+| **PARKUR 1** | PID heading (Kp=1.5, Ki=0, Kd=1.2) + hız LPF | `/odometry/filtered` | MissionManager direkt |
+| **PARKUR 2** | Nav2/MPPI (Slalom) + kapı görsel servo | Nav2 + `/gate_center` | Nav2 (MPPI) veya MissionManager (servo/fallback) |
+| **PARKUR 3** | Visual PD servo + sensör füzyonu | `/kamikaze_target` + `/fusion/target` | MissionManager direkt |
+
+---
+
+## 6. Nav2 / MPPI Yapılandırması
+
+**Controller:** MPPI | **Planner:** NavfnPlanner (A*)  
+**Costmap boyutu:** Local 22×22m @0.1m res | Global 150×150m @0.3m res  
+**Runtime parametre değişimi:**
+
+| Mod | Tetikleyici | Temel Fark |
+|-----|-------------|-----------|
+| **Slalom** | Parkur 2 başlangıcı | vx_max=0.8, ObstaclesCritic.critical_weight=20, collision_cost=10000 |
+| **Sprint** | (yedek) | vx_max=2.5, ObstaclesCritic.critical_weight=5 |
+| **AdaptiveHorizon** | Kapıya dist < 4m | time_steps: 56→80 |
+| **GateServoSuppress** | /gate_center gelince | vx_max=0, wz_max=0 (MPPI susturulur) |

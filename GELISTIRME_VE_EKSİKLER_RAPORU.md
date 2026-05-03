@@ -1,169 +1,237 @@
 # STI USV — Geliştirme ve Eksikler Raporu
-**Analiz Tarihi:** 2026-04-30  
-**Standart:** Endüstriyel otonomi projesi + TEKNOFEST yarışma şartnameleri
+**Tarih:** 2026-05-03 | **Standart:** Profesyonel ROS 2 otonomi projesi kriteri
 
 ---
 
 ## Özet Puan Tablosu
 
-| Kategori | Puan | Durum |
-|----------|------|-------|
-| Algı (Perception) | 7/10 | İyi — çoklu sensör, yedek zinciri var |
-| Lokalizasyon | 6/10 | Orta — GPS+IMU sağlam, SLAM bağlantısı gevşek |
-| Planlama & Kontrol | 6/10 | Orta — MPPI iyi, PID ilkel |
-| Hata Yönetimi | 5/10 | Zayıf — respawn var ama watchdog eksik |
-| Kod Kalitesi | 6/10 | Orta — kod tekrarı yüksek |
-| Test Edilebilirlik | 7/10 | İyi — standalone düğümler var |
+| Kategori | Durum |
+|----------|-------|
+| Temel görev mantığı | ✅ İşlevsel |
+| Hata yönetimi / watchdog | ⚠ Kısmi |
+| Thread güvenliği | ⚠ Eksik |
+| Sensör füzyonu kalitesi | ⚠ Temel düzey |
+| Donanım geçişi hazırlığı | ❌ Kritik boşluklar |
+| Test / CI altyapısı | ❌ Yok |
 
 ---
 
-## 1. KRİTİK SORUNLAR (Yarışmayı Doğrudan Etkiler)
+## KRİTİK HATALAR (Gerçek donanımda çöker)
 
-### 1.1 MAVROS Köprüsü Hız Kırpması
-**Dosya:** `workspace_ros/workspace_ros/cmd_vel_to_mavros.py`  
-**Sorun:** `max_speed=1.0 m/s` ile başlatılıyor (`usv_autonomy.launch.py`), ama `mission_manager` Aşama 3 Faz 2'de `v = base_speed × 5.0 = 7.5 m/s` gönderiyor. `cmd_vel_to_mavros`'un PWM ölçekleme referansı `max_speed` olduğundan bu değer doğru PWM çıkışına dönüşmeyebilir.  
-**Önerilen Düzeltme:** `usv_autonomy.launch.py`'de `max_speed` parametresini en azından `base_speed` ile aynı hizaya getir ya da MAVROS köprüsünde kırpma yerine `clamp` + log ekle.
+### C-1: KamikazeControl — Thread Güvensiz Sensör Erişimi
+**Dosya:** `workspace_nav/scripts/kamikaze_control.py:344-348`
 
-### 1.2 GateFusion — Kodun İki Yerde Tekrarlanması
-**Dosyalar:** `scripts/mission_manager.py` + `workspace_nav_entry/parkur2_standalone.py`  
-**Sorun:** `GateFusionHandler` sınıfı iki ayrı dosyada neredeyse aynı şekilde bulunuyor. Bir parametreyi değiştirdiğinde iki yerde düzeltmen gerekiyor; biri unutulduğunda davranış uyuşmazlığı çıkar.  
-**Önerilen Düzeltme:** `GateFusionHandler`'ı `scripts/gate_fusion.py`'ye taşı ve her iki dosyadan import et.
+`_latest_depth`, `_latest_scan`, `_latest_conf` değişkenleri Thread B (sensor CB) tarafından yazılır, Thread D (20Hz publish loop) tarafından okunur. Numpy dizileri Python'da atomik değildir; kısmi yazım sırasında okuma olursa **boyut uyumsuzluğu → crash**.
 
-### 1.3 Stage 1 PID — Akıntı/Sürükleme Etkisine Karşı Savunmasız
-**Dosya:** `scripts/mission_manager.py` — `_run_stage1_pid()`  
-**Sorun:** Saf oransal (P) kontrolcü; integral terimi (I=0) yok. Denizde sürekli yan akıntı varsa araç hiç ulaşamayacağı stabil bir hata noktasına girer. Kd terimi kod içinde var ama pratik etkisi deniz koşullarında sınırlı.  
-**Önerilen Düzeltme:** Küçük integral terimi (Ki=0.05–0.1, wind-up sınırı ile) ekle. Ya da daha iyi: Aşama 1 için de Nav2/MPPI'yi kullan, PID'i kaldır.
+```python
+# Mevcut (güvensiz):
+depth_img = self._latest_depth   # Thread D, Thread B yazarken okuyabilir
 
-### 1.4 SLAM → Nav2 TF Zinciri Doğrulanmamış
-**Sorun:** `slam_toolbox` `map→odom` TF'ini yayınlar. Eğer SLAM başlatılmadan `usv_autonomy.launch.py` çalıştırılırsa Nav2 `map` çerçevesini bulamaz ve tüm planlama sessizce başarısız olur. Herhangi bir hata mesajı veya acil durum koşulu yok.  
-**Önerilen Düzeltme:** `mission_manager` başlangıcında `map→base_link` TF varlığını 5 saniye boyunca kontrol eden basit bir bekleme döngüsü ekle.
+# Düzeltme:
+self._sensor_lock = threading.Lock()
+with self._sensor_lock:
+    depth_img = self._latest_depth
+```
 
 ---
 
-## 2. ORTA ÖNEMLİ EKSİKLER
+### C-2: SensorFusionNode — Tek Piksel Derinlik Örneklemesi
+**Dosya:** `usv_sensor_fusion/src/SensorFusionNode.cpp:195-216`
 
-### 2.1 Sağlık İzleme (Health Monitoring) Yok
-**Sorun:** Hiçbir düğüm sensör akışlarının kesildiğini tespit etmiyor:
-- ZED kamera çöküyor → `kamikaze_control` yeni görüntü alamıyor ama hata vermiyor
-- LiDAR bağlantısı kopuyor → `sensor_fusion_node` sessizce angle-only moduna geçiyor
-- EKF yakınsama sağlayamazsa `/odometry/filtered` durur → mission_manager'daki 2s watchdog var ama log seviyesi sadece WARN
+`sampleDepthImage()` tek pikselden değer alıyor. Python'daki `_zed_depth_at_pixel()` ise 11×11 pencere + medyan filtresi + güven maskesi kullanıyor. Gerçek ZED kamerası özellikle suyun yüzeyi gibi speküler yüzeylerde NaN/Inf değer üretiyor; tek piksel örnekleme mesafe kaybına → kamikaze mod körleşmesine yol açar.
 
-**Önerilen Düzeltme:** Minimal watchdog düğümü: kritik topic'lerin son mesaj zamanını izle, 3s susarsa `/mission_state`'e "SENSOR_FAIL" yaz ve cmd_vel=0 yayınla.
-
-### 2.2 `static_transform.yaml` — Simülatör Çerçeve İsimleri
-**Dosya:** `workspace_ros/config/static_transform.yaml`  
-**Sorun:** Hedef çerçeveler `roboboat/base_link/sensor_lidar` şeklinde simülatör isimlendirmesi kullanıyor. Gerçek donanımda çerçeve isimleri farklıysa Nav2 costmap LiDAR verilerini `base_link`'e dönüştüremez, engeller haritada yanlış konuma yerleşir.  
-**Önerilen Düzeltme:** Gerçek donanım frame isimlerini doğrula ve YAML'ı güncelle.
-
-### 2.3 `kiss_icp.launch.py` — Simülatör Topic Kalıntısı
-**Dosya:** `workspace_ros/launch/kiss_icp.launch.py`  
-**Sorun:** `topic: '/roboboat/lidar/points'` simülatör topic'i. Gerçek donanımda bu topic yok → KISS-ICP başlangıçta subscriber oluşturur ama hiç veri almaz.  
-**Önerilen Düzeltme:** `default_value='/velodyne_points'` veya gerçek 3D LiDAR topic'i ile güncelle.
-
-### 2.4 `ekf_fusion.yaml` — Kullanılmayan Config Dosyası
-**Dosya:** `workspace_nav/config/ekf_fusion.yaml`  
-**Sorun:** ZED odomometrisini (görsel odometri) girdi olarak tanımlıyor, ama `localization.launch.py` bunu başlatmıyor — yalnızca GPS+IMU kullanıyor. Bu dosya hiçbir launch tarafından çağrılmıyor, ama silinmesi için de emin olmak lazım.
-
-### 2.5 Nav2 `xy_goal_tolerance: 2.5 m` — Çok Geniş
-**Dosya:** `workspace_nav/config/nav2_params_usv_pure.yaml`  
-**Sorun:** 2.5 metre yarıçap kapı genişliğinden büyük olabilir. Nav2, araç kapıdan 2.5m önce olduğunda "başarılı" sayabilir ve erken Aşama 3'e geçebilir.  
-**Önerilen Düzeltme:** `xy_goal_tolerance: 1.0` veya GateFusion kilidine bağlı dinamik tolerans kullan.
-
-### 2.6 Kamikaze Kilit Mekanizması — 3s Sabit Gecikme
-**Dosya:** `scripts/kamikaze_control.py`  
-**Sorun:** İlk tespitten 3 saniye sonra kilit açılıyor. Eğer araç hızlı yaklaşıyorsa (Faz 1b v=4.5 m/s), 3 saniyede 13.5 metre gidilir — kilit açıldığında hedef zaten geçilmiş olabilir. Tam ters: araç yavaşsa kilit çok erken açılabilir ve yanlış yönde tam hız verilebilir.  
-**Önerilen Düzeltme:** Kilit koşulunu zaman yerine mesafeye bağla: `dist < 2.0m AND conf_frames > 10`.
+```cpp
+// Düzeltme: pencereli medyan örnekleme ekle (Python versiyonundaki mantığı port et)
+float sampleDepthWindow(const Image& img, int px, int py, int win=5) const;
+```
 
 ---
 
-## 3. DARBOĞAZLAR (Gerçek Donanımda Ortaya Çıkacak)
+### C-3: Sabit Kodlanmış GPS Kovaryansı
+**Dosya:** `workspace_ros/scripts/gps_covariance_repub.py:27-33`
 
-### 3.1 YOLO + ZED Derinlik — CPU/GPU Bant Genişliği
-**Sorun:** Jetson Orin NX 8GB'de:
-- ZED SDK 1280×720@30fps → ~110 MB/s ham veri
-- YOLOv8 TRT ~18–22ms çıkarım süresi
-- `sensor_fusion_node` aynı anda `/scan/filtered` işliyor
+```python
+hdop = 3.0  # Her zaman 3.0 — gerçek HDOP'u yoksayıyor
+var = (hdop * 1.5) ** 2  # = 20.25 m²
+```
 
-Thread-D 20 Hz yayın döngüsünde depth görüntüsünü kopyalıyor (`last_depth_ = msg`). Büyük mesaj paylaşım kilidi olmadan bu potansiyel olarak race condition yaratır (Python GIL korur ama C++ paylaşımı `onDepth` ve `onTarget` arasında güvenli).  
-**Durum:** C++ tarafında `last_depth_` std::shared_ptr ataması atomik değil ama rclcpp callback queue serileştirir — şu an güvenli.
+MAVROS zaten `/mavros/global_position/global` içinde gerçek HDOP'u yayınlar. EKF bu sabit kovaryansı inanır; açık alanda GPS iyiyken de zayıf güven verir → EKF ağırlıklaması yanlış. Gerçek donanımda GPS kayması artar.
 
-### 3.2 Nav2 MPPI — Jetson'da CPU Yükü
-**Sorun:** `batch_size: 2000`, `iteration_count: 4` → 8000 traj. evaluasyonu / kontrol döngüsü. Çevrimiçi benchmark: Orin NX'de ~45–60ms MPPI döngüsü = sadece ~17 Hz. `controller_frequency: 20.0` ile hafif uyuşmazlık.  
-**Önerilen Düzeltme:** `batch_size: 1000` ile test yap; performans yeterliyse düşük tut.
-
-### 3.3 LiDAR Tarama Frekansı vs. Hareket Hızı
-**Sorun:** RPLidar A1M8 @ 5.5 Hz. Araç Faz 2'de 4.5 m/s gidiyorsa, iki tarama arasında 0.8m hareket eder — engel tespiti ciddi ölü zona sahip.  
-**Önerilen Düzeltme:** RPLidar'ı en yüksek hız moduna al (10 Hz); ya da hız limitini MPPI'dan 2.0 m/s ile kısıtla.
-
-### 3.4 GPS Başlangıç Yakınsaması
-**Sorun:** `navsat_transform_node` parametresi `delay: 1.0s`. IMU ve GPS aynı anda başlarsa, ilk saniyede GPS/IMU zaman damgası uyuşmazlığı yanlış başlangıç pozisyonu verebilir. Araç bu hatalı pozisyon ile WP1'e giderse yanlış yönü görebilir.  
-**Önerilen Düzeltme:** mission_manager başlangıcında `/odometry/filtered` kovaryans izini (covariance[0]) izle; değer makul olana kadar (örn. < 5.0 m²) bekle.
+**Düzeltme:** `msg.position_covariance` değerlerini MAVROS'tan geldikleri gibi bırak; sadece `frame_id` ve `covariance_type` düzelt.
 
 ---
 
-## 4. ALGORİTMA İYİLEŞTİRME ÖNERİLERİ
+### C-4: Yanlış LiDAR Açı Dönüşümü (SensorFusionNode)
+**Dosya:** `usv_sensor_fusion/src/SensorFusionNode.cpp:177`
 
-### 4.1 Aşama 1 için Saf Takip Rotası (Pure Pursuit) Alternatifi
-Mevcut PID sürekli en yakın WP'yi hedefliyor. "Pure Pursuit" algoritması lookahead mesafesi ile çok daha yumuşak rota izler, aşım yapmaz. Kod değişikliği: ~50 satır.
+```cpp
+const double scan_angle = -yaw_rad;  // kamera CW → LaserScan CCW dönüşümü
+```
 
-### 4.2 GateFusion — Ağırlıklı Ortalama (Temporal Weighting)
-Mevcut: `mean(son N ölçüm)`. Öneri: Üstel ağırlıklı ortalama (EMA, α=0.7). Eski ölçümlerin etkisi üssel azalır → dinamik sahnede daha hızlı adaptasyon.
-
-### 4.3 Kamikaze Faz Geçişi — Mesafeye Dayalı P Kazancı
-Mevcut: `ω = kp_yaw × err × 8.0` (sabit). Öneri: `ω = kp_yaw × err × (8.0 + 20.0 / max(dist, 0.5))` — yaklaşırken kazanç artar, çarpışma açısı hassasiyeti iyileşir.
-
-### 4.4 Yedek Rota (Fallback Route) Tanımı Eksik
-Aşama 1'de GPS kaybı, Aşama 2'de Nav2 planner başarısızlığı durumunda sistem ne yapacak? Şu an: sonsuz döngü veya sıfır hız. Yarışmada bu manuel müdahale gerektiriyor.  
-**Öneri:** Her aşama için N saniye sonra önceki aşamaya geri dön veya güvenli duruş noktasına git mantığı.
+Bu dönüşüm, LiDAR'ın tam olarak kameraya göre hizalı (0° offset, aynı Z ekseninde) monte edildiğini varsayar. Gerçek teknede LiDAR çoğunlukla kameradan farklı yükseklikte/açıda monte edilir. TF ağacındaki `lidar_link→camera_link` dönüşümü kullanılmıyor. Sahada yanlış açı eşleşmesi → mesafe ölçümü yanlış.
 
 ---
 
-## 5. KOD KALİTESİ VE SÜRDÜRÜLEBİLİRLİK
+## ORTA ÖNEMLİ EKSİKLER
 
-### 5.1 Sihirli Sayılar
-Aşağıdaki sabitler doğrudan kodda yazılmış, parametre değil:
+### O-1: PID Hız Profili — Basamak Fonksiyonu
+**Dosya:** `scripts/mission_manager.py:1101-1110`
 
-| Dosya | Sabit | Değer | Gerekçe |
-|-------|-------|-------|---------|
-| `mission_manager.py` | Faz 1a/1b hız | 0.2, v=base×3 | Tüm sürümler için sabit mi? |
-| `mission_manager.py` | Gate consensus std | 1.0 m | Farklı sahalar için değişmeli |
-| `kamikaze_control.py` | Lock timer | 3.0 s | Sahadaki hıza bağlı |
-| `sensor_fusion.cpp` | Depth window | 11×11 px | Çözünürlüğe bağımlı |
+```python
+if heading_deg > 45:  target_vx = 0.2
+elif heading_deg > 25: target_vx = 0.8
+elif heading_deg > 10: target_vx = 1.5
+else:                  target_vx = PID_MAX_SPEED
+```
 
-### 5.2 Log Seviyeleri Tutarsız
-Bazı kritik olaylar DEBUG, bazı rutin mesajlar WARN seviyesinde loglanıyor. Yarışmada log incelemesi zorlaşıyor.  
-**Öneri:** Standart: bilgi=INFO, anormal ama kurtarılabilir=WARN, sistem durdurucu=ERROR.
+Bu basamak geçişleri, belirli açı değerlerinde ani hız değişimi üretir. Mevcut LPF (`alpha=0.10`) bu süreksizliği yeterince yumuşatmıyor (zaman sabiti ≈ 10 adım × 0.05s = 0.5s). Güçlü akıntıda ani hız kesmeleri osilasyona neden olur.
 
-### 5.3 `yolo_topic` Parametresi Artık Kullanılmıyor
-`usv_autonomy.launch.py`'de `/yolo/detections` launch argümanı tanımlı ama hiçbir düğüme geçilmiyor — legacy kod.
+**Düzeltme:** `target_vx = PID_MAX_SPEED * exp(-k * |heading_deg|)` gibi sürekli bir profil.
 
 ---
 
-## 6. EKSİK TEST SENARYOLARI
+### O-2: MissionManager — İçe Aktarma (import) Döngü İçinde
+**Dosya:** `scripts/mission_manager.py:765, 1159, 1248, 1277`
 
-| Senaryo | Risk | Mevcut Durum |
-|---------|------|--------------|
-| ZED çökmesi sırasında Aşama 3 | Yüksek | Test edilmedi |
-| GPS atlaması (5m sıçrama) sırasında Aşama 1 | Yüksek | Test edilmedi |
-| MPPI plan bulamazsa (engel dolu costmap) | Orta | Test edilmedi |
-| Yanlış sarı şamandıra tespiti (gürültü) | Orta | Test edilmedi |
-| 2+ kırmızı şamandıra görünürse Kamikaze | Orta | Büyük alan seçme var |
-| Araç sahadaki sınırın dışına çıkarsa | Orta | Sınır yok |
+```python
+def _gate_center_cb(self, msg):
+    import time as _time        # 20 Hz'de her çağrıda tekrar edilir
 
----
+def _run_parkur2_mppi(self):
+    import time as _tnow        # 20 Hz kontrol döngüsünde
+    from geometry_msgs.msg import Twist as _Twist  # 20 Hz kontrol döngüsünde
+```
 
-## 7. ACİL DÜZELTME ÖNCELİK LİSTESİ
-
-| Öncelik | Sorun | Dosya | Tahmini Süre |
-|---------|-------|-------|-------------|
-| 🔴 P1 | MAVROS max_speed kırpması | `usv_autonomy.launch.py` | 5 dk |
-| 🔴 P2 | static_transform gerçek frame isimleri | `static_transform.yaml` | 15 dk |
-| 🟠 P3 | GateFusion kod tekrarı kaldır | mission_manager + parkur2 | 1 saat |
-| 🟠 P4 | TF zincir başlangıç kontrolü | `mission_manager.py` | 30 dk |
-| 🟡 P5 | xy_goal_tolerance daralt | `nav2_params_usv_pure.yaml` | 5 dk |
-| 🟡 P6 | Kilit koşulunu mesafeye bağla | `kamikaze_control.py` | 20 dk |
-| 🟡 P7 | Aşama 1 integral terimi ekle | `mission_manager.py` | 30 dk |
+Python'da modül önbelleğe alındığı için performans etkisi minimal; ancak bu pattern kodu gizler ve statik analiz araçlarını yanıltır. Tüm importlar dosya üstüne taşınmalı.
 
 ---
 
-*Bu rapor kaynak kod statik analizi ile oluşturulmuştur. Dal: 2d-lidar-saha-testi*
+### O-3: `_yellow_visible_cb` Boş
+**Dosya:** `scripts/mission_manager.py:737-738`
+
+```python
+def _yellow_visible_cb(self, msg) -> None:
+    pass
+```
+
+`/yellow_visible` topic'ine abone olunuyor, gelen veri hiç kullanılmıyor. Eski tasarım artığı. Abonelik kaldırılmalı veya anlamlı bir işlev verilmeli.
+
+---
+
+### O-4: EKF GPS Entegrasyonu Eksik
+**Dosya:** `workspace_nav/config/ekf_fusion.yaml`
+
+EKF yalnızca ZED odom + IMU fuse ediyor. `navsat_transform_node` var (`navsat.yaml`) ancak GPS düzeltmesi EKF girdisi olarak yapılandırılmamış. Bu durumda uzun süreli görevlerde ZED odometri kayması GPS ile düzeltilemez. Gerçek su testinde 100m+ koşularda konumsal hata birikir.
+
+**Düzeltme:** `ekf_fusion.yaml`'a `odom1: /odometry/gps` girişi ekle (navsat_transform_node çıkışı).
+
+---
+
+### O-5: GateFusion Standart Sapma Hesabı
+**Dosya:** `scripts/mission_manager.py:412-423`
+
+```python
+var_x = sum((x - mean_x) ** 2 for x in xs) / (n - 1)
+var_y = sum((y - mean_y) ** 2 for y in ys) / (n - 1)
+return math.sqrt(var_x + var_y)  # 2D bileşik std
+```
+
+`sqrt(var_x + var_y)` matematiksel olarak "2D pozisyon belirsizliği" (mahalanobis mesafesinin basitleştirilmiş hali) sayılabilir, ancak bu, X ve Y'nin eşit ağırlıklı ve bağımsız olduğunu varsayar. Eğik açıdan gelen kapı tespitlerinde X-Y korelasyonu var; bu formül eşik değeriyle tutarsız sonuç üretebilir. Daha sağlam yöntem: `max(std_x, std_y)` veya `hypot(std_x, std_y) / sqrt(2)`.
+
+---
+
+### O-6: Nav2 Collision Monitor Bağlantısı Belirsiz
+**Dosya:** `config/nav2_params_usv_pure.yaml:432-433`
+
+```yaml
+cmd_vel_in_topic: "cmd_vel_smoothed"
+cmd_vel_out_topic: "cmd_vel_cm_out"
+```
+
+Collision Monitor `cmd_vel_cm_out` yayınlıyor; MAVROS köprüsü ise `/cmd_vel` dinliyor. Bu iki topic bağlanmadığı sürece Collision Monitor **etkisiz**. Launch dosyasında remapping veya köprü konfigürasyonu gerekli.
+
+---
+
+### O-7: PID İntegral Anti-Windup Eksik
+**Dosya:** `scripts/mission_manager.py:1091-1092`
+
+```python
+self._pid_integral = max(-0.5, min(0.5, self._pid_integral + steering_err * PID_DT))
+```
+
+İntegral doyum sınırı var (±0.5) ama gerçek anti-windup yok. Tekne bir engel nedeniyle istenen rotaya dönemezken integratör dolmaya devam eder; engel kalktığında aşırı dönüş (windup) oluşur. Düzeltme: sadece çıktı doyumda olmadığında integratörü güncelle.
+
+---
+
+### O-8: Kamikaze Zamanlayıcı Karışıklığı
+**Dosya:** `scripts/mission_manager.py:1419, 1452`
+
+Kamikaze döngüsünde `lost_time` hesabında `self.get_clock().now().nanoseconds / 1e9` kullanılıyor (ROS duvar saati), ancak `_kamikaze_last_seen` set edilirken aynı yöntem kullanılıyor — tutarlı. Ancak `_fusion_last_seen` staleness kontrolü de aynı kaynaktan geliyor. Simülasyon ile gerçek donanım arasında saat farkı olabilir; `use_sim_time` flag'i dikkatli yönetilmeli.
+
+---
+
+## KÜÇÜK EKSİKLER / İYİLEŞTİRME ALANLARI
+
+### K-1: MPPI Parametre Uygulaması — Retry Yok
+**Dosya:** `scripts/mission_manager.py:222-229`
+
+```python
+if not self._client.service_is_ready():
+    self._log.warn('... servis hazır değil — Nav2 başladıktan sonra otomatik uygulanacak.')
+    return  # Hiç retry yok
+```
+
+Servis hazır değilse parametre değişikliği sessizce iptal edilir. Slalom moduna geçiş anında Nav2 henüz başlamadıysa default Sprint parametreleriyle çalışmaya devam eder. Basit bir retry queue eklenebilir.
+
+---
+
+### K-2: `local_goal_bridge.py` Entegrasyonu Belirsiz
+**Dosya:** `scripts/local_goal_bridge.py`
+
+`/usv_local_goal` topic'i sistemin hiçbir yerinde yayınlanmıyor. Bu düğüm launch dosyalarına eklenmemiş gibi görünüyor; ölü kod olabilir veya gelecek entegrasyon için placeholder.
+
+---
+
+### K-3: KamikazeControl Model Yolu Sabit Kodlanmış
+**Dosya:** `scripts/kamikaze_control.py:101`
+
+```python
+self.declare_parameter('model_path', '/home/seatech/models/buoy.engine')
+```
+
+Parametre olarak tanımlanmış, iyi. Ancak TRT `.engine` modeli Jetson mimarisine özgü; farklı bir Jetson veya PC'de çalışmaz. Launch dosyasında açıkça belirtilmeli.
+
+---
+
+### K-4: Test Altyapısı Yok
+Tüm kod tabanında unit test veya integration test dosyası **bulunmuyor**. Minimum şunlar eklenebilir:
+- `GateFusionHandler._compute_std()` için birim test
+- PID döngüsü için hedef yakınsama simülasyonu
+- GPS dönüşüm callback'i için mock servisle entegrasyon testi
+
+---
+
+### K-5: Gerçek Donanım Darboğazları
+
+| Bileşen | Risk | Tahmin |
+|---------|------|--------|
+| YOLOv8 TRT inference | Jetson Orin'de ~15-25ms; 20Hz döngüsü ile uyumlu ancak ısıl throttling tehlikesi | ⚠ Orta |
+| MPPI batch=2000, iter=4 | CPU'da ~3-5ms; Jetson'da kabul edilebilir | ✅ Düşük |
+| Nav2 global costmap 150×150@0.3m | 2Hz güncelleme: ~150ms hesaplama; dalga hareketi TF titremesiyle birleşince local plan sapabilir | ⚠ Orta |
+| ZED derinlik + güven haritası @ 30fps | USB3 bant genişliği; Jetson'da OK; ek vibrasyon → NaN oranı artar | ⚠ Orta |
+| EKF 30Hz + slam_toolbox + Nav2 | Eşzamanlı yük; SLAM'ın loop closure sırasında TF gecikmesi Nav2 plan sapmasına neden olabilir | ⚠ Orta |
+
+---
+
+## Simülasyon → Gerçek Donanım Geçişi Kontrol Listesi
+
+- [ ] `use_sim_time: true` → `false` tüm YAML dosyalarında
+- [ ] GPS kovaryansı gerçek HDOP'tan hesaplanacak şekilde güncelle (C-3)
+- [ ] LiDAR-kamera açı ofseti TF ağacından alınacak şekilde düzelt (C-4)
+- [ ] Thread güvenliği için sensör lock eklenmeli (C-1)
+- [ ] SensorFusionNode pencereli derinlik örneklemesi (C-2)
+- [ ] Collision Monitor topic remapping (O-6)
+- [ ] EKF'e GPS girişi eklenmeli (O-4)
+- [ ] Isıl yönetim: Jetson'da inference + Nav2 + SLAM eşzamanlı çalışma profili çıkarılmalı
+- [ ] Motorlu gerçek testlerde PID Kp/Kd tekrar ayarlanmalı (simülasyon su direnci yok)
+- [ ] MPPI obstacle critic ağırlıkları gerçek duba boyutlarıyla kalibre edilmeli

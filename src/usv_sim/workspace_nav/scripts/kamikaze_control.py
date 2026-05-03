@@ -525,7 +525,8 @@ class KamikazeControl(Node):
         target_msg.header.frame_id = 'camera_link'
         target_msg.point.x = cx_norm
         target_msg.point.y = cy_norm
-        target_msg.point.z = float(area)
+        # point.z: bbox genişliği normalize [0..1] — SensorFusionNode frustum hesabı için
+        target_msg.point.z = float((tgt['x2'] - tgt['x']) / max(rgb_w, 1))
         self._target_pub.publish(target_msg)
 
         elapsed   = now - self._lock_start_time
