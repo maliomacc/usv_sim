@@ -272,11 +272,10 @@ local_costmap:
           marking: true
           data_type: "LaserScan"
           # ─── COSTMAP KÖR NOKTA DÜZELTMESİ ─────────────────────────────────
-          # 30m lidar @ 0.8 m/s slalom: 15m uyarı = 18 saniye öngörü.
-          # Eski 8m → 0.8 m/s'de sadece 10 sn; giriş 2.5 m/s'de ise 3.2 sn!
-          obstacle_max_range: 15.0   # 8.0→15.0: dubaları çok önceden işle
+          # RPLidar A1M8: max 8m gerçek menzil
+          obstacle_max_range: 7.5    # RPLidar A1M8 max 8m → 7.5m güvenlik marjı
           obstacle_min_range: 0.15   # robot gövdesini engel sayma
-          raytrace_max_range: 20.0   # 10.0→20.0: serbest alan temizliği genişledi
+          raytrace_max_range: 8.0    # RPLidar A1M8 max range ile eşleştirildi
           raytrace_min_range: 0.1
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
@@ -331,11 +330,10 @@ global_costmap:
           marking: true
           data_type: "LaserScan"
           # ─── GLOBAL COSTMAP KÖR NOKTA DÜZELTMESİ ───────────────────────────
-          # A* dubayı çok önceden görürse dubadan değil dubaların ARASINDA plan yapar.
-          # 30m lidar → 20m menzil: slalom bölgesine 20m kala plan güncellenir.
-          obstacle_max_range: 20.0   # 7.0→20.0: A*'a erken uyarı
+          # RPLidar A1M8: max 8m gerçek menzil
+          obstacle_max_range: 7.5    # RPLidar A1M8 ile eşleştirildi
           obstacle_min_range: 0.20
-          raytrace_max_range: 25.0   # 8.0→25.0: geniş serbest alan temizliği
+          raytrace_max_range: 8.0    # RPLidar A1M8 max range
           raytrace_min_range: 0.1
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"

@@ -269,13 +269,13 @@ class GateFusionHandler:
     MAX_GATE_UPDATE_DIST = 25.0
 
     GATE_BUFFER_SIZE       = 3    # Sniper-lock: only 3 samples needed
-    CONSENSUS_STD_THRESHOLD = 0.5  # Sıkılaştırıldı: daha az gürültüye tolerans
+    CONSENSUS_STD_THRESHOLD = 0.8  # Gevşetildi: sahada gürültüye tolerans
     MIN_SAMPLES_FALLBACK   = 3    # Erken kilit önleme: en az 3 örnek
     FALLBACK_TRIGGER_DIST  = 5.0
 
     LOCK_RELEASE_DIST  = 2.0
     GATE_LOST_TIMEOUT  = 5.0
-    BREAK_LOCK_DIST    = 3.0
+    BREAK_LOCK_DIST    = 5.0    # 3.0→5.0m: tek kötü frame lock kırmasın
 
     def __init__(self, original_wp5: dict, logger):
         self._base_wp5    = dict(original_wp5)

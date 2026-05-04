@@ -43,7 +43,11 @@ def generate_launch_description():
         name='sensor_fusion_node',
         output='screen',
         arguments=['--ros-args', '--log-level', log_level],
-        parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{
+            'use_sim_time':    use_sim_time,
+            'lidar_max_valid': 8.0,   # RPLidar A1M8 max range
+            'lidar_min_valid': 0.2,
+        }],
         respawn=True,
         respawn_delay=2.0,
     )
